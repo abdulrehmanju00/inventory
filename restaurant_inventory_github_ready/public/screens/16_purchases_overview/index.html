@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary": "#ffffff", "secondary-fixed-dim": "#bcc7de", "surface": "#faf8ff", "surface-bright": "#faf8ff", "inverse-surface": "#283044", "inverse-primary": "#80d5cb", "on-tertiary-fixed-variant": "#00513a", "tertiary-fixed-dim": "#7bd8b1", "surface-container-low": "#f2f3ff", "on-background": "#131b2e", "primary-container": "#0f766e", "inverse-on-surface": "#eef0ff", "surface-container-highest": "#dae2fd", "surface-container-lowest": "#ffffff", "primary": "#005c55", "secondary-container": "#d5e0f8", "on-error-container": "#93000a", "on-tertiary": "#ffffff", "secondary": "#545f73", "primary-fixed": "#9cf2e8", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#3c475a", "background": "#faf8ff", "on-secondary-container": "#586377", "on-primary-fixed-variant": "#00504a", "on-primary-fixed": "#00201d", "on-error": "#ffffff", "on-tertiary-container": "#9ffdd3", "outline-variant": "#bdc9c6", "surface-tint": "#006a63", "tertiary": "#005d42", "surface-dim": "#d2d9f4", "error": "#ba1a1a", "error-container": "#ffdad6", "secondary-fixed": "#d8e3fb", "primary-fixed-dim": "#80d5cb", "on-primary-container": "#a3faef", "on-secondary-fixed": "#111c2d", "on-surface": "#131b2e", "surface-container-high": "#e2e7ff", "surface-container": "#eaedff", "outline": "#6e7977", "tertiary-fixed": "#97f5cc", "tertiary-container": "#047857", "on-tertiary-fixed": "#002115", "surface-variant": "#dae2fd", "on-surface-variant": "#3e4947" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin": "1.5rem", "margin-mobile": "1rem", "gutter-lg": "1.5rem", "space-xl": "2rem", "space-lg": "1.25rem", "margin-desktop": "2rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-md": "0.75rem", "gutter": "1rem" }, "fontFamily": { "body-lg": ["Hanken Grotesk"], "headline-lg-mobile": ["Hanken Grotesk"], "label-sm": ["Geist"], "body-sm": ["Hanken Grotesk"], "display-lg": ["Hanken Grotesk"], "label-md": ["Geist"], "body-md": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"], "headline-md": ["Hanken Grotesk"], "headline-xl": ["Hanken Grotesk"], "numeric-table": ["Geist"], "label-lg": ["Geist"] }, "fontSize": { "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg-mobile": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "numeric-table": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><!-- Mobile Backdrop --><div class="fixed inset-0 bg-neutral-900/50 z-30 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div><!-- Sidebar --><aside class="fixed left-0 top-0 h-screen w-64 -translate-x-full lg:translate-x-0 transition-transform z-40 bg-surface-container-low border-r border-outline-variant/30 flex flex-col justify-between overflow-y-auto" id="app-sidebar">
+<div class="flex flex-col">
+<!-- App Header / Logo -->
+<div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-low border-b border-surface-container">
+<div class="h-9 w-9 rounded-lg bg-primary flex items-center justify-center text-on-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">store</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-body-md font-bold tracking-tight text-on-surface truncate">Inventory &amp; Operations</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Restaurant Portal</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="px-space-md py-space-sm flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Operations</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#dashboard">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#inventory">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+<span class="">Inventory</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#stock-counts">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+<span class="">Stock Counts</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#wastage">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+<span class="">Wastage</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#transfers">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">swap_horiz</span>
+<span class="">Transfers</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Purchasing</span>
+<a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm bg-primary text-on-primary font-semibold transition-colors" href="#purchases">
+<span class="material-symbols-outlined text-[18px] text-on-primary">shopping_bag</span>
+<span class="">Purchases</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#suppliers">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span class="">Suppliers</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Kitchen</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#recipes">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="">Recipes</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#production">
+<span class="material-symbols-outlined text-[18px]">soup_kitchen</span>
+<span class="">Production</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Management</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#reports">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+<span class="">Reports</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#staff">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span class="">Staff</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">System</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#settings">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="">Settings</span>
+</a>
+</div>
+</nav>
+</div>
+<!-- Bottom Sidebar Branch Switcher & GM User Pill -->
+<div class="p-space-md flex flex-col gap-space-xs border-t border-surface-container bg-surface-container-low">
+<!-- Branch Switcher Pill -->
+<div class="flex items-center justify-between px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">storefront</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Main Branch</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">unfold_more</span>
+</div>
+<!-- User Profile Pill -->
+<div class="flex items-center justify-between px-space-sm py-space-xs rounded-lg hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-8 rounded-full bg-primary text-on-primary font-bold text-label-sm flex items-center justify-center shrink-0">
+          GM
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-tight truncate">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight truncate">Operations Lead</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">more_vert</span>
+</div>
+</div>
+</aside><div class="lg:pl-64 w-full min-h-screen flex flex-col pt-16"><header class="fixed top-0 right-0 left-0 lg:left-64 h-16 bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 z-20 flex items-center justify-between px-4 lg:px-8">
+<div class="flex items-center gap-space-md lg:gap-space-lg">
+<button aria-label="Toggle Navigation" class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container mr-2" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]">storefront</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Main Branch</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Updated 2 min ago</span>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="relative hidden sm:flex items-center">
+<span class="material-symbols-outlined absolute left-space-md text-on-surface-variant text-[18px]">search</span>
+<input class="w-80 h-9 pl-9 pr-14 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none shadow-[0_1px_2px_0_rgba(15,23,42,0.04)]" placeholder="Search ingredients, purchases, suppliers (⌘K)" type="text"/>
+<div class="absolute right-space-sm flex items-center gap-space-xs pointer-events-none">
+<kbd class="bg-surface-container px-space-xs rounded font-label-sm text-label-sm text-on-surface-variant">⌘K</kbd>
+</div>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant">
+<button class="relative p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1 right-1 h-2 w-2 rounded-full bg-error"></span>
+</button>
+<button class="p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-lowest px-space-sm py-space-xs rounded-full shadow-[0_1px_2px_0_rgba(15,23,42,0.04)]">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-label-sm flex items-center justify-center shrink-0">
+        GM
+      </div>
+<div class="hidden sm:flex flex-col pr-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Operations Lead</span>
+</div>
+</div>
+</div>
+</header><main class="relative bg-surface min-h-screen px-4 lg:px-margin-desktop py-space-lg"><div class="flex flex-col w-full gap-space-lg">
+<!-- Breadcrumbs & Header Bar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col">
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm mb-1">
+<span class="hover:text-on-surface cursor-pointer">Purchasing</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span aria-current="page" class="text-primary font-semibold">Purchases</span>
+</nav>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Purchases</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Track supplier purchases and incoming ingredient orders.</p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="inline-flex items-center justify-center gap-space-xs px-3.5 h-9 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20" id="btn-export-csv" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export CSV</span>
+</button>
+<a class="inline-flex items-center justify-center gap-space-xs px-4 h-9 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary/30" href="#new-purchase">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>New Purchase</span>
+</a>
+</div>
+</div>
+<!-- Metric Overview Cards -->
+<section aria-label="Purchase Metrics Summary" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- Card 1: Open Purchases -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md font-medium text-secondary">Open Purchases</span>
+<span class="material-symbols-outlined text-[20px] text-primary">pending_actions</span>
+</div>
+<div class="mt-3">
+<span class="font-display-lg text-display-lg text-on-surface font-semibold tracking-tight" id="stat-open-purchases">4</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Draft, ordered or partially received</p>
+</div>
+</div>
+<!-- Card 2: Received This Month -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md font-medium text-secondary">Received This Month</span>
+<span class="material-symbols-outlined text-[20px] text-tertiary">check_circle</span>
+</div>
+<div class="mt-3">
+<span class="font-display-lg text-display-lg text-on-surface font-semibold tracking-tight" id="stat-received-month">11</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Completed supplier purchases</p>
+</div>
+</div>
+<!-- Card 3: September Spend -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md font-medium text-secondary">September Spend</span>
+<span class="material-symbols-outlined text-[20px] text-primary">payments</span>
+</div>
+<div class="mt-3">
+<span class="font-headline-xl text-headline-xl text-on-surface font-semibold tracking-tight" id="stat-month-spend">PKR 186,450</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Purchase value this month</p>
+</div>
+</div>
+<!-- Card 4: Active Suppliers -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="font-label-md text-label-md font-medium text-secondary">Active Suppliers</span>
+<span class="material-symbols-outlined text-[20px] text-secondary">local_shipping</span>
+</div>
+<div class="mt-3">
+<span class="font-display-lg text-display-lg text-on-surface font-semibold tracking-tight" id="stat-active-suppliers">5</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Suppliers used this month</p>
+</div>
+</div>
+</section>
+<!-- Recent Purchases Section Container -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Header & Subtitle -->
+<div class="p-space-md flex flex-col gap-space-xs bg-surface-container-lowest">
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Recent Purchases</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Latest supplier purchases for Main Branch.</p>
+</div>
+<!-- Filter & Search Toolbar -->
+<div class="px-space-md pb-space-md flex flex-col lg:flex-row lg:items-center justify-between gap-space-sm bg-surface-container-lowest">
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm flex-1">
+<!-- Search Input -->
+<div class="relative flex-1 min-w-[220px]">
+<span class="material-symbols-outlined absolute left-2.5 top-2 text-[18px] text-on-surface-variant pointer-events-none">search</span>
+<input class="w-full h-9 pl-8 pr-3 bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest transition-colors" id="purchase-search" placeholder="Search purchase or supplier" type="text"/>
+</div>
+<!-- Status Filter Dropdown -->
+<div class="relative w-full sm:w-44">
+<select class="w-full h-9 pl-3 pr-8 bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:bg-surface-container-lowest transition-colors cursor-pointer" id="status-filter">
+<option value="ALL">All Statuses</option>
+<option value="Draft">Draft</option>
+<option value="Ordered">Ordered</option>
+<option value="Partially Received">Partially Received</option>
+<option value="Received">Received</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+<!-- Supplier Filter Dropdown -->
+<div class="relative w-full sm:w-56">
+<select class="w-full h-9 pl-3 pr-8 bg-surface-container-low rounded-lg font-body-sm text-body-sm text-on-surface appearance-none focus:outline-none focus:bg-surface-container-lowest transition-colors cursor-pointer" id="supplier-filter">
+<option value="ALL">All Suppliers</option>
+<option value="Fresh Foods Supplier">Fresh Foods Supplier</option>
+<option value="Dairy House">Dairy House</option>
+<option value="City Grocery Wholesale">City Grocery Wholesale</option>
+<option value="Bakers Supply Co.">Bakers Supply Co.</option>
+<option value="Oil &amp; Pantry Traders">Oil &amp; Pantry Traders</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2 text-[18px] text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- Reset Filter Button -->
+<button class="self-start sm:self-auto text-primary hover:text-primary-container font-label-md text-label-md font-semibold transition-colors px-1 py-1" id="reset-filters" type="button">
+        Reset Filters
+      </button>
+</div>
+<!-- Data Table Container -->
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left font-body-sm text-body-sm" id="purchases-table">
+<thead>
+<tr class="bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<th class="py-2.5 px-space-md" scope="col">Reference</th>
+<th class="py-2.5 px-space-md" scope="col">Date</th>
+<th class="py-2.5 px-space-md" scope="col">Supplier</th>
+<th class="py-2.5 px-space-md" scope="col">Items</th>
+<th class="py-2.5 px-space-md text-right" scope="col">Total</th>
+<th class="py-2.5 px-space-md text-center" scope="col">Status</th>
+<th class="py-2.5 px-space-md" scope="col">Created By</th>
+<th class="py-2.5 px-space-md text-right" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-0" id="purchases-table-body">
+<!-- Rows dynamically rendered via JS from purchasesOverview.records -->
+</tbody>
+</table>
+<!-- Empty State View -->
+<div class="hidden py-14 px-4 flex flex-col items-center justify-center text-center" id="purchases-empty-state">
+<div class="h-12 w-12 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-3">
+<span class="material-symbols-outlined text-[24px]">search_off</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">No purchases found</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 max-w-sm">Try changing your search or filters.</p>
+<div class="mt-4">
+<a class="inline-flex items-center gap-space-xs px-4 h-9 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md shadow-sm transition-colors" href="#new-purchase">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>New Purchase</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Table Footer / Pagination Metadata -->
+<div class="px-space-md py-3 bg-surface-container-low flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="record-count-indicator">Showing 8 of 8 records</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant hidden sm:inline">Main Branch Inventory</span>
+</div>
+</section>
+</div>
+<script>
+  const purchasesOverview = {
+    summary: {
+      openPurchases: 4,
+      receivedThisMonth: 11,
+      monthSpend: 186450,
+      activeSuppliers: 5
+    },
+    records: [
+      { id: "PUR-1086", date: "23 Sep 2026", supplier: "Fresh Foods Supplier", itemCount: 3, total: 28400, status: "Received", createdBy: "General Manager" },
+      { id: "PUR-1085", date: "23 Sep 2026", supplier: "Dairy House", itemCount: 2, total: 31500, status: "Ordered", createdBy: "General Manager" },
+      { id: "PUR-1084", date: "22 Sep 2026", supplier: "City Grocery Wholesale", itemCount: 4, total: 22150, status: "Partially Received", createdBy: "Store Keeper" },
+      { id: "PUR-1083", date: "21 Sep 2026", supplier: "Fresh Foods Supplier", itemCount: 2, total: 19600, status: "Received", createdBy: "General Manager" },
+      { id: "PUR-1082", date: "20 Sep 2026", supplier: "Bakers Supply Co.", itemCount: 3, total: 14800, status: "Draft", createdBy: "Kitchen Lead" },
+      { id: "PUR-1081", date: "19 Sep 2026", supplier: "Dairy House", itemCount: 2, total: 27400, status: "Received", createdBy: "General Manager" },
+      { id: "PUR-1080", date: "18 Sep 2026", supplier: "Oil & Pantry Traders", itemCount: 3, total: 23600, status: "Ordered", createdBy: "Store Keeper" },
+      { id: "PUR-1079", date: "17 Sep 2026", supplier: "City Grocery Wholesale", itemCount: 5, total: 18900, status: "Received", createdBy: "General Manager" }
+    ]
+  };
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (!sidebar || !backdrop) return;
+    const isClosed = sidebar.classList.contains('-translate-x-full');
+    if (isClosed) {
+      sidebar.classList.remove('-translate-x-full');
+      backdrop.classList.remove('hidden');
+    } else {
+      sidebar.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. Summary Metric Card Rendering
+    const statOpen = document.getElementById('stat-open-purchases');
+    const statReceived = document.getElementById('stat-received-month');
+    const statSpend = document.getElementById('stat-month-spend');
+    const statSuppliers = document.getElementById('stat-active-suppliers');
+
+    if (statOpen) statOpen.textContent = purchasesOverview.summary.openPurchases;
+    if (statReceived) statReceived.textContent = purchasesOverview.summary.receivedThisMonth;
+    if (statSpend) statSpend.textContent = 'PKR ' + purchasesOverview.summary.monthSpend.toLocaleString();
+    if (statSuppliers) statSuppliers.textContent = purchasesOverview.summary.activeSuppliers;
+
+    // 2. UI Filtering Setup
+    const searchInput = document.getElementById('purchase-search');
+    const statusSelect = document.getElementById('status-filter');
+    const supplierSelect = document.getElementById('supplier-filter');
+    const resetBtn = document.getElementById('reset-filters');
+    const tableBody = document.getElementById('purchases-table-body');
+    const tableEl = document.getElementById('purchases-table');
+    const emptyState = document.getElementById('purchases-empty-state');
+    const countIndicator = document.getElementById('record-count-indicator');
+    const exportBtn = document.getElementById('btn-export-csv');
+
+    let currentFiltered = [...purchasesOverview.records];
+
+    function getBadgeMarkup(status) {
+      if (status === 'Received') {
+        return '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-label-sm font-label-sm bg-emerald-50 text-emerald-800"><span class="h-1.5 w-1.5 rounded-full bg-emerald-600"></span>Received</span>';
+      }
+      if (status === 'Ordered') {
+        return '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-label-sm font-label-sm bg-secondary-container text-on-secondary-fixed"><span class="h-1.5 w-1.5 rounded-full bg-secondary"></span>Ordered</span>';
+      }
+      if (status === 'Partially Received') {
+        return '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-label-sm font-label-sm bg-amber-50 text-amber-800"><span class="h-1.5 w-1.5 rounded-full bg-amber-600"></span>Partially Received</span>';
+      }
+      return '<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container-high text-on-surface-variant"><span class="h-1.5 w-1.5 rounded-full bg-on-surface-variant"></span>Draft</span>';
+    }
+
+    function renderTableRows(records) {
+      if (!tableBody) return;
+      tableBody.innerHTML = '';
+
+      if (records.length === 0) {
+        if (tableEl) tableEl.classList.add('hidden');
+        if (emptyState) emptyState.classList.remove('hidden');
+        if (countIndicator) countIndicator.textContent = `Showing 0 of ${purchasesOverview.records.length} records`;
+        return;
+      }
+
+      if (tableEl) tableEl.classList.remove('hidden');
+      if (emptyState) emptyState.classList.add('hidden');
+
+      records.forEach((rec, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = (idx % 2 === 0 ? 'bg-surface-container-lowest' : 'bg-surface-container-low/40') + ' hover:bg-surface-container transition-colors';
+
+        const itemsString = rec.itemCount === 1 ? '1 item' : `${rec.itemCount} items`;
+        const formattedTotal = 'PKR ' + rec.total.toLocaleString();
+
+        tr.innerHTML = `
+          <td class="py-3 px-space-md font-numeric-table text-numeric-table font-semibold text-primary">${rec.id}</td>
+          <td class="py-3 px-space-md text-on-surface font-body-sm text-body-sm whitespace-nowrap">${rec.date}</td>
+          <td class="py-3 px-space-md font-medium text-on-surface font-body-sm text-body-sm">${rec.supplier}</td>
+          <td class="py-3 px-space-md text-on-surface-variant font-body-sm text-body-sm whitespace-nowrap">${itemsString}</td>
+          <td class="py-3 px-space-md text-right font-numeric-table text-numeric-table font-semibold text-on-surface">${formattedTotal}</td>
+          <td class="py-3 px-space-md text-center">${getBadgeMarkup(rec.status)}</td>
+          <td class="py-3 px-space-md text-on-surface-variant font-body-sm text-body-sm whitespace-nowrap">${rec.createdBy}</td>
+          <td class="py-3 px-space-md text-right whitespace-nowrap">
+            <a href="#purchase-detail" class="inline-flex items-center text-primary hover:text-primary-container font-label-md text-label-md font-semibold transition-colors">
+              View
+            </a>
+          </td>
+        `;
+        tableBody.appendChild(tr);
+      });
+
+      if (countIndicator) {
+        countIndicator.textContent = `Showing ${records.length} of ${purchasesOverview.records.length} records`;
+      }
+    }
+
+    function applyFilters() {
+      const q = (searchInput?.value || '').trim().toLowerCase();
+      const status = statusSelect?.value || 'ALL';
+      const supplier = supplierSelect?.value || 'ALL';
+
+      currentFiltered = purchasesOverview.records.filter(r => {
+        const matchesQuery = !q || r.id.toLowerCase().includes(q) || r.supplier.toLowerCase().includes(q);
+        const matchesStatus = (status === 'ALL') || (r.status === status);
+        const matchesSupplier = (supplier === 'ALL') || (r.supplier === supplier);
+        return matchesQuery && matchesStatus && matchesSupplier;
+      });
+
+      renderTableRows(currentFiltered);
+    }
+
+    function exportPurchasesCsv() {
+      const headers = ['Reference', 'Date', 'Supplier', 'Items', 'Total', 'Status', 'Created By'];
+      const rows = currentFiltered.map(item => [
+        item.id,
+        item.date,
+        `"${item.supplier.replace(/"/g, '""')}"`,
+        item.itemCount,
+        item.total,
+        `"${item.status}"`,
+        `"${item.createdBy.replace(/"/g, '""')}"`
+      ]);
+
+      const csvContent = [headers.join(','), ...rows.map(r => r.join(','))].join('\r\n');
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `Purchases_Overview_${new Date().toISOString().slice(0, 10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
+    if (statusSelect) statusSelect.addEventListener('change', applyFilters);
+    if (supplierSelect) supplierSelect.addEventListener('change', applyFilters);
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        if (statusSelect) statusSelect.value = 'ALL';
+        if (supplierSelect) supplierSelect.value = 'ALL';
+        applyFilters();
+      });
+    }
+
+    if (exportBtn) {
+      exportBtn.addEventListener('click', exportPurchasesCsv);
+    }
+
+    // Initial Table Render
+    renderTableRows(currentFiltered);
+  });
+</script></main></div>
+<script src="/integration-bridge.js"></script>
+</body></html>

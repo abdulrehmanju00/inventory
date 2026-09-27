@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary": "#005d42",
+            "secondary": "#545f73",
+            "surface-container-highest": "#dae2fd",
+            "inverse-primary": "#80d5cb",
+            "on-secondary": "#ffffff",
+            "on-error": "#ffffff",
+            "on-primary-fixed-variant": "#00504a",
+            "on-secondary-fixed-variant": "#3c475a",
+            "primary-fixed-dim": "#80d5cb",
+            "primary-fixed": "#9cf2e8",
+            "surface-container-low": "#f2f3ff",
+            "tertiary-fixed": "#97f5cc",
+            "outline-variant": "#bdc9c6",
+            "outline": "#6e7977",
+            "secondary-fixed": "#d8e3fb",
+            "secondary-container": "#d5e0f8",
+            "surface-container-high": "#e2e7ff",
+            "surface-container": "#eaedff",
+            "on-error-container": "#93000a",
+            "secondary-fixed-dim": "#bcc7de",
+            "on-primary-container": "#a3faef",
+            "tertiary-container": "#047857",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#7bd8b1",
+            "on-surface-variant": "#3e4947",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#9ffdd3",
+            "primary-container": "#0f766e",
+            "on-surface": "#131b2e",
+            "surface-tint": "#006a63",
+            "surface-dim": "#d2d9f4",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#eef0ff",
+            "surface-variant": "#dae2fd",
+            "on-primary-fixed": "#00201d",
+            "background": "#faf8ff",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed": "#111c2d",
+            "on-secondary-container": "#586377",
+            "on-tertiary-fixed-variant": "#00513a",
+            "on-tertiary-fixed": "#002115",
+            "error": "#ba1a1a",
+            "inverse-surface": "#283044",
+            "on-background": "#131b2e",
+            "surface-bright": "#faf8ff",
+            "surface": "#faf8ff",
+            "primary": "#005c55"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-desktop": "2rem",
+            "margin-mobile": "1rem",
+            "space-lg": "1.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "margin": "1.5rem",
+            "space-xl": "2rem",
+            "gutter-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Hanken Grotesk"],
+            "display-lg": ["Hanken Grotesk"],
+            "headline-lg": ["Hanken Grotesk"],
+            "headline-md": ["Hanken Grotesk"],
+            "label-md": ["Geist"],
+            "body-md": ["Hanken Grotesk"],
+            "headline-lg-mobile": ["Hanken Grotesk"],
+            "numeric-table": ["Geist"],
+            "label-sm": ["Geist"],
+            "label-lg": ["Geist"],
+            "headline-xl": ["Hanken Grotesk"],
+            "body-lg": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "numeric-table": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- Mobile Backdrop -->
+<div class="fixed inset-0 bg-slate-900/50 z-40 lg:hidden hidden" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+<!-- App Sidebar -->
+<aside class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out flex flex-col" id="app-sidebar">
+<!-- Brand Header -->
+<div class="h-16 px-4 flex items-center justify-between border-b border-slate-200">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-md bg-teal-700 flex items-center justify-center text-white shadow-sm">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-slate-900 text-sm leading-tight">Inventory &amp; Operations</span>
+<span class="text-xs text-slate-500">Restaurant Portal</span>
+</div>
+</div>
+<button class="lg:hidden p-1.5 text-slate-500 hover:text-slate-800 rounded-md" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Navigation Scroll Area -->
+<div class="flex-1 overflow-y-auto px-3 py-4 space-y-5">
+<!-- Operations -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Operations</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#dashboard">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#inventory">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#stock-counts">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+<span>Stock Counts</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#wastage">
+<span class="material-symbols-outlined text-[20px]">delete_sweep</span>
+<span>Wastage</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#transfers">
+<span class="material-symbols-outlined text-[20px]">sync_alt</span>
+<span>Transfers</span>
+</a>
+</nav>
+</div>
+<!-- Purchasing -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Purchasing</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#purchases">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span>Purchases</span>
+</a>
+<a aria-current="page" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm bg-primary text-on-primary font-semibold shadow-sm" href="#suppliers">
+<span class="material-symbols-outlined text-[20px] text-white">local_shipping</span>
+<span>Suppliers</span>
+</a>
+</nav>
+</div>
+<!-- Kitchen -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Kitchen</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#recipes">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span>Recipes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#production">
+<span class="material-symbols-outlined text-[20px]">skillet</span>
+<span>Production</span>
+</a>
+</nav>
+</div>
+<!-- Management -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Management</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#reports">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#staff">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span>Staff</span>
+</a>
+</nav>
+</div>
+<!-- System -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">System</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#settings">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Sidebar Footer -->
+<div class="p-3 border-t border-slate-200 bg-slate-50 space-y-2">
+<!-- Branch Switcher -->
+<div class="flex items-center justify-between px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-slate-500">storefront</span>
+<span>Main Branch</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-slate-400">unfold_more</span>
+</div>
+<!-- GM User Pill -->
+<div class="flex items-center justify-between p-1.5 rounded-lg hover:bg-white transition-colors cursor-pointer">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-teal-700 text-white font-bold text-xs flex items-center justify-center">
+            GM
+          </div>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900">General Manager</span>
+<span class="text-[11px] text-slate-500">Operations Lead</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400">more_vert</span>
+</div>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<div class="lg:pl-64 flex flex-col min-h-screen">
+<!-- Top Header -->
+<header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 px-4 sm:px-6 py-3 flex items-center justify-between">
+<!-- Top Header Left -->
+<div class="flex items-center gap-3 sm:gap-4">
+<button class="lg:hidden p-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-[22px]">menu</span>
+</button>
+<button class="flex items-center gap-2 px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200/80 rounded-lg text-xs sm:text-sm font-medium text-slate-800 transition-colors" type="button">
+<span class="material-symbols-outlined text-slate-600 text-[18px]">storefront</span>
+<span>Main Branch</span>
+<span class="material-symbols-outlined text-slate-500 text-[16px]">expand_more</span>
+</button>
+<div class="hidden sm:flex items-center gap-1.5 text-xs text-slate-500">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+<span>Updated 2 min ago</span>
+</div>
+</div>
+<!-- Top Header Right -->
+<div class="flex items-center gap-3">
+<button class="relative hidden md:flex items-center gap-2 h-9 pl-3 pr-2 w-64 bg-slate-100 hover:bg-slate-200/70 rounded-lg text-xs text-slate-500 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-slate-400">search</span>
+<span class="truncate">Search ingredients, purchases, suppliers...</span>
+<kbd class="ml-auto px-1.5 py-0.5 rounded bg-white border border-slate-200 text-[10px] font-medium text-slate-500">⌘K</kbd>
+</button>
+<button class="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors relative" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span>
+</button>
+<button class="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+<!-- GM Avatar Pill -->
+<div class="flex items-center gap-2 pl-1 border-l border-slate-200">
+<div class="w-8 h-8 rounded-full bg-teal-700 text-white font-bold text-xs flex items-center justify-center">
+            GM
+          </div>
+<div class="hidden xl:flex flex-col text-left">
+<span class="text-xs font-semibold text-slate-900 leading-tight">General Manager</span>
+<span class="text-[11px] text-slate-500">Operations Lead</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="w-full flex-1 bg-surface">
+<div class="w-full px-margin-mobile sm:px-margin lg:px-margin-desktop py-space-lg space-y-space-lg">
+<!-- Breadcrumb -->
+<div>
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs text-sm">
+<span class="text-slate-500">Purchasing</span>
+<span class="material-symbols-outlined text-[16px] text-slate-400">chevron_right</span>
+<span aria-current="page" class="font-medium text-slate-900">Suppliers</span>
+</nav>
+</div>
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="space-y-space-xs">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Suppliers</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+              Manage supplier contacts and review purchasing relationships.
+            </p>
+</div>
+<div class="flex items-center gap-space-sm">
+<a class="inline-flex items-center gap-space-xs px-space-md py-2 bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg rounded-lg shadow-sm transition-all duration-150 ease-in-out active:scale-[0.98]" href="#add-supplier">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Add Supplier</span>
+</a>
+</div>
+</div>
+<!-- 4 Summary Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-gutter">
+<!-- Card 1: Total Suppliers -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="space-y-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Total Suppliers</span>
+<div class="font-headline-xl text-headline-xl font-bold text-on-surface" id="stat-total-suppliers">5</div>
+</div>
+<div class="p-space-xs bg-surface-container-low text-primary rounded-lg">
+<span class="material-symbols-outlined text-[24px]">local_shipping</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm">Supplier records</span>
+</div>
+</div>
+<!-- Card 2: Active Suppliers -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="space-y-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Active Suppliers</span>
+<div class="font-headline-xl text-headline-xl font-bold text-on-surface" id="stat-active-suppliers">5</div>
+</div>
+<div class="p-space-xs bg-tertiary-fixed text-tertiary rounded-lg">
+<span class="material-symbols-outlined text-[24px]">check_circle</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm">Currently available suppliers</span>
+</div>
+</div>
+<!-- Card 3: Purchases This Month -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="space-y-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">Purchases This Month</span>
+<div class="font-headline-xl text-headline-xl font-bold text-on-surface" id="stat-purchases-month">14</div>
+</div>
+<div class="p-space-xs bg-surface-container-low text-primary rounded-lg">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm">Supplier purchase records</span>
+</div>
+</div>
+<!-- Card 4: September Spend -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="space-y-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant">September Spend</span>
+<div class="font-headline-xl text-headline-xl font-bold text-on-surface" id="stat-month-spend">PKR 186,450</div>
+</div>
+<div class="p-space-xs bg-secondary-fixed text-on-secondary-fixed rounded-lg">
+<span class="material-symbols-outlined text-[24px]">payments</span>
+</div>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-outline">
+<span class="font-label-sm text-label-sm">Purchase value this month</span>
+</div>
+</div>
+</div>
+<!-- Supplier Directory Section -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Section Card Header -->
+<div class="p-space-md sm:p-space-lg bg-surface-container-lowest flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Supplier Directory</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Current suppliers used by Main Branch.</p>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="p-space-md bg-surface-container-low flex flex-col md:flex-row items-stretch md:items-center gap-space-sm">
+<!-- Search Input -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full h-10 pl-9 pr-space-md bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-outline shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/25" id="supplier-search" placeholder="Search supplier or contact..." type="text"/>
+</div>
+<!-- Dropdowns & Reset -->
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-space-sm">
+<!-- Category Filter -->
+<div class="relative min-w-[150px] w-full sm:w-auto">
+<select class="w-full h-10 pl-space-sm pr-8 bg-surface-container-lowest rounded-lg font-label-md text-label-md text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/25 cursor-pointer appearance-none" id="category-filter">
+<option value="All Categories">All Categories</option>
+<option value="Meat">Meat</option>
+<option value="Vegetables">Vegetables</option>
+<option value="Dairy">Dairy</option>
+<option value="Pantry">Pantry</option>
+<option value="Bakery">Bakery</option>
+<option value="Oil">Oil</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[18px]">expand_more</span>
+</div>
+<!-- Status Filter -->
+<div class="relative min-w-[130px] w-full sm:w-auto">
+<select class="w-full h-10 pl-space-sm pr-8 bg-surface-container-lowest rounded-lg font-label-md text-label-md text-on-surface shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/25 cursor-pointer appearance-none" id="status-filter">
+<option value="All Statuses">All Statuses</option>
+<option value="Active">Active</option>
+<option value="Inactive">Inactive</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-outline text-[18px]">expand_more</span>
+</div>
+<!-- Reset Filters Button -->
+<button class="h-10 px-space-md bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-md text-label-md rounded-lg shadow-sm transition-colors flex items-center justify-center gap-space-xs whitespace-nowrap" id="reset-filters-btn" type="button">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset Filters</span>
+</button>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto min-h-[300px] flex flex-col justify-between">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-space-md lg:px-space-lg font-semibold" scope="col">Supplier</th>
+<th class="py-3 px-space-md font-semibold" scope="col">Contact</th>
+<th class="py-3 px-space-md font-semibold" scope="col">Categories</th>
+<th class="py-3 px-space-md font-semibold text-center" scope="col">Purchases This Month</th>
+<th class="py-3 px-space-md font-semibold" scope="col">Last Purchase</th>
+<th class="py-3 px-space-md font-semibold" scope="col">Status</th>
+<th class="py-3 px-space-md lg:pr-space-lg font-semibold text-right" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y-0 text-on-surface font-body-sm text-body-sm" id="suppliers-table-body">
+<!-- Dynamically populated via renderSuppliers() -->
+</tbody>
+</table>
+<!-- Empty State Container -->
+<div class="hidden flex-col items-center justify-center py-16 px-space-md text-center" id="empty-state">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-outline mb-space-sm">
+<span class="material-symbols-outlined text-[32px]">search_off</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-1">No suppliers found</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mb-space-md">Try changing your search or filters.</p>
+<a class="inline-flex items-center gap-space-xs px-space-md py-2 bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md rounded-lg shadow-sm transition-all" href="#add-supplier">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Add Supplier</span>
+</a>
+</div>
+</div>
+<!-- Table Footer -->
+<div class="p-space-md bg-surface-container-lowest flex items-center justify-between text-outline font-label-sm text-label-sm border-t border-slate-100">
+<span id="filtered-count-label">Showing 5 of 5 supplier records</span>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+    const suppliersOverview = {
+      summary: {
+        totalSuppliers: 5,
+        activeSuppliers: 5,
+        purchasesThisMonth: 14,
+        monthSpend: 186450
+      },
+      records: [
+        {
+          id: "SUP-1001",
+          name: "Fresh Foods Supplier",
+          contactPerson: "Ahmed Raza",
+          phone: "+92 300 555 0101",
+          email: "orders@freshfoods.example",
+          categories: ["Meat", "Vegetables"],
+          purchasesThisMonth: 4,
+          lastPurchase: "23 Sep 2026",
+          status: "Active"
+        },
+        {
+          id: "SUP-1002",
+          name: "Dairy House",
+          contactPerson: "Usman Khalid",
+          phone: "+92 300 555 0102",
+          email: "sales@dairyhouse.example",
+          categories: ["Dairy"],
+          purchasesThisMonth: 3,
+          lastPurchase: "23 Sep 2026",
+          status: "Active"
+        },
+        {
+          id: "SUP-1003",
+          name: "City Grocery Wholesale",
+          contactPerson: "Bilal Ahmed",
+          phone: "+92 300 555 0103",
+          email: "orders@citygrocery.example",
+          categories: ["Vegetables", "Pantry"],
+          purchasesThisMonth: 3,
+          lastPurchase: "22 Sep 2026",
+          status: "Active"
+        },
+        {
+          id: "SUP-1004",
+          name: "Bakers Supply Co.",
+          contactPerson: "Hassan Ali",
+          phone: "+92 300 555 0104",
+          email: "orders@bakerssupply.example",
+          categories: ["Bakery"],
+          purchasesThisMonth: 2,
+          lastPurchase: "20 Sep 2026",
+          status: "Active"
+        },
+        {
+          id: "SUP-1005",
+          name: "Oil & Pantry Traders",
+          contactPerson: "Saad Khan",
+          phone: "+92 300 555 0105",
+          email: "sales@oilpantry.example",
+          categories: ["Oil", "Pantry"],
+          purchasesThisMonth: 2,
+          lastPurchase: "18 Sep 2026",
+          status: "Active"
+        }
+      ]
+    };
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('app-sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      if (sidebar && backdrop) {
+        sidebar.classList.toggle('-translate-x-full');
+        backdrop.classList.toggle('hidden');
+      }
+    }
+
+    function formatPKR(val) {
+      return "PKR " + Number(val).toLocaleString("en-US");
+    }
+
+    function renderSuppliers(list) {
+      const tbody = document.getElementById("suppliers-table-body");
+      const emptyState = document.getElementById("empty-state");
+      const countLabel = document.getElementById("filtered-count-label");
+
+      if (!tbody || !emptyState) return;
+
+      if (list.length === 0) {
+        tbody.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        emptyState.classList.add("flex");
+        if (countLabel) countLabel.textContent = `Showing 0 of ${suppliersOverview.records.length} supplier records`;
+        return;
+      }
+
+      emptyState.classList.add("hidden");
+      emptyState.classList.remove("flex");
+
+      if (countLabel) {
+        countLabel.textContent = `Showing ${list.length} of ${suppliersOverview.records.length} supplier records`;
+      }
+
+      tbody.innerHTML = list.map((supplier, index) => {
+        const isEven = index % 2 === 0;
+        const rowBg = isEven ? "bg-surface-container-lowest" : "bg-surface/50";
+        const statusMarkup = supplier.status === "Active"
+          ? `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs bg-teal-100 text-teal-800 font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-teal-600"></span>Active</span>`
+          : `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-600 font-medium"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>Inactive</span>`;
+
+        const categoryPills = supplier.categories
+          .map(cat => `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-700 font-medium">${cat}</span>`)
+          .join(" ");
+
+        return `
+          <tr class="${rowBg} hover:bg-slate-50 transition-colors duration-150">
+            <!-- Supplier -->
+            <td class="py-3 px-space-md lg:px-space-lg align-top">
+              <div class="flex flex-col">
+                <span class="font-medium text-slate-900">${supplier.name}</span>
+                <span class="text-xs text-slate-500 font-mono">${supplier.id}</span>
+              </div>
+            </td>
+
+            <!-- Contact -->
+            <td class="py-3 px-space-md align-top">
+              <div class="flex flex-col space-y-0.5">
+                <span class="text-slate-900 font-medium text-sm">${supplier.contactPerson}</span>
+                <span class="text-xs text-slate-500">${supplier.phone}</span>
+                <span class="text-xs text-slate-500">${supplier.email}</span>
+              </div>
+            </td>
+
+            <!-- Categories -->
+            <td class="py-3 px-space-md align-top">
+              <div class="flex flex-wrap gap-1 max-w-[200px]">
+                ${categoryPills}
+              </div>
+            </td>
+
+            <!-- Purchases This Month -->
+            <td class="py-3 px-space-md align-top text-center">
+              <span class="inline-block px-2.5 py-0.5 rounded bg-slate-100 font-mono text-sm font-semibold text-slate-800">
+                ${supplier.purchasesThisMonth}
+              </span>
+            </td>
+
+            <!-- Last Purchase -->
+            <td class="py-3 px-space-md align-top whitespace-nowrap text-sm text-slate-700">
+              ${supplier.lastPurchase}
+            </td>
+
+            <!-- Status -->
+            <td class="py-3 px-space-md align-top whitespace-nowrap">
+              ${statusMarkup}
+            </td>
+
+            <!-- Action -->
+            <td class="py-3 px-space-md lg:pr-space-lg align-top text-right whitespace-nowrap">
+              <a href="#supplier-detail" class="inline-flex items-center gap-1 text-sm font-medium text-teal-700 hover:text-teal-900 hover:underline transition-colors">
+                <span>View</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </a>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function filterSuppliers() {
+      const query = (document.getElementById("supplier-search")?.value || "").trim().toLowerCase();
+      const categoryFilter = document.getElementById("category-filter")?.value || "All Categories";
+      const statusFilter = document.getElementById("status-filter")?.value || "All Statuses";
+
+      const filtered = suppliersOverview.records.filter(item => {
+        const matchesSearch = !query || (
+          item.id.toLowerCase().includes(query) ||
+          item.name.toLowerCase().includes(query) ||
+          item.contactPerson.toLowerCase().includes(query) ||
+          item.phone.toLowerCase().includes(query) ||
+          item.email.toLowerCase().includes(query)
+        );
+
+        const matchesCategory = (categoryFilter === "All Categories") || item.categories.includes(categoryFilter);
+        const matchesStatus = (statusFilter === "All Statuses") || (item.status === statusFilter);
+
+        return matchesSearch && matchesCategory && matchesStatus;
+      });
+
+      renderSuppliers(filtered);
+    }
+
+    function resetFilters() {
+      const searchInput = document.getElementById("supplier-search");
+      const categorySelect = document.getElementById("category-filter");
+      const statusSelect = document.getElementById("status-filter");
+
+      if (searchInput) searchInput.value = "";
+      if (categorySelect) categorySelect.value = "All Categories";
+      if (statusSelect) statusSelect.value = "All Statuses";
+
+      renderSuppliers(suppliersOverview.records);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const statTotal = document.getElementById("stat-total-suppliers");
+      const statActive = document.getElementById("stat-active-suppliers");
+      const statPurchases = document.getElementById("stat-purchases-month");
+      const statSpend = document.getElementById("stat-month-spend");
+
+      if (statTotal) statTotal.textContent = suppliersOverview.summary.totalSuppliers;
+      if (statActive) statActive.textContent = suppliersOverview.summary.activeSuppliers;
+      if (statPurchases) statPurchases.textContent = suppliersOverview.summary.purchasesThisMonth;
+      if (statSpend) statSpend.textContent = formatPKR(suppliersOverview.summary.monthSpend);
+
+      renderSuppliers(suppliersOverview.records);
+
+      const searchInput = document.getElementById("supplier-search");
+      const categorySelect = document.getElementById("category-filter");
+      const statusSelect = document.getElementById("status-filter");
+      const resetBtn = document.getElementById("reset-filters-btn");
+
+      if (searchInput) searchInput.addEventListener("input", filterSuppliers);
+      if (categorySelect) categorySelect.addEventListener("change", filterSuppliers);
+      if (statusSelect) statusSelect.addEventListener("change", filterSuppliers);
+      if (resetBtn) resetBtn.addEventListener("click", resetFilters);
+    });
+  </script>
+<script src="/integration-bridge.js"></script>
+</body></html>

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary": "#ffffff", "secondary-fixed-dim": "#bcc7de", "surface": "#faf8ff", "surface-bright": "#faf8ff", "inverse-surface": "#283044", "inverse-primary": "#80d5cb", "on-tertiary-fixed-variant": "#00513a", "tertiary-fixed-dim": "#7bd8b1", "surface-container-low": "#f2f3ff", "on-background": "#131b2e", "primary-container": "#0f766e", "inverse-on-surface": "#eef0ff", "surface-container-highest": "#dae2fd", "surface-container-lowest": "#ffffff", "primary": "#005c55", "secondary-container": "#d5e0f8", "on-error-container": "#93000a", "on-tertiary": "#ffffff", "secondary": "#545f73", "primary-fixed": "#9cf2e8", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#3c475a", "background": "#faf8ff", "on-secondary-container": "#586377", "on-primary-fixed-variant": "#00504a", "on-primary-fixed": "#00201d", "on-error": "#ffffff", "on-tertiary-container": "#9ffdd3", "outline-variant": "#bdc9c6", "surface-tint": "#006a63", "tertiary": "#005d42", "surface-dim": "#d2d9f4", "error": "#ba1a1a", "error-container": "#ffdad6", "secondary-fixed": "#d8e3fb", "primary-fixed-dim": "#80d5cb", "on-primary-container": "#a3faef", "on-secondary-fixed": "#111c2d", "on-surface": "#131b2e", "surface-container-high": "#e2e7ff", "surface-container": "#eaedff", "outline": "#6e7977", "tertiary-fixed": "#97f5cc", "tertiary-container": "#047857", "on-tertiary-fixed": "#002115", "surface-variant": "#dae2fd", "on-surface-variant": "#3e4947" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin": "1.5rem", "margin-mobile": "1rem", "gutter-lg": "1.5rem", "space-xl": "2rem", "space-lg": "1.25rem", "margin-desktop": "2rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-md": "0.75rem", "gutter": "1rem" }, "fontFamily": { "body-lg": ["Hanken Grotesk"], "headline-lg-mobile": ["Hanken Grotesk"], "label-sm": ["Geist"], "body-sm": ["Hanken Grotesk"], "display-lg": ["Hanken Grotesk"], "label-md": ["Geist"], "body-md": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"], "headline-md": ["Hanken Grotesk"], "headline-xl": ["Hanken Grotesk"], "numeric-table": ["Geist"], "label-lg": ["Geist"] }, "fontSize": { "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg-mobile": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "numeric-table": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><!-- Mobile Backdrop --><div class="fixed inset-0 bg-neutral-900/50 z-30 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div><!-- Sidebar --><aside class="fixed left-0 top-0 h-screen w-64 -translate-x-full lg:translate-x-0 transition-transform z-40 bg-surface-container-low border-r border-outline-variant/30 flex flex-col justify-between overflow-y-auto" id="app-sidebar">
+<div class="flex flex-col">
+<!-- App Header / Logo -->
+<div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-low border-b border-surface-container">
+<div class="h-9 w-9 rounded-lg bg-primary flex items-center justify-center text-on-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">store</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-body-md font-bold tracking-tight text-on-surface truncate">Inventory &amp; Operations</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Restaurant Portal</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="px-space-md py-space-sm flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Operations</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#dashboard">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#inventory">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#stock-counts">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+<span>Stock Counts</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#wastage">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+<span>Wastage</span>
+</a>
+<a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm bg-primary text-on-primary font-semibold transition-colors" href="#transfers">
+<span class="material-symbols-outlined text-[18px] text-on-primary">swap_horiz</span>
+<span>Transfers</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Purchasing</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#purchases">
+<span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+<span>Purchases</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#suppliers">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span>Suppliers</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Kitchen</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#recipes">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span>Recipes</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#production">
+<span class="material-symbols-outlined text-[18px]">soup_kitchen</span>
+<span>Production</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Management</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#reports">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#staff">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span>Staff</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">System</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#settings">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span>Settings</span>
+</a>
+</div>
+</nav>
+</div>
+<!-- Bottom Sidebar Branch Switcher & GM User Pill -->
+<div class="p-space-md flex flex-col gap-space-xs border-t border-surface-container bg-surface-container-low">
+<!-- Branch Switcher Pill -->
+<div class="flex items-center justify-between px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">storefront</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Main Branch</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">unfold_more</span>
+</div>
+<!-- User Profile Pill -->
+<div class="flex items-center justify-between px-space-sm py-space-xs rounded-lg hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-8 rounded-full bg-primary text-on-primary font-bold text-label-sm flex items-center justify-center shrink-0">
+          GM
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-tight truncate">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight truncate">Operations Lead</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">more_vert</span>
+</div>
+</div>
+</aside><div class="lg:pl-64 w-full min-h-screen flex flex-col pt-16"><header class="fixed top-0 right-0 left-0 lg:left-64 h-16 bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 z-20 flex items-center justify-between px-4 lg:px-8">
+<div class="flex items-center gap-space-md lg:gap-space-lg">
+<button aria-label="Toggle Navigation" class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container mr-2" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]">storefront</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Main Branch</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Updated 2 min ago</span>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="relative hidden sm:flex items-center">
+<span class="material-symbols-outlined absolute left-space-md text-on-surface-variant text-[18px]">search</span>
+<input class="w-80 h-9 pl-9 pr-14 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none shadow-[0_1px_2px_0_rgba(15,23,42,0.04)]" placeholder="Search ingredients, purchases, suppliers (⌘K)" type="text"/>
+<div class="absolute right-space-sm flex items-center gap-space-xs pointer-events-none">
+<kbd class="bg-surface-container px-space-xs rounded font-label-sm text-label-sm text-on-surface-variant">⌘K</kbd>
+</div>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant">
+<button class="relative p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1 right-1 h-2 w-2 rounded-full bg-error"></span>
+</button>
+<button class="p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-lowest px-space-sm py-space-xs rounded-full shadow-[0_1px_2px_0_rgba(15,23,42,0.04)]">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-label-sm flex items-center justify-center shrink-0">
+        GM
+      </div>
+<div class="hidden sm:flex flex-col pr-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Operations Lead</span>
+</div>
+</div>
+</div>
+</header><main class="relative bg-surface min-h-screen px-4 lg:px-margin-desktop py-space-lg"><div class="flex flex-col w-full">
+<!-- Dynamic Breadcrumb Navigation -->
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md mb-space-md">
+<a class="hover:text-primary transition-colors" href="#operations">Operations</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Transfers</span>
+</div>
+<!-- Page Header & Global Top Actions -->
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-md mb-space-xl">
+<div class="flex flex-col">
+<h1 class="font-headline-xl text-headline-xl font-bold text-on-surface tracking-tight">Transfers</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+        Move ingredient stock between storage locations and review transfer history.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<button class="h-9 px-space-md bg-surface-container-lowest text-on-surface rounded-lg font-label-md text-label-md font-medium shadow-sm hover:bg-surface-container transition-all flex items-center gap-space-xs cursor-pointer" onclick="exportTransfersCsv()" type="button">
+<span class="material-symbols-outlined text-[18px]">download</span>
+<span>Export CSV</span>
+</button>
+<a class="h-9 px-space-md bg-primary text-on-primary rounded-lg font-label-md text-label-md font-medium shadow-sm hover:bg-primary-container transition-all flex items-center gap-space-xs cursor-pointer" href="#new-transfer">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ New Transfer</span>
+</a>
+</div>
+</div>
+<!-- Metric Summary Cards Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1: Today's Transfers -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md font-medium text-on-surface-variant uppercase tracking-wider">Today's Transfers</span>
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">swap_horiz</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg font-bold text-on-surface tracking-tight" id="stat-today-transfers">3</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">Transfers today</p>
+</div>
+<div class="absolute -right-3 -bottom-3 w-16 h-16 bg-gradient-to-br from-transparent to-primary/5 rounded-full pointer-events-none"></div>
+</div>
+<!-- Card 2: This Month -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md font-medium text-on-surface-variant uppercase tracking-wider">This Month</span>
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg font-bold text-on-surface tracking-tight" id="stat-month-transfers">14</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">September 2026</p>
+</div>
+<div class="absolute -right-3 -bottom-3 w-16 h-16 bg-gradient-to-br from-transparent to-primary/5 rounded-full pointer-events-none"></div>
+</div>
+<!-- Card 3: Items Moved -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md font-medium text-on-surface-variant uppercase tracking-wider">Items Moved</span>
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg font-bold text-on-surface tracking-tight" id="stat-items-moved">31</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">Transfer line items this month</p>
+</div>
+<div class="absolute -right-3 -bottom-3 w-16 h-16 bg-gradient-to-br from-transparent to-primary/5 rounded-full pointer-events-none"></div>
+</div>
+<!-- Card 4: Top Destination -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="font-label-md text-label-md font-medium text-on-surface-variant uppercase tracking-wider">Top Destination</span>
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">move_to_inbox</span>
+</div>
+</div>
+<div>
+<div class="font-headline-xl text-headline-xl font-bold text-on-surface truncate tracking-tight pt-1" id="stat-top-dest">Kitchen Prep</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-space-xs">Most used destination</p>
+</div>
+<div class="absolute -right-3 -bottom-3 w-16 h-16 bg-gradient-to-br from-transparent to-primary/5 rounded-full pointer-events-none"></div>
+</div>
+</div>
+<!-- Recent Transfers Management Section -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Header & Subtitle -->
+<div class="p-space-lg pb-space-md">
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">Recent Transfers</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
+        Latest stock movements between Main Branch storage locations.
+      </p>
+</div>
+<!-- Filter & Search Controls Bar -->
+<div class="px-space-lg pb-space-lg flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md bg-surface-container-lowest">
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-sm flex-1">
+<!-- Search Input -->
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full h-9 pl-9 pr-space-md bg-surface-container rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none focus:bg-surface-container-lowest transition-colors" id="transfer-search" oninput="filterTransferRecords()" placeholder="Search transfer or ingredient" type="text"/>
+</div>
+<!-- Filter: From Location -->
+<div class="relative">
+<select class="h-9 w-full sm:w-44 px-space-md pr-8 bg-surface-container rounded-lg font-label-md text-label-md text-on-surface appearance-none focus:outline-none cursor-pointer" id="filter-from" onchange="filterTransferRecords()">
+<option value="all">All Origins</option>
+<option value="Main Store">Main Store</option>
+<option value="Walk-in Cooler">Walk-in Cooler</option>
+<option value="Dry Store">Dry Store</option>
+<option value="Kitchen Prep">Kitchen Prep</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-space-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+<!-- Filter: To Location -->
+<div class="relative">
+<select class="h-9 w-full sm:w-48 px-space-md pr-8 bg-surface-container rounded-lg font-label-md text-label-md text-on-surface appearance-none focus:outline-none cursor-pointer" id="filter-to" onchange="filterTransferRecords()">
+<option value="all">All Destinations</option>
+<option value="Main Store">Main Store</option>
+<option value="Walk-in Cooler">Walk-in Cooler</option>
+<option value="Dry Store">Dry Store</option>
+<option value="Kitchen Prep">Kitchen Prep</option>
+</select>
+<span class="material-symbols-outlined pointer-events-none absolute right-space-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Reset Filter Button -->
+<button class="h-9 px-space-md bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md rounded-lg transition-colors flex items-center justify-center gap-space-xs cursor-pointer self-start sm:self-auto" onclick="resetTransferFilters()" type="button">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset Filters</span>
+</button>
+</div>
+<!-- Table Responsive Container -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-lg font-semibold">Reference</th>
+<th class="py-space-sm px-space-md font-semibold">Date &amp; Time</th>
+<th class="py-space-sm px-space-md font-semibold">Ingredient</th>
+<th class="py-space-sm px-space-md font-semibold">Quantity</th>
+<th class="py-space-sm px-space-md font-semibold">From</th>
+<th class="py-space-sm px-space-md font-semibold">To</th>
+<th class="py-space-sm px-space-md font-semibold">Transferred By</th>
+<th class="py-space-sm px-space-lg text-right font-semibold">Action</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface" id="transfers-table-body">
+<!-- Rendered dynamically by renderTransfersTable() -->
+</tbody>
+</table>
+</div>
+<!-- Empty State View -->
+<div class="hidden flex-col items-center justify-center py-space-xl px-space-lg text-center" id="transfers-empty-state">
+<div class="h-16 w-16 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant mb-space-md">
+<span class="material-symbols-outlined text-[32px]">swap_horiz</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-bold text-on-surface mb-space-xs">No transfers found</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm mb-space-lg">
+        Try changing your search or filters to locate specific storage transit operations.
+      </p>
+<a class="h-9 px-space-md bg-primary text-on-primary rounded-lg font-label-md text-label-md font-medium shadow-sm hover:bg-primary-container transition-all flex items-center gap-space-xs cursor-pointer" href="#new-transfer">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>New Transfer</span>
+</a>
+</div>
+<!-- Table Footer / Row Counter -->
+<div class="p-space-md px-space-lg bg-surface-container-lowest flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span id="transfers-count-indicator">Showing 8 of 8 records</span>
+</div>
+</div>
+</div>
+</main></div><script>
+  const transfersOverview = {
+    summary: {
+      todayTransfers: 3,
+      monthTransfers: 14,
+      itemsMovedThisMonth: 31,
+      mostUsedDestination: "Kitchen Prep"
+    },
+    records: [
+      {
+        id: "TRF-1038",
+        dateTime: "23 Sep 2026, 5:20 PM",
+        ingredient: "Chicken Breast",
+        sku: "SKU-9021",
+        quantity: 3,
+        unit: "kg",
+        from: "Walk-in Cooler",
+        to: "Kitchen Prep",
+        transferredBy: "General Manager"
+      },
+      {
+        id: "TRF-1037",
+        dateTime: "23 Sep 2026, 3:15 PM",
+        ingredient: "Burger Buns",
+        sku: "SKU-6102",
+        quantity: 30,
+        unit: "pcs",
+        from: "Main Store",
+        to: "Kitchen Prep",
+        transferredBy: "Kitchen Lead"
+      },
+      {
+        id: "TRF-1036",
+        dateTime: "23 Sep 2026, 11:40 AM",
+        ingredient: "Cooking Oil",
+        sku: "SKU-1084",
+        quantity: 5,
+        unit: "L",
+        from: "Dry Store",
+        to: "Kitchen Prep",
+        transferredBy: "Store Keeper"
+      },
+      {
+        id: "TRF-1035",
+        dateTime: "22 Sep 2026, 6:00 PM",
+        ingredient: "Mozzarella Cheese",
+        sku: "SKU-4012",
+        quantity: 4,
+        unit: "kg",
+        from: "Walk-in Cooler",
+        to: "Kitchen Prep",
+        transferredBy: "General Manager"
+      },
+      {
+        id: "TRF-1034",
+        dateTime: "22 Sep 2026, 12:30 PM",
+        ingredient: "Soft Drink Bottles",
+        sku: "SKU-8100",
+        quantity: 24,
+        unit: "pcs",
+        from: "Main Store",
+        to: "Kitchen Prep",
+        transferredBy: "Store Keeper"
+      },
+      {
+        id: "TRF-1033",
+        dateTime: "21 Sep 2026, 4:45 PM",
+        ingredient: "Potatoes",
+        sku: "SKU-3320",
+        quantity: 10,
+        unit: "kg",
+        from: "Main Store",
+        to: "Kitchen Prep",
+        transferredBy: "Kitchen Lead"
+      },
+      {
+        id: "TRF-1032",
+        dateTime: "21 Sep 2026, 10:15 AM",
+        ingredient: "Mayonnaise",
+        sku: "SKU-7201",
+        quantity: 2,
+        unit: "L",
+        from: "Dry Store",
+        to: "Kitchen Prep",
+        transferredBy: "Store Keeper"
+      },
+      {
+        id: "TRF-1031",
+        dateTime: "20 Sep 2026, 7:10 PM",
+        ingredient: "Cheddar Cheese",
+        sku: "SKU-4020",
+        quantity: 3,
+        unit: "kg",
+        from: "Walk-in Cooler",
+        to: "Kitchen Prep",
+        transferredBy: "General Manager"
+      }
+    ]
+  };
+
+  let activeRecords = [...transfersOverview.records];
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (!sidebar || !backdrop) return;
+    const isClosed = sidebar.classList.contains('-translate-x-full');
+    if (isClosed) {
+      sidebar.classList.remove('-translate-x-full');
+      backdrop.classList.remove('hidden');
+    } else {
+      sidebar.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
+    }
+  }
+
+  function renderTransfersTable(records) {
+    const tbody = document.getElementById('transfers-table-body');
+    const emptyState = document.getElementById('transfers-empty-state');
+    const indicator = document.getElementById('transfers-count-indicator');
+    if (!tbody || !emptyState) return;
+
+    const listToRender = records || activeRecords;
+
+    if (listToRender.length === 0) {
+      tbody.innerHTML = '';
+      emptyState.classList.remove('hidden');
+      emptyState.classList.add('flex');
+      if (indicator) indicator.textContent = 'Showing 0 records';
+      return;
+    }
+
+    emptyState.classList.add('hidden');
+    emptyState.classList.remove('flex');
+    if (indicator) indicator.textContent = `Showing ${listToRender.length} of ${transfersOverview.records.length} records`;
+
+    tbody.innerHTML = listToRender.map(item => `
+      <tr class="hover:bg-surface-container-low transition-colors">
+        <td class="py-space-md px-space-lg">
+          <div class="flex items-center gap-space-xs">
+            <span class="font-numeric-table text-numeric-table font-semibold text-primary">${item.id}</span>
+          </div>
+        </td>
+        <td class="py-space-md px-space-md">
+          <span class="font-body-sm text-body-sm text-on-surface-variant">${item.dateTime}</span>
+        </td>
+        <td class="py-space-md px-space-md">
+          <div class="flex flex-col">
+            <span class="font-body-md text-body-md font-semibold text-on-surface">${item.ingredient}</span>
+            <span class="font-label-sm text-label-sm text-on-surface-variant">${item.sku}</span>
+          </div>
+        </td>
+        <td class="py-space-md px-space-md">
+          <span class="inline-flex items-center px-space-sm py-0.5 rounded bg-surface-container font-numeric-table text-numeric-table font-semibold text-on-surface">
+            ${item.quantity} ${item.unit}
+          </span>
+        </td>
+        <td class="py-space-md px-space-md">
+          <span class="px-space-sm py-0.5 rounded bg-surface-container font-label-sm text-label-sm font-medium text-on-surface-variant whitespace-nowrap">
+            ${item.from}
+          </span>
+        </td>
+        <td class="py-space-md px-space-md">
+          <span class="px-space-sm py-0.5 rounded bg-primary/10 text-primary font-label-sm text-label-sm font-semibold whitespace-nowrap">
+            ${item.to}
+          </span>
+        </td>
+        <td class="py-space-md px-space-md">
+          <div class="flex items-center gap-space-xs">
+            <div class="h-6 w-6 rounded-full bg-surface-container-high text-on-surface font-label-sm text-[10px] font-bold flex items-center justify-center">
+              ${item.transferredBy.split(' ').map(n => n[0]).join('')}
+            </div>
+            <span class="font-body-sm text-body-sm text-on-surface">${item.transferredBy}</span>
+          </div>
+        </td>
+        <td class="py-space-md px-space-lg text-right">
+          <a href="#transfer-detail" class="inline-flex items-center gap-1 font-label-md text-label-md font-semibold text-primary hover:text-primary-container transition-colors">
+            <span>View</span>
+            <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+          </a>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  function filterTransferRecords() {
+    const searchVal = (document.getElementById('transfer-search')?.value || '').toLowerCase().trim();
+    const fromVal = document.getElementById('filter-from')?.value || 'all';
+    const toVal = document.getElementById('filter-to')?.value || 'all';
+
+    activeRecords = transfersOverview.records.filter(r => {
+      const matchSearch = !searchVal || 
+        r.id.toLowerCase().includes(searchVal) || 
+        r.ingredient.toLowerCase().includes(searchVal) || 
+        r.sku.toLowerCase().includes(searchVal) || 
+        r.transferredBy.toLowerCase().includes(searchVal);
+      
+      const matchFrom = (fromVal === 'all') || (r.from === fromVal);
+      const matchTo = (toVal === 'all') || (r.to === toVal);
+
+      return matchSearch && matchFrom && matchTo;
+    });
+
+    renderTransfersTable(activeRecords);
+  }
+
+  function resetTransferFilters() {
+    const searchInput = document.getElementById('transfer-search');
+    const filterFrom = document.getElementById('filter-from');
+    const filterTo = document.getElementById('filter-to');
+    
+    if (searchInput) searchInput.value = '';
+    if (filterFrom) filterFrom.value = 'all';
+    if (filterTo) filterTo.value = 'all';
+
+    activeRecords = [...transfersOverview.records];
+    renderTransfersTable(activeRecords);
+  }
+
+  function exportTransfersCsv() {
+    const headers = ["Reference", "Date & Time", "Ingredient", "SKU", "Quantity", "Unit", "From", "To", "Transferred By"];
+    const rows = activeRecords.map(r => [
+      `"${r.id}"`,
+      `"${r.dateTime}"`,
+      `"${r.ingredient}"`,
+      `"${r.sku}"`,
+      r.quantity,
+      `"${r.unit}"`,
+      `"${r.from}"`,
+      `"${r.to}"`,
+      `"${r.transferredBy}"`
+    ]);
+
+    const csvContent = "data:text/csv;charset=utf-8," + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `transfers_export_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const todayElem = document.getElementById('stat-today-transfers');
+    if (todayElem) todayElem.textContent = transfersOverview.summary.todayTransfers;
+
+    const monthElem = document.getElementById('stat-month-transfers');
+    if (monthElem) monthElem.textContent = transfersOverview.summary.monthTransfers;
+
+    const itemsElem = document.getElementById('stat-items-moved');
+    if (itemsElem) itemsElem.textContent = transfersOverview.summary.itemsMovedThisMonth;
+
+    const topDestElem = document.getElementById('stat-top-dest');
+    if (topDestElem) topDestElem.textContent = transfersOverview.summary.mostUsedDestination;
+
+    renderTransfersTable(activeRecords);
+  });
+</script><script src="/integration-bridge.js"></script>
+</body></html>

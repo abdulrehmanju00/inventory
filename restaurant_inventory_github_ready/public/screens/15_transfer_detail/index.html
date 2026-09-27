@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary": "#ffffff", "secondary-fixed-dim": "#bcc7de", "surface": "#faf8ff", "surface-bright": "#faf8ff", "inverse-surface": "#283044", "inverse-primary": "#80d5cb", "on-tertiary-fixed-variant": "#00513a", "tertiary-fixed-dim": "#7bd8b1", "surface-container-low": "#f2f3ff", "on-background": "#131b2e", "primary-container": "#0f766e", "inverse-on-surface": "#eef0ff", "surface-container-highest": "#dae2fd", "surface-container-lowest": "#ffffff", "primary": "#005c55", "secondary-container": "#d5e0f8", "on-error-container": "#93000a", "on-tertiary": "#ffffff", "secondary": "#545f73", "primary-fixed": "#9cf2e8", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#3c475a", "background": "#faf8ff", "on-secondary-container": "#586377", "on-primary-fixed-variant": "#00504a", "on-primary-fixed": "#00201d", "on-error": "#ffffff", "on-tertiary-container": "#9ffdd3", "outline-variant": "#bdc9c6", "surface-tint": "#006a63", "tertiary": "#005d42", "surface-dim": "#d2d9f4", "error": "#ba1a1a", "error-container": "#ffdad6", "secondary-fixed": "#d8e3fb", "primary-fixed-dim": "#80d5cb", "on-primary-container": "#a3faef", "on-secondary-fixed": "#111c2d", "on-surface": "#131b2e", "surface-container-high": "#e2e7ff", "surface-container": "#eaedff", "outline": "#6e7977", "tertiary-fixed": "#97f5cc", "tertiary-container": "#047857", "on-tertiary-fixed": "#002115", "surface-variant": "#dae2fd", "on-surface-variant": "#3e4947" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin": "1.5rem", "margin-mobile": "1rem", "gutter-lg": "1.5rem", "space-xl": "2rem", "space-lg": "1.25rem", "margin-desktop": "2rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-md": "0.75rem", "gutter": "1rem" }, "fontFamily": { "body-lg": ["Hanken Grotesk"], "headline-lg-mobile": ["Hanken Grotesk"], "label-sm": ["Geist"], "body-sm": ["Hanken Grotesk"], "display-lg": ["Hanken Grotesk"], "label-md": ["Geist"], "body-md": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"], "headline-md": ["Hanken Grotesk"], "headline-xl": ["Hanken Grotesk"], "numeric-table": ["Geist"], "label-lg": ["Geist"] }, "fontSize": { "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg-mobile": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "numeric-table": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><!-- Mobile Backdrop --><div class="fixed inset-0 bg-neutral-900/50 z-30 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div><!-- Sidebar --><aside class="fixed left-0 top-0 h-screen w-64 -translate-x-full lg:translate-x-0 transition-transform z-40 bg-surface-container-low border-r border-outline-variant/30 flex flex-col justify-between overflow-y-auto" id="app-sidebar">
+<div class="flex flex-col">
+<!-- App Header / Logo -->
+<div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-low border-b border-surface-container">
+<div class="h-9 w-9 rounded-lg bg-primary flex items-center justify-center text-on-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">store</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-body-md font-bold tracking-tight text-on-surface truncate">Inventory &amp; Operations</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Restaurant Portal</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="px-space-md py-space-sm flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Operations</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#dashboard">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#inventory">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+<span class="">Inventory</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#stock-counts">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+<span class="">Stock Counts</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#wastage">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+<span class="">Wastage</span>
+</a>
+<a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm bg-primary text-on-primary font-semibold shadow-sm transition-colors" href="#transfers"><span class="material-symbols-outlined text-[18px] text-on-primary">swap_horiz</span><span class="">Transfers</span></a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Purchasing</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#purchases">
+<span class="material-symbols-outlined text-[18px]">shopping_bag</span>
+<span class="">Purchases</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#suppliers">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span class="">Suppliers</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Kitchen</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#recipes">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="">Recipes</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#production">
+<span class="material-symbols-outlined text-[18px]">soup_kitchen</span>
+<span class="">Production</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Management</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#reports">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+<span class="">Reports</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#staff">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span class="">Staff</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">System</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#settings">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="">Settings</span>
+</a>
+</div>
+</nav>
+</div>
+<!-- Bottom Sidebar Branch Switcher & GM User Pill -->
+<div class="p-space-md flex flex-col gap-space-xs border-t border-surface-container bg-surface-container-low">
+<!-- Branch Switcher Pill -->
+<div class="flex items-center justify-between px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">storefront</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Main Branch</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">unfold_more</span>
+</div>
+<!-- User Profile Pill -->
+<div class="flex items-center justify-between px-space-sm py-space-xs rounded-lg hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-8 rounded-full bg-primary text-on-primary font-bold text-label-sm flex items-center justify-center shrink-0">
+          GM
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-tight truncate">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight truncate">Operations Lead</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">more_vert</span>
+</div>
+</div>
+</aside><div class="lg:pl-64 w-full min-h-screen flex flex-col pt-16"><header class="fixed top-0 right-0 left-0 lg:left-64 h-16 bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 z-20 flex items-center justify-between px-4 lg:px-8">
+<div class="flex items-center gap-space-md lg:gap-space-lg">
+<button aria-label="Toggle Navigation" class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container mr-2" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]">storefront</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Main Branch</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Updated 2 min ago</span>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="relative hidden sm:flex items-center">
+<span class="material-symbols-outlined absolute left-space-md text-on-surface-variant text-[18px]">search</span>
+<input class="w-80 h-9 pl-9 pr-14 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none shadow-[0_1px_2px_0_rgba(15,23,42,0.04)]" placeholder="Search ingredients, purchases, suppliers (⌘K)" type="text"/>
+<div class="absolute right-space-sm flex items-center gap-space-xs pointer-events-none">
+<kbd class="bg-surface-container px-space-xs rounded font-label-sm text-label-sm text-on-surface-variant">⌘K</kbd>
+</div>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant">
+<button class="relative p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1 right-1 h-2 w-2 rounded-full bg-error"></span>
+</button>
+<button class="p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-lowest px-space-sm py-space-xs rounded-full shadow-[0_1px_2px_0_rgba(15,23,42,0.04)]">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-label-sm flex items-center justify-center shrink-0">
+        GM
+      </div>
+<div class="hidden sm:flex flex-col pr-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Operations Lead</span>
+</div>
+</div>
+</div>
+</header><main class="relative bg-surface min-h-screen px-4 lg:px-margin-desktop py-space-lg"><div class="flex flex-col w-full">
+<!-- Dynamic Breadcrumbs & Action Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-xl">
+<div class="flex flex-col gap-space-xs">
+<!-- Breadcrumb Bar -->
+<nav class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="hover:text-on-surface transition-colors cursor-pointer">Operations</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors font-medium" href="#transfers">Transfers</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold" id="breadcrumb-id">TRF-1038</span>
+</nav>
+<!-- Title & Status Pill -->
+<div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight" id="header-title">Transfer TRF-1038</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-primary font-label-sm text-label-sm font-semibold">
+<span class="h-1.5 w-1.5 rounded-full bg-primary"></span>
+          Completed
+        </span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Completed internal stock transfer details.</p>
+</div>
+<!-- Header Action (Read-only back link) -->
+<div class="flex items-center gap-space-sm">
+<a class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-all shadow-sm" href="#transfers">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span class="">Back to Transfers</span>
+</a>
+</div>
+</div>
+<!-- 1. Top Summary Metric Bins (4-Column Bento Row) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1: Quantity -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Quantity Transferred</span>
+<div class="h-8 w-8 rounded-lg bg-primary-fixed/30 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">scale</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="flex items-baseline gap-1.5">
+<span class="font-headline-xl text-headline-xl font-bold text-on-surface tabular-nums" id="stat-quantity">3</span>
+<span class="font-label-lg text-label-lg text-on-surface-variant font-medium" id="stat-unit">kg</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="stat-ingredient">Chicken Breast (SKU-9021)</span>
+</div>
+</div>
+<!-- Card 2: Source -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">From Location</span>
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">outbox</span>
+</div>
+</div>
+<div class="mt-space-md">
+<span class="font-headline-md text-headline-md font-bold text-on-surface truncate block" id="stat-from">Walk-in Cooler</span>
+</div>
+</div>
+<!-- Card 3: Destination -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">To Location</span>
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">inbox</span>
+</div>
+</div>
+<div class="mt-space-md">
+<span class="font-headline-md text-headline-md font-bold text-on-surface truncate block" id="stat-to">Kitchen Prep</span>
+</div>
+</div>
+<!-- Card 4: Transferred By -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Transferred By</span>
+<div class="h-8 w-8 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+</div>
+</div>
+<div class="mt-space-md">
+<span class="font-headline-md text-headline-md font-bold text-on-surface truncate block" id="stat-author">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Operations Lead</span>
+</div>
+</div>
+</div>
+<!-- 2. Main Grid Layout (Asymmetric 8 cols / 4 cols) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- LEFT COLUMN (8 cols): Information & Stock Balance Impact -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Card: Transfer Information -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">assignment</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Transfer Information</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Internal Movement</span>
+</div>
+<div class="p-space-lg">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-space-md gap-x-space-xl">
+<!-- Reference -->
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Reference Code</span>
+<span class="font-label-lg text-label-lg font-semibold text-on-surface" id="info-id">TRF-1038</span>
+</div>
+<!-- Date & Time -->
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Timestamp</span>
+<span class="font-body-md text-body-md text-on-surface" id="info-timestamp">23 Sep 2026, 5:20 PM</span>
+</div>
+<!-- Ingredient -->
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Ingredient Name</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface" id="info-ingredient">Chicken Breast</span>
+</div>
+<!-- SKU -->
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Stock Keeping Unit</span>
+<span class="font-label-md text-label-md font-mono bg-surface-container-low px-2 py-0.5 rounded text-on-surface w-fit" id="info-sku">SKU-9021</span>
+</div>
+<!-- Quantity -->
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Movement Quantity</span>
+<span class="font-body-md text-body-md font-bold text-primary" id="info-quantity">3 kg</span>
+</div>
+<!-- Operator -->
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Transferred By</span>
+<span class="font-body-md text-body-md text-on-surface" id="info-operator">General Manager</span>
+</div>
+<!-- Origin -->
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Source Storage</span>
+<span class="font-body-md text-body-md text-on-surface flex items-center gap-1.5">
+<span class="h-2 w-2 rounded-full bg-secondary"></span>
+<span class="" id="info-from">Walk-in Cooler</span>
+</span>
+</div>
+<!-- Target -->
+<div class="flex flex-col gap-0.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Destination Storage</span>
+<span class="font-body-md text-body-md text-on-surface flex items-center gap-1.5">
+<span class="h-2 w-2 rounded-full bg-tertiary"></span>
+<span class="" id="info-to">Kitchen Prep</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Card: Location Stock Effect -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">sync_alt</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Location Stock Effect</h2>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Before / After Balances</span>
+</div>
+<div class="p-space-lg flex flex-col gap-space-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Source Effect Bin -->
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary">warehouse</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Walk-in Cooler</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Source</span>
+</div>
+<!-- Metrics progression -->
+<div class="grid grid-cols-3 gap-2 bg-surface-container-lowest p-space-sm rounded-lg text-center items-center">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Before</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface tabular-nums" id="source-before">8 kg</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Shift</span>
+<span class="font-label-md text-label-md font-semibold text-error px-2 py-0.5 rounded-full bg-error-container/40 tabular-nums" id="source-shift">-3 kg</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">After</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface tabular-nums" id="source-after">5 kg</span>
+</div>
+</div>
+</div>
+<!-- Destination Effect Bin -->
+<div class="bg-surface-container-low p-space-md rounded-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-tertiary">countertops</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Kitchen Prep</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Destination</span>
+</div>
+<!-- Metrics progression -->
+<div class="grid grid-cols-3 gap-2 bg-surface-container-lowest p-space-sm rounded-lg text-center items-center">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Before</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface tabular-nums" id="dest-before">2 kg</span>
+</div>
+<div class="flex flex-col items-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Shift</span>
+<span class="font-label-md text-label-md font-semibold text-primary px-2 py-0.5 rounded-full bg-primary-fixed/40 tabular-nums" id="dest-shift">+3 kg</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">After</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface tabular-nums" id="dest-after">5 kg</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Branch Conservation Summary Bar -->
+<div class="bg-surface-container p-space-md rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="h-9 w-9 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">balance</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Branch Net Quantity Conserved</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">The transfer changed the stock location without changing the total branch quantity.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-lg self-end md:self-center shrink-0 bg-surface-container-lowest px-space-md py-space-xs rounded-lg">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Branch Before:</span>
+<span class="font-label-md text-label-md font-bold text-on-surface tabular-nums" id="branch-before">10 kg</span>
+</div>
+<span class="text-outline-variant font-light">/</span>
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Branch After:</span>
+<span class="font-label-md text-label-md font-bold text-primary tabular-nums" id="branch-after">10 kg</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (4 cols): Route Flow & Notes -->
+<div class="lg:col-span-4 flex flex-col gap-space-lg">
+<!-- Card: Transfer Route (Minimal visual route flow) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">alt_route</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Transfer Route</h2>
+</div>
+</div>
+<div class="p-space-lg flex flex-col gap-space-md">
+<!-- Flow Step 1: Origin -->
+<div class="flex items-start gap-space-sm">
+<div class="flex flex-col items-center">
+<div class="h-8 w-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">store</span>
+</div>
+<div class="w-0.5 h-12 bg-outline-variant/40 my-1"></div>
+</div>
+<div class="flex flex-col pt-1"><span class="font-headline-md text-headline-md font-semibold text-on-surface leading-tight" id="route-from">Walk-in Cooler</span></div>
+</div>
+<!-- Flow Midpoint Pill -->
+<div class="ml-10 -my-2 flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-full w-fit">
+<span class="material-symbols-outlined text-[16px] text-primary">arrow_forward</span>
+<span class="font-label-sm text-label-sm font-semibold text-on-surface" id="route-payload">3 kg Chicken Breast</span>
+</div>
+<!-- Flow Step 2: Destination -->
+<div class="flex items-start gap-space-sm">
+<div class="h-8 w-8 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[16px]">restaurant</span>
+</div>
+<div class="flex flex-col pt-1"><span class="font-headline-md text-headline-md font-semibold text-on-surface leading-tight" id="route-to">Kitchen Prep</span></div>
+</div>
+</div>
+</div>
+<!-- Card: Operational Notes -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">notes</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Notes</h2>
+</div>
+</div>
+<div class="p-space-lg">
+<p class="font-body-md text-body-md text-on-surface leading-relaxed" id="transfer-notes">Stock moved to kitchen for evening service.</p>
+</div>
+</div>
+<!-- Visual Photo Card (Asset Pipeline Fulfillment) -->
+</div>
+</div>
+</div>
+<script>
+  // Strictly single transfer record data source
+  const transferRecord = {
+    id: "TRF-1038",
+    dateTime: "23 Sep 2026, 5:20 PM",
+    ingredient: "Chicken Breast",
+    sku: "SKU-9021",
+    quantity: 3,
+    unit: "kg",
+    from: "Walk-in Cooler",
+    to: "Kitchen Prep",
+    transferredBy: "General Manager",
+    notes: "Stock moved to kitchen for evening service.",
+    sourceBefore: 8,
+    sourceAfter: 5,
+    destinationBefore: 2,
+    destinationAfter: 5
+  };
+
+  // Mobile sidebar drawer helper for shell
+  function toggleSidebar() {
+    const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (!sidebar || !backdrop) return;
+    const isClosed = sidebar.classList.contains('-translate-x-full');
+    if (isClosed) {
+      sidebar.classList.remove('-translate-x-full');
+      backdrop.classList.remove('hidden');
+    } else {
+      sidebar.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
+    }
+  }
+
+  // Populate UI bindings on DOM ready
+  document.addEventListener('DOMContentLoaded', () => {
+    // Breadcrumb and headers
+    const breadcrumbEl = document.getElementById('breadcrumb-id');
+    const headerTitleEl = document.getElementById('header-title');
+    if (breadcrumbEl) breadcrumbEl.textContent = transferRecord.id;
+    if (headerTitleEl) headerTitleEl.textContent = `Transfer ${transferRecord.id}`;
+
+    // Top Metric Bins
+    const statQty = document.getElementById('stat-quantity');
+    const statUnit = document.getElementById('stat-unit');
+    const statIngredient = document.getElementById('stat-ingredient');
+    const statFrom = document.getElementById('stat-from');
+    const statTo = document.getElementById('stat-to');
+    const statAuthor = document.getElementById('stat-author');
+
+    if (statQty) statQty.textContent = transferRecord.quantity;
+    if (statUnit) statUnit.textContent = transferRecord.unit;
+    if (statIngredient) statIngredient.textContent = `${transferRecord.ingredient} (${transferRecord.sku})`;
+    if (statFrom) statFrom.textContent = transferRecord.from;
+    if (statTo) statTo.textContent = transferRecord.to;
+    if (statAuthor) statAuthor.textContent = transferRecord.transferredBy;
+
+    // Detailed Information Card
+    const infoId = document.getElementById('info-id');
+    const infoTimestamp = document.getElementById('info-timestamp');
+    const infoIngredient = document.getElementById('info-ingredient');
+    const infoSku = document.getElementById('info-sku');
+    const infoQuantity = document.getElementById('info-quantity');
+    const infoOperator = document.getElementById('info-operator');
+    const infoFrom = document.getElementById('info-from');
+    const infoTo = document.getElementById('info-to');
+
+    if (infoId) infoId.textContent = transferRecord.id;
+    if (infoTimestamp) infoTimestamp.textContent = transferRecord.dateTime;
+    if (infoIngredient) infoIngredient.textContent = transferRecord.ingredient;
+    if (infoSku) infoSku.textContent = transferRecord.sku;
+    if (infoQuantity) infoQuantity.textContent = `${transferRecord.quantity} ${transferRecord.unit}`;
+    if (infoOperator) infoOperator.textContent = transferRecord.transferredBy;
+    if (infoFrom) infoFrom.textContent = transferRecord.from;
+    if (infoTo) infoTo.textContent = transferRecord.to;
+
+    // Location Stock Effect
+    const srcBefore = document.getElementById('source-before');
+    const srcShift = document.getElementById('source-shift');
+    const srcAfter = document.getElementById('source-after');
+
+    const dstBefore = document.getElementById('dest-before');
+    const dstShift = document.getElementById('dest-shift');
+    const dstAfter = document.getElementById('dest-after');
+
+    if (srcBefore) srcBefore.textContent = `${transferRecord.sourceBefore} ${transferRecord.unit}`;
+    if (srcShift) srcShift.textContent = `-${transferRecord.quantity} ${transferRecord.unit}`;
+    if (srcAfter) srcAfter.textContent = `${transferRecord.sourceAfter} ${transferRecord.unit}`;
+
+    if (dstBefore) dstBefore.textContent = `${transferRecord.destinationBefore} ${transferRecord.unit}`;
+    if (dstShift) dstShift.textContent = `+${transferRecord.quantity} ${transferRecord.unit}`;
+    if (dstAfter) dstAfter.textContent = `${transferRecord.destinationAfter} ${transferRecord.unit}`;
+
+    // Branch Totals
+    const branchBefore = transferRecord.sourceBefore + transferRecord.destinationBefore;
+    const branchAfter = transferRecord.sourceAfter + transferRecord.destinationAfter;
+    const branchBeforeEl = document.getElementById('branch-before');
+    const branchAfterEl = document.getElementById('branch-after');
+    if (branchBeforeEl) branchBeforeEl.textContent = `${branchBefore} ${transferRecord.unit}`;
+    if (branchAfterEl) branchAfterEl.textContent = `${branchAfter} ${transferRecord.unit}`;
+
+    // Route Card
+    const routeFrom = document.getElementById('route-from');
+    const routePayload = document.getElementById('route-payload');
+    const routeTo = document.getElementById('route-to');
+    if (routeFrom) routeFrom.textContent = transferRecord.from;
+    if (routePayload) routePayload.textContent = `${transferRecord.quantity} ${transferRecord.unit} ${transferRecord.ingredient}`;
+    if (routeTo) routeTo.textContent = transferRecord.to;
+
+    // Notes
+    const notesEl = document.getElementById('transfer-notes');
+    if (notesEl) notesEl.textContent = transferRecord.notes;
+
+    // Sync shell sidebar Transfers active state
+    const navLinks = document.querySelectorAll('#app-sidebar nav a');
+    navLinks.forEach(link => {
+      const isTransfers = link.getAttribute('href') === '#transfers';
+      if (isTransfers) {
+        link.setAttribute('aria-current', 'page');
+        link.className = 'flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm bg-primary text-on-primary font-semibold shadow-sm transition-colors';
+        const icon = link.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.className = 'material-symbols-outlined text-[18px] text-on-primary';
+        }
+      }
+    });
+  });
+</script></main></div>
+<script src="/integration-bridge.js"></script>
+</body></html>

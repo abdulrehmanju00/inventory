@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container":"#eaedff","primary-container":"#0f766e","primary-fixed-dim":"#80d5cb","on-secondary-container":"#586377","on-primary":"#ffffff","tertiary":"#005d42","inverse-on-surface":"#eef0ff","tertiary-container":"#047857","inverse-surface":"#283044","surface-container-high":"#e2e7ff","error-container":"#ffdad6","on-primary-container":"#a3faef","on-secondary":"#ffffff","on-secondary-fixed":"#111c2d","on-tertiary-fixed-variant":"#00513a","surface-variant":"#dae2fd","on-surface":"#131b2e","tertiary-fixed-dim":"#7bd8b1","surface-container-lowest":"#ffffff","on-error-container":"#93000a","background":"#faf8ff","primary-fixed":"#9cf2e8","surface-container-highest":"#dae2fd","on-tertiary-fixed":"#002115","on-tertiary-container":"#9ffdd3","on-primary-fixed-variant":"#00504a","surface-bright":"#faf8ff","error":"#ba1a1a","surface-dim":"#d2d9f4","surface":"#faf8ff","surface-container-low":"#f2f3ff","secondary":"#545f73","inverse-primary":"#80d5cb","secondary-fixed":"#d8e3fb","on-secondary-fixed-variant":"#3c475a","on-background":"#131b2e","on-error":"#ffffff","on-primary-fixed":"#00201d","outline-variant":"#bdc9c6","tertiary-fixed":"#97f5cc","on-tertiary":"#ffffff","surface-tint":"#006a63","primary":"#005c55","on-surface-variant":"#3e4947","outline":"#6e7977","secondary-container":"#d5e0f8","secondary-fixed-dim":"#bcc7de"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-lg":"1.25rem","margin-desktop":"2rem","space-xl":"2rem","space-xs":"0.25rem","space-sm":"0.5rem","gutter-lg":"1.5rem","margin-mobile":"1rem","margin":"1.5rem","gutter":"1rem","space-md":"0.75rem"},fontFamily:{"label-md":["Geist"],"body-lg":["Hanken Grotesk"],"headline-lg-mobile":["Hanken Grotesk"],"label-lg":["Geist"],"label-sm":["Geist"],"body-md":["Hanken Grotesk"],"headline-md":["Hanken Grotesk"],"body-sm":["Hanken Grotesk"],"headline-xl":["Hanken Grotesk"],"display-lg":["Hanken Grotesk"],"headline-lg":["Hanken Grotesk"],"numeric-table":["Geist"]},fontSize:{"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg-mobile":["20px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"500"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-xl":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"display-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"numeric-table":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"500"}]}}}};</script><style>
+  /* Subtle native scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(110, 121, 119, 0.25);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(110, 121, 119, 0.45);
+  }
+</style></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased">
+<!-- Mobile Backdrop Overlay -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-xs z-40 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+<!-- SIDEBAR -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant/40 z-50 flex flex-col justify-between select-none -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out" id="app-sidebar"><div class="flex flex-col min-h-0"><div class="h-16 px-space-md flex items-center justify-between border-b border-outline-variant/30"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold text-label-lg"><span class="material-symbols-outlined text-[18px]">inventory_2</span></div><div class="flex flex-col"><span class="font-headline-md text-[15px] font-semibold text-on-surface tracking-tight leading-tight">Inventory &amp; Operations</span><span class="font-label-sm text-[11px] text-on-surface-variant font-normal">Restaurant Portal</span></div></div><button class="lg:hidden p-1 rounded-md text-on-surface-variant hover:bg-surface-container-low" onclick="toggleSidebar()" type="button"><span class="material-symbols-outlined text-[20px]">close</span></button></div><nav class="flex-1 overflow-y-auto px-space-sm py-space-sm space-y-0.5"><div class="px-space-md pt-2 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Operations</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="dashboard" href="#dashboard"><span class="material-symbols-outlined text-[18px]">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-medium shadow-sm transition-colors" data-path="inventory" href="#inventory"><span class="material-symbols-outlined text-[18px]">inventory_2</span><span class="font-label-md text-label-md">Inventory</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="stock-counts" href="#stock-counts"><span class="material-symbols-outlined text-[18px]">fact_check</span><span class="font-label-md text-label-md">Stock Counts</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="wastage" href="#wastage"><span class="material-symbols-outlined text-[18px]">delete_sweep</span><span class="font-label-md text-label-md">Wastage</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="transfers" href="#transfers"><span class="material-symbols-outlined text-[18px]">swap_horiz</span><span class="font-label-md text-label-md">Transfers</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Purchasing</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="purchasing" href="#purchases"><span class="material-symbols-outlined text-[18px]">shopping_cart</span><span class="font-label-md text-label-md">Purchases</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="suppliers" href="#suppliers"><span class="material-symbols-outlined text-[18px]">local_shipping</span><span class="font-label-md text-label-md">Suppliers</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Kitchen</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="recipes" href="#recipes"><span class="material-symbols-outlined text-[18px]">menu_book</span><span class="font-label-md text-label-md">Recipes</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="production" href="#production"><span class="material-symbols-outlined text-[18px]">skillet</span><span class="font-label-md text-label-md">Production</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Management</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="reports" href="#reports"><span class="material-symbols-outlined text-[18px]">bar_chart</span><span class="font-label-md text-label-md">Reports</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="staff" href="#staff"><span class="material-symbols-outlined text-[18px]">badge</span><span class="font-label-md text-label-md">Staff</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">System</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="settings" href="#settings"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-label-md text-label-md">Settings</span></a></nav></div><div class="border-t border-outline-variant/30 p-space-sm space-y-space-xs bg-surface-container-lowest"><div class="p-space-xs rounded-lg border border-outline-variant/30 bg-surface-container-low flex items-center justify-between cursor-pointer hover:bg-surface-container transition-colors"><div class="flex items-center gap-1.5 truncate"><span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span><span class="font-label-sm text-label-sm text-on-surface truncate font-medium">Main Branch</span></div><span class="material-symbols-outlined text-[16px] text-on-surface-variant">unfold_more</span></div><div class="flex items-center justify-between p-space-xs rounded-lg hover:bg-surface-container-low cursor-pointer transition-colors"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface-variant font-label-md font-semibold">GM</div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-medium">General Manager</span><span class="font-label-sm text-label-sm text-on-surface-variant">Operations Lead</span></div></div><span class="material-symbols-outlined text-[18px] text-on-surface-variant">more_vert</span></div></div></aside>
+<!-- MAIN WRAPPER -->
+<div class="lg:pl-64 w-full">
+<header class="fixed top-0 left-0 lg:left-64 right-0 h-16 bg-surface/95 backdrop-blur border-b border-outline-variant/40 z-30 px-4 lg:px-gutter-lg flex items-center justify-between"><div class="flex items-center gap-space-sm sm:gap-space-md"><button class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" onclick="toggleSidebar()" type="button"><span class="material-symbols-outlined text-[22px]">menu</span></button><div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg border border-outline-variant/40 bg-surface-container-lowest cursor-pointer hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined text-[18px] text-primary">storefront</span><span class="font-label-md text-label-md text-on-surface font-medium">Main Branch</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></div><div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface-variant"><span class="font-label-sm text-label-sm">Updated 2 min ago</span></div></div><div class="flex items-center gap-space-sm sm:gap-space-md"><div class="relative hidden md:block w-64 lg:w-96"><span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span><input class="w-full h-9 pl-9 pr-12 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/70 font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Search ingredients, purchases, suppliers (⌘K)" type="text"/><div class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm pointer-events-none">⌘K</div></div><div class="flex items-center gap-space-xs"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">help</span></button></div><div class="h-6 w-px bg-outline-variant/40 hidden sm:block"></div><div class="flex items-center gap-space-xs cursor-pointer group"><div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface font-label-sm font-semibold">GM</div><span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-on-surface transition-colors hidden sm:inline">keyboard_arrow_down</span></div></div></header>
+<main class="w-full pt-20 bg-surface min-h-screen px-4 lg:px-gutter-lg pb-margin-desktop"><div class="flex flex-col w-full">
+<!-- BREADCRUMB & METRIC TOP BAR -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs text-label-md font-label-md text-on-surface-variant mb-space-sm">
+<a class="hover:text-primary transition-colors" href="#">Operations</a>
+<span class="text-outline-variant">/</span>
+<a class="hover:text-primary transition-colors" href="#">Inventory</a>
+<span class="text-outline-variant">/</span>
+<span class="text-on-surface font-semibold" id="breadcrumb-name">Chicken Breast</span>
+</nav>
+<!-- PAGE HEADER -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-1 min-w-0">
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-semibold tracking-tight" id="header-ingredient-name">Chicken Breast</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-error-container text-on-error-container" id="header-status-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-error" id="header-status-dot"></span>
+<span id="header-status-text">Critical</span>
+</span>
+</div>
+<div class="flex flex-wrap items-center gap-2 text-label-md font-label-md text-on-surface-variant">
+<span class="font-mono text-on-surface font-medium" id="header-meta-sku">SKU-9021</span>
+<span>•</span>
+<span id="header-meta-category">Proteins</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">ac_unit</span>
+<span id="header-meta-location">Walk-in Cooler</span>
+</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant/80 mt-0.5">
+        Inventory details, purchasing information, and recent stock activity.
+      </p>
+</div>
+<!-- HEADER ACTIONS -->
+<div class="flex items-center gap-space-sm flex-shrink-0">
+<button class="h-9 px-3.5 rounded bg-surface-container-lowest text-on-surface hover:bg-surface-container-low transition-colors shadow-sm font-label-md text-label-md flex items-center gap-1.5" type="button">
+<span class="material-symbols-outlined text-[17px]">edit</span>
+        Edit Ingredient
+      </button>
+<a class="h-9 px-4 rounded bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold transition-colors shadow-sm flex items-center gap-1.5" href="#add-stock">
+<span class="material-symbols-outlined text-[18px]">add</span>
+        Add Stock
+      </a>
+</div>
+</div>
+<!-- SECTION 1: KEY METRIC KPI TILES -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Card 1: Current Stock -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between relative overflow-hidden" id="kpi-current-stock-card">
+<div class="absolute right-0 top-0 bottom-0 w-1.5 bg-error" id="kpi-current-stock-bar"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Current Stock</span>
+<span class="p-1 rounded-md bg-error-container/60 text-error material-symbols-outlined text-[18px]" id="kpi-current-stock-icon">warning</span>
+</div>
+<div class="my-2">
+<div class="font-display-lg text-display-lg text-error font-bold leading-none tracking-tight" id="kpi-current-stock-container"><span id="kpi-current-stock-val">8</span> <span class="font-headline-md text-headline-md font-normal text-error/80" id="kpi-current-stock-unit">kg</span></div>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant" id="kpi-current-stock-location">Available at Walk-in Cooler</div>
+</div>
+<!-- Card 2: Minimum Stock Level -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Minimum Stock Level</span>
+<span class="p-1 rounded-md bg-surface-container text-secondary material-symbols-outlined text-[18px]">flag</span>
+</div>
+<div class="my-2">
+<div class="font-display-lg text-display-lg text-on-surface font-bold leading-none tracking-tight"><span id="kpi-min-stock-val">20</span> <span class="font-headline-md text-headline-md font-normal text-on-surface-variant" id="kpi-min-stock-unit">kg</span></div>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Reorder threshold</div>
+</div>
+<!-- Card 3: Unit Cost -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Unit Cost</span>
+<span class="p-1 rounded-md bg-surface-container text-secondary material-symbols-outlined text-[18px]">sell</span>
+</div>
+<div class="my-2">
+<div class="font-headline-xl text-headline-xl text-on-surface font-bold leading-none tracking-tight font-numeric-table"><span id="kpi-unit-cost-val">PKR 920</span> <span class="font-body-sm text-body-sm font-normal text-on-surface-variant" id="kpi-unit-cost-unit">/ kg</span></div>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Current inventory cost</div>
+</div>
+<!-- Card 4: Total Value -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Inventory Value</span>
+<span class="p-1 rounded-md bg-primary/10 text-primary material-symbols-outlined text-[18px]">account_balance_wallet</span>
+</div>
+<div class="my-2">
+<div class="font-headline-xl text-headline-xl text-on-surface font-bold leading-none tracking-tight font-numeric-table" id="kpi-inventory-val">PKR 7,360</div>
+</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant font-mono" id="kpi-inventory-val-note">8 kg × PKR 920</div>
+</div>
+</section>
+<!-- SECTION 2: STOCK LEVEL -->
+<section class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm mb-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-2.5 h-2.5 rounded-full bg-error animate-pulse" id="stock-level-status-dot"></span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Stock Level</h2>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-error-container text-on-error-container font-semibold" id="stock-level-badge-text">40% of minimum</span>
+</div>
+<p class="text-label-sm font-label-sm text-error font-medium" id="stock-level-explanation">
+        Critical — stock is below 50% of minimum level.
+      </p>
+</div>
+<!-- Visual Progress Scale -->
+<div class="flex flex-col gap-2">
+<div class="w-full bg-surface-container-high h-3.5 rounded-full overflow-hidden flex relative">
+<div class="h-full bg-error transition-all duration-500 rounded-full" id="stock-level-progress-bar" style="width: 40%;"></div>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-on-surface-variant">
+<span>0 kg</span>
+<span class="text-error font-medium" id="stock-level-mid-indicator">8 kg (40%)</span>
+<span class="font-medium text-on-surface" id="stock-level-max-label">20 kg (Minimum)</span>
+</div>
+</div>
+<!-- Details Grid -->
+<div class="mt-space-md pt-space-md bg-surface-container-low/50 rounded-lg p-space-md flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-md w-full md:w-auto flex-1">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase tracking-wider">Current Stock</span>
+<span class="font-headline-md text-headline-md font-bold text-error" id="stock-level-current-stat">8 kg</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase tracking-wider">Minimum Stock</span>
+<span class="font-headline-md text-headline-md font-semibold text-on-surface" id="stock-level-min-stat">20 kg</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase tracking-wider">Shortage to Minimum</span>
+<span class="font-headline-md text-headline-md font-bold text-error" id="stock-level-shortage-stat">12 kg</span>
+</div>
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant block uppercase tracking-wider">Stock Level</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface" id="stock-level-pct-stat">40% of minimum</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full md:w-auto justify-end">
+<a class="h-8 px-3.5 rounded bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-medium transition-colors shadow-xs flex items-center gap-1.5 whitespace-nowrap" href="#add-stock">
+<span class="material-symbols-outlined text-[16px]">add</span>
+          Add Stock
+        </a>
+</div>
+</div>
+</section>
+<!-- SECTION 3, 4, 5: INFORMATION, PURCHASING & TRACKING -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg mb-space-lg">
+<!-- Section 3: Ingredient Information (7 cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex-1">
+<div class="flex items-center justify-between mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">nutrition</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Ingredient Information</h3>
+</div>
+</div>
+<dl class="divide-y divide-surface-container-low text-body-sm font-body-sm">
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">Ingredient Name</dt>
+<dd class="text-on-surface font-semibold" id="info-name">Chicken Breast</dd>
+</div>
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">SKU / Item Code</dt>
+<dd class="font-mono text-on-surface font-medium px-2 py-0.5 rounded bg-surface-container-low" id="info-sku">SKU-9021</dd>
+</div>
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">Category</dt>
+<dd>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-primary/10 text-primary" id="info-category">Proteins</span>
+</dd>
+</div>
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">Stock Unit</dt>
+<dd class="font-numeric-table font-semibold text-on-surface" id="info-stock-unit">kg</dd>
+</div>
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">Recipe / Usage Unit</dt>
+<dd class="font-numeric-table font-semibold text-on-surface" id="info-recipe-unit">g</dd>
+</div>
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">Recipe Conversion</dt>
+<dd class="font-numeric-table text-on-surface bg-surface-container-low px-2 py-0.5 rounded font-medium" id="info-recipe-conversion">1 kg = 1,000 g</dd>
+</div>
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">Default Storage Location</dt>
+<dd class="text-on-surface font-medium flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span id="info-location">Walk-in Cooler</span>
+</dd>
+</div>
+</dl>
+</div>
+</div>
+<!-- Sections 4 & 5: Purchasing & Tracking (5 cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<!-- Section 4: Purchasing -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col">
+<div class="flex items-center justify-between mb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">local_shipping</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Purchasing</h3>
+</div>
+</div>
+<dl class="divide-y divide-surface-container-low text-body-sm font-body-sm">
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">Preferred Supplier</dt>
+<dd class="text-on-surface font-semibold" id="purchasing-supplier">Fresh Foods Supplier</dd>
+</div>
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">Supplier Item Code</dt>
+<dd class="font-mono text-on-surface font-medium px-2 py-0.5 rounded bg-surface-container-low" id="purchasing-supplier-code">FF-CHKN-25</dd>
+</div>
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">Purchase Unit</dt>
+<dd class="text-on-surface font-medium" id="purchasing-purchase-unit">Bag</dd>
+</div>
+<div class="py-2.5 flex items-center justify-between">
+<dt class="text-on-surface-variant font-label-md font-medium">Quantity per Purchase Unit</dt>
+<dd class="font-numeric-table font-semibold text-on-surface" id="purchasing-qty-per-unit">10 kg</dd>
+</div>
+</dl>
+<div class="mt-space-sm p-space-sm rounded-lg bg-surface-container flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">info</span>
+<span class="font-label-sm text-label-sm text-on-surface font-medium" id="purchasing-unit-note">1 Bag = 10 kg</span>
+</div>
+</div>
+<!-- Section 5: Tracking -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex flex-col justify-between flex-1">
+<div class="flex items-center gap-2 mb-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Tracking</h3>
+</div>
+<div class="space-y-space-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-3">
+<div class="p-1 rounded-md bg-tertiary-container/15 text-tertiary-container mt-0.5">
+<span class="material-symbols-outlined text-[18px]">event</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Expiry Tracking</span>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-tertiary-container/15 text-tertiary-container font-semibold" id="tracking-expiry-badge">Enabled</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 leading-normal">
+                Expiry dates are recorded when stock is received.
+              </p>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-start gap-3">
+<div class="p-1 rounded-md bg-tertiary-container/15 text-tertiary-container mt-0.5">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Batch Tracking</span>
+<span class="px-2 py-0.5 rounded text-label-sm font-label-sm bg-tertiary-container/15 text-tertiary-container font-semibold" id="tracking-batch-badge">Enabled</span>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-0.5 leading-normal">
+                Supplier batch or lot numbers are recorded with stock receipts.
+              </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 6: RECENT STOCK MOVEMENTS -->
+<section class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm mb-space-lg" id="movements">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">Recent Stock Movements</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Latest changes affecting this ingredient's stock balance.</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<a class="h-8 px-3 rounded bg-surface-container-lowest text-primary hover:bg-surface-container-low font-label-md text-label-md transition-colors flex items-center gap-1.5" href="#movements">
+          View All Movements
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Responsive Table Container -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant uppercase font-label-sm text-label-sm">
+<th class="py-2.5 px-4 rounded-l font-semibold">Date</th>
+<th class="py-2.5 px-3 font-semibold">Type</th>
+<th class="py-2.5 px-3 font-semibold">Reference</th>
+<th class="py-2.5 px-3 font-semibold">Location</th>
+<th class="py-2.5 px-3 text-right font-semibold">Quantity</th>
+<th class="py-2.5 px-3 text-right font-semibold">Unit Cost</th>
+<th class="py-2.5 px-3 text-right font-semibold">Balance</th>
+<th class="py-2.5 px-4 rounded-r font-semibold">Recorded By</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low text-body-sm font-body-sm">
+<!-- Row 1: Wastage -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3 px-4 text-on-surface font-medium whitespace-nowrap">
+              22 Sep 2026, 2:15 PM
+            </td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-error-container text-on-error-container">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                Wastage
+              </span>
+</td>
+<td class="py-3 px-3 font-mono text-on-surface text-label-md">WST-1042</td>
+<td class="py-3 px-3 text-on-surface-variant">Walk-in Cooler</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-error">-1.00 kg</td>
+<td class="py-3 px-3 text-right font-numeric-table text-on-surface-variant">PKR 920</td>
+<td class="py-3 px-3 text-right font-numeric-table font-bold text-error">8.00 kg</td>
+<td class="py-3 px-4 text-on-surface flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface">GM</div>
+<span class="truncate">General Manager</span>
+</td>
+</tr>
+<!-- Row 2: Production Consumption -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3 px-4 text-on-surface font-medium whitespace-nowrap">
+              21 Sep 2026, 6:40 PM
+            </td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-secondary-container text-on-secondary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                Production Consumption
+              </span>
+</td>
+<td class="py-3 px-3 font-mono text-on-surface text-label-md">PRD-2048</td>
+<td class="py-3 px-3 text-on-surface-variant">Walk-in Cooler</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-error">-12.00 kg</td>
+<td class="py-3 px-3 text-right font-numeric-table text-on-surface-variant">PKR 920</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-on-surface">9.00 kg</td>
+<td class="py-3 px-4 text-on-surface flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-secondary-container flex items-center justify-center text-[10px] font-bold text-on-secondary-container">KT</div>
+<span class="truncate">Kitchen</span>
+</td>
+</tr>
+<!-- Row 3: Purchase Receipt -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3 px-4 text-on-surface font-medium whitespace-nowrap">
+              20 Sep 2026, 9:12 AM
+            </td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-tertiary-container/15 text-tertiary-container">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container"></span>
+                Purchase Receipt
+              </span>
+</td>
+<td class="py-3 px-3 font-mono text-on-surface text-label-md">PUR-1098</td>
+<td class="py-3 px-3 text-on-surface-variant">Walk-in Cooler</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-tertiary-container">+10.00 kg</td>
+<td class="py-3 px-3 text-right font-numeric-table text-on-surface-variant">PKR 920</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-on-surface">21.00 kg</td>
+<td class="py-3 px-4 text-on-surface flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-on-surface">GM</div>
+<span class="truncate">General Manager</span>
+</td>
+</tr>
+<!-- Row 4: Opening -->
+<tr class="hover:bg-surface-container-low/40 transition-colors">
+<td class="py-3 px-4 text-on-surface font-medium whitespace-nowrap">
+              18 Sep 2026, 6:00 AM
+            </td>
+<td class="py-3 px-3">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-surface-container text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                Opening
+              </span>
+</td>
+<td class="py-3 px-3 font-mono text-on-surface text-label-md">OPEN-0001</td>
+<td class="py-3 px-3 text-on-surface-variant">Walk-in Cooler</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-tertiary-container">+11.00 kg</td>
+<td class="py-3 px-3 text-right font-numeric-table text-on-surface-variant">PKR 900</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-on-surface">11.00 kg</td>
+<td class="py-3 px-4 text-on-surface flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-bold text-on-surface-variant">SYS</div>
+<span class="truncate">System</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Empty State Fallback (Hidden when data present) -->
+<div class="hidden flex-col items-center justify-center p-8 text-center" id="movements-empty-state">
+<span class="material-symbols-outlined text-[36px] text-on-surface-variant/40 mb-2">history_toggle_drop</span>
+<p class="font-headline-md text-headline-md text-on-surface font-medium">No stock movements recorded</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Transactions affecting this ingredient will appear here.</p>
+</div>
+</section>
+</div>
+</main>
+</div>
+<!-- SINGLE UNIFIED JAVASCRIPT -->
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (!sidebar || !backdrop) return;
+    const isClosed = sidebar.classList.contains('-translate-x-full');
+    if (isClosed) {
+      sidebar.classList.remove('-translate-x-full');
+      backdrop.classList.remove('hidden');
+    } else {
+      sidebar.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
+    }
+  }
+
+  const currentIngredient = {
+    name: "Chicken Breast",
+    sku: "SKU-9021",
+    category: "Proteins",
+    currentStock: 8,
+    minimumStock: 20,
+    stockUnit: "kg",
+    recipeUnit: "g",
+    recipeConversion: 1000,
+    unitCost: 920,
+    location: "Walk-in Cooler",
+    supplier: "Fresh Foods Supplier",
+    supplierItemCode: "FF-CHKN-25",
+    purchaseUnit: "Bag",
+    quantityPerPurchaseUnit: 10,
+    expiryTracking: true,
+    batchTracking: true
+  };
+
+  function renderIngredientDetail() {
+    // Derived values
+    const inventoryValue = currentIngredient.currentStock * currentIngredient.unitCost;
+    const shortage = Math.max(currentIngredient.minimumStock - currentIngredient.currentStock, 0);
+    const stockPercentage = currentIngredient.minimumStock > 0 ? (currentIngredient.currentStock / currentIngredient.minimumStock) * 100 : null;
+    
+    let status = 'Healthy';
+    if (currentIngredient.currentStock === 0) {
+      status = 'Out of Stock';
+    } else if (currentIngredient.minimumStock > 0 && currentIngredient.currentStock <= currentIngredient.minimumStock * 0.5) {
+      status = 'Critical';
+    } else if (currentIngredient.minimumStock > 0 && currentIngredient.currentStock <= currentIngredient.minimumStock) {
+      status = 'Low Stock';
+    } else {
+      status = 'Healthy';
+    }
+
+    // Number formatters
+    const formatNumber = (num) => new Intl.NumberFormat().format(num);
+    const currencyFormatter = (num) => 'PKR ' + new Intl.NumberFormat().format(num);
+
+    // Breadcrumb & Header Title
+    const breadcrumbName = document.getElementById('breadcrumb-name');
+    if (breadcrumbName) breadcrumbName.textContent = currentIngredient.name;
+
+    const headerName = document.getElementById('header-ingredient-name');
+    if (headerName) headerName.textContent = currentIngredient.name;
+
+    // Header metadata
+    const headerSku = document.getElementById('header-meta-sku');
+    if (headerSku) headerSku.textContent = currentIngredient.sku;
+
+    const headerCategory = document.getElementById('header-meta-category');
+    if (headerCategory) headerCategory.textContent = currentIngredient.category;
+
+    const headerLocation = document.getElementById('header-meta-location');
+    if (headerLocation) headerLocation.textContent = currentIngredient.location;
+
+    // Header Status Badge
+    const headerStatusBadge = document.getElementById('header-status-badge');
+    const headerStatusText = document.getElementById('header-status-text');
+    const headerStatusDot = document.getElementById('header-status-dot');
+
+    if (headerStatusText) headerStatusText.textContent = status;
+    if (headerStatusBadge && headerStatusDot) {
+      // Base classes
+      headerStatusBadge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-semibold border';
+      headerStatusDot.className = 'w-1.5 h-1.5 rounded-full';
+
+      if (status === 'Critical' || status === 'Out of Stock') {
+        headerStatusBadge.classList.add('bg-red-50', 'text-red-700', 'border-red-200');
+        headerStatusDot.classList.add('bg-red-500');
+      } else if (status === 'Low Stock') {
+        headerStatusBadge.classList.add('bg-amber-100', 'text-amber-800', 'border-amber-200');
+        headerStatusDot.classList.add('bg-amber-500');
+      } else {
+        // Healthy
+        headerStatusBadge.classList.add('bg-tertiary-container/15', 'text-tertiary-container', 'border-transparent');
+        headerStatusDot.classList.add('bg-tertiary-container');
+      }
+    }
+
+    // KPI Card 1: Current Stock
+    const kpiCurrentVal = document.getElementById('kpi-current-stock-val');
+    if (kpiCurrentVal) kpiCurrentVal.textContent = formatNumber(currentIngredient.currentStock);
+
+    const kpiCurrentUnit = document.getElementById('kpi-current-stock-unit');
+    if (kpiCurrentUnit) kpiCurrentUnit.textContent = currentIngredient.stockUnit;
+
+    const kpiCurrentLocation = document.getElementById('kpi-current-stock-location');
+    if (kpiCurrentLocation) kpiCurrentLocation.textContent = 'Available at ' + currentIngredient.location;
+
+    const isCriticalOrOutOfStock = status === 'Critical' || status === 'Out of Stock' || (currentIngredient.minimumStock > 0 && currentIngredient.currentStock <= currentIngredient.minimumStock * 0.5);
+    const kpiCurrentBar = document.getElementById('kpi-current-stock-bar');
+    const kpiCurrentIcon = document.getElementById('kpi-current-stock-icon');
+    const kpiCurrentContainer = document.getElementById('kpi-current-stock-container');
+
+    if (kpiCurrentBar && kpiCurrentIcon && kpiCurrentContainer) {
+      if (isCriticalOrOutOfStock) {
+        kpiCurrentBar.className = 'absolute right-0 top-0 bottom-0 w-1.5 bg-error';
+        kpiCurrentIcon.className = 'p-1 rounded-md bg-error-container/60 text-error material-symbols-outlined text-[18px]';
+        kpiCurrentIcon.textContent = 'warning';
+        kpiCurrentContainer.className = 'font-display-lg text-display-lg text-red-600 font-bold leading-none tracking-tight';
+        if (kpiCurrentUnit) kpiCurrentUnit.className = 'font-headline-md text-headline-md font-normal text-error/80';
+      } else {
+        kpiCurrentBar.className = 'absolute right-0 top-0 bottom-0 w-1.5 bg-primary';
+        kpiCurrentIcon.className = 'p-1 rounded-md bg-primary/10 text-primary material-symbols-outlined text-[18px]';
+        kpiCurrentIcon.textContent = 'inventory_2';
+        kpiCurrentContainer.className = 'font-display-lg text-display-lg text-on-surface font-bold leading-none tracking-tight';
+        if (kpiCurrentUnit) kpiCurrentUnit.className = 'font-headline-md text-headline-md font-normal text-on-surface-variant';
+      }
+    }
+
+    // KPI Card 2: Minimum Stock Level
+    const kpiMinVal = document.getElementById('kpi-min-stock-val');
+    if (kpiMinVal) kpiMinVal.textContent = formatNumber(currentIngredient.minimumStock);
+
+    const kpiMinUnit = document.getElementById('kpi-min-stock-unit');
+    if (kpiMinUnit) kpiMinUnit.textContent = currentIngredient.stockUnit;
+
+    // KPI Card 3: Unit Cost
+    const kpiUnitCostVal = document.getElementById('kpi-unit-cost-val');
+    if (kpiUnitCostVal) kpiUnitCostVal.textContent = currencyFormatter(currentIngredient.unitCost);
+
+    const kpiUnitCostUnit = document.getElementById('kpi-unit-cost-unit');
+    if (kpiUnitCostUnit) kpiUnitCostUnit.textContent = '/ ' + currentIngredient.stockUnit;
+
+    // KPI Card 4: Inventory Value
+    const kpiInventoryVal = document.getElementById('kpi-inventory-val');
+    if (kpiInventoryVal) kpiInventoryVal.textContent = currencyFormatter(inventoryValue);
+
+    const kpiInventoryValNote = document.getElementById('kpi-inventory-val-note');
+    if (kpiInventoryValNote) {
+      kpiInventoryValNote.textContent = `${formatNumber(currentIngredient.currentStock)} ${currentIngredient.stockUnit} × ${currencyFormatter(currentIngredient.unitCost)}`;
+    }
+
+    // Section 2: Stock Level
+    const stockBadgeText = document.getElementById('stock-level-badge-text');
+    const stockProgressBar = document.getElementById('stock-level-progress-bar');
+    const stockMidIndicator = document.getElementById('stock-level-mid-indicator');
+    const stockMaxLabel = document.getElementById('stock-level-max-label');
+    const stockExplanation = document.getElementById('stock-level-explanation');
+    const stockCurrentStat = document.getElementById('stock-level-current-stat');
+    const stockMinStat = document.getElementById('stock-level-min-stat');
+    const stockShortageStat = document.getElementById('stock-level-shortage-stat');
+    const stockPctStat = document.getElementById('stock-level-pct-stat');
+    const stockStatusDot = document.getElementById('stock-level-status-dot');
+
+    if (currentIngredient.minimumStock === 0) {
+      if (stockBadgeText) {
+        stockBadgeText.textContent = "No minimum level set";
+        stockBadgeText.className = "px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-semibold";
+      }
+      if (stockProgressBar) {
+        stockProgressBar.style.width = "0%";
+        stockProgressBar.className = "h-full bg-surface-variant transition-all duration-500 rounded-full";
+      }
+      if (stockMidIndicator) {
+        stockMidIndicator.textContent = `${formatNumber(currentIngredient.currentStock)} ${currentIngredient.stockUnit}`;
+        stockMidIndicator.className = "text-on-surface font-medium";
+      }
+      if (stockMaxLabel) stockMaxLabel.textContent = "No Minimum Set";
+      if (stockExplanation) {
+        stockExplanation.textContent = "No minimum reorder threshold specified for this ingredient.";
+        stockExplanation.className = "text-label-sm font-label-sm text-on-surface-variant font-medium";
+      }
+      if (stockShortageStat) stockShortageStat.textContent = `0 ${currentIngredient.stockUnit}`;
+      if (stockPctStat) stockPctStat.textContent = "No minimum level set";
+      if (stockStatusDot) stockStatusDot.className = "w-2.5 h-2.5 rounded-full bg-outline";
+    } else {
+      const pctDisplay = `${Math.round(stockPercentage)}% of minimum`;
+      if (stockBadgeText) {
+        stockBadgeText.textContent = status === 'Out of Stock' ? '0% of minimum' : pctDisplay;
+        if (status === 'Critical' || status === 'Out of Stock') {
+          stockBadgeText.className = "px-2 py-0.5 rounded text-label-sm font-label-sm bg-red-50 text-red-700 border border-red-200 font-semibold";
+        } else if (status === 'Low Stock') {
+          stockBadgeText.className = "px-2 py-0.5 rounded text-label-sm font-label-sm bg-amber-100 text-amber-800 font-semibold";
+        } else {
+          stockBadgeText.className = "px-2 py-0.5 rounded text-label-sm font-label-sm bg-tertiary-container/15 text-tertiary-container font-semibold";
+        }
+      }
+
+      if (stockProgressBar) {
+        stockProgressBar.style.width = `${Math.min(Math.max(stockPercentage || 0, 0), 100)}%`;
+        if (status === 'Critical' || status === 'Out of Stock') {
+          stockProgressBar.className = "h-full bg-red-500 transition-all duration-500 rounded-full";
+        } else if (status === 'Low Stock') {
+          stockProgressBar.className = "h-full bg-amber-500 transition-all duration-500 rounded-full";
+        } else {
+          stockProgressBar.className = "h-full bg-primary transition-all duration-500 rounded-full";
+        }
+      }
+
+      if (stockMidIndicator) {
+        stockMidIndicator.textContent = `${formatNumber(currentIngredient.currentStock)} ${currentIngredient.stockUnit} (${Math.round(stockPercentage)}%)`;
+        stockMidIndicator.className = (status === 'Critical' || status === 'Out of Stock') ? "text-red-600 font-medium" : "text-on-surface font-medium";
+      }
+
+      if (stockMaxLabel) {
+        stockMaxLabel.textContent = `${formatNumber(currentIngredient.minimumStock)} ${currentIngredient.stockUnit} (Minimum)`;
+      }
+
+      if (stockExplanation) {
+        if (status === 'Out of Stock') {
+          stockExplanation.textContent = "Out of stock — ingredient requires urgent replenishment.";
+          stockExplanation.className = "text-label-sm font-label-sm text-red-700 font-medium";
+        } else if (status === 'Critical') {
+          stockExplanation.textContent = "Critical — stock is below 50% of minimum level.";
+          stockExplanation.className = "text-label-sm font-label-sm text-red-700 font-medium";
+        } else if (status === 'Low Stock') {
+          stockExplanation.textContent = "Low stock — current quantity is below required minimum.";
+          stockExplanation.className = "text-label-sm font-label-sm text-amber-700 font-medium";
+        } else {
+          stockExplanation.textContent = "Healthy — stock is above minimum required threshold.";
+          stockExplanation.className = "text-label-sm font-label-sm text-tertiary-container font-medium";
+        }
+      }
+
+      if (stockShortageStat) {
+        stockShortageStat.textContent = `${formatNumber(shortage)} ${currentIngredient.stockUnit}`;
+        stockShortageStat.className = shortage > 0 ? "font-headline-md text-headline-md font-bold text-error" : "font-headline-md text-headline-md font-bold text-on-surface";
+      }
+
+      if (stockPctStat) {
+        stockPctStat.textContent = status === 'Out of Stock' ? '0% of minimum' : pctDisplay;
+      }
+
+      if (stockStatusDot) {
+        if (status === 'Critical' || status === 'Out of Stock') {
+          stockStatusDot.className = "w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse";
+        } else if (status === 'Low Stock') {
+          stockStatusDot.className = "w-2.5 h-2.5 rounded-full bg-amber-500";
+        } else {
+          stockStatusDot.className = "w-2.5 h-2.5 rounded-full bg-tertiary-container";
+        }
+      }
+    }
+
+    if (stockCurrentStat) {
+      stockCurrentStat.textContent = `${formatNumber(currentIngredient.currentStock)} ${currentIngredient.stockUnit}`;
+      stockCurrentStat.className = isCriticalOrOutOfStock ? "font-headline-md text-headline-md font-bold text-red-600" : "font-headline-md text-headline-md font-bold text-on-surface";
+    }
+
+    if (stockMinStat) {
+      stockMinStat.textContent = `${formatNumber(currentIngredient.minimumStock)} ${currentIngredient.stockUnit}`;
+    }
+
+    // Section 3: Ingredient Information
+    const infoName = document.getElementById('info-name');
+    if (infoName) infoName.textContent = currentIngredient.name;
+
+    const infoSku = document.getElementById('info-sku');
+    if (infoSku) infoSku.textContent = currentIngredient.sku;
+
+    const infoCategory = document.getElementById('info-category');
+    if (infoCategory) infoCategory.textContent = currentIngredient.category;
+
+    const infoStockUnit = document.getElementById('info-stock-unit');
+    if (infoStockUnit) infoStockUnit.textContent = currentIngredient.stockUnit;
+
+    const infoRecipeUnit = document.getElementById('info-recipe-unit');
+    if (infoRecipeUnit) infoRecipeUnit.textContent = currentIngredient.recipeUnit;
+
+    const infoRecipeConversion = document.getElementById('info-recipe-conversion');
+    if (infoRecipeConversion) {
+      infoRecipeConversion.textContent = `1 ${currentIngredient.stockUnit} = ${formatNumber(currentIngredient.recipeConversion)} ${currentIngredient.recipeUnit}`;
+    }
+
+    const infoLocation = document.getElementById('info-location');
+    if (infoLocation) infoLocation.textContent = currentIngredient.location;
+
+    // Section 4: Purchasing
+    const purchSupplier = document.getElementById('purchasing-supplier');
+    if (purchSupplier) purchSupplier.textContent = currentIngredient.supplier;
+
+    const purchSupplierCode = document.getElementById('purchasing-supplier-code');
+    if (purchSupplierCode) purchSupplierCode.textContent = currentIngredient.supplierItemCode;
+
+    const purchUnit = document.getElementById('purchasing-purchase-unit');
+    if (purchUnit) purchUnit.textContent = currentIngredient.purchaseUnit;
+
+    const purchQtyPerUnit = document.getElementById('purchasing-qty-per-unit');
+    if (purchQtyPerUnit) purchQtyPerUnit.textContent = `${formatNumber(currentIngredient.quantityPerPurchaseUnit)} ${currentIngredient.stockUnit}`;
+
+    const purchUnitNote = document.getElementById('purchasing-unit-note');
+    if (purchUnitNote) {
+      purchUnitNote.textContent = `1 ${currentIngredient.purchaseUnit} = ${formatNumber(currentIngredient.quantityPerPurchaseUnit)} ${currentIngredient.stockUnit}`;
+    }
+
+    // Section 5: Tracking
+    const trackingExpiryBadge = document.getElementById('tracking-expiry-badge');
+    if (trackingExpiryBadge) {
+      trackingExpiryBadge.textContent = currentIngredient.expiryTracking ? 'Enabled' : 'Disabled';
+      trackingExpiryBadge.className = currentIngredient.expiryTracking
+        ? 'px-2 py-0.5 rounded text-label-sm font-label-sm bg-tertiary-container/15 text-tertiary-container font-semibold'
+        : 'px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-semibold';
+    }
+
+    const trackingBatchBadge = document.getElementById('tracking-batch-badge');
+    if (trackingBatchBadge) {
+      trackingBatchBadge.textContent = currentIngredient.batchTracking ? 'Enabled' : 'Disabled';
+      trackingBatchBadge.className = currentIngredient.batchTracking
+        ? 'px-2 py-0.5 rounded text-label-sm font-label-sm bg-tertiary-container/15 text-tertiary-container font-semibold'
+        : 'px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-on-surface-variant font-semibold';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', renderIngredientDetail);
+</script>
+<script src="/integration-bridge.js"></script>
+</body></html>

@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Hanken+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base { 
+      html, body { margin: 0; padding: 0; } 
+      body { overscroll-behavior: none; } 
+      main > :first-child { margin-top: 0 !important; } 
+      main > :last-child { margin-bottom: 0 !important; } 
+    } 
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "background": "#faf8ff",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#586377",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#7bd8b1",
+            "secondary-fixed-dim": "#bcc7de",
+            "on-tertiary": "#ffffff",
+            "primary-container": "#0f766e",
+            "primary-fixed": "#9cf2e8",
+            "tertiary": "#005d42",
+            "secondary-fixed": "#d8e3fb",
+            "on-error-container": "#93000a",
+            "tertiary-container": "#047857",
+            "secondary-container": "#d5e0f8",
+            "surface": "#faf8ff",
+            "surface-container": "#eaedff",
+            "surface-container-highest": "#dae2fd",
+            "on-surface-variant": "#3e4947",
+            "on-primary": "#ffffff",
+            "surface-tint": "#006a63",
+            "inverse-primary": "#80d5cb",
+            "surface-container-high": "#e2e7ff",
+            "primary": "#005c55",
+            "on-background": "#131b2e",
+            "on-primary-container": "#a3faef",
+            "inverse-surface": "#283044",
+            "secondary": "#545f73",
+            "primary-fixed-dim": "#80d5cb",
+            "outline-variant": "#bdc9c6",
+            "on-primary-fixed": "#00201d",
+            "surface-container-low": "#f2f3ff",
+            "error": "#ba1a1a",
+            "outline": "#6e7977",
+            "on-primary-fixed-variant": "#00504a",
+            "on-secondary-fixed": "#111c2d",
+            "surface-variant": "#dae2fd",
+            "on-tertiary-container": "#9ffdd3",
+            "on-tertiary-fixed": "#002115",
+            "tertiary-fixed": "#97f5cc",
+            "on-tertiary-fixed-variant": "#00513a",
+            "inverse-on-surface": "#eef0ff",
+            "on-secondary-fixed-variant": "#3c475a",
+            "surface-bright": "#faf8ff",
+            "surface-dim": "#d2d9f4",
+            "on-surface": "#131b2e",
+            "error-container": "#ffdad6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-md": "0.75rem",
+            "margin-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-lg": "1.5rem",
+            "margin-desktop": "2rem",
+            "gutter": "1rem",
+            "margin": "1.5rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "numeric-table": ["Geist"],
+            "body-sm": ["Hanken Grotesk"],
+            "label-sm": ["Geist"],
+            "body-md": ["Hanken Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "label-md": ["Geist"],
+            "headline-md": ["Hanken Grotesk"],
+            "headline-xl": ["Hanken Grotesk"],
+            "headline-lg": ["Hanken Grotesk"],
+            "display-lg": ["Hanken Grotesk"],
+            "label-lg": ["Geist"],
+            "headline-lg-mobile": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "numeric-table": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+<!-- Mobile Backdrop Overlay -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-xs z-40 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+<!-- PERSISTENT SIDEBAR -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant/40 z-50 flex flex-col justify-between select-none -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out" id="app-sidebar">
+<div class="flex flex-col min-h-0">
+<div class="h-16 px-space-md flex items-center justify-between border-b border-outline-variant/30">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold text-label-lg">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-[15px] font-semibold text-on-surface tracking-tight leading-tight">Inventory &amp; Operations</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant font-normal">Restaurant Portal</span>
+</div>
+</div>
+<button class="lg:hidden p-1 rounded-md text-on-surface-variant hover:bg-surface-container-low" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<nav class="flex-1 overflow-y-auto px-space-sm py-space-sm space-y-0.5">
+<div class="px-space-md pt-2 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Operations</div>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="dashboard" href="#dashboard">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="inventory" href="#inventory">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<a aria-current="page" class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-semibold transition-colors" data-path="stock-counts" href="#stock-counts">
+<span class="material-symbols-outlined text-[18px] text-on-primary">fact_check</span>
+<span class="font-label-md text-label-md">Stock Counts</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="wastage" href="#wastage">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+<span class="font-label-md text-label-md">Wastage</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="transfers" href="#transfers">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+<span class="font-label-md text-label-md">Transfers</span>
+</a>
+<div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Purchasing</div>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="purchasing" href="#purchases">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span class="font-label-md text-label-md">Purchases</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="suppliers" href="#suppliers">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span class="font-label-md text-label-md">Suppliers</span>
+</a>
+<div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Kitchen</div>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="recipes" href="#recipes">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="font-label-md text-label-md">Recipes</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="production" href="#production">
+<span class="material-symbols-outlined text-[18px]">skillet</span>
+<span class="font-label-md text-label-md">Production</span>
+</a>
+<div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Management</div>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="reports" href="#reports">
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="staff" href="#staff">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span class="font-label-md text-label-md">Staff</span>
+</a>
+<div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">System</div>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="settings" href="#settings">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</div>
+<div class="border-t border-outline-variant/30 p-space-sm space-y-space-xs bg-surface-container-lowest">
+<div class="p-space-xs rounded-lg border border-outline-variant/30 bg-surface-container-low flex items-center justify-between cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-1.5 truncate">
+<span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
+<span class="font-label-sm text-label-sm text-on-surface truncate font-medium">Main Branch</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">unfold_more</span>
+</div>
+<div class="flex items-center justify-between p-space-xs rounded-lg hover:bg-surface-container-low cursor-pointer transition-colors">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface-variant font-label-md font-semibold">GM</div>
+<div class="flex flex-col text-left">
+<span class="font-label-md text-label-md text-on-surface font-medium">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Operations Lead</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">more_vert</span>
+</div>
+</div>
+</aside>
+<!-- MAIN WRAPPER -->
+<div class="lg:pl-64 w-full">
+<!-- TOP HEADER -->
+<header class="fixed top-0 left-0 lg:left-64 right-0 h-16 bg-surface/95 backdrop-blur border-b border-outline-variant/40 z-30 px-4 lg:px-gutter-lg flex items-center justify-between">
+<div class="flex items-center gap-space-sm sm:gap-space-md">
+<button class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-[22px]">menu</span>
+</button>
+<div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg border border-outline-variant/40 bg-surface-container-lowest cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px] text-primary">storefront</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Main Branch</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</div>
+<div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Updated 2 min ago</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm sm:gap-space-md">
+<div class="relative hidden md:block w-64 lg:w-96">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span>
+<input class="w-full h-9 pl-9 pr-12 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/70 font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Search ingredients, purchases, suppliers (⌘K)" type="text"/>
+<div class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm pointer-events-none">⌘K</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+</div>
+<div class="h-6 w-px bg-outline-variant/40 hidden sm:block"></div>
+<div class="flex items-center gap-space-xs cursor-pointer group">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface font-label-sm font-semibold">GM</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-on-surface transition-colors hidden sm:inline">keyboard_arrow_down</span>
+</div>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="w-full pt-20 bg-surface min-h-screen px-4 lg:px-gutter-lg pb-space-xl"><div class="flex flex-col w-full">
+<!-- BREADCRUMBS & TOP UTILITY BAR -->
+<div class="flex items-center justify-between pb-space-sm mb-space-sm">
+<nav aria-label="Breadcrumb" class="flex items-center gap-1.5 font-label-md text-label-md">
+<span class="text-secondary">Operations</span>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<a class="text-secondary hover:text-primary transition-colors" href="#stock-counts">Stock Counts</a>
+<span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
+<span class="text-on-surface font-semibold" id="breadcrumb-count-id">CNT-1047</span>
+</nav>
+</div>
+<!-- HEADER -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3">
+<h1 class="font-headline-xl text-headline-xl text-on-surface" id="count-title-header">Stock Count <span id="count-id">CNT-1047</span></h1>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 text-label-sm font-label-sm" id="count-status-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+<span id="count-status-text">In Progress</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-secondary">
+        Enter the physical quantity counted for each ingredient.
+      </p>
+<div class="flex flex-wrap items-center gap-x-2 gap-y-1 font-label-sm text-label-sm text-secondary pt-0.5">
+<span class="inline-flex items-center gap-1 font-medium text-on-surface">
+<span class="material-symbols-outlined text-[15px] text-primary">ac_unit</span>
+<span id="count-location">Walk-in Cooler</span>
+</span>
+<span class="text-outline-variant">•</span>
+<span>Started <span id="count-started-at">23 Sep 2026, 3:30 PM</span></span>
+<span class="text-outline-variant">•</span>
+<span>Started By: <strong class="text-on-surface font-medium" id="count-started-by">General Manager</strong></span>
+</div>
+</div>
+<!-- Quick Navigation / Back Link -->
+<div class="flex items-center gap-space-sm self-start lg:self-center">
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-low text-secondary hover:text-on-surface hover:bg-surface-container transition-colors font-label-md text-label-md" href="#stock-counts">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Back to Counts</span>
+</a>
+</div>
+</div>
+<!-- OPERATIONAL INFO BOX -->
+<div class="mb-space-lg rounded-xl bg-surface-container-low p-4 flex items-start gap-3">
+<div class="p-1.5 rounded-lg bg-surface-container-highest text-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-[20px]">info</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold">About This Count</span>
+<p class="font-body-sm text-body-sm text-secondary leading-relaxed">
+        Expected quantities were captured when this count started. Enter the physical quantity currently found in the location.
+      </p>
+</div>
+</div>
+<!-- SUMMARY CARDS (4 KPIS) -->
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1: Counted -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-secondary">
+<span class="font-label-md text-label-md">Counted</span>
+<span class="material-symbols-outlined text-[18px] text-primary">task_alt</span>
+</div>
+<div class="my-2">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-numeric-table" id="kpi-counted">5 of 12</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Ingredients entered</span>
+</div>
+<!-- Card 2: Remaining -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-secondary">
+<span class="font-label-md text-label-md">Remaining</span>
+<span class="material-symbols-outlined text-[18px] text-secondary">pending_actions</span>
+</div>
+<div class="my-2">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-numeric-table" id="kpi-remaining">7</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Awaiting physical count</span>
+</div>
+<!-- Card 3: Differences -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-secondary">
+<span class="font-label-md text-label-md">Differences</span>
+<span class="material-symbols-outlined text-[18px] text-amber-600">difference</span>
+</div>
+<div class="my-2">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-numeric-table" id="kpi-differences">2</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Variances recorded so far</span>
+</div>
+<!-- Card 4: Progress -->
+<div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between text-secondary">
+<span class="font-label-md text-label-md">Progress</span>
+<span class="font-label-md text-label-md font-semibold text-primary" id="kpi-progress-percent">42%</span>
+</div>
+<div class="my-2 flex flex-col gap-1.5">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-numeric-table" id="kpi-progress-text">42%</span>
+<div class="w-full h-1.5 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-300" id="progress-bar-fill" style="width: 42%;"></div>
+</div>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Overall completion</span>
+</div>
+</div>
+<!-- COUNTING TABLE & CONTROLS -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col mb-space-xl">
+<!-- Section Toolbar -->
+<div class="p-4 lg:p-space-lg flex flex-col lg:flex-row lg:items-center justify-between gap-space-md bg-surface-container-lowest">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Count Items</h2>
+<p class="font-body-sm text-body-sm text-secondary">Enter the physical quantity for each ingredient.</p>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center gap-3">
+<!-- Search Input -->
+<div class="relative w-full sm:w-64">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[18px] text-secondary">search</span>
+<input class="w-full h-9 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface placeholder:text-secondary font-body-sm text-body-sm focus:outline-none focus:ring-1 focus:ring-primary" id="item-search-input" oninput="handleSearchFilterChange()" placeholder="Search ingredient or SKU" type="text"/>
+</div>
+<!-- Filter Segmented Tabs -->
+<div class="inline-flex p-0.5 rounded-lg bg-surface-container-low text-secondary text-label-sm font-label-sm">
+<button class="filter-tab px-3 py-1.5 rounded-md bg-surface-container-lowest text-on-surface font-semibold shadow-xs transition-all" id="filter-btn-all" onclick="setFilterStatus('all')" type="button">
+            All Items
+          </button>
+<button class="filter-tab px-3 py-1.5 rounded-md text-secondary hover:text-on-surface transition-all" id="filter-btn-uncounted" onclick="setFilterStatus('uncounted')" type="button">
+            Uncounted
+          </button>
+<button class="filter-tab px-3 py-1.5 rounded-md text-secondary hover:text-on-surface transition-all" id="filter-btn-matches" onclick="setFilterStatus('matches')" type="button">
+            Matches
+          </button>
+<button class="filter-tab px-3 py-1.5 rounded-md text-secondary hover:text-on-surface transition-all" id="filter-btn-differences" onclick="setFilterStatus('differences')" type="button">
+            Differences
+          </button>
+</div>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-3 px-4 lg:px-6">Ingredient</th>
+<th class="py-3 px-4 text-right">Expected Quantity</th>
+<th class="py-3 px-4 lg:px-6 w-48 sm:w-56 text-left">Counted Quantity</th>
+<th class="py-3 px-4 text-right">Variance</th>
+<th class="py-3 px-4 lg:px-6 text-right">Result</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md" id="count-table-body">
+<!-- Rows will render dynamically via JS -->
+</tbody>
+</table>
+<!-- Empty State -->
+<div class="hidden py-12 px-4 flex flex-col items-center justify-center text-center" id="table-empty-state">
+<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center text-secondary mb-3">
+<span class="material-symbols-outlined text-[24px]">search_off</span>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface">No count items found</span>
+<p class="font-body-sm text-body-sm text-secondary mt-1">Try changing your search or filter.</p>
+</div>
+</div>
+</div>
+<!-- STICKY BOTTOM ACTION FOOTER -->
+<div class="rounded-xl bg-surface-container-lowest p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4 mt-auto">
+<div class="flex items-center gap-3">
+<a class="text-secondary hover:text-on-surface font-label-md text-label-md px-2 py-1 transition-colors" href="#stock-counts">
+        Cancel / Back
+      </a>
+<span class="text-outline-variant hidden sm:inline">•</span>
+<span class="font-body-sm text-body-sm text-secondary" id="footer-count-hint">
+        7 ingredients awaiting count
+      </span>
+</div>
+<div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+<!-- Save Progress -->
+<button class="w-full sm:w-auto px-4 py-2 rounded-lg bg-surface-container-low text-on-surface hover:bg-surface-container font-label-md text-label-md transition-colors flex items-center justify-center gap-1.5" onclick="saveProgress()" type="button">
+<span class="material-symbols-outlined text-[16px]">save</span>
+<span>Save Progress</span>
+</button>
+<!-- Review Count Button & Tooltip Wrapper -->
+<div class="flex flex-col items-end">
+<a aria-disabled="true" class="w-full sm:w-auto px-5 py-2 rounded-lg bg-primary/40 text-on-primary/70 font-label-md text-label-md cursor-not-allowed pointer-events-none flex items-center justify-center gap-1.5 transition-all shadow-sm" href="#stock-count-review" id="review-count-btn">
+<span>Review Count</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+<span class="text-[11px] font-label-sm text-secondary mt-1 text-right" id="review-helper-text">
+          Complete all ingredient counts before review.
+        </span>
+</div>
+</div>
+</div>
+<!-- INTERACTIVE TOAST NOTIFICATION -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 ease-out bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 max-w-md" id="toast-element">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary flex-shrink-0">
+<span class="material-symbols-outlined text-[18px]">done</span>
+</div>
+<div class="flex flex-col min-w-0 pr-2">
+<span class="font-label-md text-label-md font-semibold text-inverse-on-surface" id="toast-title">Count progress saved</span>
+<span class="font-body-sm text-body-sm text-inverse-on-surface/80 truncate" id="toast-body">5 of 12 ingredients counted.</span>
+</div>
+<button class="text-inverse-on-surface/60 hover:text-inverse-on-surface transition-colors p-1" onclick="dismissToast()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+<script>
+  const countSession = {
+    id: "CNT-1047",
+    status: "In Progress",
+    location: "Walk-in Cooler",
+    startedAt: "23 Sep 2026, 3:30 PM",
+    startedBy: "General Manager",
+    items: [
+      { id: "chicken-breast", ingredient: "Chicken Breast", sku: "SKU-9021", stockUnit: "kg", expectedQuantity: 8, countedQuantity: 7.5 },
+      { id: "mozzarella-cheese", ingredient: "Mozzarella Cheese", sku: "SKU-4012", stockUnit: "kg", expectedQuantity: 18, countedQuantity: 18 },
+      { id: "burger-buns", ingredient: "Burger Buns", sku: "SKU-6102", stockUnit: "pcs", expectedQuantity: 120, countedQuantity: 118 },
+      { id: "mayonnaise", ingredient: "Mayonnaise", sku: "SKU-7201", stockUnit: "L", expectedQuantity: 6, countedQuantity: 6 },
+      { id: "lettuce", ingredient: "Lettuce", sku: "SKU-3325", stockUnit: "kg", expectedQuantity: 9, countedQuantity: 9 },
+      { id: "cheddar-cheese", ingredient: "Cheddar Cheese", sku: "SKU-4020", stockUnit: "kg", expectedQuantity: 10, countedQuantity: null },
+      { id: "marinated-chicken", ingredient: "Marinated Chicken", sku: "SKU-9030", stockUnit: "kg", expectedQuantity: 12, countedQuantity: null },
+      { id: "zinger-sauce", ingredient: "Zinger Sauce", sku: "SKU-7210", stockUnit: "L", expectedQuantity: 5, countedQuantity: null },
+      { id: "coleslaw-mix", ingredient: "Coleslaw Mix", sku: "SKU-3330", stockUnit: "kg", expectedQuantity: 7, countedQuantity: null },
+      { id: "pickles", ingredient: "Pickles", sku: "SKU-3340", stockUnit: "kg", expectedQuantity: 4, countedQuantity: null },
+      { id: "cheese-slices", ingredient: "Burger Cheese Slices", sku: "SKU-4040", stockUnit: "pcs", expectedQuantity: 160, countedQuantity: null },
+      { id: "soft-drink-bottles", ingredient: "Soft Drink Bottles", sku: "SKU-8100", stockUnit: "pcs", expectedQuantity: 96, countedQuantity: null }
+    ]
+  };
+
+  const invalidInputIds = new Set();
+  let activeFilter = 'all'; // 'all' | 'uncounted' | 'matches' | 'differences'
+  let searchQuery = '';
+  let toastTimer = null;
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (!sidebar || !backdrop) return;
+    const isClosed = sidebar.classList.contains('-translate-x-full');
+    if (isClosed) {
+      sidebar.classList.remove('-translate-x-full');
+      backdrop.classList.remove('hidden');
+    } else {
+      sidebar.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
+    }
+  }
+
+  function renderHeaderMetadata() {
+    const breadcrumbCountId = document.getElementById('breadcrumb-count-id');
+    const countIdEl = document.getElementById('count-id');
+    const countStatusText = document.getElementById('count-status-text');
+    const countLocationEl = document.getElementById('count-location');
+    const countStartedAtEl = document.getElementById('count-started-at');
+    const countStartedByEl = document.getElementById('count-started-by');
+
+    if (breadcrumbCountId) breadcrumbCountId.textContent = countSession.id;
+    if (countIdEl) countIdEl.textContent = countSession.id;
+    if (countStatusText) countStatusText.textContent = countSession.status;
+    if (countLocationEl) countLocationEl.textContent = countSession.location;
+    if (countStartedAtEl) countStartedAtEl.textContent = countSession.startedAt;
+    if (countStartedByEl) countStartedByEl.textContent = countSession.startedBy;
+  }
+
+  function getItemResultStatus(item) {
+    if (item.countedQuantity === null || isNaN(item.countedQuantity)) {
+      return 'uncounted';
+    }
+    const diff = Number((item.countedQuantity - item.expectedQuantity).toFixed(4));
+    return diff === 0 ? 'matches' : 'differences';
+  }
+
+  function handleCountInput(id, value) {
+    const targetItem = countSession.items.find(item => item.id === id);
+    if (!targetItem) return;
+
+    const raw = value.trim();
+    const errorEl = document.getElementById(`error-${id}`);
+
+    if (raw === "") {
+      targetItem.countedQuantity = null;
+      invalidInputIds.delete(id);
+      if (errorEl) { errorEl.classList.add("hidden"); }
+    } else {
+      const parsed = Number(raw);
+      if (!Number.isFinite(parsed) || parsed < 0) {
+        invalidInputIds.add(id);
+        if (errorEl) { errorEl.classList.remove("hidden"); }
+        checkReviewStatus();
+        return;
+      }
+      targetItem.countedQuantity = parsed;
+      invalidInputIds.delete(id);
+      if (errorEl) { errorEl.classList.add("hidden"); }
+    }
+
+    renderSummary();
+    updateRow(targetItem);
+    checkReviewStatus();
+  }
+
+  function refreshCountFilter() {
+    if (activeFilter !== 'all') {
+      renderTableRows();
+    }
+  }
+
+  function updateRow(item) {
+    const varianceEl = document.getElementById(`variance-${item.id}`);
+    const badgeEl = document.getElementById(`result-badge-${item.id}`);
+
+    if (!varianceEl || !badgeEl) return;
+
+    if (item.countedQuantity === null || isNaN(item.countedQuantity)) {
+      varianceEl.textContent = '—';
+      varianceEl.className = 'py-3 px-4 text-right font-numeric-table text-numeric-table text-secondary';
+      badgeEl.innerHTML = `
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-sm bg-surface-container text-secondary">
+          Uncounted
+        </span>
+      `;
+    } else {
+      const diff = Number((item.countedQuantity - item.expectedQuantity).toFixed(2));
+      const formattedDiff = diff > 0 ? `+${diff}` : `${diff}`;
+      
+      if (diff === 0) {
+        varianceEl.textContent = `0 ${item.stockUnit}`;
+        varianceEl.className = 'py-3 px-4 text-right font-numeric-table text-numeric-table text-tertiary font-semibold';
+        badgeEl.innerHTML = `
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-label-sm bg-emerald-50 text-emerald-800">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+            Match
+          </span>
+        `;
+      } else {
+        varianceEl.textContent = `${formattedDiff} ${item.stockUnit}`;
+        varianceEl.className = 'py-3 px-4 text-right font-numeric-table text-numeric-table text-amber-700 font-semibold';
+        badgeEl.innerHTML = `
+          <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-label-sm bg-amber-50 text-amber-800">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+            Difference
+          </span>
+        `;
+      }
+    }
+  }
+
+  function renderSummary() {
+    const total = countSession.items.length;
+    const counted = countSession.items.filter(i => i.countedQuantity !== null).length;
+    let differences = 0;
+
+    countSession.items.forEach(item => {
+      if (item.countedQuantity !== null && !isNaN(item.countedQuantity)) {
+        const diff = Number((item.countedQuantity - item.expectedQuantity).toFixed(4));
+        if (diff !== 0) {
+          differences++;
+        }
+      }
+    });
+
+    const remaining = total - counted;
+    const rawProgress = total > 0 ? (counted / total) * 100 : 0;
+    const progressPercent = Math.min(100, Math.max(0, Math.round(rawProgress)));
+
+    const kpiCounted = document.getElementById('kpi-counted');
+    const kpiRemaining = document.getElementById('kpi-remaining');
+    const kpiDifferences = document.getElementById('kpi-differences');
+    const kpiProgressText = document.getElementById('kpi-progress-text');
+    const kpiProgressPercent = document.getElementById('kpi-progress-percent');
+    const progressBarFill = document.getElementById('progress-bar-fill');
+    const footerCountHint = document.getElementById('footer-count-hint');
+
+    if (kpiCounted) kpiCounted.textContent = `${counted} of ${total}`;
+    if (kpiRemaining) kpiRemaining.textContent = `${remaining}`;
+    if (kpiDifferences) kpiDifferences.textContent = `${differences}`;
+    if (kpiProgressText) kpiProgressText.textContent = `${progressPercent}%`;
+    if (kpiProgressPercent) kpiProgressPercent.textContent = `${progressPercent}%`;
+    if (progressBarFill) progressBarFill.style.width = `${progressPercent}%`;
+
+    if (footerCountHint) {
+      footerCountHint.textContent = remaining === 0 
+        ? "All ingredients counted and ready for review" 
+        : `${remaining} ingredient${remaining === 1 ? '' : 's'} awaiting count`;
+    }
+  }
+
+  function checkReviewStatus() {
+    const allCounted = countSession.items.length > 0 && countSession.items.every(item => item.countedQuantity !== null && Number.isFinite(item.countedQuantity) && item.countedQuantity >= 0);
+    const hasInvalidInputs = invalidInputIds.size > 0;
+    const reviewBtn = document.getElementById('review-count-btn');
+    const helperText = document.getElementById('review-helper-text');
+
+    if (!reviewBtn || !helperText) return;
+
+    if (allCounted && !hasInvalidInputs) {
+      reviewBtn.classList.remove('bg-primary/40', 'text-on-primary/70', 'cursor-not-allowed', 'pointer-events-none');
+      reviewBtn.classList.add('bg-primary', 'text-on-primary', 'hover:bg-primary-container', 'cursor-pointer');
+      reviewBtn.removeAttribute('aria-disabled');
+      helperText.textContent = '';
+      helperText.classList.add('hidden');
+    } else {
+      reviewBtn.classList.add('bg-primary/40', 'text-on-primary/70', 'cursor-not-allowed', 'pointer-events-none');
+      reviewBtn.classList.remove('bg-primary', 'text-on-primary', 'hover:bg-primary-container', 'cursor-pointer');
+      reviewBtn.setAttribute('aria-disabled', 'true');
+      helperText.classList.remove('hidden');
+      if (hasInvalidInputs) {
+        helperText.textContent = 'Fix invalid quantities before review.';
+        helperText.classList.remove('text-secondary', 'text-tertiary');
+        helperText.classList.add('text-error', 'font-medium');
+      } else {
+        helperText.textContent = 'Complete all ingredient counts before review.';
+        helperText.classList.remove('text-error', 'text-tertiary');
+        helperText.classList.add('text-secondary');
+      }
+    }
+  }
+
+  function setFilterStatus(status) {
+    activeFilter = status;
+    document.querySelectorAll('.filter-tab').forEach(btn => {
+      btn.className = 'filter-tab px-3 py-1.5 rounded-md text-secondary hover:text-on-surface transition-all';
+    });
+
+    const activeBtn = document.getElementById(`filter-btn-${status}`);
+    if (activeBtn) {
+      activeBtn.className = 'filter-tab px-3 py-1.5 rounded-md bg-surface-container-lowest text-on-surface font-semibold shadow-xs transition-all';
+    }
+
+    renderTableRows();
+  }
+
+  function handleSearchFilterChange() {
+    const searchInput = document.getElementById('item-search-input');
+    searchQuery = (searchInput ? searchInput.value : '').toLowerCase().trim();
+    renderTableRows();
+  }
+
+  function renderTableRows() {
+    const tbody = document.getElementById('count-table-body');
+    const emptyState = document.getElementById('table-empty-state');
+    if (!tbody || !emptyState) return;
+
+    const filteredItems = countSession.items.filter(item => {
+      if (activeFilter !== 'all') {
+        const itemStatus = getItemResultStatus(item);
+        if (itemStatus !== activeFilter) return false;
+      }
+
+      if (searchQuery) {
+        const matchesName = item.ingredient.toLowerCase().includes(searchQuery);
+        const matchesSku = item.sku.toLowerCase().includes(searchQuery);
+        if (!matchesName && !matchesSku) return false;
+      }
+
+      return true;
+    });
+
+    if (filteredItems.length === 0) {
+      tbody.innerHTML = '';
+      emptyState.classList.remove('hidden');
+      return;
+    }
+
+    emptyState.classList.add('hidden');
+    let rowsHtml = '';
+
+    filteredItems.forEach((item, index) => {
+      const isUncounted = item.countedQuantity === null || isNaN(item.countedQuantity);
+      let diff = 0;
+      let formattedDiff = '—';
+      let varianceClass = 'py-3 px-4 text-right font-numeric-table text-numeric-table text-secondary';
+      let resultBadgeHtml = `
+        <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-label-sm bg-surface-container text-secondary">
+          Uncounted
+        </span>
+      `;
+
+      if (!isUncounted) {
+        diff = Number((item.countedQuantity - item.expectedQuantity).toFixed(2));
+        formattedDiff = diff > 0 ? `+${diff}` : `${diff}`;
+
+        if (diff === 0) {
+          formattedDiff = `0 ${item.stockUnit}`;
+          varianceClass = 'py-3 px-4 text-right font-numeric-table text-numeric-table text-tertiary font-semibold';
+          resultBadgeHtml = `
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-label-sm bg-emerald-50 text-emerald-800">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+              Match
+            </span>
+          `;
+        } else {
+          formattedDiff = `${formattedDiff} ${item.stockUnit}`;
+          varianceClass = 'py-3 px-4 text-right font-numeric-table text-numeric-table text-amber-700 font-semibold';
+          resultBadgeHtml = `
+            <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-label-sm bg-amber-50 text-amber-800">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+              Difference
+            </span>
+          `;
+        }
+      }
+
+      const inputVal = isUncounted ? '' : item.countedQuantity;
+      const rowBg = index % 2 === 0 ? 'bg-surface-container-lowest' : 'bg-surface-container-low/40';
+      const hasError = invalidInputIds.has(item.id);
+
+      rowsHtml += `
+        <tr class="${rowBg} hover:bg-surface-container transition-colors">
+          <td class="py-3 px-4 lg:px-6">
+            <div class="flex flex-col">
+              <span class="font-body-md text-body-md font-medium text-on-surface">${item.ingredient}</span>
+              <span class="font-numeric-table text-[11px] text-secondary tracking-wide">${item.sku}</span>
+            </div>
+          </td>
+          <td class="py-3 px-4 text-right">
+            <span class="font-numeric-table text-numeric-table text-on-surface font-medium">
+              ${item.expectedQuantity} <span class="text-secondary font-normal">${item.stockUnit}</span>
+            </span>
+          </td>
+          <td class="py-3 px-4 lg:px-6">
+            <div class="flex flex-col max-w-[170px]">
+              <div class="relative flex items-center">
+                <input 
+                  id="input-${item.id}"
+                  type="number" 
+                  step="any" 
+                  min="0"
+                  placeholder="—"
+                  value="${inputVal}"
+                  oninput="handleCountInput('${item.id}', this.value)"
+                  onchange="refreshCountFilter()"
+                  class="w-full h-8 pl-3 pr-12 rounded-lg bg-surface-container-low text-on-surface font-numeric-table text-numeric-table text-left focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary focus:outline-none transition-all placeholder:text-outline"
+                />
+                <span class="absolute right-2 px-1.5 py-0.5 rounded text-[11px] font-label-sm text-secondary pointer-events-none uppercase">
+                  ${item.stockUnit}
+                </span>
+              </div>
+              <div id="error-${item.id}" class="text-xs text-error mt-1 ${hasError ? '' : 'hidden'} font-medium">Enter a quantity of 0 or greater.</div>
+            </div>
+          </td>
+          <td id="variance-${item.id}" class="${varianceClass}">
+            ${formattedDiff}
+          </td>
+          <td id="result-badge-${item.id}" class="py-3 px-4 lg:px-6 text-right">
+            ${resultBadgeHtml}
+          </td>
+        </tr>
+      `;
+    });
+
+    tbody.innerHTML = rowsHtml;
+  }
+
+  function saveProgress() {
+    if (invalidInputIds.size > 0) {
+      return;
+    }
+    const total = countSession.items.length;
+    const counted = countSession.items.filter(i => i.countedQuantity !== null).length;
+    showToast("Count progress saved", `${counted} of ${total} ingredients counted.`);
+  }
+
+  function showToast(title, body) {
+    const toast = document.getElementById("toast-element");
+    const titleEl = document.getElementById("toast-title");
+    const bodyEl = document.getElementById("toast-body");
+    if (!toast || !titleEl || !bodyEl) return;
+
+    if (toastTimer) clearTimeout(toastTimer);
+
+    titleEl.textContent = title;
+    bodyEl.textContent = body;
+
+    toast.classList.remove("translate-y-20", "opacity-0", "pointer-events-none");
+    toast.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
+
+    toastTimer = setTimeout(() => {
+      dismissToast();
+    }, 4000);
+  }
+
+  function dismissToast() {
+    const toast = document.getElementById("toast-element");
+    if (!toast) return;
+    toast.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
+    toast.classList.add("translate-y-20", "opacity-0", "pointer-events-none");
+    if (toastTimer) clearTimeout(toastTimer);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    renderHeaderMetadata();
+    renderTableRows();
+    renderSummary();
+    checkReviewStatus();
+  });
+</script>
+<script src="/integration-bridge.js"></script>
+</body></html>

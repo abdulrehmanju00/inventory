@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "on-tertiary-container": "#9ffdd3", "on-surface-variant": "#3e4947", "surface-container": "#eaedff", "on-primary-fixed": "#00201d", "surface-container-low": "#f2f3ff", "surface-variant": "#dae2fd", "inverse-surface": "#283044", "error": "#ba1a1a", "tertiary-fixed": "#97f5cc", "on-surface": "#131b2e", "secondary-fixed-dim": "#bcc7de", "on-secondary-fixed": "#111c2d", "primary": "#005c55", "inverse-primary": "#80d5cb", "on-tertiary": "#ffffff", "on-background": "#131b2e", "secondary": "#545f73", "on-primary-fixed-variant": "#00504a", "surface-tint": "#006a63", "on-error": "#ffffff", "on-tertiary-fixed": "#002115", "primary-container": "#0f766e", "tertiary": "#005d42", "on-primary-container": "#a3faef", "secondary-container": "#d5e0f8", "on-tertiary-fixed-variant": "#00513a", "surface": "#faf8ff", "surface-container-high": "#e2e7ff", "outline-variant": "#bdc9c6", "on-secondary-container": "#586377", "primary-fixed-dim": "#80d5cb", "outline": "#6e7977", "tertiary-fixed-dim": "#7bd8b1", "on-secondary": "#ffffff", "on-secondary-fixed-variant": "#3c475a", "secondary-fixed": "#d8e3fb", "surface-dim": "#d2d9f4", "surface-bright": "#faf8ff", "tertiary-container": "#047857", "error-container": "#ffdad6", "primary-fixed": "#9cf2e8", "surface-container-lowest": "#ffffff", "surface-container-highest": "#dae2fd", "background": "#faf8ff", "inverse-on-surface": "#eef0ff", "on-error-container": "#93000a" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "0.75rem", "space-lg": "1.25rem", "gutter": "1rem", "space-xs": "0.25rem", "gutter-lg": "1.5rem", "margin-desktop": "2rem", "space-sm": "0.5rem", "margin": "1.5rem", "space-xl": "2rem", "margin-mobile": "1rem" }, "fontFamily": { "display-lg": [ "Hanken Grotesk" ], "label-md": [ "Geist" ], "label-sm": [ "Geist" ], "body-lg": [ "Hanken Grotesk" ], "body-sm": [ "Hanken Grotesk" ], "headline-lg-mobile": [ "Hanken Grotesk" ], "headline-md": [ "Hanken Grotesk" ], "body-md": [ "Hanken Grotesk" ], "label-lg": [ "Geist" ], "headline-xl": [ "Hanken Grotesk" ], "headline-lg": [ "Hanken Grotesk" ], "numeric-table": [ "Geist" ] }, "fontSize": { "display-lg": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "body-lg": [ "16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" } ], "body-sm": [ "13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-lg-mobile": [ "20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" } ], "headline-xl": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-lg": [ "22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "numeric-table": [ "13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><div class="fixed inset-0 bg-inverse-surface/35 backdrop-blur-[1.5px] z-40 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)] -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out" id="app-sidebar"><div class="h-16 px-gutter flex items-center justify-between bg-surface-container-lowest"><div class="flex items-center gap-space-sm min-w-0"><img alt="Brand logo. - Primary color: #0f766e
+- Font: hankenGrotesk
+- Mode: light
+- Roundness: rounded-sm
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Vg87010HFxw5E8Qwwf9sOTeKOf9icLpvkaPzFImCLR_JGPAm1ZHLRjhmERfDiKANauRqnR7EBEXzmqNACk7NSYdiZ-rk4ilpZhbtJIvuyZJondyPhgUvV9ih9J-HBsAVj_vLtIpHGbao4gc7FFCBz31BlwGL_qsJjnbN9yByA1BOBi-zF29nLlPxBwwjBGqySbKJu7KWcUTSoRXy_EEqXumnJcqKvMeisGL0HcBwMt3KCn-CMOkTvLd5o"/><div class="flex flex-col min-w-0"><span class="font-headline-md text-headline-md tracking-tight text-on-surface truncate leading-tight">Inventory &amp; Operations</span><span class="font-label-sm text-label-sm text-secondary truncate uppercase tracking-wider">Restaurant Portal</span></div></div><button class="lg:hidden p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg" onclick="toggleSidebar()"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="flex-1 overflow-y-auto px-space-md py-space-sm space-y-space-md"><nav class="space-y-space-md" data-active-classes="bg-primary text-on-primary font-semibold rounded-lg shadow-sm"><div class="space-y-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Operations</span><div class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#dashboard"><span class="material-symbols-outlined text-[18px]">dashboard</span><span class="">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="inventory" href="#inventory"><span class="material-symbols-outlined text-[18px]">inventory_2</span><span class="">Inventory</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="stock-counts" href="#stock-counts"><span class="material-symbols-outlined text-[18px]">checklist</span><span class="">Stock Counts</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="wastage" href="#wastage"><span class="material-symbols-outlined text-[18px]">delete_sweep</span><span class="">Wastage</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="transfers" href="#transfers"><span class="material-symbols-outlined text-[18px]">swap_horiz</span><span class="">Transfers</span></a></div></div><div class="space-y-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Purchasing</span><div class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="purchases" href="#purchases"><span class="material-symbols-outlined text-[18px]">shopping_cart</span><span class="">Purchases</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="suppliers" href="#suppliers"><span class="material-symbols-outlined text-[18px]">local_shipping</span><span class="">Suppliers</span></a></div></div><div class="space-y-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Kitchen</span><div class="space-y-0.5"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md bg-primary text-on-primary font-semibold shadow-sm transition-colors" data-path="recipes" href="#recipes"><span class="material-symbols-outlined text-[18px]">restaurant_menu</span><span class="">Recipes</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="production" href="#production"><span class="material-symbols-outlined text-[18px]">skillet</span><span class="">Production</span></a></div></div><div class="space-y-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Management</span><div class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="reports" href="#reports"><span class="material-symbols-outlined text-[18px]">bar_chart</span><span class="">Reports</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="staff" href="#staff"><span class="material-symbols-outlined text-[18px]">group</span><span class="">Staff</span></a></div></div><div class="space-y-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider block">System</span><div class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="settings" href="#settings"><span class="material-symbols-outlined text-[18px]">settings</span><span class="">Settings</span></a></div></div></nav></div><div class="p-space-md bg-surface-container-low flex flex-col gap-space-sm"><div class="flex items-center justify-between px-space-sm py-1.5 bg-surface-container-lowest rounded-lg shadow-[0_1px_2px_rgba(15,23,42,0.04)]"><div class="flex items-center gap-space-xs min-w-0"><span class="material-symbols-outlined text-primary text-[18px]">storefront</span><span class="font-label-md text-label-md text-on-surface font-semibold truncate">Main Branch</span></div><span class="material-symbols-outlined text-secondary text-[16px]">unfold_more</span></div><div class="flex items-center gap-space-sm p-space-xs rounded-lg hover:bg-surface-container transition-colors"><div class="relative flex-shrink-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1XI6DyIv1Y7c0GDRZNWFq8_28pHwt9n_DB41fCf6S6vtU6W6DjJ9AW6HZDINWBe7ZIgCWPBlxZ_uPl2eAupw0qwQmqVS65eTbu9qrnOnRwNzU9s_2rKihfbCgQ7PoBFc2J7NcSO08gDG5Ay6mSZbvI2Ys4EJyQVlLh3ItdwqIgVpT33DRDJTSOlQuG-4HFkpOJXxDcqRwkURZ__j67AmeUsYnMFEWJcAoIquZcrB64S4fDoKMQ8WIlOh6U"/><span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-tertiary-container ring-1 ring-surface-container-lowest"></span></div><div class="flex flex-col min-w-0"><span class="font-label-md text-label-md text-on-surface font-semibold truncate leading-tight">Ahmed Raza</span><span class="font-label-sm text-label-sm text-secondary truncate leading-tight">Operations Lead</span></div></div></div></aside><div class="lg:pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-0 lg:left-64 right-0 h-16 bg-surface/85 backdrop-blur-xl z-30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex items-center justify-between px-gutter lg:px-gutter-lg gap-space-md"><div class="flex items-center gap-space-md min-w-0 flex-1"><button aria-label="Toggle Navigation" class="lg:hidden p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg" onclick="toggleSidebar()"><span class="material-symbols-outlined text-[24px]">menu</span></button><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-lg"><span class="material-symbols-outlined text-primary text-[18px]">storefront</span><span class="font-label-md text-label-md text-on-surface font-semibold">Main Branch</span><span class="material-symbols-outlined text-secondary text-[16px]">arrow_drop_down</span></div><div class="hidden md:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span class="">Updated 2 min ago</span></div><div class="relative flex-1 max-w-md hidden sm:block"><span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-secondary text-[18px]">search</span><input class="w-full h-9 pl-9 pr-space-md rounded-lg bg-surface-container-lowest font-body-sm text-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-primary shadow-[0_1px_2px_rgba(15,23,42,0.04)]" placeholder="Search ingredients, purchases, recipes... ⌘K" type="text"/></div></div><div class="flex items-center gap-space-sm shrink-0"><button aria-label="Search" class="sm:hidden p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg"><span class="material-symbols-outlined text-[20px]">search</span></button><button aria-label="Notifications" class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><button aria-label="Help &amp; Documentation" class="p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg"><span class="material-symbols-outlined text-[20px]">help</span></button><div class="flex items-center gap-space-sm pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1XI6DyIv1Y7c0GDRZNWFq8_28pHwt9n_DB41fCf6S6vtU6W6DjJ9AW6HZDINWBe7ZIgCWPBlxZ_uPl2eAupw0qwQmqVS65eTbu9qrnOnRwNzU9s_2rKihfbCgQ7PoBFc2J7NcSO08gDG5Ay6mSZbvI2Ys4EJyQVlLh3ItdwqIgVpT33DRDJTSOlQuG-4HFkpOJXxDcqRwkURZ__j67AmeUsYnMFEWJcAoIquZcrB64S4fDoKMQ8WIlOh6U"/></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-4rem)] px-gutter lg:px-gutter-lg py-margin"><div class="flex flex-col w-full">
+<!-- Dynamic Recipe Setup Container -->
+<div class="w-full pb-28">
+<!-- Breadcrumb & Top Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-1">
+<nav class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary">
+<a class="hover:text-primary transition-colors" href="#kitchen">Kitchen</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#recipes">Recipes</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-semibold">Add Recipe</span>
+</nav>
+<div class="flex items-center gap-space-sm mt-1">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Add Recipe</h1>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-primary/10 text-primary font-semibold">Standardized Spec</span>
+</div>
+<p class="font-body-md text-body-md text-secondary">
+          Create a standardized recipe, define ingredient quantities, yield, preparation details, and calculate projected food cost.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<a class="px-space-md py-2 rounded-lg font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" href="#recipes">
+          Cancel
+        </a>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-lg font-label-md text-label-md bg-primary-container text-on-primary hover:bg-primary shadow-sm transition-all active:scale-[0.99]" onclick="recipeSetup.validateAndSaveRecipe(false)">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Save Recipe</span>
+</button>
+</div>
+</div>
+<!-- Main Two-Column Layout Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Column: Form & Specifications (8 cols) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg min-w-0">
+<!-- SECTION 1: Basic Recipe Information -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-md bg-surface-container-lowest">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Recipe Information</h2>
+<p class="font-body-sm text-body-sm text-secondary">General identification and catalog categorization</p>
+</div>
+<span class="px-2.5 py-1 rounded bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-semibold tracking-wide uppercase">
+              BOM Core
+            </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-name">
+                Recipe Name <span class="text-error">*</span>
+</label>
+<input class="w-full h-9 px-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-name" oninput="recipeSetup.onFormInput()" placeholder="e.g. Chicken Zinger Burger" type="text" value="Chicken Zinger Burger"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-code">
+                Recipe Code
+              </label>
+<div class="relative">
+<input class="w-full h-9 px-space-sm rounded-lg bg-surface-container-low font-numeric-table text-numeric-table text-on-surface cursor-not-allowed shadow-inner" id="recipe-code" readonly="" type="text" value="RCP-1026"/>
+<span class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded font-label-sm text-label-sm bg-surface-container-highest text-secondary">System Auto</span>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-category">
+                Category <span class="text-error">*</span>
+</label>
+<select class="w-full h-9 px-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-category">
+<option selected="" value="Burgers">Burgers</option>
+<option value="Pizza">Pizza</option>
+<option value="Shawarma">Shawarma</option>
+<option value="Wraps">Wraps</option>
+<option value="Sauces">Sauces</option>
+<option value="Bakery">Bakery</option>
+<option value="Beverages">Beverages</option>
+<option value="Sides">Sides</option>
+<option value="Desserts">Desserts</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-type">
+                Recipe Type <span class="text-error">*</span>
+</label>
+<select class="w-full h-9 px-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-type">
+<option selected="" value="Finished Menu Item">Finished Menu Item</option>
+<option value="Prep Recipe">Prep Recipe</option>
+<option value="Sauce / Base">Sauce / Base</option>
+<option value="Semi-Finished Component">Semi-Finished Component</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-status">
+                Status
+              </label>
+<select class="w-full h-9 px-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-status">
+<option selected="" value="Active">Active</option>
+<option value="Draft">Draft</option>
+<option value="Inactive">Inactive</option>
+</select>
+</div>
+<div class="md:col-span-2">
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-description">
+                Description
+              </label>
+<textarea class="w-full p-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-description" placeholder="Provide kitchen instructions overview or menu summary..." rows="2">Crispy chicken fillet burger with cheese, signature garlic mayo sauce and fresh artisan brioche bun.</textarea>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Yield & Portion Setup -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-md bg-surface-container-lowest">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Yield &amp; Portion Setup</h2>
+<p class="font-body-sm text-body-sm text-secondary">Batch output volume and timing benchmarks</p>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm" id="batch-time-pill">
+<span class="material-symbols-outlined text-[16px] text-primary">timer</span>
+<span class="font-semibold" id="batch-total-time">32 min total</span>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-space-md">
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-yield">
+                Standard Yield <span class="text-error">*</span>
+</label>
+<div class="flex items-center bg-surface-container rounded-lg px-2 shadow-sm">
+<input class="w-full h-9 bg-transparent font-numeric-table text-numeric-table font-semibold text-on-surface focus:outline-none" id="recipe-yield" min="1" oninput="recipeSetup.onYieldChanged()" step="1" type="number" value="10"/>
+<span class="font-label-sm text-label-sm text-secondary px-1">qty</span>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-yield-unit">
+                Yield Unit <span class="text-error">*</span>
+</label>
+<select class="w-full h-9 px-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-yield-unit" onchange="recipeSetup.onYieldChanged()">
+<option selected="" value="Portions">Portions</option>
+<option value="pcs">pcs</option>
+<option value="kg">kg</option>
+<option value="g">g</option>
+<option value="L">L</option>
+<option value="ml">ml</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-serving-size">
+                Serving Size Spec
+              </label>
+<input class="w-full h-9 px-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-serving-size" type="text" value="1 Burger (approx. 240g)"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-prep-time">
+                Preparation Time (min)
+              </label>
+<input class="w-full h-9 px-space-sm rounded-lg bg-surface-container-lowest font-numeric-table text-numeric-table text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-prep-time" min="0" oninput="recipeSetup.updateTiming()" type="number" value="20"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-cook-time">
+                Cooking Time (min)
+              </label>
+<input class="w-full h-9 px-space-sm rounded-lg bg-surface-container-lowest font-numeric-table text-numeric-table text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-cook-time" min="0" oninput="recipeSetup.updateTiming()" type="number" value="12"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1">
+                Batch Cadence
+              </label>
+<div class="h-9 flex items-center px-space-sm rounded-lg bg-surface-container-low text-secondary font-label-sm text-label-sm">
+<span>Direct to Order • Peak Ready</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Ingredients / Bill of Materials (BOM) -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm mb-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Recipe Ingredients (Bill of Materials)</h2>
+<p class="font-body-sm text-body-sm text-secondary">Define the standard raw materials and quantities required per standard batch.</p>
+</div>
+<button class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded-lg bg-primary-container text-on-primary hover:bg-primary font-label-sm text-label-sm font-semibold transition-all" onclick="recipeSetup.toggleAddModal(true)">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span>Add Ingredient</span>
+</button>
+</div>
+<!-- Table Wrapper -->
+<div class="overflow-x-auto rounded-lg bg-surface-container-lowest">
+<table class="w-full text-left font-body-sm text-body-sm border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-2.5 px-3 font-semibold">Ingredient &amp; Code</th>
+<th class="py-2.5 px-2 font-semibold">Base Unit</th>
+<th class="py-2.5 px-2 font-semibold w-28">Required Qty</th>
+<th class="py-2.5 px-2 font-semibold">Recipe Unit</th>
+<th class="py-2.5 px-2 text-right font-semibold">Unit Cost</th>
+<th class="py-2.5 px-3 text-right font-semibold">Projected Cost</th>
+<th class="py-2.5 px-2 text-center font-semibold w-12">Action</th>
+</tr>
+</thead>
+<tbody class="bg-surface-container-lowest" id="ingredients-table-body">
+<!-- Dynamically rendered rows -->
+</tbody>
+<tfoot>
+<tr class="bg-surface-container-low font-semibold text-on-surface">
+<td class="py-3 px-3 text-right font-label-sm text-label-sm uppercase tracking-wider text-secondary" colspan="5">
+                    Total Raw Ingredients Cost:
+                  </td>
+<td class="py-3 px-3 text-right font-numeric-table text-numeric-table text-primary font-bold" id="ingredient-total-cell">
+                    Rs. 0.00
+                  </td>
+<td></td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="mt-space-sm flex items-center justify-between text-secondary font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-tertiary-container">verified</span>
+<span>Yield-adjusted calculation. Edits apply dynamically to batch metrics.</span>
+</div>
+<span class="font-numeric-table" id="ingredient-count-label">4 items configured</span>
+</div>
+</section>
+<!-- SECTION 5: Preparation Method -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Preparation Method</h2>
+<p class="font-body-sm text-body-sm text-secondary">Sequential standardized culinary steps for kitchen line staff</p>
+</div>
+<button class="inline-flex items-center gap-1 px-space-sm py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-sm text-label-sm font-semibold transition-colors" onclick="recipeSetup.addPrepStep()">
+<span class="material-symbols-outlined text-[16px]">add</span>
+<span>Add Step</span>
+</button>
+</div>
+<div class="space-y-space-sm" id="steps-container">
+<!-- Dynamically populated prep steps -->
+</div>
+</section>
+<!-- SECTION 6: Storage & Operating Notes -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="pb-space-sm mb-space-md">
+<h2 class="font-headline-md text-headline-md text-on-surface">Storage &amp; Operating Notes</h2>
+<p class="font-body-sm text-body-sm text-secondary">Station assignment, holding instructions, and allergens</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-md">
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-station">
+                Preparation Station
+              </label>
+<select class="w-full h-9 px-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-station">
+<option selected="" value="Fryer Station">Fryer Station</option>
+<option value="Kitchen Prep">Kitchen Prep</option>
+<option value="Grill Station">Grill Station</option>
+<option value="Pizza Station">Pizza Station</option>
+<option value="Bakery">Bakery</option>
+<option value="Cold Prep">Cold Prep</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-storage">
+                Storage Requirement
+              </label>
+<select class="w-full h-9 px-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-storage">
+<option selected="" value="Prepare &amp; Serve Immediately">Prepare &amp; Serve Immediately</option>
+<option value="Ambient">Ambient</option>
+<option value="Refrigerated">Refrigerated</option>
+<option value="Frozen">Frozen</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1">
+                Shelf Life
+              </label>
+<div class="flex gap-1.5">
+<input class="w-20 h-9 px-space-sm rounded-lg bg-surface-container-lowest font-numeric-table text-numeric-table text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="shelf-life-val" min="1" type="number" value="4"/>
+<select class="flex-1 h-9 px-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="shelf-life-unit">
+<option selected="" value="Hours">Hours</option>
+<option value="Days">Days</option>
+<option value="Minutes">Minutes</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Allergen Selector -->
+<div class="mb-space-md">
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-2">
+              Allergen Information
+            </label>
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary" id="allergen-dairy" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Dairy</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary" id="allergen-gluten" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Gluten</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary" id="allergen-eggs" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Eggs</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary" id="allergen-nuts" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Nuts</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary" id="allergen-soy" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Soy</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-low cursor-pointer hover:bg-surface-container transition-colors">
+<input class="w-4 h-4 rounded text-primary focus:ring-primary" id="allergen-seafood" type="checkbox"/>
+<span class="font-label-sm text-label-sm text-on-surface">Seafood</span>
+</label>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="recipe-notes">
+              Chef &amp; Quality Notes
+            </label>
+<textarea class="w-full p-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="recipe-notes" placeholder="Any crucial temperature checkpoints, holding times, or line procedures..." rows="2">Ensure oil temperature does not drop below 170°C during peak batch cooking. Monitor bun browning strictly.</textarea>
+</div>
+</section>
+</div>
+<!-- Right Column: Sticky Costing Summary & Financial KPIs (4 cols) -->
+<div class="lg:col-span-4 sticky top-20 flex flex-col gap-space-md">
+<!-- SECTION 4: Costing Summary & Margin Analysis -->
+<section class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Cost Summary</h2>
+<p class="font-body-sm text-body-sm text-secondary">Projected Margin Analysis</p>
+</div>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full font-label-sm text-label-sm bg-tertiary-container/15 text-tertiary-container font-semibold">
+              Dynamic Preview
+            </span>
+</div>
+<!-- Total Cost Hero Banner -->
+<div class="bg-surface-container-low rounded-xl p-space-md mb-space-md">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1">Total Batch Cost</span>
+<div class="flex items-baseline justify-between">
+<span class="font-headline-xl text-headline-xl font-bold text-primary" id="hero-total-cost">Rs. 2,899.00</span>
+<span class="font-label-sm text-label-sm bg-surface-container px-2 py-1 rounded font-semibold text-secondary" id="hero-yield-badge">10 Portions</span>
+</div>
+<div class="flex items-center justify-between mt-2 pt-2 text-secondary font-label-sm text-label-sm">
+<span>Cost per portion:</span>
+<span class="font-numeric-table text-numeric-table font-bold text-on-surface" id="hero-portion-cost">Rs. 289.90</span>
+</div>
+</div>
+<!-- Direct Input Overheads -->
+<div class="space-y-space-sm mb-space-md">
+<div class="flex items-center justify-between text-body-sm">
+<span class="text-secondary">Raw Ingredients:</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-on-surface" id="cost-raw-ingredients">Rs. 2,499.00</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<label class="text-secondary cursor-pointer" for="cost-packaging-input">Packaging / Prep Overhead:</label>
+<div class="w-28 flex items-center bg-surface-container-low rounded-md px-1.5 py-0.5">
+<span class="font-label-sm text-label-sm text-secondary">Rs.</span>
+<input class="w-full bg-transparent text-right font-numeric-table text-numeric-table text-on-surface focus:outline-none" id="cost-packaging-input" min="0" oninput="recipeSetup.onCostOverheadsChanged()" step="5" type="number" value="150"/>
+</div>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<label class="text-secondary cursor-pointer" for="cost-labour-input">Labour Allocation:</label>
+<div class="w-28 flex items-center bg-surface-container-low rounded-md px-1.5 py-0.5">
+<span class="font-label-sm text-label-sm text-secondary">Rs.</span>
+<input class="w-full bg-transparent text-right font-numeric-table text-numeric-table text-on-surface focus:outline-none" id="cost-labour-input" min="0" oninput="recipeSetup.onCostOverheadsChanged()" step="10" type="number" value="250"/>
+</div>
+</div>
+</div>
+<!-- Pricing & Food Cost Variance -->
+<div class="p-space-md rounded-xl bg-surface-container mb-space-md">
+<div class="flex items-center justify-between mb-space-sm">
+<label class="font-label-sm text-label-sm text-secondary uppercase tracking-wider" for="selling-price-input">
+                Target Selling Price
+              </label>
+<div class="w-32 flex items-center bg-surface-container-lowest rounded-md px-2 py-1 shadow-sm">
+<span class="font-label-sm text-label-sm text-secondary mr-1">Rs.</span>
+<input class="w-full bg-transparent text-right font-numeric-table text-numeric-table font-bold text-on-surface focus:outline-none" id="selling-price-input" min="1" oninput="recipeSetup.onCostOverheadsChanged()" step="10" type="number" value="550"/>
+</div>
+</div>
+<!-- Food Cost % Gauge Indicator -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary">Food Cost %:</span>
+<div class="flex items-center gap-1.5">
+<span class="font-numeric-table text-numeric-table font-bold text-on-surface" id="food-cost-pct-val">52.7%</span>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-error-container text-on-error-container" id="food-cost-status-badge">
+                    High
+                  </span>
+</div>
+</div>
+<!-- Visual Progress Bar -->
+<div class="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
+<div class="h-full bg-error transition-all duration-300" id="food-cost-progress" style="width: 52.7%;"></div>
+</div>
+<div class="flex justify-between text-[10px] text-secondary">
+<span>Ideal &lt;35%</span>
+<span>Mod 35-50%</span>
+<span>High &gt;50%</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-3 mt-2 text-body-sm font-semibold">
+<span class="text-secondary">Projected Margin:</span>
+<div class="text-right">
+<span class="font-numeric-table text-numeric-table text-tertiary-container font-bold" id="gross-margin-pct">47.3%</span>
+<span class="block font-numeric-table text-label-sm text-secondary font-normal" id="gross-profit-val">Rs. 260.10 / portion</span>
+</div>
+</div>
+</div>
+<!-- Recipe Spec Meta Visual -->
+<div class="p-space-sm rounded-lg bg-surface-container-low flex items-center gap-space-sm text-secondary text-label-sm">
+<span class="material-symbols-outlined text-[20px] text-primary">analytics</span>
+<div class="flex flex-col">
+<span class="font-semibold text-on-surface">Recipe Cost &amp; Yield Preview</span>
+<span>Calculated from the ingredient quantities and unit costs configured in this prototype.</span>
+</div>
+</div>
+</section>
+<!-- Quick Tips Callout -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5">tips_and_updates</span>
+<div class="text-secondary font-body-sm text-body-sm">
+<span class="font-semibold text-on-surface block">Mise en place Rule:</span>
+            Standard recipes define ingredient requirements and production standards. Inventory deductions will be handled after backend and POS integration.
+          </div>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 7: STICKY BOTTOM SAVE & LIVE VALIDATION STATUS -->
+<div class="fixed bottom-0 left-0 lg:left-64 right-0 bg-surface-container-lowest/95 backdrop-blur-md p-space-md shadow-lg z-30 flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<!-- Checklist -->
+<div class="flex flex-wrap items-center gap-x-space-md gap-y-1 text-label-sm font-label-sm text-secondary">
+<div class="flex items-center gap-1 text-tertiary-container" id="val-name">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Recipe name entered</span>
+</div>
+<div class="flex items-center gap-1 text-tertiary-container" id="val-yield">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Standard yield &gt; 0</span>
+</div>
+<div class="flex items-center gap-1 text-tertiary-container" id="val-ingredients">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span id="val-ing-text">4 ingredients added</span>
+</div>
+<div class="flex items-center gap-1 text-tertiary-container" id="val-cost">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+<span>Cost projection complete</span>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end shrink-0">
+<a class="px-space-md py-2 rounded-lg font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors" href="#recipes">
+        Cancel
+      </a>
+<button class="px-space-md py-2 rounded-lg font-label-md text-label-md bg-surface-container-high hover:bg-surface-variant text-on-surface transition-colors" onclick="recipeSetup.validateAndSaveRecipe(true)">
+        Save as Draft
+      </button>
+<button class="flex items-center gap-1.5 px-space-lg py-2 rounded-lg font-label-md text-label-md bg-primary-container text-on-primary hover:bg-primary shadow-sm transition-all active:scale-[0.98]" onclick="recipeSetup.validateAndSaveRecipe(false)">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span>Create Recipe</span>
+</button>
+</div>
+</div>
+<!-- ADD INGREDIENT INLINE MODAL OVERLAY -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-[1.5px] hidden" id="add-ingredient-modal">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl w-full max-w-lg p-space-lg mx-4">
+<div class="flex items-center justify-between pb-space-sm mb-space-md">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[22px]">add_shopping_cart</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Add Recipe Ingredient</h3>
+</div>
+<button class="p-1 rounded-lg text-secondary hover:text-on-surface hover:bg-surface-container" onclick="recipeSetup.toggleAddModal(false)">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="space-y-space-md">
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="modal-ingredient-select">
+            Select Raw Material (Catalog) <span class="text-error">*</span>
+</label>
+<select class="w-full h-10 px-space-sm rounded-lg bg-surface-container-lowest font-body-md text-body-md text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="modal-ingredient-select" onchange="recipeSetup.onModalIngredientSelect()">
+<!-- Populated via JS -->
+</select>
+</div>
+<div class="grid grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="modal-qty-input">
+              Required Qty <span class="text-error">*</span>
+</label>
+<input class="w-full h-10 px-space-sm rounded-lg bg-surface-container-lowest font-numeric-table text-numeric-table text-on-surface focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="modal-qty-input" min="0.01" oninput="recipeSetup.updateModalPreview()" step="0.05" type="number" value="0.5"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1" for="modal-unit-display">
+              Recipe Unit
+            </label>
+<input class="w-full h-10 px-space-sm rounded-lg bg-surface-container-low font-numeric-table text-numeric-table text-secondary cursor-not-allowed" id="modal-unit-display" readonly="" type="text" value="kg"/>
+</div>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container flex items-center justify-between text-body-sm">
+<div>
+<span class="text-secondary block font-label-sm text-label-sm">Unit Cost:</span>
+<span class="font-numeric-table text-numeric-table font-semibold text-on-surface" id="modal-unit-cost">Rs. 0.00</span>
+</div>
+<div class="text-right">
+<span class="text-secondary block font-label-sm text-label-sm">Projected Row Cost:</span>
+<span class="font-numeric-table text-numeric-table font-bold text-primary" id="modal-row-projected">Rs. 0.00</span>
+</div>
+</div>
+</div>
+<div class="mt-space-lg flex items-center justify-end gap-space-sm">
+<button class="px-space-md py-2 rounded-lg font-label-md text-label-md bg-surface-container hover:bg-surface-container-high text-on-surface" onclick="recipeSetup.toggleAddModal(false)">
+          Cancel
+        </button>
+<button class="px-space-md py-2 rounded-lg font-label-md text-label-md bg-primary-container text-on-primary hover:bg-primary font-semibold shadow-sm" onclick="recipeSetup.confirmAddIngredient()">
+          Insert Ingredient
+        </button>
+</div>
+</div>
+</div>
+<!-- TOAST NOTIFICATION CONTAINER -->
+<div class="fixed top-20 right-6 z-50 max-w-md p-space-md rounded-xl bg-inverse-surface text-inverse-on-surface shadow-xl flex items-center gap-space-sm transform translate-y-[-150%] transition-transform duration-300" id="recipe-toast">
+<span class="material-symbols-outlined text-primary-fixed text-[24px]" id="recipe-toast-icon">info</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold" id="recipe-toast-title">Notification</span>
+<span class="font-body-sm text-body-sm text-surface-container-highest" id="recipe-toast-msg">Toast message</span>
+</div>
+</div>
+</div>
+<script>
+  // Root Prototype Object (Clean architecture & strict separation)
+  const recipeSetup = {
+    recipeCode: 'RCP-1026',
+    ingredientCatalog: [
+      { id: 'ING-0021', sku: 'SKU-9021', name: 'Chicken Breast (Fresh Fillet)', category: 'Meat', unit: 'kg', cost: 920 },
+      { id: 'ING-0109', sku: 'SKU-6102', name: 'Brioche Burger Buns', category: 'Bakery', unit: 'pcs', cost: 35 },
+      { id: 'ING-0048', sku: 'SKU-4012', name: 'Mozzarella Cheese (Shredded)', category: 'Dairy', unit: 'kg', cost: 1250 },
+      { id: 'ING-0701', sku: 'SKU-7201', name: 'Mayonnaise (Garlic Signature)', category: 'Pantry', unit: 'L', cost: 480 },
+      { id: 'ING-0301', sku: 'SKU-3101', name: 'Cooking Oil (Refined Pure)', category: 'Pantry', unit: 'L', cost: 450 },
+      { id: 'ING-0044', sku: 'SKU-4001', name: 'Cheddar Cheese Slices', category: 'Dairy', unit: 'pcs', cost: 28 },
+      { id: 'ING-0502', sku: 'SKU-5201', name: 'Iceberg Lettuce (Fresh)', category: 'Produce', unit: 'kg', cost: 160 },
+      { id: 'ING-0811', sku: 'SKU-8109', name: 'Black Pepper Crushed', category: 'Spices', unit: 'kg', cost: 2400 }
+    ],
+
+    items: [
+      { id: 'ING-0021', sku: 'SKU-9021', name: 'Chicken Breast (Fresh Fillet)', unit: 'kg', qty: 1.50, cost: 920 },
+      { id: 'ING-0109', sku: 'SKU-6102', name: 'Brioche Burger Buns', unit: 'pcs', qty: 10, cost: 35 },
+      { id: 'ING-0048', sku: 'SKU-4012', name: 'Mozzarella Cheese (Shredded)', unit: 'kg', qty: 0.50, cost: 1250 },
+      { id: 'ING-0701', sku: 'SKU-7201', name: 'Mayonnaise (Garlic Signature)', unit: 'L', qty: 0.30, cost: 480 }
+    ],
+
+    steps: [
+      "Marinate chicken breast fillets using approved signature seasoning blend for minimum 45 minutes at < 4°C.",
+      "Coat chicken fillets evenly in seasoned flour and dredge mixture.",
+      "Deep fry fillets in fryer station at 175°C for 6-8 minutes until internal core temperature reaches 74°C.",
+      "Toast brioche burger buns lightly on the flat-top grill until golden brown.",
+      "Assemble burger base with signature garlic mayonnaise, fried chicken fillet, mozzarella slice, and crown bun.",
+      "Quality check presentation and serve immediately on heated pass."
+    ],
+
+    init() {
+      this.renderIngredientTable();
+      this.renderPrepSteps();
+      this.populateModalOptions();
+      this.updateCostingSummary();
+      this.updateTiming();
+      this.validateRecipeStatus();
+    },
+
+    formatCurrency(amount) {
+      return 'Rs. ' + Number(amount || 0).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    },
+
+    renderIngredientTable() {
+      const tbody = document.getElementById('ingredients-table-body');
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+      let totalRawCost = 0;
+
+      this.items.forEach((item, index) => {
+        const rowCost = item.qty * item.cost;
+        totalRawCost += rowCost;
+
+        const tr = document.createElement('tr');
+        tr.className = "hover:bg-surface-container-low/60 transition-colors";
+        tr.innerHTML = `
+          <td class="py-2.5 px-3">
+            <div class="flex flex-col">
+              <span class="font-semibold text-on-surface">${item.name}</span>
+              <span class="font-label-sm text-label-sm text-secondary">${item.sku}</span>
+            </div>
+          </td>
+          <td class="py-2.5 px-2">
+            <span class="px-2 py-0.5 rounded bg-surface-container text-on-surface font-label-sm text-label-sm font-semibold">${item.unit}</span>
+          </td>
+          <td class="py-2.5 px-2">
+            <input type="number" min="0.01" step="0.05" value="${item.qty}" 
+              onchange="recipeSetup.onItemQtyChange(${index}, this.value)"
+              class="w-24 h-8 px-2 rounded bg-surface-container font-numeric-table text-numeric-table font-semibold text-on-surface focus:outline-none focus:ring-1 focus:ring-primary shadow-inner" />
+          </td>
+          <td class="py-2.5 px-2 text-secondary font-label-sm text-label-sm">${item.unit}</td>
+          <td class="py-2.5 px-2 text-right font-numeric-table text-numeric-table text-secondary">${this.formatCurrency(item.cost)}</td>
+          <td class="py-2.5 px-3 text-right font-numeric-table text-numeric-table font-bold text-on-surface">${this.formatCurrency(rowCost)}</td>
+          <td class="py-2.5 px-2 text-center">
+            <button onclick="recipeSetup.removeIngredientRow(${index})" title="Remove item" class="p-1 rounded text-secondary hover:text-error hover:bg-error-container/20 transition-colors">
+              <span class="material-symbols-outlined text-[18px]">delete</span>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      const totalCell = document.getElementById('ingredient-total-cell');
+      if (totalCell) totalCell.innerText = this.formatCurrency(totalRawCost);
+
+      const countLabel = document.getElementById('ingredient-count-label');
+      if (countLabel) countLabel.innerText = `${this.items.length} items configured`;
+
+      this.updateCostingSummary();
+      this.validateRecipeStatus();
+    },
+
+    onItemQtyChange(index, val) {
+      const num = parseFloat(val);
+      if (isNaN(num) || num <= 0) {
+        this.showPrototypeToast("Invalid Quantity", "Ingredient quantity must be greater than zero.", "warning");
+        this.renderIngredientTable();
+        return;
+      }
+      this.items[index].qty = num;
+      this.renderIngredientTable();
+    },
+
+    removeIngredientRow(index) {
+      if (this.items.length <= 1) {
+        this.showPrototypeToast("Operation Halted", "A recipe must contain at least one ingredient item.", "warning");
+        return;
+      }
+      const removed = this.items.splice(index, 1);
+      this.showPrototypeToast("Item Removed", `${removed[0].name} removed from recipe bill.`, "info");
+      this.renderIngredientTable();
+    },
+
+    populateModalOptions() {
+      const select = document.getElementById('modal-ingredient-select');
+      if (!select) return;
+      select.innerHTML = '';
+
+      // Filter catalog to show items not yet added
+      const currentIds = this.items.map(i => i.id);
+      const available = this.ingredientCatalog.filter(c => !currentIds.includes(c.id));
+
+      if (available.length === 0) {
+        const opt = document.createElement('option');
+        opt.value = "";
+        opt.innerText = "All catalog ingredients already added";
+        select.appendChild(opt);
+        select.disabled = true;
+        return;
+      }
+
+      select.disabled = false;
+      available.forEach(item => {
+        const opt = document.createElement('option');
+        opt.value = item.id;
+        opt.innerText = `${item.name} (${item.sku}) - ${item.unit} @ Rs. ${item.cost}`;
+        select.appendChild(opt);
+      });
+
+      this.onModalIngredientSelect();
+    },
+
+    onModalIngredientSelect() {
+      const select = document.getElementById('modal-ingredient-select');
+      if (!select || !select.value) return;
+
+      const item = this.ingredientCatalog.find(c => c.id === select.value);
+      if (item) {
+        document.getElementById('modal-unit-display').value = item.unit;
+        document.getElementById('modal-unit-cost').innerText = this.formatCurrency(item.cost);
+        this.updateModalPreview();
+      }
+    },
+
+    updateModalPreview() {
+      const select = document.getElementById('modal-ingredient-select');
+      const qtyInput = document.getElementById('modal-qty-input');
+      const rowProj = document.getElementById('modal-row-projected');
+      if (!select || !qtyInput || !rowProj) return;
+
+      const item = this.ingredientCatalog.find(c => c.id === select.value);
+      const qty = parseFloat(qtyInput.value) || 0;
+      if (item) {
+        rowProj.innerText = this.formatCurrency(qty * item.cost);
+      }
+    },
+
+    toggleAddModal(show) {
+      const modal = document.getElementById('add-ingredient-modal');
+      if (!modal) return;
+      if (show) {
+        this.populateModalOptions();
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    },
+
+    confirmAddIngredient() {
+      const select = document.getElementById('modal-ingredient-select');
+      const qtyInput = document.getElementById('modal-qty-input');
+      if (!select || !select.value) {
+        this.showPrototypeToast("Select Ingredient", "Please choose an ingredient from the catalog.", "warning");
+        return;
+      }
+      const qty = parseFloat(qtyInput.value);
+      if (isNaN(qty) || qty <= 0) {
+        this.showPrototypeToast("Invalid Quantity", "Please specify a valid quantity greater than zero.", "warning");
+        return;
+      }
+
+      const raw = this.ingredientCatalog.find(c => c.id === select.value);
+      if (!raw) return;
+
+      this.items.push({
+        id: raw.id,
+        sku: raw.sku,
+        name: raw.name,
+        unit: raw.unit,
+        qty: qty,
+        cost: raw.cost
+      });
+
+      this.toggleAddModal(false);
+      this.renderIngredientTable();
+      this.showPrototypeToast("Ingredient Added", `${raw.name} was added to the bill of materials.`, "check_circle");
+    },
+
+    renderPrepSteps() {
+      const container = document.getElementById('steps-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      this.steps.forEach((step, idx) => {
+        const div = document.createElement('div');
+        div.className = "flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low group";
+        div.innerHTML = `
+          <span class="w-6 h-6 rounded-full bg-primary/10 text-primary font-bold font-numeric-table text-label-sm flex items-center justify-center shrink-0 mt-1">
+            ${idx + 1}
+          </span>
+          <textarea rows="1" oninput="recipeSetup.steps[${idx}] = this.value" class="flex-1 bg-transparent border-0 font-body-sm text-body-sm text-on-surface focus:outline-none focus:bg-surface-container-lowest rounded p-1 resize-y">${step}</textarea>
+          <button onclick="recipeSetup.removePrepStep(${idx})" class="p-1 rounded text-secondary hover:text-error opacity-60 group-hover:opacity-100 transition-opacity">
+            <span class="material-symbols-outlined text-[18px]">close</span>
+          </button>
+        `;
+        container.appendChild(div);
+      });
+    },
+
+    addPrepStep() {
+      this.steps.push("New step instruction. Specify temperatures, techniques, and safety standards.");
+      this.renderPrepSteps();
+    },
+
+    removePrepStep(idx) {
+      if (this.steps.length <= 1) {
+        this.showPrototypeToast("Notice", "Recipes must retain at least one preparation step.", "info");
+        return;
+      }
+      this.steps.splice(idx, 1);
+      this.renderPrepSteps();
+    },
+
+    updateTiming() {
+      const prep = parseInt(document.getElementById('recipe-prep-time')?.value) || 0;
+      const cook = parseInt(document.getElementById('recipe-cook-time')?.value) || 0;
+      const total = prep + cook;
+      const display = document.getElementById('batch-total-time');
+      if (display) display.innerText = `${total} min total`;
+    },
+
+    onYieldChanged() {
+      this.updateCostingSummary();
+      this.validateRecipeStatus();
+    },
+
+    onFormInput() {
+      this.validateRecipeStatus();
+    },
+
+    onCostOverheadsChanged() {
+      this.updateCostingSummary();
+    },
+
+    updateCostingSummary() {
+      // 1. Raw Ingredients Sum
+      const rawCost = this.items.reduce((acc, curr) => acc + (curr.qty * curr.cost), 0);
+      const pkgCost = parseFloat(document.getElementById('cost-packaging-input')?.value) || 0;
+      const lbrCost = parseFloat(document.getElementById('cost-labour-input')?.value) || 0;
+
+      const totalBatchCost = rawCost + pkgCost + lbrCost;
+      const yieldQty = Math.max(parseFloat(document.getElementById('recipe-yield')?.value) || 1, 1);
+      const yieldUnit = document.getElementById('recipe-yield-unit')?.value || 'Portions';
+      const costPerPortion = totalBatchCost / yieldQty;
+
+      const sellingPrice = parseFloat(document.getElementById('selling-price-input')?.value) || 0;
+
+      // Update Labels
+      const heroTotal = document.getElementById('hero-total-cost');
+      if (heroTotal) heroTotal.innerText = this.formatCurrency(totalBatchCost);
+
+      const heroYield = document.getElementById('hero-yield-badge');
+      if (heroYield) heroYield.innerText = `${yieldQty} ${yieldUnit}`;
+
+      const heroPortion = document.getElementById('hero-portion-cost');
+      if (heroPortion) heroPortion.innerText = this.formatCurrency(costPerPortion);
+
+      const rawDisplay = document.getElementById('cost-raw-ingredients');
+      if (rawDisplay) rawDisplay.innerText = this.formatCurrency(rawCost);
+
+      // Food Cost % & Margins
+      let foodCostPct = 0;
+      let grossProfit = 0;
+      let marginPct = 0;
+
+      if (sellingPrice > 0) {
+        foodCostPct = (costPerPortion / sellingPrice) * 100;
+        grossProfit = sellingPrice - costPerPortion;
+        marginPct = 100 - foodCostPct;
+      }
+
+      const foodCostVal = document.getElementById('food-cost-pct-val');
+      if (foodCostVal) foodCostVal.innerText = `${foodCostPct.toFixed(1)}%`;
+
+      const progressBar = document.getElementById('food-cost-progress');
+      const badge = document.getElementById('food-cost-status-badge');
+
+      if (progressBar && badge) {
+        const clampedWidth = Math.min(Math.max(foodCostPct, 0), 100);
+        progressBar.style.width = clampedWidth + '%';
+
+        if (foodCostPct < 35) {
+          badge.innerText = 'Ideal';
+          badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-tertiary-container/20 text-tertiary-container';
+          progressBar.className = 'h-full bg-tertiary-container transition-all duration-300';
+        } else if (foodCostPct <= 50) {
+          badge.innerText = 'Moderate';
+          badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-secondary-container text-on-secondary-container';
+          progressBar.className = 'h-full bg-primary transition-all duration-300';
+        } else {
+          badge.innerText = 'High';
+          badge.className = 'px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-error-container text-on-error-container';
+          progressBar.className = 'h-full bg-error transition-all duration-300';
+        }
+      }
+
+      const marginVal = document.getElementById('gross-margin-pct');
+      if (marginVal) marginVal.innerText = `${marginPct.toFixed(1)}%`;
+
+      const profitVal = document.getElementById('gross-profit-val');
+      if (profitVal) profitVal.innerText = `${this.formatCurrency(grossProfit)} / portion`;
+    },
+
+    validateRecipeStatus() {
+      const name = (document.getElementById('recipe-name')?.value || '').trim();
+      const yieldQty = parseFloat(document.getElementById('recipe-yield')?.value) || 0;
+      const hasIngredients = this.items.length > 0;
+
+      // 1. Name Check
+      const valName = document.getElementById('val-name');
+      if (valName) {
+        if (name.length > 0) {
+          valName.className = "flex items-center gap-1 text-tertiary-container";
+          valName.innerHTML = `<span class="material-symbols-outlined text-[16px]">check_circle</span><span>Recipe name entered</span>`;
+        } else {
+          valName.className = "flex items-center gap-1 text-error";
+          valName.innerHTML = `<span class="material-symbols-outlined text-[16px]">warning</span><span>Recipe name required</span>`;
+        }
+      }
+
+      // 2. Yield Check
+      const valYield = document.getElementById('val-yield');
+      if (valYield) {
+        if (yieldQty > 0) {
+          valYield.className = "flex items-center gap-1 text-tertiary-container";
+          valYield.innerHTML = `<span class="material-symbols-outlined text-[16px]">check_circle</span><span>Standard yield &gt; 0</span>`;
+        } else {
+          valYield.className = "flex items-center gap-1 text-error";
+          valYield.innerHTML = `<span class="material-symbols-outlined text-[16px]">warning</span><span>Yield must be &gt; 0</span>`;
+        }
+      }
+
+      // 3. Ingredients Check
+      const valIng = document.getElementById('val-ingredients');
+      const valIngText = document.getElementById('val-ing-text');
+      const valIngIcon = valIng ? valIng.querySelector('.material-symbols-outlined') : null;
+      if (valIng && valIngText && valIngIcon) {
+        if (this.items.length > 0) {
+          valIng.className = 'flex items-center gap-1 text-tertiary-container';
+          valIngIcon.textContent = 'check_circle';
+          valIngText.textContent = `${this.items.length} ingredients added`;
+        } else {
+          valIng.className = 'flex items-center gap-1 text-error';
+          valIngIcon.textContent = 'warning';
+          valIngText.textContent = 'At least one ingredient is required';
+        }
+      }
+
+      return name.length > 0 && yieldQty > 0 && hasIngredients;
+    },
+
+    validateAndSaveRecipe(isDraft) {
+      const isValid = this.validateRecipeStatus();
+      if (!isValid) {
+        this.showPrototypeToast(
+          "Validation Required",
+          "Please resolve missing recipe name, zero yield, or empty ingredients before proceeding.",
+          "error"
+        );
+        return;
+      }
+
+      const recipeName = document.getElementById('recipe-name')?.value || 'Recipe';
+
+      if (isDraft) {
+        this.showPrototypeToast(
+          "Draft Validated",
+          `Recipe draft for "${recipeName}" validated for this prototype session.`,
+          "check_circle"
+        );
+      } else {
+        this.showPrototypeToast(
+          "Recipe Validated",
+          `Recipe "${recipeName}" (${this.recipeCode}) validated successfully in this prototype. No backend data was created.`,
+          "verified"
+        );
+      }
+    },
+
+    showPrototypeToast(title, message, iconType = "info") {
+      const toast = document.getElementById('recipe-toast');
+      const toastTitle = document.getElementById('recipe-toast-title');
+      const toastMsg = document.getElementById('recipe-toast-msg');
+      const toastIcon = document.getElementById('recipe-toast-icon');
+
+      if (!toast || !toastTitle || !toastMsg) return;
+
+      toastTitle.innerText = title;
+      toastMsg.innerText = message;
+
+      if (iconType === 'error') {
+        toastIcon.innerText = 'error';
+        toastIcon.className = 'material-symbols-outlined text-error text-[24px]';
+      } else if (iconType === 'warning') {
+        toastIcon.innerText = 'warning';
+        toastIcon.className = 'material-symbols-outlined text-secondary text-[24px]';
+      } else if (iconType === 'verified' || iconType === 'check_circle') {
+        toastIcon.innerText = iconType;
+        toastIcon.className = 'material-symbols-outlined text-tertiary-container text-[24px]';
+      } else {
+        toastIcon.innerText = 'info';
+        toastIcon.className = 'material-symbols-outlined text-primary-fixed text-[24px]';
+      }
+
+      // Slide down
+      toast.classList.remove('translate-y-[-150%]');
+      toast.classList.add('translate-y-0');
+
+      if (this.toastTimeout) clearTimeout(this.toastTimeout);
+      this.toastTimeout = setTimeout(() => {
+        toast.classList.remove('translate-y-0');
+        toast.classList.add('translate-y-[-150%]');
+      }, 4000);
+    }
+  };
+
+  // Safe window initialization
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => recipeSetup.init());
+  } else {
+    recipeSetup.init();
+  }
+</script></main></div><script>function toggleSidebar(){const sidebar=document.getElementById('app-sidebar');const backdrop=document.getElementById('sidebar-backdrop');const isClosed=sidebar.classList.contains('-translate-x-full');if(isClosed){sidebar.classList.remove('-translate-x-full');backdrop.classList.remove('hidden');}else{sidebar.classList.add('-translate-x-full');backdrop.classList.add('hidden');}}</script>
+<script src="/integration-bridge.js"></script>
+</body></html>

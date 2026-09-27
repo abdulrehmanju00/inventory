@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary": "#005d42",
+            "secondary": "#545f73",
+            "surface-container-highest": "#dae2fd",
+            "inverse-primary": "#80d5cb",
+            "on-secondary": "#ffffff",
+            "on-error": "#ffffff",
+            "on-primary-fixed-variant": "#00504a",
+            "on-secondary-fixed-variant": "#3c475a",
+            "primary-fixed-dim": "#80d5cb",
+            "primary-fixed": "#9cf2e8",
+            "surface-container-low": "#f2f3ff",
+            "tertiary-fixed": "#97f5cc",
+            "outline-variant": "#bdc9c6",
+            "outline": "#6e7977",
+            "secondary-fixed": "#d8e3fb",
+            "secondary-container": "#d5e0f8",
+            "surface-container-high": "#e2e7ff",
+            "surface-container": "#eaedff",
+            "on-error-container": "#93000a",
+            "secondary-fixed-dim": "#bcc7de",
+            "on-primary-container": "#a3faef",
+            "tertiary-container": "#047857",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#7bd8b1",
+            "on-surface-variant": "#3e4947",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#9ffdd3",
+            "primary-container": "#0f766e",
+            "on-surface": "#131b2e",
+            "surface-tint": "#006a63",
+            "surface-dim": "#d2d9f4",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#eef0ff",
+            "surface-variant": "#dae2fd",
+            "on-primary-fixed": "#00201d",
+            "background": "#faf8ff",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed": "#111c2d",
+            "on-secondary-container": "#586377",
+            "on-tertiary-fixed-variant": "#00513a",
+            "on-tertiary-fixed": "#002115",
+            "error": "#ba1a1a",
+            "inverse-surface": "#283044",
+            "on-background": "#131b2e",
+            "surface-bright": "#faf8ff",
+            "surface": "#faf8ff",
+            "primary": "#005c55"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-desktop": "2rem",
+            "margin-mobile": "1rem",
+            "space-lg": "1.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "margin": "1.5rem",
+            "space-xl": "2rem",
+            "gutter-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Hanken Grotesk"],
+            "display-lg": ["Hanken Grotesk"],
+            "headline-lg": ["Hanken Grotesk"],
+            "headline-md": ["Hanken Grotesk"],
+            "label-md": ["Geist"],
+            "body-md": ["Hanken Grotesk"],
+            "headline-lg-mobile": ["Hanken Grotesk"],
+            "numeric-table": ["Geist"],
+            "label-sm": ["Geist"],
+            "label-lg": ["Geist"],
+            "headline-xl": ["Hanken Grotesk"],
+            "body-lg": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "numeric-table": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- Mobile Backdrop -->
+<div class="fixed inset-0 bg-slate-900/50 z-40 lg:hidden hidden" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+<!-- App Sidebar -->
+<aside class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out flex flex-col" id="app-sidebar">
+<!-- Brand Header -->
+<div class="h-16 px-4 flex items-center justify-between border-b border-slate-200">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-md bg-teal-700 flex items-center justify-center text-white shadow-sm">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-slate-900 text-sm leading-tight">Inventory &amp; Operations</span>
+<span class="text-xs text-slate-500">Restaurant Portal</span>
+</div>
+</div>
+<button class="lg:hidden p-1.5 text-slate-500 hover:text-slate-800 rounded-md" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Navigation Scroll Area -->
+<div class="flex-1 overflow-y-auto px-3 py-4 space-y-5">
+<!-- Operations -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Operations</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#dashboard">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#inventory">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#stock-counts">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+<span>Stock Counts</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#wastage">
+<span class="material-symbols-outlined text-[20px]">delete_sweep</span>
+<span>Wastage</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#transfers">
+<span class="material-symbols-outlined text-[20px]">sync_alt</span>
+<span>Transfers</span>
+</a>
+</nav>
+</div>
+<!-- Purchasing -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Purchasing</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#purchases">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span>Purchases</span>
+</a>
+<a aria-current="page" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold bg-primary text-on-primary" href="#suppliers"><span class="material-symbols-outlined text-xl text-on-primary">storefront</span><span>Suppliers</span></a>
+</nav>
+</div>
+<!-- Kitchen -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Kitchen</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#recipes">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span>Recipes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#production">
+<span class="material-symbols-outlined text-[20px]">skillet</span>
+<span>Production</span>
+</a>
+</nav>
+</div>
+<!-- Management -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Management</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#reports">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#staff">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span>Staff</span>
+</a>
+</nav>
+</div>
+<!-- System -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">System</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#settings">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Sidebar Footer -->
+<div class="p-3 border-t border-slate-200 bg-slate-50 space-y-2">
+<!-- Branch Switcher -->
+<div class="flex items-center justify-between px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-slate-500">storefront</span>
+<span>Main Branch</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-slate-400">unfold_more</span>
+</div>
+<!-- GM User Pill -->
+<div class="flex items-center justify-between p-1.5 rounded-lg hover:bg-white transition-colors cursor-pointer">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-teal-700 text-white font-bold text-xs flex items-center justify-center">
+            GM
+          </div>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900">General Manager</span>
+<span class="text-[11px] text-slate-500">Operations Lead</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400">more_vert</span>
+</div>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<div class="lg:pl-64 flex flex-col min-h-screen">
+<!-- Top Header -->
+<header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 px-4 sm:px-6 py-3 flex items-center justify-between">
+<!-- Top Header Left -->
+<div class="flex items-center gap-3 sm:gap-4">
+<button class="lg:hidden p-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-[22px]">menu</span>
+</button>
+<button class="flex items-center gap-2 px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200/80 rounded-lg text-xs sm:text-sm font-medium text-slate-800 transition-colors" type="button">
+<span class="material-symbols-outlined text-slate-600 text-[18px]">storefront</span>
+<span>Main Branch</span>
+<span class="material-symbols-outlined text-slate-500 text-[16px]">expand_more</span>
+</button>
+<div class="hidden sm:flex items-center gap-1.5 text-xs text-slate-500">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+<span>Updated 2 min ago</span>
+</div>
+</div>
+<!-- Top Header Right -->
+<div class="flex items-center gap-3">
+<button class="relative hidden md:flex items-center gap-2 h-9 pl-3 pr-2 w-64 bg-slate-100 hover:bg-slate-200/70 rounded-lg text-xs text-slate-500 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-slate-400">search</span>
+<span class="truncate">Search ingredients, purchases, suppliers...</span>
+<kbd class="ml-auto px-1.5 py-0.5 rounded bg-white border border-slate-200 text-[10px] font-medium text-slate-500">⌘K</kbd>
+</button>
+<button class="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors relative" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span>
+</button>
+<button class="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+<!-- GM Avatar Pill -->
+<div class="flex items-center gap-2 pl-1 border-l border-slate-200">
+<div class="w-8 h-8 rounded-full bg-teal-700 text-white font-bold text-xs flex items-center justify-center">
+            GM
+          </div>
+<div class="hidden xl:flex flex-col text-left">
+<span class="text-xs font-semibold text-slate-900 leading-tight">General Manager</span>
+<span class="text-[11px] text-slate-500">Operations Lead</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="w-full flex-1 bg-surface"><div class="flex flex-col w-full">
+<!-- Toast Notification Container -->
+<div class="fixed top-5 right-5 z-50 flex flex-col gap-2 pointer-events-none transition-all duration-300" id="toast-container"></div>
+<!-- Content Workspace -->
+<div class="w-full px-4 sm:px-6 lg:px-8 py-6 max-w-4xl mx-auto flex flex-col gap-6">
+<!-- Breadcrumb Utility Trail -->
+<nav class="flex items-center gap-2 text-slate-500 font-label-md text-label-md">
+<a class="hover:text-slate-900 transition-colors" href="#purchasing">Purchasing</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-slate-900 transition-colors" href="#suppliers">Suppliers</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-slate-900 font-medium">Add Supplier</span>
+</nav>
+<!-- Page Header Block with Culinary Precision Aesthetic -->
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-2">
+<div class="flex flex-col">
+<h1 class="font-headline-xl text-headline-xl text-slate-900 tracking-tight mt-0.5">Add Supplier</h1>
+<p class="font-body-md text-body-md text-slate-500 mt-1">Create a supplier contact for purchasing operations.</p>
+</div>
+<div class="flex items-center gap-2.5">
+<a class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-lg bg-surface-container-lowest text-slate-700 font-label-md text-label-md shadow-sm hover:bg-slate-50 hover:text-slate-900 transition-colors" href="#suppliers">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Cancel &amp; Return</span>
+</a>
+</div>
+</div>
+<!-- Active Form Matrix -->
+<form class="flex flex-col gap-6" id="supplier-form" onsubmit="event.preventDefault(); submitSupplier();">
+<!-- SECTION 1: Supplier Information -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm flex flex-col gap-5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-md bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">corporate_fare</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-slate-900">Supplier Information</h2>
+</div>
+<span class="font-label-sm text-label-sm text-slate-400 font-mono">STEP 01/04</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Supplier Name -->
+<div class="md:col-span-2 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 flex items-center gap-1" for="supplier-name">
+              Supplier Name
+              <span class="text-error font-bold">*</span>
+</label>
+<div class="relative">
+<input autocomplete="off" class="w-full h-10 px-3.5 rounded-lg bg-surface text-slate-900 font-body-md text-body-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" id="supplier-name" placeholder="e.g. Lahore Fresh Produce" required="" type="text"/>
+</div>
+<span class="hidden font-label-sm text-label-sm text-error flex items-center gap-1 mt-0.5" id="name-error">
+<span class="material-symbols-outlined text-[14px]">error</span>
+<span>A supplier with this name already exists.</span>
+</span>
+</div>
+<!-- Supplier Status -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 flex items-center gap-1" for="supplier-status">
+              Supplier Status
+              <span class="text-error font-bold">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-10 px-3.5 pr-8 rounded-lg bg-surface text-slate-900 font-body-md text-body-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest appearance-none transition-all cursor-pointer" id="supplier-status">
+<option selected="" value="Active">Active</option>
+<option value="Inactive">Inactive</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 pointer-events-none text-slate-400 text-[18px]">expand_more</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Contact Information -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm flex flex-col gap-5">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-md bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">contact_mail</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-slate-900">Contact Information</h2>
+</div>
+<span class="font-label-sm text-label-sm text-slate-400 font-mono">STEP 02/04</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Contact Person -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 flex items-center gap-1" for="contact-person">
+              Contact Person
+              <span class="text-error font-bold">*</span>
+</label>
+<input autocomplete="name" class="w-full h-10 px-3.5 rounded-lg bg-surface text-slate-900 font-body-md text-body-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" id="contact-person" placeholder="e.g. Ahmed Raza" required="" type="text"/>
+</div>
+<!-- Phone -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 flex items-center gap-1" for="supplier-phone">
+              Phone
+              <span class="text-error font-bold">*</span>
+</label>
+<input autocomplete="tel" class="w-full h-10 px-3.5 rounded-lg bg-surface text-slate-900 font-body-md text-body-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" id="supplier-phone" placeholder="+92 300 123 4567" required="" type="tel"/>
+</div>
+<!-- Email -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700 flex items-center gap-1" for="supplier-email">
+              Email
+              <span class="text-error font-bold">*</span>
+</label>
+<input autocomplete="email" class="w-full h-10 px-3.5 rounded-lg bg-surface text-slate-900 font-body-md text-body-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" id="supplier-email" placeholder="orders@example.com" required="" type="email"/>
+<span class="hidden font-label-sm text-label-sm text-error flex items-center gap-1 mt-0.5" id="email-duplicate-error">
+<span class="material-symbols-outlined text-[14px]">error</span>
+<span>A supplier with this email already exists.</span>
+</span>
+<span class="hidden font-label-sm text-label-sm text-error flex items-center gap-1 mt-0.5" id="email-invalid-error">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+<span>Please enter a valid email address.</span>
+</span>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Supply Categories -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm flex flex-col gap-4">
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-md bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">category</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-slate-900">Supply Categories</h2>
+</div>
+</div>
+<span class="font-label-sm text-label-sm text-slate-400 font-mono">STEP 03/04</span>
+</div>
+<p class="font-body-sm text-body-sm text-slate-500">
+          Select at least one category supplied by this vendor.
+        </p>
+<!-- 6 Interactive Category Toggle Chips -->
+<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 mt-1">
+<!-- Meat -->
+<label class="category-chip cursor-pointer select-none">
+<input class="sr-only peer" name="categories" type="checkbox" value="Meat"/>
+<div class="flex flex-col items-center justify-center gap-1.5 p-3 rounded-lg bg-surface text-slate-700 shadow-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:shadow transition-all group">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">kebab_dining</span>
+<span class="font-label-md text-label-md">Meat</span>
+</div>
+</label>
+<!-- Vegetables -->
+<label class="category-chip cursor-pointer select-none">
+<input class="sr-only peer" name="categories" type="checkbox" value="Vegetables"/>
+<div class="flex flex-col items-center justify-center gap-1.5 p-3 rounded-lg bg-surface text-slate-700 shadow-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:shadow transition-all group">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">nutrition</span>
+<span class="font-label-md text-label-md">Vegetables</span>
+</div>
+</label>
+<!-- Dairy -->
+<label class="category-chip cursor-pointer select-none">
+<input class="sr-only peer" name="categories" type="checkbox" value="Dairy"/>
+<div class="flex flex-col items-center justify-center gap-1.5 p-3 rounded-lg bg-surface text-slate-700 shadow-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:shadow transition-all group">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">water_drop</span>
+<span class="font-label-md text-label-md">Dairy</span>
+</div>
+</label>
+<!-- Pantry -->
+<label class="category-chip cursor-pointer select-none">
+<input class="sr-only peer" name="categories" type="checkbox" value="Pantry"/>
+<div class="flex flex-col items-center justify-center gap-1.5 p-3 rounded-lg bg-surface text-slate-700 shadow-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:shadow transition-all group">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">inventory</span>
+<span class="font-label-md text-label-md">Pantry</span>
+</div>
+</label>
+<!-- Bakery -->
+<label class="category-chip cursor-pointer select-none">
+<input class="sr-only peer" name="categories" type="checkbox" value="Bakery"/>
+<div class="flex flex-col items-center justify-center gap-1.5 p-3 rounded-lg bg-surface text-slate-700 shadow-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:shadow transition-all group">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">bakery_dining</span>
+<span class="font-label-md text-label-md">Bakery</span>
+</div>
+</label>
+<!-- Oil -->
+<label class="category-chip cursor-pointer select-none">
+<input class="sr-only peer" name="categories" type="checkbox" value="Oil"/>
+<div class="flex flex-col items-center justify-center gap-1.5 p-3 rounded-lg bg-surface text-slate-700 shadow-sm peer-checked:bg-primary-container peer-checked:text-on-primary peer-checked:shadow transition-all group">
+<span class="material-symbols-outlined text-[22px] group-hover:scale-110 transition-transform">oil_barrel</span>
+<span class="font-label-md text-label-md">Oil</span>
+</div>
+</label>
+</div>
+<p class="hidden font-label-sm text-label-sm text-error flex items-center gap-1 mt-1" id="category-error">
+<span class="material-symbols-outlined text-[14px]">error</span>
+<span>Select at least one supply category.</span>
+</p>
+</section>
+<!-- SECTION 4: Notes & Summary Preview -->
+<section class="bg-surface-container-lowest rounded-xl p-6 shadow-sm flex flex-col gap-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-md bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-slate-900">Notes &amp; Summary</h2>
+</div>
+<span class="font-label-sm text-label-sm text-slate-400 font-mono">STEP 04/04</span>
+</div>
+<!-- Optional Notes Area -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-700" for="supplier-notes">Notes <span class="text-slate-400 font-normal">(Optional)</span></label>
+<textarea class="w-full p-3 rounded-lg bg-surface text-slate-900 font-body-md text-body-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" id="supplier-notes" placeholder="e.g. Primary contact for weekly ingredient orders" rows="3"></textarea>
+</div>
+<!-- Supplier Summary Preview Card (Compact Read-Only) -->
+<div class="rounded-lg bg-surface p-4 flex flex-col gap-3">
+<div class="flex items-center justify-between pb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-primary">preview</span>
+<span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider text-slate-600">Supplier Summary Preview</span>
+</div>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-teal-100 text-teal-800 font-semibold" id="preview-status-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-teal-600"></span>
+<span>Active</span>
+</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 font-body-sm text-body-sm">
+<div class="flex flex-col">
+<span class="text-slate-400 font-label-sm text-label-sm uppercase">Supplier</span>
+<span class="font-semibold text-slate-900 truncate" id="preview-name">—</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-400 font-label-sm text-label-sm uppercase">Contact</span>
+<span class="font-medium text-slate-800 truncate" id="preview-contact">—</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-400 font-label-sm text-label-sm uppercase">Phone</span>
+<span class="font-mono text-slate-800 truncate" id="preview-phone">—</span>
+</div>
+<div class="flex flex-col">
+<span class="text-slate-400 font-label-sm text-label-sm uppercase">Email</span>
+<span class="font-medium text-slate-800 truncate" id="preview-email">—</span>
+</div>
+</div>
+<div class="flex flex-col pt-1">
+<span class="text-slate-400 font-label-sm text-label-sm uppercase">Categories</span>
+<div class="font-medium text-slate-800 mt-0.5 flex flex-wrap gap-1" id="preview-categories">
+<span class="text-slate-400">—</span>
+</div>
+</div>
+</div>
+<!-- Action Row -->
+<div class="flex items-center justify-end gap-3 pt-2">
+<a class="px-4 py-2 rounded-lg bg-surface text-slate-700 font-label-md text-label-md shadow-sm hover:bg-slate-100 transition-colors" href="#suppliers">
+            Cancel
+          </a>
+<button class="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow transition-all duration-150 disabled:opacity-40 disabled:cursor-not-allowed hover:enabled:bg-primary-container active:scale-[0.99]" disabled="" id="create-supplier-btn" type="submit">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+<span id="create-btn-label">Create Supplier</span>
+</button>
+</div>
+</section>
+</form>
+</div>
+</div>
+<script>
+  const supplierSetup = {
+    existingSuppliers: [
+      { name: "Fresh Foods Supplier", email: "orders@freshfoods.example" },
+      { name: "Dairy House", email: "sales@dairyhouse.example" },
+      { name: "City Grocery Wholesale", email: "orders@citygrocery.example" },
+      { name: "Bakers Supply Co.", email: "orders@bakerssupply.example" },
+      { name: "Oil & Pantry Traders", email: "sales@oilpantry.example" }
+    ]
+  };
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (sidebar && backdrop) {
+      sidebar.classList.toggle('-translate-x-full');
+      backdrop.classList.toggle('hidden');
+    }
+  }
+
+  function getSelectedCategories() {
+    const checkboxes = document.querySelectorAll('input[name="categories"]:checked');
+    return Array.from(checkboxes).map(cb => cb.value);
+  }
+
+  function validateEmail(email) {
+    if (!email) return false;
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+
+  function validateSupplier() {
+    const nameInput = document.getElementById("supplier-name");
+    const personInput = document.getElementById("contact-person");
+    const phoneInput = document.getElementById("supplier-phone");
+    const emailInput = document.getElementById("supplier-email");
+    const statusInput = document.getElementById("supplier-status");
+    
+    const nameVal = (nameInput ? nameInput.value : "").trim();
+    const personVal = (personInput ? personInput.value : "").trim();
+    const phoneVal = (phoneInput ? phoneInput.value : "").trim();
+    const emailVal = (emailInput ? emailInput.value : "").trim().toLowerCase();
+    const statusVal = statusInput ? statusInput.value : "Active";
+    const selectedCats = getSelectedCategories();
+
+    // Check Duplicate Name
+    const isDuplicateName = supplierSetup.existingSuppliers.some(
+      s => s.name.toLowerCase() === nameVal.toLowerCase()
+    );
+    const nameErrorEl = document.getElementById("name-error");
+    if (nameErrorEl) {
+      if (nameVal && isDuplicateName) {
+        nameErrorEl.classList.remove("hidden");
+      } else {
+        nameErrorEl.classList.add("hidden");
+      }
+    }
+
+    // Check Duplicate Email & Validity
+    const isDuplicateEmail = supplierSetup.existingSuppliers.some(
+      s => s.email.toLowerCase() === emailVal
+    );
+    const isValidEmailFormat = validateEmail(emailVal);
+    const emailDupErrorEl = document.getElementById("email-duplicate-error");
+    const emailInvErrorEl = document.getElementById("email-invalid-error");
+
+    if (emailDupErrorEl) {
+      if (emailVal && isDuplicateEmail) {
+        emailDupErrorEl.classList.remove("hidden");
+      } else {
+        emailDupErrorEl.classList.add("hidden");
+      }
+    }
+
+    if (emailInvErrorEl) {
+      if (emailVal && !isValidEmailFormat && !isDuplicateEmail) {
+        emailInvErrorEl.classList.remove("hidden");
+      } else {
+        emailInvErrorEl.classList.add("hidden");
+      }
+    }
+
+    // Category requirement notice
+    const categoryErrorEl = document.getElementById("category-error");
+    if (categoryErrorEl) {
+      if (selectedCats.length === 0) {
+        categoryErrorEl.classList.remove("hidden");
+      } else {
+        categoryErrorEl.classList.add("hidden");
+      }
+    }
+
+    // Overall Validity
+    const isValid = Boolean(
+      nameVal &&
+      !isDuplicateName &&
+      personVal &&
+      phoneVal &&
+      emailVal &&
+      isValidEmailFormat &&
+      !isDuplicateEmail &&
+      statusVal &&
+      selectedCats.length > 0
+    );
+
+    const submitBtn = document.getElementById("create-supplier-btn");
+    if (submitBtn) {
+      submitBtn.disabled = !isValid;
+    }
+
+    return isValid;
+  }
+
+  function renderSupplierSummary() {
+    const nameInput = document.getElementById("supplier-name");
+    const personInput = document.getElementById("contact-person");
+    const phoneInput = document.getElementById("supplier-phone");
+    const emailInput = document.getElementById("supplier-email");
+    const statusInput = document.getElementById("supplier-status");
+
+    const pName = document.getElementById("preview-name");
+    const pContact = document.getElementById("preview-contact");
+    const pPhone = document.getElementById("preview-phone");
+    const pEmail = document.getElementById("preview-email");
+    const pStatusBadge = document.getElementById("preview-status-badge");
+    const pCats = document.getElementById("preview-categories");
+
+    const nameVal = nameInput ? nameInput.value.trim() : "";
+    const personVal = personInput ? personInput.value.trim() : "";
+    const phoneVal = phoneInput ? phoneInput.value.trim() : "";
+    const emailVal = emailInput ? emailInput.value.trim() : "";
+    const statusVal = statusInput ? statusInput.value : "Active";
+    const selectedCats = getSelectedCategories();
+
+    if (pName) pName.textContent = nameVal || "—";
+    if (pContact) pContact.textContent = personVal || "—";
+    if (pPhone) pPhone.textContent = phoneVal || "—";
+    if (pEmail) pEmail.textContent = emailVal || "—";
+
+    if (pStatusBadge) {
+      if (statusVal === "Active") {
+        pStatusBadge.className = "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-teal-100 text-teal-800 font-semibold";
+        pStatusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-teal-600"></span><span>Active</span>`;
+      } else {
+        pStatusBadge.className = "inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-label-sm font-label-sm bg-slate-200 text-slate-700 font-semibold";
+        pStatusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span><span>Inactive</span>`;
+      }
+    }
+
+    if (pCats) {
+      if (selectedCats.length === 0) {
+        pCats.innerHTML = '<span class="text-slate-400">—</span>';
+      } else {
+        pCats.innerHTML = selectedCats.map(cat => 
+          `<span class="inline-flex items-center px-2 py-0.5 rounded-md text-label-sm font-label-sm bg-surface-container text-slate-800 font-medium">${cat}</span>`
+        ).join(" ");
+      }
+    }
+  }
+
+  function handleSupplierInput() {
+    validateSupplier();
+    renderSupplierSummary();
+  }
+
+  function showToast(title, message) {
+    const container = document.getElementById("toast-container");
+    if (!container) return;
+
+    const toast = document.createElement("div");
+    toast.className = "pointer-events-auto flex items-start gap-3 p-4 rounded-xl bg-surface-container-lowest text-slate-900 shadow-xl transition-all duration-300 transform translate-y-2 opacity-0 max-w-sm";
+    toast.innerHTML = `
+      <div class="w-6 h-6 rounded-full bg-teal-100 text-teal-800 flex items-center justify-center shrink-0 mt-0.5">
+        <span class="material-symbols-outlined text-[16px]">check_circle</span>
+      </div>
+      <div class="flex flex-col gap-0.5 flex-1 min-w-0">
+        <span class="font-headline-md text-body-md font-semibold text-slate-900">${title}</span>
+        <span class="font-body-sm text-body-sm text-slate-500 break-words">${message}</span>
+      </div>
+    `;
+
+    container.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      toast.classList.remove("translate-y-2", "opacity-0");
+    });
+
+    setTimeout(() => {
+      toast.classList.add("opacity-0", "-translate-y-2");
+      setTimeout(() => {
+        if (toast.parentNode) toast.parentNode.removeChild(toast);
+      }, 300);
+    }, 3200);
+  }
+
+  function submitSupplier() {
+    if (!validateSupplier()) return;
+
+    const nameInput = document.getElementById("supplier-name");
+    const statusInput = document.getElementById("supplier-status");
+    const submitBtn = document.getElementById("create-supplier-btn");
+    const btnLabel = document.getElementById("create-btn-label");
+    const supplierName = nameInput ? nameInput.value.trim() : "New Supplier";
+    const supplierStatus = statusInput ? statusInput.value.toLowerCase() : "active";
+
+    if (submitBtn) submitBtn.disabled = true;
+    if (btnLabel) btnLabel.textContent = "Creating Supplier...";
+
+    setTimeout(() => {
+      showToast(
+        "Supplier created successfully",
+        `${supplierName} was added as an ${supplierStatus} supplier.`
+      );
+
+      setTimeout(() => {
+        window.location.hash = "#suppliers";
+      }, 1200);
+    }, 600);
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Wire Realtime Verification Listeners
+    const inputs = ["supplier-name", "supplier-status", "contact-person", "supplier-phone", "supplier-email", "supplier-notes"];
+    inputs.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener("input", handleSupplierInput);
+        el.addEventListener("change", handleSupplierInput);
+      }
+    });
+
+    const categoryInputs = document.querySelectorAll('input[name="categories"]');
+    categoryInputs.forEach(cb => {
+      cb.addEventListener("change", handleSupplierInput);
+    });
+
+    // Initial State Check
+    handleSupplierInput();
+  });
+</script></main>
+</div>
+<script src="/integration-bridge.js"></script>
+</body></html>

@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-secondary": "#ffffff", "secondary-fixed-dim": "#bcc7de", "surface": "#faf8ff", "surface-bright": "#faf8ff", "inverse-surface": "#283044", "inverse-primary": "#80d5cb", "on-tertiary-fixed-variant": "#00513a", "tertiary-fixed-dim": "#7bd8b1", "surface-container-low": "#f2f3ff", "on-background": "#131b2e", "primary-container": "#0f766e", "inverse-on-surface": "#eef0ff", "surface-container-highest": "#dae2fd", "surface-container-lowest": "#ffffff", "primary": "#005c55", "secondary-container": "#d5e0f8", "on-error-container": "#93000a", "on-tertiary": "#ffffff", "secondary": "#545f73", "primary-fixed": "#9cf2e8", "on-primary": "#ffffff", "on-secondary-fixed-variant": "#3c475a", "background": "#faf8ff", "on-secondary-container": "#586377", "on-primary-fixed-variant": "#00504a", "on-primary-fixed": "#00201d", "on-error": "#ffffff", "on-tertiary-container": "#9ffdd3", "outline-variant": "#bdc9c6", "surface-tint": "#006a63", "tertiary": "#005d42", "surface-dim": "#d2d9f4", "error": "#ba1a1a", "error-container": "#ffdad6", "secondary-fixed": "#d8e3fb", "primary-fixed-dim": "#80d5cb", "on-primary-container": "#a3faef", "on-secondary-fixed": "#111c2d", "on-surface": "#131b2e", "surface-container-high": "#e2e7ff", "surface-container": "#eaedff", "outline": "#6e7977", "tertiary-fixed": "#97f5cc", "tertiary-container": "#047857", "on-tertiary-fixed": "#002115", "surface-variant": "#dae2fd", "on-surface-variant": "#3e4947" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "margin": "1.5rem", "margin-mobile": "1rem", "gutter-lg": "1.5rem", "space-xl": "2rem", "space-lg": "1.25rem", "margin-desktop": "2rem", "space-xs": "0.25rem", "space-sm": "0.5rem", "space-md": "0.75rem", "gutter": "1rem" }, "fontFamily": { "body-lg": ["Hanken Grotesk"], "headline-lg-mobile": ["Hanken Grotesk"], "label-sm": ["Geist"], "body-sm": ["Hanken Grotesk"], "display-lg": ["Hanken Grotesk"], "label-md": ["Geist"], "body-md": ["Hanken Grotesk"], "headline-lg": ["Hanken Grotesk"], "headline-md": ["Hanken Grotesk"], "headline-xl": ["Hanken Grotesk"], "numeric-table": ["Geist"], "label-lg": ["Geist"] }, "fontSize": { "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg-mobile": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }], "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "numeric-table": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><!-- Mobile Backdrop --><div class="fixed inset-0 bg-neutral-900/50 z-30 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div><!-- Sidebar --><aside class="fixed left-0 top-0 h-screen w-64 -translate-x-full lg:translate-x-0 transition-transform z-40 bg-surface-container-low border-r border-outline-variant/30 flex flex-col justify-between overflow-y-auto" id="app-sidebar">
+<div class="flex flex-col">
+<!-- App Header / Logo -->
+<div class="h-16 px-space-lg flex items-center gap-space-sm bg-surface-container-low border-b border-surface-container">
+<div class="h-9 w-9 rounded-lg bg-primary flex items-center justify-center text-on-primary shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">store</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-body-md font-bold tracking-tight text-on-surface truncate">Inventory &amp; Operations</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant truncate">Restaurant Portal</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="px-space-md py-space-sm flex flex-col gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Operations</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#dashboard">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#inventory">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+<span class="">Inventory</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#stock-counts">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+<span class="">Stock Counts</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#wastage">
+<span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+<span class="">Wastage</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#transfers">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">swap_horiz</span>
+<span class="">Transfers</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Purchasing</span>
+<a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm bg-primary text-on-primary font-semibold transition-colors" href="#purchases">
+<span class="material-symbols-outlined text-[18px] text-on-primary">shopping_bag</span>
+<span class="">Purchases</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#suppliers">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span class="">Suppliers</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Kitchen</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#recipes">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="">Recipes</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#production">
+<span class="material-symbols-outlined text-[18px]">soup_kitchen</span>
+<span class="">Production</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Management</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#reports">
+<span class="material-symbols-outlined text-[18px]">query_stats</span>
+<span class="">Reports</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#staff">
+<span class="material-symbols-outlined text-[18px]">group</span>
+<span class="">Staff</span>
+</a>
+</div>
+<div class="flex flex-col gap-space-xs">
+<span class="px-space-md py-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">System</span>
+<a class="flex items-center gap-space-sm px-space-md py-space-xs rounded-lg font-body-sm text-body-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#settings">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="">Settings</span>
+</a>
+</div>
+</nav>
+</div>
+<!-- Bottom Sidebar Branch Switcher & GM User Pill -->
+<div class="p-space-md flex flex-col gap-space-xs border-t border-surface-container bg-surface-container-low">
+<!-- Branch Switcher Pill -->
+<div class="flex items-center justify-between px-space-md py-space-xs rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors cursor-pointer">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[18px]">storefront</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Main Branch</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">unfold_more</span>
+</div>
+<!-- User Profile Pill -->
+<div class="flex items-center justify-between px-space-sm py-space-xs rounded-lg hover:bg-surface-container transition-colors cursor-pointer">
+<div class="flex items-center gap-space-sm">
+<div class="h-8 w-8 rounded-full bg-primary text-on-primary font-bold text-label-sm flex items-center justify-center shrink-0">
+          GM
+        </div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-semibold text-on-surface leading-tight truncate">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight truncate">Operations Lead</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">more_vert</span>
+</div>
+</div>
+</aside><div class="lg:pl-64 w-full min-h-screen flex flex-col pt-16"><header class="fixed top-0 right-0 left-0 lg:left-64 h-16 bg-surface/95 backdrop-blur-md border-b border-outline-variant/30 z-20 flex items-center justify-between px-4 lg:px-8">
+<div class="flex items-center gap-space-md lg:gap-space-lg">
+<button aria-label="Toggle Navigation" class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container mr-2" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+<div class="flex items-center gap-space-xs bg-surface-container px-space-md py-space-xs rounded-lg cursor-pointer hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-primary text-[18px]">storefront</span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Main Branch</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">expand_more</span>
+</div>
+<div class="hidden sm:flex items-center gap-space-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm">Updated 2 min ago</span>
+</div>
+</div>
+<div class="flex items-center gap-space-lg">
+<div class="relative hidden sm:flex items-center">
+<span class="material-symbols-outlined absolute left-space-md text-on-surface-variant text-[18px]">search</span>
+<input class="w-80 h-9 pl-9 pr-14 bg-surface-container-lowest rounded-lg font-body-sm text-body-sm text-on-surface placeholder:text-on-surface-variant focus:outline-none shadow-[0_1px_2px_0_rgba(15,23,42,0.04)]" placeholder="Search ingredients, purchases, suppliers (⌘K)" type="text"/>
+<div class="absolute right-space-sm flex items-center gap-space-xs pointer-events-none">
+<kbd class="bg-surface-container px-space-xs rounded font-label-sm text-label-sm text-on-surface-variant">⌘K</kbd>
+</div>
+</div>
+<div class="flex items-center gap-space-sm text-on-surface-variant">
+<button class="relative p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1 right-1 h-2 w-2 rounded-full bg-error"></span>
+</button>
+<button class="p-space-xs rounded-lg hover:bg-surface-container hover:text-on-surface transition-colors flex items-center justify-center" type="button">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+</div>
+<div class="flex items-center gap-space-sm bg-surface-container-lowest px-space-sm py-space-xs rounded-full shadow-[0_1px_2px_0_rgba(15,23,42,0.04)]">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold text-label-sm flex items-center justify-center shrink-0">
+        GM
+      </div>
+<div class="hidden sm:flex flex-col pr-space-xs">
+<span class="font-label-md text-label-md text-on-surface font-semibold leading-tight">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Operations Lead</span>
+</div>
+</div>
+</div>
+</header><main class="relative bg-surface min-h-screen px-4 lg:px-margin-desktop py-space-lg"><div class="flex flex-col w-full">
+<!-- Toast Notification Container -->
+<div class="fixed top-20 right-6 z-50 flex flex-col gap-space-sm pointer-events-none transition-all duration-300" id="toast-container"></div>
+<!-- Breadcrumbs & Header Context -->
+<div class="max-w-5xl mx-auto w-full py-4 flex flex-col gap-space-xs">
+<nav class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span class="hover:text-on-surface cursor-pointer">Purchasing</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#purchases">Purchases</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="font-semibold text-on-surface">New Purchase</span>
+</nav>
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-sm pt-space-xs">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">New Purchase</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Create a supplier purchase and add ingredient line items.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+          Draft Mode
+        </span>
+</div>
+</div>
+</div>
+<!-- Main Content Layout -->
+<div class="max-w-5xl mx-auto w-full pb-16 space-y-8">
+<!-- SECTION 1: PURCHASE DETAILS -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg lg:p-space-xl flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">receipt_long</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">Purchase Details</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Supplier Select -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md font-semibold text-on-surface flex items-center justify-between" for="supplier-select">
+<span>Supplier <span class="text-error">*</span></span>
+</label>
+<div class="relative">
+<select class="w-full h-9 pl-3 pr-9 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="supplier-select" onchange="validatePurchase()">
+<option disabled="" selected="" value="">Select supplier</option>
+<!-- Injected by script -->
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-2.5 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+</div>
+<p class="hidden font-label-sm text-label-sm text-error" id="supplier-error">Please select a designated supplier.</p>
+</div>
+<!-- Purchase Date -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md font-semibold text-on-surface" for="purchase-date">
+            Purchase Date <span class="text-error">*</span>
+</label>
+<input class="w-full h-9 px-3 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="purchase-date" onchange="validatePurchase()" type="date"/>
+</div>
+<!-- Expected Delivery -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md font-semibold text-on-surface" for="expected-delivery">
+            Expected Delivery <span class="font-normal text-on-surface-variant">(Optional)</span>
+</label>
+<input class="w-full h-9 px-3 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" id="expected-delivery" type="date"/>
+</div>
+<!-- Created By -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Created By</span>
+<div class="h-9 px-3 bg-surface-container-low rounded-lg flex items-center justify-between">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Operations Lead</span>
+</div>
+</div>
+<!-- Order Status -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Status</span>
+<div class="h-9 px-3 bg-surface-container-low rounded-lg flex items-center">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              Draft
+            </span>
+</div>
+</div>
+<!-- Fulfillment Meta Note -->
+<div class="flex flex-col gap-space-xs justify-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Creating this purchase does not change inventory. Stock changes only when items are received.</span>
+</div>
+</div>
+</section>
+<!-- SECTION 2: PURCHASE ITEMS -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg lg:p-space-xl flex flex-col gap-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">inventory_2</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">Purchase Items</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Specify inventory items, quantities, and negotiated unit costs.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface-variant bg-surface-container px-2.5 py-1 rounded" id="active-item-counter">
+            1 Row Configured
+          </span>
+</div>
+</div>
+<!-- Line Items Table / Container -->
+<div class="w-full flex flex-col">
+<div class="hidden md:grid grid-cols-12 gap-4 pb-space-xs px-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">
+<div class="col-span-5">Ingredient *</div>
+<div class="col-span-2">Quantity *</div>
+<div class="col-span-1 text-center">Unit</div>
+<div class="col-span-2">Unit Cost (PKR) *</div>
+<div class="col-span-1 text-right">Total</div>
+<div class="col-span-1 text-right">Action</div>
+</div>
+<div class="flex flex-col gap-space-xs" id="line-items-container"></div>
+</div>
+<!-- Table Foot Actions -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md pt-space-xs">
+<button class="inline-flex items-center gap-space-xs px-3.5 py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold transition-colors shadow-sm" onclick="addPurchaseLine()" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+          Add Item
+        </button>
+<span class="font-label-sm text-label-sm text-on-surface-variant">
+          Empty trailing lines are omitted upon submission.
+        </span>
+</div>
+</section>
+<!-- SECTION 3: PURCHASE SUMMARY -->
+<section class="bg-surface-container-low rounded-xl shadow-sm p-space-lg lg:p-space-xl flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm pb-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">analytics</span>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold tracking-tight">Purchase Summary</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-md bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<!-- Supplier Review -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Supplier</span>
+<span class="font-headline-md text-body-md font-semibold text-on-surface truncate" id="summary-supplier">—</span>
+</div>
+<!-- Date Review -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Purchase Date</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface" id="summary-date">—</span>
+</div>
+<!-- Valid Items Count -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Valid Items</span>
+<span class="font-headline-md text-body-md font-semibold text-on-surface" id="summary-items-count">0</span>
+</div>
+<!-- Created By -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Created By</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface truncate">General Manager</span>
+</div>
+<!-- Status -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</span>
+<div>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+              Draft
+            </span>
+</div>
+</div>
+<!-- Purchase Total -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Purchase Total</span>
+<span class="font-headline-md text-headline-md text-primary font-bold tracking-tight" id="summary-total-amount">PKR 0</span>
+</div>
+</div>
+</section>
+<!-- SECTION 4: NOTES & ACTIONS -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg lg:p-space-xl flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs"><label class="font-label-md text-label-md font-semibold text-on-surface flex items-center justify-between" for="purchase-notes">
+<span>Notes</span>
+<span class="font-normal text-on-surface-variant text-label-sm">Optional</span>
+</label>
+<textarea class="w-full p-3 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-lg focus:outline-none focus:ring-2 focus:ring-primary shadow-sm resize-none" id="purchase-notes" placeholder="e.g. Weekly kitchen stock order" rows="3"></textarea></div>
+<div class="flex flex-col-reverse sm:flex-row items-center justify-between gap-space-md pt-space-xs">
+<a class="w-full sm:w-auto px-5 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md font-semibold transition-colors text-center shadow-sm" href="#purchases">
+          Cancel
+        </a>
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<button class="w-full sm:w-auto px-6 py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold hover:bg-primary-container disabled:opacity-40 disabled:cursor-not-allowed transition-all shadow-sm flex items-center justify-center gap-space-xs" disabled="" id="submit-purchase-btn" onclick="submitPurchase()" type="button">
+<span class="material-symbols-outlined text-[18px]">post_add</span>
+            Create Purchase
+          </button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<script>
+  // SINGLE AUTHORITATIVE DATA STORE
+  const purchaseSetup = {
+    suppliers: [
+      { id: "fresh-foods", name: "Fresh Foods Supplier" },
+      { id: "dairy-house", name: "Dairy House" },
+      { id: "city-grocery", name: "City Grocery Wholesale" },
+      { id: "bakers-supply", name: "Bakers Supply Co." },
+      { id: "oil-pantry", name: "Oil & Pantry Traders" }
+    ],
+    ingredients: [
+      { id: "chicken-breast", name: "Chicken Breast", sku: "SKU-9021", unit: "kg", defaultUnitCost: 920 },
+      { id: "mozzarella-cheese", name: "Mozzarella Cheese", sku: "SKU-4012", unit: "kg", defaultUnitCost: 1250 },
+      { id: "cooking-oil", name: "Cooking Oil", sku: "SKU-1084", unit: "L", defaultUnitCost: 410 },
+      { id: "potatoes", name: "Potatoes", sku: "SKU-3320", unit: "kg", defaultUnitCost: 95 },
+      { id: "burger-buns", name: "Burger Buns", sku: "SKU-6102", unit: "pcs", defaultUnitCost: 35 },
+      { id: "mayonnaise", name: "Mayonnaise", sku: "SKU-7201", unit: "L", defaultUnitCost: 520 }
+    ]
+  };
+
+  // State Management
+  let purchaseLines = [
+    { id: 1, ingredientId: "", quantity: "", unit: "—", unitCost: "", lineTotal: 0 }
+  ];
+  let nextLineId = 2;
+
+  // Sidebar toggle compatibility helper
+  function toggleSidebar() {
+    const sidebar = document.getElementById("app-sidebar");
+    const backdrop = document.getElementById("sidebar-backdrop");
+    if (!sidebar) return;
+    const isClosed = sidebar.classList.contains("-translate-x-full");
+    if (isClosed) {
+      sidebar.classList.remove("-translate-x-full");
+      if (backdrop) backdrop.classList.remove("hidden");
+    } else {
+      sidebar.classList.add("-translate-x-full");
+      if (backdrop) backdrop.classList.add("hidden");
+    }
+  }
+
+  // Format currency in PKR
+  function formatPKR(num) {
+    if (isNaN(num) || num === null || num === undefined) return "PKR 0";
+    return "PKR " + Math.round(num).toLocaleString("en-US");
+  }
+
+  // Add line item
+  function addPurchaseLine() {
+    purchaseLines.push({
+      id: nextLineId++,
+      ingredientId: "",
+      quantity: "",
+      unit: "—",
+      unitCost: "",
+      lineTotal: 0
+    });
+    renderPurchaseLines();
+    validatePurchase();
+  }
+
+  // Remove line item
+  function removePurchaseLine(id) {
+    if (purchaseLines.length <= 1) return;
+    purchaseLines = purchaseLines.filter(line => line.id !== id);
+    renderPurchaseLines();
+    validatePurchase();
+  }
+
+  // Handle ingredient selection
+  function handleIngredientChange(lineId, ingredientId) {
+    const line = purchaseLines.find(l => l.id === lineId);
+    if (!line) return;
+
+    const match = purchaseSetup.ingredients.find(i => i.id === ingredientId);
+    if (match) {
+      line.ingredientId = match.id;
+      line.unit = match.unit;
+      line.unitCost = match.defaultUnitCost;
+    } else {
+      line.ingredientId = "";
+      line.unit = "—";
+      line.unitCost = "";
+    }
+    recalculateLine(line);
+    renderPurchaseLines();
+    validatePurchase();
+  }
+
+  // Handle quantity change
+  function handleQuantityChange(lineId, inputElem) {
+    const line = purchaseLines.find(l => l.id === lineId);
+    if (!line) return;
+    const rawVal = inputElem.value;
+    line.quantity = rawVal === "" ? "" : parseFloat(rawVal);
+    recalculateLine(line);
+    updateRowCalculationsDOM(lineId);
+    validatePurchase();
+  }
+
+  // Handle unit cost change
+  function handleCostChange(lineId, inputElem) {
+    const line = purchaseLines.find(l => l.id === lineId);
+    if (!line) return;
+    const rawVal = inputElem.value;
+    line.unitCost = rawVal === "" ? "" : parseFloat(rawVal);
+    recalculateLine(line);
+    updateRowCalculationsDOM(lineId);
+    validatePurchase();
+  }
+
+  function recalculateLine(line) {
+    const qty = parseFloat(line.quantity);
+    const cost = parseFloat(line.unitCost);
+    if (!isNaN(qty) && qty > 0 && !isNaN(cost) && cost >= 0) {
+      line.lineTotal = qty * cost;
+    } else {
+      line.lineTotal = 0;
+    }
+  }
+
+  function updateRowCalculationsDOM(lineId) {
+    const line = purchaseLines.find(l => l.id === lineId);
+    if (!line) return;
+    const totalElem = document.getElementById("line-total-" + lineId);
+    if (totalElem) {
+      totalElem.textContent = formatPKR(line.lineTotal);
+    }
+    renderPurchaseSummary();
+  }
+
+  // Render Line items
+  function renderPurchaseLines() {
+    const container = document.getElementById("line-items-container");
+    if (!container) return;
+
+    // Detect duplicate selections
+    const selectedCounts = {};
+    purchaseLines.forEach(l => {
+      if (l.ingredientId) {
+        selectedCounts[l.ingredientId] = (selectedCounts[l.ingredientId] || 0) + 1;
+      }
+    });
+
+    container.innerHTML = "";
+
+    purchaseLines.forEach((line) => {
+      const isDuplicate = line.ingredientId && selectedCounts[line.ingredientId] > 1;
+      const canDelete = purchaseLines.length > 1;
+
+      const rowWrapper = document.createElement("div");
+      rowWrapper.className = "flex flex-col bg-surface-container-low/60 hover:bg-surface-container-low transition-colors rounded-lg p-space-sm gap-2";
+      rowWrapper.id = "purchase-row-" + line.id;
+
+      let optionsHtml = '<option value="">Select ingredient</option>';
+      purchaseSetup.ingredients.forEach(ing => {
+        const isSel = ing.id === line.ingredientId ? "selected" : "";
+        optionsHtml += `<option value="${ing.id}" ${isSel}>${ing.name} — ${ing.sku}</option>`;
+      });
+
+      rowWrapper.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-center bg-surface-container-lowest p-space-sm rounded-lg border border-outline-variant/30">
+          <!-- Ingredient Select (Col 5) -->
+          <div class="col-span-1 md:col-span-5">
+            <span class="text-label-sm font-semibold text-on-surface-variant md:hidden mb-1 block">Ingredient *</span>
+            <div class="relative">
+              <select onchange="handleIngredientChange(${line.id}, this.value)" class="w-full h-9 pl-3 pr-8 bg-surface-container-lowest text-on-surface font-body-sm text-body-sm rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary shadow-sm ${isDuplicate ? 'ring-2 ring-error text-error' : ''}">
+                ${optionsHtml}
+              </select>
+              <span class="material-symbols-outlined absolute right-2.5 top-2.5 text-on-surface-variant text-[18px] pointer-events-none">expand_more</span>
+            </div>
+          </div>
+
+          <!-- Quantity (Col 2) -->
+          <div class="col-span-1 md:col-span-2">
+            <span class="text-label-sm font-semibold text-on-surface-variant md:hidden mb-1 block">Quantity</span>
+            <div class="relative">
+              <input type="number" min="0.01" step="any" placeholder="0.00" value="${line.quantity !== '' ? line.quantity : ''}" oninput="handleQuantityChange(${line.id}, this)" class="w-full h-9 px-3 bg-surface-container-lowest text-on-surface font-numeric-table text-numeric-table rounded-lg focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" />
+            </div>
+          </div>
+
+          <!-- Unit (Col 1) -->
+          <div class="col-span-1 md:col-span-1 flex items-center justify-between md:justify-center">
+            <span class="text-label-sm font-semibold text-on-surface-variant md:hidden">Unit:</span>
+            <span class="font-body-sm text-body-sm text-on-surface-variant font-medium uppercase px-2 py-1 rounded bg-surface-container">${line.unit}</span>
+          </div>
+
+          <!-- Unit Cost (Col 2) -->
+          <div class="col-span-1 md:col-span-2">
+            <span class="text-label-sm font-semibold text-on-surface-variant md:hidden mb-1 block">Unit Cost (PKR)</span>
+            <div class="relative">
+              <input type="number" min="0" step="any" placeholder="0.00" value="${line.unitCost !== '' ? line.unitCost : ''}" oninput="handleCostChange(${line.id}, this)" class="w-full h-9 px-3 bg-surface-container-lowest text-on-surface font-numeric-table text-numeric-table rounded-lg focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" />
+            </div>
+          </div>
+
+          <!-- Line Total (Col 1) -->
+          <div class="col-span-1 md:col-span-1 flex items-center justify-between md:justify-end">
+            <span class="text-label-sm font-semibold text-on-surface-variant md:hidden">Total:</span>
+            <span id="line-total-${line.id}" class="font-numeric-table text-numeric-table font-semibold text-on-surface">${formatPKR(line.lineTotal)}</span>
+          </div>
+
+          <!-- Remove Action (Col 1) -->
+          <div class="col-span-1 md:col-span-1 flex items-center justify-end">
+            <button type="button" onclick="removePurchaseLine(${line.id})" ${!canDelete ? "disabled" : ""} class="p-1.5 rounded-lg text-on-surface-variant hover:text-error hover:bg-surface-container disabled:opacity-20 disabled:cursor-not-allowed transition-colors" title="${canDelete ? 'Remove item' : 'Must retain at least one item'}">
+              <span class="material-symbols-outlined text-[18px]">delete</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Inline error for duplicate selection -->
+        ${isDuplicate ? `
+          <div class="pt-0.5 px-1 flex items-center gap-1 text-error font-label-sm text-label-sm">
+            <span class="material-symbols-outlined text-[16px]">error</span>
+            <span>This ingredient is already included in the purchase.</span>
+          </div>
+        ` : ''}
+      `;
+
+      container.appendChild(rowWrapper);
+    });
+
+    const counter = document.getElementById("active-item-counter");
+    if (counter) {
+      counter.textContent = `${purchaseLines.length} ${purchaseLines.length === 1 ? 'Row' : 'Rows'} Configured`;
+    }
+  }
+
+  // Form Validation & Purchase Summary Update
+  function validatePurchase() {
+    const supplierElem = document.getElementById("supplier-select");
+    const dateElem = document.getElementById("purchase-date");
+    const submitBtn = document.getElementById("submit-purchase-btn");
+
+    const supplierVal = supplierElem ? supplierElem.value : "";
+    const dateVal = dateElem ? dateElem.value : "";
+
+    // Track duplicate ingredients
+    const selectedMap = {};
+    let hasDuplicate = false;
+    purchaseLines.forEach(l => {
+      if (l.ingredientId) {
+        selectedMap[l.ingredientId] = (selectedMap[l.ingredientId] || 0) + 1;
+        if (selectedMap[l.ingredientId] > 1) {
+          hasDuplicate = true;
+        }
+      }
+    });
+
+    let validRowsCount = 0;
+    let hasPartiallyInvalidRow = false;
+
+    purchaseLines.forEach(line => {
+      const isBlank = !line.ingredientId && (line.quantity === "" || line.quantity === null) && (line.unitCost === "" || line.unitCost === null);
+      if (isBlank) {
+        return;
+      }
+
+      const hasIngredient = Boolean(line.ingredientId);
+      const qtyNum = parseFloat(line.quantity);
+      const costNum = parseFloat(line.unitCost);
+      const isQtyValid = !isNaN(qtyNum) && qtyNum > 0;
+      const isCostValid = !isNaN(costNum) && costNum >= 0;
+
+      if (hasIngredient && isQtyValid && isCostValid) {
+        validRowsCount++;
+      } else {
+        hasPartiallyInvalidRow = true;
+      }
+    });
+
+    const isFormValid = (
+      Boolean(supplierVal) &&
+      Boolean(dateVal) &&
+      validRowsCount >= 1 &&
+      !hasDuplicate &&
+      !hasPartiallyInvalidRow
+    );
+
+    if (submitBtn) {
+      submitBtn.disabled = !isFormValid;
+    }
+
+    renderPurchaseSummary(supplierVal, dateVal, validRowsCount);
+    return isFormValid;
+  }
+
+  // Summary rendering
+  function renderPurchaseSummary(supplierVal, dateVal, validCount) {
+    if (supplierVal === undefined) {
+      const supplierElem = document.getElementById("supplier-select");
+      supplierVal = supplierElem ? supplierElem.value : "";
+    }
+    if (dateVal === undefined) {
+      const dateElem = document.getElementById("purchase-date");
+      dateVal = dateElem ? dateElem.value : "";
+    }
+
+    const supMatch = purchaseSetup.suppliers.find(s => s.id === supplierVal);
+    const supplierDisplay = supMatch ? supMatch.name : "—";
+
+    let dateDisplay = "—";
+    if (dateVal) {
+      const parsed = new Date(dateVal + "T00:00:00");
+      if (!isNaN(parsed.getTime())) {
+        dateDisplay = parsed.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+      }
+    }
+
+    let calculatedTotal = 0;
+    let computedValidCount = 0;
+    purchaseLines.forEach(line => {
+      const qtyNum = parseFloat(line.quantity);
+      const costNum = parseFloat(line.unitCost);
+      if (line.ingredientId && !isNaN(qtyNum) && qtyNum > 0 && !isNaN(costNum) && costNum >= 0) {
+        calculatedTotal += (qtyNum * costNum);
+        computedValidCount++;
+      }
+    });
+
+    const countDisplay = validCount !== undefined ? validCount : computedValidCount;
+
+    const summarySupplier = document.getElementById("summary-supplier");
+    const summaryDate = document.getElementById("summary-date");
+    const summaryItems = document.getElementById("summary-items-count");
+    const summaryTotal = document.getElementById("summary-total-amount");
+
+    if (summarySupplier) summarySupplier.textContent = supplierDisplay;
+    if (summaryDate) summaryDate.textContent = dateDisplay;
+    if (summaryItems) summaryItems.textContent = countDisplay;
+    if (summaryTotal) summaryTotal.textContent = formatPKR(calculatedTotal);
+  }
+
+  // Submission handler
+  function submitPurchase() {
+    if (!validatePurchase()) return;
+
+    const submitBtn = document.getElementById("submit-purchase-btn");
+    const supplierVal = document.getElementById("supplier-select").value;
+    const supMatch = purchaseSetup.suppliers.find(s => s.id === supplierVal);
+    const supplierName = supMatch ? supMatch.name : "Supplier";
+
+    let validCount = 0;
+    let grandTotal = 0;
+    purchaseLines.forEach(l => {
+      const q = parseFloat(l.quantity);
+      const c = parseFloat(l.unitCost);
+      if (l.ingredientId && !isNaN(q) && q > 0 && !isNaN(c) && c >= 0) {
+        validCount++;
+        grandTotal += (q * c);
+      }
+    });
+
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span>
+        Creating Purchase...
+      `;
+    }
+
+    setTimeout(() => {
+      showToast(
+        "Purchase created successfully",
+        `Purchase for ${supplierName} created with ${validCount} ${validCount === 1 ? 'item' : 'items'} totaling ${formatPKR(grandTotal)}.`
+      );
+
+      setTimeout(() => {
+        window.location.hash = "#purchases";
+      }, 1500);
+    }, 450);
+  }
+
+  // Toast Notification System
+  function showToast(title, body) {
+    const container = document.getElementById("toast-container");
+    if (!container) return;
+
+    const toastId = "toast-" + Date.now();
+    const toast = document.createElement("div");
+    toast.id = toastId;
+    toast.className = "pointer-events-auto flex items-start gap-space-sm bg-surface-container-lowest text-on-surface p-space-md rounded-xl shadow-xl border border-primary/20 max-w-md transform translate-y-2 opacity-0 transition-all duration-300";
+
+    toast.innerHTML = `
+      <div class="h-8 w-8 rounded-lg bg-primary-container text-on-primary-container flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined text-[20px]">check_circle</span>
+      </div>
+      <div class="flex flex-col min-w-0 flex-1">
+        <span class="font-headline-md text-body-md font-semibold text-on-surface">${title}</span>
+        <span class="font-body-sm text-body-sm text-on-surface-variant leading-snug">${body}</span>
+      </div>
+      <button type="button" onclick="dismissToast('${toastId}')" class="text-on-surface-variant hover:text-on-surface p-1 rounded-lg">
+        <span class="material-symbols-outlined text-[18px]">close</span>
+      </button>
+    `;
+
+    container.appendChild(toast);
+
+    requestAnimationFrame(() => {
+      toast.classList.remove("translate-y-2", "opacity-0");
+    });
+
+    setTimeout(() => {
+      dismissToast(toastId);
+    }, 5000);
+  }
+
+  function dismissToast(id) {
+    const toast = document.getElementById(id);
+    if (!toast) return;
+    toast.classList.add("translate-y-2", "opacity-0");
+    setTimeout(() => {
+      if (toast.parentNode) {
+        toast.parentNode.removeChild(toast);
+      }
+    }, 300);
+  }
+
+  // Initialize Screen
+  document.addEventListener("DOMContentLoaded", () => {
+    // Populate suppliers dropdown
+    const supplierSelect = document.getElementById("supplier-select");
+    if (supplierSelect) {
+      purchaseSetup.suppliers.forEach(s => {
+        const opt = document.createElement("option");
+        opt.value = s.id;
+        opt.textContent = s.name;
+        supplierSelect.appendChild(opt);
+      });
+    }
+
+    // Default Purchase Date to today (local YYYY-MM-DD)
+    const dateInput = document.getElementById("purchase-date");
+    if (dateInput) {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      dateInput.value = `${yyyy}-${mm}-${dd}`;
+    }
+
+    // Initial render of 1 empty row and empty summary
+    renderPurchaseLines();
+    validatePurchase();
+  });
+</script></main></div>
+<script src="/integration-bridge.js"></script>
+</body></html>

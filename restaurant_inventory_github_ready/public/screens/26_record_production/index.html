@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Restaurant Inventory &amp; Operations — Record Production (PB-1025)</title>
+<!-- Shared Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&amp;family=Geist:wght@300..700&amp;family=Geist+Mono:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<!-- Single Material Symbols Import -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-primary": "#ffffff",
+            "on-tertiary-container": "#9ffdd3",
+            "on-surface-variant": "#3f4948",
+            "surface-container": "#eaedff",
+            "on-primary-fixed": "#00201d",
+            "surface-container-low": "#f2f3ff",
+            "surface-variant": "#dae2fd",
+            "inverse-surface": "#283044",
+            "error": "#ba1a1a",
+            "tertiary-fixed": "#97f5cc",
+            "on-surface": "#131c26",
+            "secondary-fixed-dim": "#bcc7de",
+            "on-secondary-fixed": "#111c2d",
+            "primary": "#0f766e",
+            "primary-hover": "#0d655e",
+            "inverse-primary": "#80d5cb",
+            "on-tertiary": "#ffffff",
+            "on-background": "#131b2e",
+            "secondary": "#4d626c",
+            "on-primary-fixed-variant": "#00504a",
+            "surface-tint": "#006a63",
+            "on-error": "#ffffff",
+            "on-tertiary-fixed": "#002115",
+            "primary-container": "#a7f3d0",
+            "tertiary": "#5b5b7e",
+            "on-primary-container": "#00201c",
+            "secondary-container": "#d0e6f3",
+            "on-secondary-container": "#586377",
+            "on-tertiary-fixed-variant": "#00513a",
+            "surface": "#faf8ff",
+            "surface-container-high": "#e4e8f5",
+            "outline-variant": "#bec9c8",
+            "primary-fixed-dim": "#80d5cb",
+            "outline": "#6e7979",
+            "tertiary-fixed-dim": "#7bd8b1",
+            "on-secondary": "#ffffff",
+            "on-secondary-fixed-variant": "#3c475a",
+            "secondary-fixed": "#d8e3fb",
+            "surface-dim": "#d2d9f4",
+            "surface-bright": "#faf8ff",
+            "tertiary-container": "#e1e0ff",
+            "error-container": "#ffdad6",
+            "primary-fixed": "#9cf2e8",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-highest": "#dce2f0",
+            "background": "#faf8ff",
+            "inverse-on-surface": "#eef0ff",
+            "on-error-container": "#93000a",
+            "surface-border": "#e2e8f0"
+          },
+          borderRadius: {
+            DEFAULT: "0.125rem",
+            lg: "0.25rem",
+            xl: "0.5rem",
+            full: "0.75rem"
+          },
+          spacing: {
+            "space-xs": "4px",
+            "space-sm": "8px",
+            "space-md": "12px",
+            "space-lg": "16px",
+            "space-xl": "24px",
+            gutter: "16px",
+            "gutter-lg": "24px",
+            margin: "16px",
+            "margin-mobile": "16px",
+            "margin-desktop": "24px"
+          },
+          fontFamily: {
+            sans: ['"Hanken Grotesk"', 'sans-serif'],
+            mono: ['"Geist Mono"', '"Geist"', 'monospace'],
+            geist: ['"Geist"', 'sans-serif'],
+            hanken: ['"Hanken Grotesk"', 'sans-serif'],
+            "display-lg": ['"Hanken Grotesk"'],
+            "label-md": ['"Geist"'],
+            "label-sm": ['"Geist"'],
+            "body-lg": ['"Hanken Grotesk"'],
+            "body-sm": ['"Hanken Grotesk"'],
+            "headline-lg-mobile": ['"Hanken Grotesk"'],
+            "headline-md": ['"Hanken Grotesk"'],
+            "body-md": ['"Hanken Grotesk"'],
+            "label-lg": ['"Geist"'],
+            "headline-xl": ['"Hanken Grotesk"'],
+            "headline-lg": ['"Hanken Grotesk"'],
+            "numeric-table": ['"Geist"']
+          },
+          fontSize: {
+            "display-lg": ['36px', { lineHeight: '44px', letterSpacing: '-0.02em', fontWeight: '600' }],
+            "headline-xl": ['28px', { lineHeight: '36px', letterSpacing: '-0.02em', fontWeight: '700' }],
+            "headline-lg": ['24px', { lineHeight: '32px', letterSpacing: '-0.02em', fontWeight: '700' }],
+            "headline-md": ['20px', { lineHeight: '28px', letterSpacing: '-0.01em', fontWeight: '600' }],
+            "body-lg": ['16px', { lineHeight: '24px', letterSpacing: '0', fontWeight: '400' }],
+            "body-md": ['14px', { lineHeight: '20px', letterSpacing: '0', fontWeight: '400' }],
+            "body-sm": ['12px', { lineHeight: '16px', letterSpacing: '0', fontWeight: '400' }],
+            "label-lg": ['14px', { lineHeight: '20px', letterSpacing: '0.01em', fontWeight: '600' }],
+            "label-md": ['12px', { lineHeight: '16px', letterSpacing: '0.02em', fontWeight: '500' }],
+            "label-sm": ['11px', { lineHeight: '16px', letterSpacing: '0.03em', fontWeight: '500' }],
+            "numeric-table": ['13px', { lineHeight: '18px', letterSpacing: '-0.01em', fontVariantNumeric: 'tabular-nums' }],
+            "headline-lg-mobile": ['20px', { lineHeight: '26px', letterSpacing: '-0.01em', fontWeight: '600' }]
+          }
+        }
+      }
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .material-symbols-outlined.fill {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+    }
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+    }
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+  </style>
+</head>
+<body class="bg-surface text-slate-800 font-sans antialiased min-h-screen flex flex-col selection:bg-teal-100 selection:text-teal-900">
+<!-- Mobile Sidebar Backdrop -->
+<div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+<!-- Persistent Left Sidebar -->
+<aside class="fixed top-0 left-0 bottom-0 w-64 bg-surface border-r border-outline-variant/30 z-50 flex flex-col transition-transform duration-200 ease-in-out -translate-x-full lg:translate-x-0" id="app-sidebar">
+<!-- Brand Header -->
+<div class="h-16 flex items-center justify-between px-space-md border-b border-outline-variant/30 bg-surface">
+<a class="flex items-center gap-space-sm group" href="#dashboard">
+<div class="w-9 h-9 rounded-lg flex items-center justify-center overflow-hidden shrink-0">
+<img alt="Inventory &amp; Operations Logo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1XHM-kXi-oHCv8okW5kLk4rfR_5Tpl3rWi6tyUgsjBj5T39wjYbOa20CJzUn71-rbss8E4y_XxYklSOfYkE02xs0CXiuWJZ33bcMgSBdRKsYXwIaiVxjl7-vykCnLUHU3gPWkiRZ7o4akm4xEiiPqD6UBNkEi19x2Tq-H5kOyP4pdBk4pXSNt__KML7_seccrUtL_fOP4YX_3hDVtiPZC3YqyZnN4kE-TBTdd4Ix-Ec0qdMuFBUoLYUh-4"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-headline-md text-slate-900 tracking-tight leading-tight truncate font-bold text-sm">Inventory &amp; Operations</span>
+<span class="text-[10px] uppercase font-label-sm tracking-wider text-slate-500 font-semibold">Restaurant Portal</span>
+</div>
+</a>
+<button class="lg:hidden p-1.5 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100" onclick="toggleSidebar()" title="Close Sidebar">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Navigation Menu -->
+<nav class="flex-1 overflow-y-auto px-space-sm py-space-md space-y-5">
+<!-- Operations -->
+<div>
+<div class="px-space-sm mb-1.5">
+<span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-label-sm">Operations</span>
+</div>
+<ul class="space-y-0.5">
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#dashboard">
+<span class="material-symbols-outlined text-[19px]">dashboard</span>
+<span class="">Dashboard</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#inventory">
+<span class="material-symbols-outlined text-[19px]">inventory_2</span>
+<span class="">Inventory</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#stock-counts">
+<span class="material-symbols-outlined text-[19px]">fact_check</span>
+<span class="">Stock Counts</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#wastage">
+<span class="material-symbols-outlined text-[19px]">delete_sweep</span>
+<span class="">Wastage</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#transfers">
+<span class="material-symbols-outlined text-[19px]">swap_horiz</span>
+<span class="">Transfers</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Purchasing -->
+<div>
+<div class="px-space-sm mb-1.5">
+<span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-label-sm">Purchasing</span>
+</div>
+<ul class="space-y-0.5">
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#purchases">
+<span class="material-symbols-outlined text-[19px]">shopping_cart</span>
+<span class="">Purchases</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#suppliers">
+<span class="material-symbols-outlined text-[19px]">local_shipping</span>
+<span class="">Suppliers</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Kitchen -->
+<div>
+<div class="px-space-sm mb-1.5">
+<span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-label-sm">Kitchen</span>
+</div>
+<ul class="space-y-0.5">
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#recipes">
+<span class="material-symbols-outlined text-[19px]">menu_book</span>
+<span class="">Recipes</span>
+</a>
+</li>
+<li class="">
+<a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md bg-primary text-on-primary font-semibold shadow-sm transition-colors" href="#production">
+<span class="material-symbols-outlined text-[19px]">soup_kitchen</span>
+<span class="">Production</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- Management -->
+<div>
+<div class="px-space-sm mb-1.5">
+<span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-label-sm">Management</span>
+</div>
+<ul class="space-y-0.5">
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#reports">
+<span class="material-symbols-outlined text-[19px]">bar_chart</span>
+<span class="">Reports</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#staff">
+<span class="material-symbols-outlined text-[19px]">group</span>
+<span class="">Staff</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- System -->
+<div>
+<div class="px-space-sm mb-1.5">
+<span class="text-[11px] font-bold uppercase tracking-wider text-slate-400 font-label-sm">System</span>
+</div>
+<ul class="space-y-0.5">
+<li class="">
+<a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" href="#settings">
+<span class="material-symbols-outlined text-[19px]">settings</span>
+<span class="">Settings</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Branch Switcher & Profile in Sidebar Footer -->
+<div class="p-space-sm border-t border-outline-variant/30 bg-surface-container-low/50 space-y-2">
+<!-- Branch Selector Button -->
+<button class="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-surface border border-outline-variant/40 hover:bg-slate-50 transition-colors text-left group" type="button">
+<div class="flex items-center gap-2 min-w-0">
+<span class="material-symbols-outlined text-[17px] text-primary">storefront</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-slate-800 font-semibold truncate leading-tight">Main Branch</span>
+<span class="text-[10px] text-slate-500 font-numeric-table">B-101 • Lahore</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[16px] text-slate-400 group-hover:text-slate-600 transition-colors">unfold_more</span>
+</button>
+<!-- User Profile Card -->
+<div class="flex items-center justify-between px-2 py-1.5 rounded-lg">
+<div class="flex items-center gap-2.5 min-w-0">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container border border-outline-variant/40 shrink-0">
+<img alt="Ahmed Raza" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WvGucCbTVfR2o8yQgXEOzHmXwpJNjAVhb5j2w9E9-UOxKGP3RFUuXDr9U7onyBtZTCb6CUzaqelrB-QWDFvedHUT6GlBY6RkFN4ldSKqcDoPL8XOUuc8lwDRfoUdguspRSUTSvyex9qAZIFYCvVwgCCs8IF-XGvMc3pqYI8ojn4YCVm5Mq6g-eErcdyDTG7tbpq7qCvlmlBrfwdog0aJlSw_t3rLvHM9Cq35r2jwGpkugSo2ANG21ulvM"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-slate-800 font-semibold truncate leading-tight">Ahmed Raza</span>
+<span class="text-[11px] text-slate-500 truncate">Operations Lead</span>
+</div>
+</div>
+<button class="p-1 text-slate-400 hover:text-slate-600 rounded" title="Sign out">
+<span class="material-symbols-outlined text-[18px]">logout</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-0 right-0 lg:left-64 h-16 bg-surface border-b border-outline-variant/30 z-30 flex items-center justify-between px-4 sm:px-6">
+<!-- Left: Sidebar toggle, branch selector, live status -->
+<div class="flex items-center gap-3">
+<button class="lg:hidden p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100" onclick="toggleSidebar()" title="Open Sidebar">
+<span class="material-symbols-outlined text-[22px]">menu</span>
+</button>
+<div class="flex items-center gap-2.5">
+<button class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold bg-white border border-outline-variant/40 text-slate-800 hover:bg-slate-50 transition-colors shadow-2xs" type="button">
+<span class="material-symbols-outlined text-[16px] text-primary">storefront</span>
+<span class="">Main Branch</span>
+<span class="material-symbols-outlined text-[14px] text-slate-400">expand_more</span>
+</button>
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        Updated 2 min ago
+      </span>
+</div>
+</div>
+<!-- Right: Search bar & system actions -->
+<div class="flex items-center gap-3">
+<!-- Search -->
+<div class="relative hidden md:block w-72 lg:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">search</span>
+<input class="w-full pl-9 pr-12 py-1.5 text-xs bg-surface-container-low border border-outline-variant/40 rounded-lg focus:outline-none focus:border-primary focus:bg-white transition-all text-slate-800 placeholder-slate-400" placeholder="Search ingredients, purchases, recipes... ⌘K" type="text"/>
+<kbd class="absolute right-2.5 top-1/2 -translate-y-1/2 text-[10px] font-mono text-slate-400 bg-white border border-slate-200 px-1 rounded shadow-2xs">⌘K</kbd>
+</div>
+<!-- Notifications -->
+<button class="relative p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" title="Notifications">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full ring-2 ring-white"></span>
+</button>
+<!-- Help -->
+<button class="p-2 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" title="Help &amp; Documentation">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+<!-- User Avatar -->
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container border border-outline-variant/50 shrink-0 ml-1">
+<img alt="Ahmed Raza" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1WvGucCbTVfR2o8yQgXEOzHmXwpJNjAVhb5j2w9E9-UOxKGP3RFUuXDr9U7onyBtZTCb6CUzaqelrB-QWDFvedHUT6GlBY6RkFN4ldSKqcDoPL8XOUuc8lwDRfoUdguspRSUTSvyex9qAZIFYCvVwgCCs8IF-XGvMc3pqYI8ojn4YCVm5Mq6g-eErcdyDTG7tbpq7qCvlmlBrfwdog0aJlSw_t3rLvHM9Cq35r2jwGpkugSo2ANG21ulvM"/>
+</div>
+</div>
+</header>
+<!-- Main Content Wrapper -->
+<main class="lg:pl-64 pt-16 flex-1 flex flex-col min-w-0">
+<div class="flex-1 px-4 sm:px-6 lg:px-8 py-6 max-w-7xl w-full mx-auto space-y-6 pb-28">
+<!-- Breadcrumbs & Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-surface-border pb-5">
+<div>
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-1.5 text-xs text-slate-500 mb-2 flex-wrap">
+<span class="text-slate-400">Kitchen</span>
+<span class="material-symbols-outlined text-[14px] text-slate-400">chevron_right</span>
+<a class="hover:text-teal-700 transition-colors" href="#production">Production</a>
+<span class="material-symbols-outlined text-[14px] text-slate-400">chevron_right</span>
+<span class="font-mono font-medium text-slate-700">PB-1025</span>
+<span class="material-symbols-outlined text-[14px] text-slate-400">chevron_right</span>
+<span class="text-slate-900 font-semibold">Record Production</span>
+</nav>
+<!-- Title & Badges -->
+<div class="flex items-center gap-3 flex-wrap">
+<h1 class="text-2xl font-bold tracking-tight text-slate-900">Record Production</h1>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+<span class="material-symbols-outlined text-[14px] text-amber-600">science</span>
+              Prototype Entry
+            </span>
+</div>
+<p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-3xl">
+            Enter actual output, production wastage, quality result and completion details for the selected production batch.
+          </p>
+<p class="text-[11px] text-slate-400 mt-0.5">
+            Production results are validated locally in this prototype. Inventory and wastage records are not changed.
+          </p>
+</div>
+<!-- Top Right Actions -->
+<div class="flex items-center gap-2 self-start sm:self-center">
+<button class="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 hover:border-slate-400 shadow-sm transition-all" onclick="navigateBackToProduction()">
+<span class="material-symbols-outlined text-[17px]">arrow_back</span>
+            Back to Production
+          </button>
+</div>
+</div>
+<!-- 7 / 5 Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- LEFT COLUMN (7 Cols on desktop): Production Output, Wastage Details, Quality Check, BOM Reference -->
+<div class="lg:col-span-7 space-y-6">
+<!-- SECTION 1: Production Output -->
+<div class="bg-white rounded-xl border border-surface-border shadow-sm p-5 space-y-5">
+<div class="flex items-center justify-between border-b border-surface-border pb-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-700 flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">precision_manufacturing</span>
+</div>
+<div>
+<h2 class="text-sm font-bold text-slate-900">Production Output</h2>
+<p class="text-xs text-slate-500">Record finished units vs loss to balance against planned volume</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Section 1</span>
+</div>
+<!-- Planned vs Inputs Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<!-- Read-only Planned Quantity -->
+<div class="p-3.5 rounded-lg bg-slate-50 border border-slate-200">
+<span class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">Planned Quantity</span>
+<div class="mt-1 flex items-baseline gap-1">
+<span class="text-xl font-bold font-mono text-slate-900" id="display-planned-qty">100</span>
+<span class="text-xs text-slate-500 font-medium">pcs</span>
+</div>
+<span class="text-[10px] text-slate-400 mt-1 block">Read-only batch specification</span>
+</div>
+<!-- Actual Produced Input -->
+<div class="p-3.5 rounded-lg bg-white border border-slate-300 focus-within:border-teal-600 focus-within:ring-1 focus-within:ring-teal-600 transition-all">
+<label class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center justify-between" for="actual-produced-input">
+<span class="">Actual Produced <span class="text-red-500">*</span></span>
+<span class="text-[10px] text-slate-400 font-mono">pcs</span>
+</label>
+<div class="mt-1 relative">
+<input class="w-full text-xl font-bold font-mono text-slate-900 border-none p-0 focus:outline-none focus:ring-0" id="actual-produced-input" max="100" min="0" placeholder="0" step="1" type="number" value="0"/>
+</div>
+<span class="text-[10px] text-slate-400 mt-1 block">Finished usable portions</span>
+</div>
+<!-- Production Wastage Input -->
+<div class="p-3.5 rounded-lg bg-white border border-slate-300 focus-within:border-teal-600 focus-within:ring-1 focus-within:ring-teal-600 transition-all">
+<label class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center justify-between" for="production-wastage-input">
+<span class="">Production Wastage <span class="text-red-500">*</span></span>
+<span class="text-[10px] text-slate-400 font-mono">pcs</span>
+</label>
+<div class="mt-1 relative">
+<input class="w-full text-xl font-bold font-mono text-slate-900 border-none p-0 focus:outline-none focus:ring-0" id="production-wastage-input" max="100" min="0" placeholder="0" step="1" type="number" value="0"/>
+</div>
+<span class="text-[10px] text-slate-400 mt-1 block">Damaged / discarded units</span>
+</div>
+</div>
+<!-- Calculated Metrics Row: Unaccounted & Yield -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+<!-- Unaccounted Quantity -->
+<div class="p-3 rounded-lg border border-amber-200 bg-amber-50/60 transition-colors" id="unaccounted-container">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-amber-900 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-amber-600" id="unaccounted-icon">warning</span>
+                    Unaccounted Quantity
+                  </span>
+<span class="text-[11px] font-mono text-slate-500">Formula: Planned - (Produced + Loss)</span>
+</div>
+<div class="mt-1 flex items-baseline gap-1.5">
+<span class="text-2xl font-bold font-mono text-amber-900" id="display-unaccounted-qty">100</span>
+<span class="text-xs text-amber-800 font-medium">pcs</span>
+<span class="ml-2 text-[11px] font-medium text-amber-700" id="unaccounted-status-tag">Remaining to account</span>
+</div>
+</div>
+<!-- Yield % -->
+<div class="p-3 rounded-lg border border-slate-200 bg-slate-50">
+<div class="flex items-center justify-between">
+<span class="text-xs font-semibold text-slate-700 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-teal-600">percent</span>
+                    Production Yield %
+                  </span>
+<span class="text-[11px] font-mono text-slate-500">(Actual / Planned) × 100</span>
+</div>
+<div class="mt-1 flex items-baseline gap-1.5">
+<span class="text-2xl font-bold font-mono text-teal-800" id="display-yield-percentage">0.0%</span>
+<span class="text-[11px] font-medium text-slate-500" id="display-yield-status">Awaiting output</span>
+</div>
+</div>
+</div>
+<!-- Dynamic Balance Banner / Error Message -->
+<div class="p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-800 flex items-start gap-2" id="balance-validation-banner">
+<span class="material-symbols-outlined text-[18px] text-amber-600 shrink-0 mt-0.5" id="balance-banner-icon">info</span>
+<div>
+<p class="font-medium" id="balance-validation-message">Actual output and wastage must fully account for the planned production quantity.</p>
+<p class="text-[11px] text-amber-700 mt-0.5" id="balance-validation-hint">Example: If 95 pcs are produced and 5 pcs are lost, Unaccounted is 0 pcs (100% accounted, 95% yield).</p>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Production Wastage Details -->
+<div class="bg-white rounded-xl border border-surface-border shadow-sm p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-surface-border pb-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-rose-50 text-rose-700 flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">delete_outline</span>
+</div>
+<div>
+<h2 class="text-sm font-bold text-slate-900">Production Wastage</h2>
+<p class="text-xs text-slate-500">Complete this section only when production wastage is greater than zero.</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Section 2</span>
+</div>
+<!-- Wastage Reason Dropdown -->
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1.5" for="wastage-reason-select">
+                Wastage Reason <span class="text-red-500 hidden" id="wastage-reason-required-star">*</span>
+</label>
+<select class="w-full text-xs sm:text-sm px-3 py-2 bg-slate-100 text-slate-500 border border-slate-200 rounded-lg focus:outline-none transition-all cursor-not-allowed" disabled="" id="wastage-reason-select">
+<option value="">Select a reason (enabled when wastage &gt; 0)...</option>
+<option value="Preparation Waste">Preparation Waste</option>
+<option value="Spoilage / Expired">Spoilage / Expired</option>
+<option value="Damaged">Damaged</option>
+<option value="Overcooked / Burnt">Overcooked / Burnt</option>
+<option value="Dropped / Spillage">Dropped / Spillage</option>
+<option value="Other">Other</option>
+</select>
+<p class="text-[11px] text-slate-400 mt-1" id="wastage-reason-helper">Wastage reason is locked when production loss is 0 pcs.</p>
+<p class="text-[11px] text-red-600 font-medium mt-1 hidden" id="wastage-reason-error">
+                Please select a valid wastage reason for the recorded loss.
+              </p>
+</div>
+<!-- Additional Wastage Notes -->
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1.5" for="wastage-notes-input">
+                Additional Wastage Notes <span class="text-slate-400 font-normal">(Optional)</span>
+</label>
+<textarea class="w-full text-xs sm:text-sm px-3 py-2 bg-white border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-all text-slate-800 placeholder-slate-400" id="wastage-notes-input" placeholder="Optional details about the production loss..." rows="2"></textarea>
+</div>
+<!-- Prototype Clarification Note & Secondary Action -->
+<div class="pt-2 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<div class="flex items-center gap-2 text-slate-500 text-xs">
+<span class="material-symbols-outlined text-[16px] text-slate-400">info</span>
+<span class="text-[11px]">This information is captured for prototype validation only. No wastage transaction is created from this screen.</span>
+</div>
+<button class="inline-flex items-center gap-1.5 text-xs text-teal-700 hover:text-teal-900 font-semibold px-2.5 py-1.5 rounded-lg border border-teal-200 hover:bg-teal-50 transition-colors whitespace-nowrap self-start sm:self-auto" onclick="openWastageModule()" type="button">
+<span class="material-symbols-outlined text-[16px]">open_in_new</span>
+                Open Wastage Module
+              </button>
+</div>
+</div>
+<!-- SECTION 3: Quality Check -->
+<div class="bg-white rounded-xl border border-surface-border shadow-sm p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-surface-border pb-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">verified</span>
+</div>
+<div>
+<h2 class="text-sm font-bold text-slate-900">Quality Check</h2>
+<p class="text-xs text-slate-500">Record kitchen line inspection outcome prior to batch sign-off</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Section 3</span>
+</div>
+<!-- Quality Option Cards: Pass vs Needs Review -->
+<div>
+<span class="block text-xs font-semibold text-slate-700 mb-2">Quality Result <span class="text-red-500">*</span></span>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+<!-- Pass Option Card -->
+<div class="cursor-pointer p-3.5 rounded-lg border-2 border-teal-600 bg-teal-50/50 flex items-start gap-3 transition-all" id="quality-card-pass" onclick="selectQualityResult('Pass')">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-teal-700 text-[20px] fill" id="quality-radio-pass">radio_button_checked</span>
+</div>
+<div>
+<span class="text-xs font-bold text-slate-900 block">Pass</span>
+<span class="text-[11px] text-teal-800">Batch meets the required production standard.</span>
+</div>
+</div>
+<!-- Needs Review Option Card -->
+<div class="cursor-pointer p-3.5 rounded-lg border-2 border-slate-200 bg-white hover:border-slate-300 flex items-start gap-3 transition-all" id="quality-card-review" onclick="selectQualityResult('Needs Review')">
+<div class="mt-0.5">
+<span class="material-symbols-outlined text-slate-400 text-[20px]" id="quality-radio-review">radio_button_unchecked</span>
+</div>
+<div>
+<span class="text-xs font-bold text-slate-900 block">Needs Review</span>
+<span class="text-[11px] text-slate-500">Line lead or head chef inspection required.</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Conditional Quality Review Notes (Only when Needs Review selected) -->
+<div class="hidden space-y-1.5 pt-1" id="quality-review-notes-container">
+<label class="block text-xs font-semibold text-slate-700" for="quality-review-notes-input">
+                Quality Review Notes <span class="text-red-500">*</span>
+</label>
+<textarea class="w-full text-xs sm:text-sm px-3 py-2 bg-white border border-amber-300 rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600 transition-all text-slate-800 placeholder-slate-400" id="quality-review-notes-input" placeholder="Describe the quality concern requiring review..." rows="3"></textarea>
+<p class="text-[11px] text-red-600 font-medium hidden" id="quality-review-error">
+                Please enter review notes when "Needs Review" is selected.
+              </p>
+</div>
+<p class="text-[11px] text-slate-400 pt-1">
+              Quality verification is prototype-only. No approval record or inspection ticket is written to a database.
+            </p>
+</div>
+<!-- SECTION 6: Planned Ingredient Requirements (Reference Bill of Materials) -->
+<div class="bg-white rounded-xl border border-surface-border shadow-sm p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-surface-border pb-3.5">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+</div>
+<div>
+<h2 class="text-sm font-bold text-slate-900">Planned Ingredient Requirements</h2>
+<p class="text-xs text-slate-500">Reference bill of materials for this production batch.</p>
+</div>
+</div>
+<span class="text-[11px] font-medium text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Reference Only</span>
+</div>
+<!-- Compact Table -->
+<div class="overflow-x-auto rounded-lg border border-slate-200">
+<table class="w-full text-left border-collapse text-xs">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-200 text-slate-600 font-semibold">
+<th class="py-2.5 px-3">Ingredient</th>
+<th class="py-2.5 px-3">SKU</th>
+<th class="py-2.5 px-3 text-right">Planned Requirement</th>
+<th class="py-2.5 px-3">Unit</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100 text-slate-700 font-mono text-[11px]">
+<tr class="hover:bg-slate-50/50">
+<td class="py-2 px-3 font-sans font-medium text-slate-900">Chicken Breast</td>
+<td class="py-2 px-3 text-slate-500">SKU-9021</td>
+<td class="py-2 px-3 text-right font-semibold text-slate-800">15.00</td>
+<td class="py-2 px-3 font-sans text-slate-600">kg</td>
+</tr>
+<tr class="hover:bg-slate-50/50">
+<td class="py-2 px-3 font-sans font-medium text-slate-900">Burger Buns</td>
+<td class="py-2 px-3 text-slate-500">SKU-6102</td>
+<td class="py-2 px-3 text-right font-semibold text-slate-800">100</td>
+<td class="py-2 px-3 font-sans text-slate-600">pcs</td>
+</tr>
+<tr class="hover:bg-slate-50/50">
+<td class="py-2 px-3 font-sans font-medium text-slate-900">Mozzarella Cheese</td>
+<td class="py-2 px-3 text-slate-500">SKU-4012</td>
+<td class="py-2 px-3 text-right font-semibold text-slate-800">5.00</td>
+<td class="py-2 px-3 font-sans text-slate-600">kg</td>
+</tr>
+<tr class="hover:bg-slate-50/50">
+<td class="py-2 px-3 font-sans font-medium text-slate-900">Mayonnaise</td>
+<td class="py-2 px-3 text-slate-500">SKU-7201</td>
+<td class="py-2 px-3 text-right font-semibold text-slate-800">3.00</td>
+<td class="py-2 px-3 font-sans text-slate-600">L</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Disclaimer Banner -->
+<div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200 text-[11px] text-slate-500 flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-slate-400 shrink-0">info</span>
+<span class="">Ingredient requirements are displayed for reference only. Inventory is not changed from this prototype screen.</span>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (5 Cols on desktop): Batch Summary, Completion Details, Cost Preview, Validation Summary -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Prominent Read-Only Batch Summary Card -->
+<div class="bg-white rounded-xl border border-surface-border shadow-sm p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-surface-border pb-3">
+<div>
+<span class="text-[10px] font-bold text-teal-700 uppercase tracking-wider block">Selected Production Batch</span>
+<h3 class="text-base font-bold text-slate-900 mt-0.5">Chicken Zinger Burger</h3>
+</div>
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                In Progress
+              </span>
+</div>
+<div class="grid grid-cols-2 gap-3 text-xs">
+<div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+<span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">Batch ID</span>
+<span class="font-mono font-bold text-slate-800 mt-0.5 block" id="summary-batch-id">PB-1025</span>
+</div>
+<div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+<span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">Recipe Code</span>
+<span class="font-mono font-bold text-slate-800 mt-0.5 block">RCP-1026</span>
+</div>
+<div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+<span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">Branch</span>
+<span class="font-medium text-slate-800 mt-0.5 block">Main Branch</span>
+</div>
+<div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+<span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">Station</span>
+<span class="font-medium text-slate-800 mt-0.5 block">Fryer Station</span>
+</div>
+<div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+<span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">Planned Target</span>
+<span class="font-mono font-bold text-slate-800 mt-0.5 block">100 pcs</span>
+</div>
+<div class="p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+<span class="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">Est. Batch Cost</span>
+<span class="font-mono font-bold text-teal-800 mt-0.5 block">Rs. 35,000</span>
+</div>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-slate-100">
+<span class="">Recipe Specification: <strong class="text-slate-600 font-mono">v1.4</strong></span>
+<span class="inline-flex items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                Read-only prototype record
+              </span>
+</div>
+</div>
+<!-- SECTION 4: Completion Details Card -->
+<div class="bg-white rounded-xl border border-surface-border shadow-sm p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-surface-border pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[19px] text-slate-700">schedule</span>
+<h3 class="text-sm font-bold text-slate-900">Completion Details</h3>
+</div>
+<span class="text-[11px] font-medium text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Section 4</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+<!-- Completed By -->
+<div>
+<label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Completed By</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium cursor-not-allowed" readonly="" type="text" value="General Manager"/>
+</div>
+<!-- Branch -->
+<div>
+<label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Branch</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-medium cursor-not-allowed" readonly="" type="text" value="Main Branch"/>
+</div>
+<!-- Completion Date -->
+<div>
+<label class="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">Completion Date</label>
+<input class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-700 font-mono font-medium cursor-not-allowed" readonly="" type="text" value="27 Sep 2026"/>
+</div>
+<!-- Completion Time -->
+<div>
+<label class="block text-[11px] font-semibold text-slate-700 uppercase tracking-wider mb-1" for="completion-time-input">Completion Time</label>
+<input class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-800 font-mono focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600" id="completion-time-input" type="time" value="14:30"/>
+</div>
+</div>
+<!-- Production Notes Textarea -->
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1.5" for="production-notes-input">
+                Production Notes <span class="text-slate-400 font-normal">(Optional)</span>
+</label>
+<textarea class="w-full text-xs sm:text-sm px-3 py-2 bg-white border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-all text-slate-800 placeholder-slate-400" id="production-notes-input" placeholder="Add optional production notes..." rows="2"></textarea>
+</div>
+</div>
+<!-- SECTION 5: Cost Preview Card -->
+<div class="bg-white rounded-xl border border-surface-border shadow-sm p-5 space-y-4">
+<div class="flex items-center justify-between border-b border-surface-border pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[19px] text-teal-700">payments</span>
+<h3 class="text-sm font-bold text-slate-900">Production Cost Preview</h3>
+</div>
+<span class="text-[11px] font-medium text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Section 5</span>
+</div>
+<div class="space-y-2.5 text-xs">
+<div class="flex items-center justify-between py-1 border-b border-slate-100">
+<span class="text-slate-500">Estimated Batch Cost</span>
+<span class="font-mono font-bold text-slate-800">Rs. 35,000</span>
+</div>
+<div class="flex items-center justify-between py-1 border-b border-slate-100">
+<span class="text-slate-500">Planned Quantity</span>
+<span class="font-mono font-medium text-slate-800">100 pcs</span>
+</div>
+<div class="flex items-center justify-between py-1 border-b border-slate-100">
+<span class="text-slate-500">Actual Produced</span>
+<span class="font-mono font-bold text-teal-800" id="cost-preview-actual-qty">0 pcs</span>
+</div>
+<div class="flex items-center justify-between py-1.5 bg-teal-50/70 px-3 rounded-lg border border-teal-100">
+<div>
+<span class="font-bold text-teal-900 block">Estimated Cost / Produced Unit</span>
+<span class="text-[10px] text-teal-700">Est. Batch Cost ÷ Actual Produced</span>
+</div>
+<span class="font-mono font-bold text-base text-teal-900" id="cost-per-unit-display">—</span>
+</div>
+</div>
+<p class="text-[11px] text-slate-400 pt-1">
+              Cost values are prototype estimates only. No accounting records are created.
+            </p>
+</div>
+<!-- VALIDATION SUMMARY CARD -->
+<div class="bg-white rounded-xl border border-surface-border shadow-sm p-5 space-y-3.5">
+<div class="flex items-center justify-between border-b border-surface-border pb-3">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[19px] text-slate-700">fact_check</span>
+<h3 class="text-sm font-bold text-slate-900">Validation Summary</h3>
+</div>
+<span class="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800" id="validation-overall-badge">Incomplete</span>
+</div>
+<ul class="space-y-2 text-xs" id="validation-checklist">
+<!-- Item 1: Batch Selected -->
+<li class="flex items-center gap-2 text-teal-700">
+<span class="material-symbols-outlined text-[16px] text-teal-600">check_circle</span>
+<span class="">Production batch selected (PB-1025)</span>
+</li>
+<!-- Item 2: Output vs Planned Status -->
+<li class="flex items-center gap-2 text-teal-700" id="val-item-quantity">
+<span class="material-symbols-outlined text-[16px] text-teal-600" id="val-icon-quantity">check_circle</span>
+<span class="" id="val-text-quantity">Production output valid (0 pcs)</span>
+</li>
+<!-- Item 3: Balance Status -->
+<li class="flex items-center gap-2 text-amber-800" id="val-item-balance">
+<span class="material-symbols-outlined text-[16px] text-amber-600" id="val-icon-balance">warning</span>
+<span class="" id="val-text-balance">Production quantity is not fully accounted for</span>
+</li>
+<!-- Item 4: Wastage details -->
+<li class="flex items-center gap-2 text-teal-700" id="val-item-wastage">
+<span class="material-symbols-outlined text-[16px] text-teal-600" id="val-icon-wastage">check_circle</span>
+<span class="" id="val-text-wastage">Wastage quantity entered (0 pcs loss)</span>
+</li>
+<!-- Item 5: Quality Check -->
+<li class="flex items-center gap-2 text-teal-700" id="val-item-quality">
+<span class="material-symbols-outlined text-[16px] text-teal-600" id="val-icon-quality">check_circle</span>
+<span class="" id="val-text-quality">Quality result selected (Pass)</span>
+</li>
+</ul>
+<div class="hidden p-2.5 rounded-lg bg-teal-50 border border-teal-200 text-xs text-teal-800 font-medium flex items-center gap-2" id="val-ready-banner">
+<span class="material-symbols-outlined text-[18px] text-teal-600">task_alt</span>
+<span class="">Ready to validate production record</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- STICKY BOTTOM ACTION BAR -->
+<div class="fixed bottom-0 left-0 right-0 lg:left-64 bg-white/95 backdrop-blur-sm border-t border-surface-border py-3.5 px-4 sm:px-6 lg:px-8 z-40 shadow-lg">
+<div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+<!-- Live Status Hint -->
+<div class="flex items-center gap-2 text-xs text-slate-500 self-start sm:self-center">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500" id="bottom-status-indicator"></span>
+<span class="font-medium text-slate-700" id="bottom-status-text">Output not fully balanced (100 pcs remaining)</span>
+</div>
+<!-- Buttons: Cancel, Save Prototype Entry, Finalize -->
+<div class="flex items-center gap-2.5 w-full sm:w-auto justify-end">
+<button class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 bg-white border border-slate-300 hover:bg-slate-50 rounded-lg transition-colors" onclick="navigateBackToProduction()" type="button">
+            Cancel
+          </button>
+<button class="px-4 py-2 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg transition-colors" onclick="savePrototypeEntry()" type="button">
+            Save Prototype Entry
+          </button>
+<button class="inline-flex items-center gap-1.5 px-5 py-2 text-xs font-semibold text-white bg-primary hover:bg-primary-hover rounded-lg shadow-sm transition-all focus:ring-2 focus:ring-teal-500 focus:ring-offset-1" id="finalize-production-btn" onclick="finalizePrototypeProduction()" type="button">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+<span class="" id="finalize-btn-label">Finalize Production Record</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Prototype Toast Notification Container -->
+<div class="fixed bottom-20 right-6 z-50 flex flex-col gap-2 pointer-events-none" id="toast-container"></div>
+<!-- SINGLE APPLICATION SCRIPT -->
+<script>
+    /**
+     * Dedicated Record Production Setup Data Model
+     * Pure client prototype script without fake database or Supabase persistence claims.
+     */
+    const recordProductionSetup = {
+      batch: {
+        id: 'PB-1025',
+        recipeCode: 'RCP-1026',
+        recipeName: 'Chicken Zinger Burger',
+        branch: 'Main Branch',
+        station: 'Fryer Station',
+        plannedQuantity: 100,
+        unit: 'pcs',
+        estimatedBatchCost: 35000,
+        status: 'In Progress',
+        recipeVersion: 'v1.4'
+      },
+      ingredients: [
+        { name: 'Chicken Breast', sku: 'SKU-9021', quantity: 15, unit: 'kg' },
+        { name: 'Burger Buns', sku: 'SKU-6102', quantity: 100, unit: 'pcs' },
+        { name: 'Mozzarella Cheese', sku: 'SKU-4012', quantity: 5, unit: 'kg' },
+        { name: 'Mayonnaise', sku: 'SKU-7201', quantity: 3, unit: 'L' }
+      ]
+    };
+
+    // State Variables
+    let currentQualityResult = 'Pass';
+    let isRecordValidatedLocally = false;
+
+    // Mobile Sidebar Toggle
+    function toggleSidebar() {
+      const sidebar = document.getElementById('app-sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      if (sidebar && backdrop) {
+        const isHidden = sidebar.classList.contains('-translate-x-full');
+        if (isHidden) {
+          sidebar.classList.remove('-translate-x-full');
+          backdrop.classList.remove('hidden');
+        } else {
+          sidebar.classList.add('-translate-x-full');
+          backdrop.classList.add('hidden');
+        }
+      }
+    }
+
+    // Cancel / Back Navigation
+    function navigateBackToProduction() {
+      window.location.hash = 'production';
+    }
+
+    // Open Wastage Module Button
+    function openWastageModule() {
+      try {
+        sessionStorage.setItem('productionWastageSource', recordProductionSetup.batch.id);
+      } catch (e) {
+        /* storage safeguard */
+      }
+      window.location.hash = 'record-wastage';
+    }
+
+    // Quality Result Selection
+    function selectQualityResult(result) {
+      currentQualityResult = result;
+      const cardPass = document.getElementById('quality-card-pass');
+      const cardReview = document.getElementById('quality-card-review');
+      const radioPass = document.getElementById('quality-radio-pass');
+      const radioReview = document.getElementById('quality-radio-review');
+      const reviewContainer = document.getElementById('quality-review-notes-container');
+
+      if (result === 'Pass') {
+        cardPass.className = 'cursor-pointer p-3.5 rounded-lg border-2 border-teal-600 bg-teal-50/50 flex items-start gap-3 transition-all';
+        cardReview.className = 'cursor-pointer p-3.5 rounded-lg border-2 border-slate-200 bg-white hover:border-slate-300 flex items-start gap-3 transition-all';
+        radioPass.textContent = 'radio_button_checked';
+        radioPass.className = 'material-symbols-outlined text-teal-700 text-[20px] fill';
+        radioReview.textContent = 'radio_button_unchecked';
+        radioReview.className = 'material-symbols-outlined text-slate-400 text-[20px]';
+        reviewContainer.classList.add('hidden');
+      } else {
+        cardPass.className = 'cursor-pointer p-3.5 rounded-lg border-2 border-slate-200 bg-white hover:border-slate-300 flex items-start gap-3 transition-all';
+        cardReview.className = 'cursor-pointer p-3.5 rounded-lg border-2 border-amber-500 bg-amber-50/40 flex items-start gap-3 transition-all';
+        radioPass.textContent = 'radio_button_unchecked';
+        radioPass.className = 'material-symbols-outlined text-slate-400 text-[20px]';
+        radioReview.textContent = 'radio_button_checked';
+        radioReview.className = 'material-symbols-outlined text-amber-700 text-[20px] fill';
+        reviewContainer.classList.remove('hidden');
+      }
+
+      calculateProductionSummary();
+    }
+
+    // Calculation & State Evaluation
+    function calculateProductionSummary() {
+      const planned = recordProductionSetup.batch.plannedQuantity;
+      const actualInput = document.getElementById('actual-produced-input');
+      const wastageInput = document.getElementById('production-wastage-input');
+      const wastageSelect = document.getElementById('wastage-reason-select');
+      const wastageStar = document.getElementById('wastage-reason-required-star');
+      const wastageHelper = document.getElementById('wastage-reason-helper');
+
+      // Distinguish blank/empty string from numeric 0
+      const actualRaw = actualInput ? actualInput.value.trim() : '';
+      const wastageRaw = wastageInput ? wastageInput.value.trim() : '';
+      const actualProduced = actualRaw === '' ? NaN : Number(actualRaw);
+      const wastage = wastageRaw === '' ? NaN : Number(wastageRaw);
+
+      // Wastage Reason enable/disable logic based on wastage value
+      if (!isNaN(wastage) && wastage > 0) {
+        wastageSelect.disabled = false;
+        wastageSelect.className = 'w-full text-xs sm:text-sm px-3 py-2 bg-white text-slate-800 border border-slate-300 rounded-lg focus:outline-none focus:border-teal-600 focus:ring-1 focus:ring-teal-600 transition-all cursor-pointer';
+        wastageStar.classList.remove('hidden');
+        wastageHelper.textContent = 'Select the specific cause for the recorded production loss.';
+      } else {
+        wastageSelect.disabled = true;
+        wastageSelect.value = '';
+        wastageSelect.className = 'w-full text-xs sm:text-sm px-3 py-2 bg-slate-100 text-slate-500 border border-slate-200 rounded-lg focus:outline-none transition-all cursor-not-allowed';
+        wastageStar.classList.add('hidden');
+        wastageHelper.textContent = 'Wastage reason is locked when production loss is 0 pcs.';
+        const wastageErrEl = document.getElementById('wastage-reason-error');
+        if (wastageErrEl) wastageErrEl.classList.add('hidden');
+      }
+
+      // Safe numeric values for display calculations
+      const safeActual = isNaN(actualProduced) || actualProduced < 0 ? 0 : actualProduced;
+      const safeWastage = isNaN(wastage) || wastage < 0 ? 0 : wastage;
+      const safeAccounted = safeActual + safeWastage;
+      const unaccounted = planned - safeAccounted;
+      const yieldPct = (!isNaN(actualProduced) && actualProduced > 0 && planned > 0) 
+        ? ((actualProduced / planned) * 100) 
+        : 0;
+
+      // UI Update: Unaccounted & Yield
+      const unaccountedEl = document.getElementById('display-unaccounted-qty');
+      const unaccountedContainer = document.getElementById('unaccounted-container');
+      const unaccountedIcon = document.getElementById('unaccounted-icon');
+      const unaccountedStatusTag = document.getElementById('unaccounted-status-tag');
+      const yieldEl = document.getElementById('display-yield-percentage');
+      const yieldStatusEl = document.getElementById('display-yield-status');
+
+      unaccountedEl.textContent = isNaN(actualProduced) || isNaN(wastage) ? '—' : unaccounted;
+      yieldEl.textContent = yieldPct.toFixed(1) + '%';
+
+      if (isNaN(actualProduced) || actualProduced === 0) {
+        yieldStatusEl.textContent = 'Awaiting output';
+        yieldStatusEl.className = 'text-[11px] font-medium text-slate-500';
+      } else if (yieldPct >= 95) {
+        yieldStatusEl.textContent = 'Target met (Excellent)';
+        yieldStatusEl.className = 'text-[11px] font-semibold text-emerald-700';
+      } else if (yieldPct >= 80) {
+        yieldStatusEl.textContent = 'Acceptable yield';
+        yieldStatusEl.className = 'text-[11px] font-semibold text-teal-700';
+      } else {
+        yieldStatusEl.textContent = 'Below optimal target';
+        yieldStatusEl.className = 'text-[11px] font-semibold text-amber-700';
+      }
+
+      // Balance Banner & Colors
+      const banner = document.getElementById('balance-validation-banner');
+      const bannerIcon = document.getElementById('balance-banner-icon');
+      const bannerMsg = document.getElementById('balance-validation-message');
+      const bannerHint = document.getElementById('balance-validation-hint');
+      const bottomIndicator = document.getElementById('bottom-status-indicator');
+      const bottomText = document.getElementById('bottom-status-text');
+
+      const inputsAreValidNumbers = !isNaN(actualProduced) && actualProduced >= 0 && !isNaN(wastage) && wastage >= 0;
+
+      if (inputsAreValidNumbers && safeAccounted > planned) {
+        // Exceeds Planned
+        unaccountedContainer.className = 'p-3 rounded-lg border border-red-300 bg-red-50 transition-colors';
+        unaccountedIcon.className = 'material-symbols-outlined text-[16px] text-red-600';
+        unaccountedIcon.textContent = 'error';
+        unaccountedStatusTag.textContent = 'Exceeds planned batch volume!';
+        unaccountedStatusTag.className = 'ml-2 text-[11px] font-bold text-red-700';
+        
+        banner.className = 'p-3 rounded-lg bg-red-50 border border-red-200 text-xs text-red-800 flex items-start gap-2';
+        bannerIcon.className = 'material-symbols-outlined text-[18px] text-red-600 shrink-0 mt-0.5';
+        bannerIcon.textContent = 'error';
+        bannerMsg.textContent = 'Actual output plus wastage cannot exceed the planned quantity.';
+        bannerHint.textContent = 'Current total: ' + safeAccounted + ' pcs (Planned: ' + planned + ' pcs).';
+        
+        bottomIndicator.className = 'w-2.5 h-2.5 rounded-full bg-red-500';
+        bottomText.textContent = 'Quantity error: Output exceeds planned ' + planned + ' pcs';
+      } else if (inputsAreValidNumbers && safeAccounted === planned) {
+        // Balanced Exactly (Valid scenario, even if actualProduced is 0 and wastage is 100)
+        unaccountedContainer.className = 'p-3 rounded-lg border border-teal-300 bg-teal-50 transition-colors';
+        unaccountedIcon.className = 'material-symbols-outlined text-[16px] text-teal-600';
+        unaccountedIcon.textContent = 'check_circle';
+        unaccountedStatusTag.textContent = 'Fully accounted (100%)';
+        unaccountedStatusTag.className = 'ml-2 text-[11px] font-semibold text-teal-700';
+        
+        banner.className = 'p-3 rounded-lg bg-teal-50 border border-teal-200 text-xs text-teal-800 flex items-start gap-2';
+        bannerIcon.className = 'material-symbols-outlined text-[18px] text-teal-600 shrink-0 mt-0.5';
+        bannerIcon.textContent = 'check_circle';
+        bannerMsg.textContent = 'Planned production quantity is 100% accounted for (Produced: ' + actualProduced + ' pcs, Wastage: ' + wastage + ' pcs).';
+        bannerHint.textContent = 'All ' + planned + ' units are accounted for. Record can be finalized.';
+        
+        bottomIndicator.className = 'w-2.5 h-2.5 rounded-full bg-teal-500';
+        bottomText.textContent = 'Output 100% accounted (' + actualProduced + ' pcs produced, ' + wastage + ' pcs loss)';
+      } else {
+        // Remaining to account
+        unaccountedContainer.className = 'p-3 rounded-lg border border-amber-200 bg-amber-50/60 transition-colors';
+        unaccountedIcon.className = 'material-symbols-outlined text-[16px] text-amber-600';
+        unaccountedIcon.textContent = 'warning';
+        unaccountedStatusTag.textContent = 'Remaining to account';
+        unaccountedStatusTag.className = 'ml-2 text-[11px] font-medium text-amber-700';
+
+        banner.className = 'p-3 rounded-lg bg-amber-50 border border-amber-200 text-xs text-amber-800 flex items-start gap-2';
+        bannerIcon.className = 'material-symbols-outlined text-[18px] text-amber-600 shrink-0 mt-0.5';
+        bannerIcon.textContent = 'info';
+        bannerMsg.textContent = 'Actual output and wastage must fully account for the planned production quantity.';
+        bannerHint.textContent = 'Example: If 95 pcs are produced and 5 pcs are lost, Unaccounted is 0 pcs (100% accounted, 95% yield).';
+
+        bottomIndicator.className = 'w-2.5 h-2.5 rounded-full bg-amber-500';
+        bottomText.textContent = isNaN(actualProduced) || isNaN(wastage) 
+          ? 'Enter output and wastage values'
+          : 'Output not fully balanced (' + unaccounted + ' pcs remaining)';
+      }
+
+      // Cost Preview Update
+      document.getElementById('cost-preview-actual-qty').textContent = isNaN(actualProduced) ? '— pcs' : actualProduced + ' pcs';
+      const costPerUnitEl = document.getElementById('cost-per-unit-display');
+      if (!isNaN(actualProduced) && actualProduced > 0) {
+        const costPerUnit = recordProductionSetup.batch.estimatedBatchCost / actualProduced;
+        costPerUnitEl.textContent = 'Rs. ' + costPerUnit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      } else {
+        costPerUnitEl.textContent = '—';
+      }
+
+      // Update Validation Checklist
+      updateValidationSummary(actualProduced, wastage, planned);
+    }
+
+    // Update Checklist & Validation Badges
+    function updateValidationSummary(actualProduced, wastage, planned) {
+      const valItemQty = document.getElementById('val-item-quantity');
+      const valIconQty = document.getElementById('val-icon-quantity');
+      const valTextQty = document.getElementById('val-text-quantity');
+
+      const valItemBalance = document.getElementById('val-item-balance');
+      const valIconBalance = document.getElementById('val-icon-balance');
+      const valTextBalance = document.getElementById('val-text-balance');
+
+      const valItemWastage = document.getElementById('val-item-wastage');
+      const valIconWastage = document.getElementById('val-icon-wastage');
+      const valTextWastage = document.getElementById('val-text-wastage');
+
+      const valItemQuality = document.getElementById('val-item-quality');
+      const valIconQuality = document.getElementById('val-icon-quality');
+      const valTextQuality = document.getElementById('val-text-quality');
+
+      const readyBanner = document.getElementById('val-ready-banner');
+      const overallBadge = document.getElementById('validation-overall-badge');
+
+      let isValid = true;
+
+      // Rule: Actual Produced validation
+      // Blank or NaN -> Invalid ("Enter actual produced quantity")
+      // Negative -> Invalid
+      // Explicit 0 or positive (>= 0) -> Valid numeric input!
+      if (isNaN(actualProduced)) {
+        isValid = false;
+        valItemQty.className = 'flex items-center gap-2 text-amber-800';
+        valIconQty.className = 'material-symbols-outlined text-[16px] text-amber-600';
+        valIconQty.textContent = 'warning';
+        valTextQty.textContent = 'Enter actual produced quantity';
+      } else if (actualProduced < 0) {
+        isValid = false;
+        valItemQty.className = 'flex items-center gap-2 text-red-700';
+        valIconQty.className = 'material-symbols-outlined text-[16px] text-red-600';
+        valIconQty.textContent = 'error';
+        valTextQty.textContent = 'Actual produced cannot be negative';
+      } else {
+        // >= 0 is VALID! (including explicit 0)
+        valItemQty.className = 'flex items-center gap-2 text-teal-700';
+        valIconQty.className = 'material-symbols-outlined text-[16px] text-teal-600';
+        valIconQty.textContent = 'check_circle';
+        valTextQty.textContent = 'Production output valid (' + actualProduced + ' pcs)';
+      }
+
+      // Wastage validation
+      if (isNaN(wastage)) {
+        isValid = false;
+        valItemWastage.className = 'flex items-center gap-2 text-amber-800';
+        valIconWastage.className = 'material-symbols-outlined text-[16px] text-amber-600';
+        valIconWastage.textContent = 'warning';
+        valTextWastage.textContent = 'Enter production wastage quantity';
+      } else if (wastage < 0) {
+        isValid = false;
+        valItemWastage.className = 'flex items-center gap-2 text-red-700';
+        valIconWastage.className = 'material-symbols-outlined text-[16px] text-red-600';
+        valIconWastage.textContent = 'error';
+        valTextWastage.textContent = 'Wastage cannot be negative';
+      } else if (wastage > 0) {
+        const wastageSelect = document.getElementById('wastage-reason-select');
+        if (!wastageSelect.value) {
+          isValid = false;
+          valItemWastage.className = 'flex items-center gap-2 text-amber-800';
+          valIconWastage.className = 'material-symbols-outlined text-[16px] text-amber-600';
+          valIconWastage.textContent = 'warning';
+          valTextWastage.textContent = 'Wastage reason is required';
+        } else {
+          valItemWastage.className = 'flex items-center gap-2 text-teal-700';
+          valIconWastage.className = 'material-symbols-outlined text-[16px] text-teal-600';
+          valIconWastage.textContent = 'check_circle';
+          valTextWastage.textContent = 'Wastage details valid (' + wastageSelect.value + ')';
+        }
+      } else {
+        // wastage === 0
+        valItemWastage.className = 'flex items-center gap-2 text-teal-700';
+        valIconWastage.className = 'material-symbols-outlined text-[16px] text-teal-600';
+        valIconWastage.textContent = 'check_circle';
+        valTextWastage.textContent = 'Wastage quantity entered (0 pcs loss)';
+      }
+
+      // Balance validation: actualProduced + wastage === plannedQuantity
+      if (isNaN(actualProduced) || isNaN(wastage) || actualProduced < 0 || wastage < 0) {
+        isValid = false;
+        valItemBalance.className = 'flex items-center gap-2 text-amber-800';
+        valIconBalance.className = 'material-symbols-outlined text-[16px] text-amber-600';
+        valIconBalance.textContent = 'warning';
+        valTextBalance.textContent = 'Production quantity is not fully accounted for';
+      } else if (actualProduced + wastage > planned) {
+        isValid = false;
+        valItemBalance.className = 'flex items-center gap-2 text-red-700';
+        valIconBalance.className = 'material-symbols-outlined text-[16px] text-red-600';
+        valIconBalance.textContent = 'error';
+        valTextBalance.textContent = 'Actual output plus wastage cannot exceed the planned quantity.';
+      } else if (actualProduced + wastage === planned) {
+        valItemBalance.className = 'flex items-center gap-2 text-teal-700';
+        valIconBalance.className = 'material-symbols-outlined text-[16px] text-teal-600';
+        valIconBalance.textContent = 'check_circle';
+        valTextBalance.textContent = 'Planned quantity fully accounted for';
+      } else {
+        isValid = false;
+        valItemBalance.className = 'flex items-center gap-2 text-amber-800';
+        valIconBalance.className = 'material-symbols-outlined text-[16px] text-amber-600';
+        valIconBalance.textContent = 'warning';
+        valTextBalance.textContent = 'Production quantity is not fully accounted for';
+      }
+
+      // Quality Notes Check if Needs Review
+      const reviewNotes = document.getElementById('quality-review-notes-input').value.trim();
+      if (currentQualityResult === 'Needs Review') {
+        if (!reviewNotes) {
+          isValid = false;
+          valItemQuality.className = 'flex items-center gap-2 text-amber-800';
+          valIconQuality.className = 'material-symbols-outlined text-[16px] text-amber-600';
+          valIconQuality.textContent = 'warning';
+          valTextQuality.textContent = 'Quality review notes are required';
+        } else {
+          valItemQuality.className = 'flex items-center gap-2 text-teal-700';
+          valIconQuality.className = 'material-symbols-outlined text-[16px] text-teal-600';
+          valIconQuality.textContent = 'check_circle';
+          valTextQuality.textContent = 'Quality review notes entered';
+        }
+      } else {
+        valItemQuality.className = 'flex items-center gap-2 text-teal-700';
+        valIconQuality.className = 'material-symbols-outlined text-[16px] text-teal-600';
+        valIconQuality.textContent = 'check_circle';
+        valTextQuality.textContent = 'Quality result selected (Pass)';
+      }
+
+      // Ready banner & overall badge
+      if (isValid) {
+        readyBanner.classList.remove('hidden');
+        overallBadge.textContent = 'Ready to Validate';
+        overallBadge.className = 'text-[11px] font-semibold px-2 py-0.5 rounded-full bg-teal-100 text-teal-800';
+      } else {
+        readyBanner.classList.add('hidden');
+        overallBadge.textContent = 'Incomplete';
+        overallBadge.className = 'text-[11px] font-semibold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800';
+      }
+
+      return isValid;
+    }
+
+    // Save Prototype Entry Action
+    function savePrototypeEntry() {
+      const actualProduced = document.getElementById('actual-produced-input').value;
+      const wastage = document.getElementById('production-wastage-input').value;
+      const wastageReason = document.getElementById('wastage-reason-select').value;
+      const notes = document.getElementById('production-notes-input').value;
+
+      try {
+        const draft = {
+          batchId: recordProductionSetup.batch.id,
+          actualProduced: actualProduced,
+          wastage: wastage,
+          wastageReason: wastageReason,
+          qualityResult: currentQualityResult,
+          notes: notes,
+          savedAt: new Date().toISOString()
+        };
+        sessionStorage.setItem('prototype_production_draft_' + recordProductionSetup.batch.id, JSON.stringify(draft));
+      } catch (e) {
+        /* storage safeguard */
+      }
+
+      showToast('Production entry saved for this prototype session only.', 'info');
+    }
+
+    // Finalize Production Record Action
+    function finalizePrototypeProduction() {
+      const planned = recordProductionSetup.batch.plannedQuantity;
+      const actualInput = document.getElementById('actual-produced-input');
+      const wastageInput = document.getElementById('production-wastage-input');
+      const wastageSelect = document.getElementById('wastage-reason-select');
+      const reviewNotesInput = document.getElementById('quality-review-notes-input');
+
+      const actualRaw = actualInput.value.trim();
+      const wastageRaw = wastageInput.value.trim();
+      const actualProduced = actualRaw === '' ? NaN : Number(actualRaw);
+      const wastage = wastageRaw === '' ? NaN : Number(wastageRaw);
+
+      // 1. Check Actual Produced is valid number >= 0
+      if (isNaN(actualProduced)) {
+        actualInput.focus();
+        showToast('Enter actual produced quantity.', 'error');
+        return;
+      }
+      if (actualProduced < 0) {
+        actualInput.focus();
+        showToast('Actual produced quantity cannot be negative.', 'error');
+        return;
+      }
+
+      // 2. Check Wastage is valid number >= 0
+      if (isNaN(wastage)) {
+        wastageInput.focus();
+        showToast('Enter production wastage quantity.', 'error');
+        return;
+      }
+      if (wastage < 0) {
+        wastageInput.focus();
+        showToast('Production wastage cannot be negative.', 'error');
+        return;
+      }
+
+      // 3. Check total does not exceed planned
+      if (actualProduced + wastage > planned) {
+        actualInput.focus();
+        showToast('Actual output plus wastage cannot exceed the planned quantity.', 'error');
+        return;
+      }
+
+      // 4. Check exact balance
+      if (actualProduced + wastage !== planned) {
+        actualInput.focus();
+        showToast('Actual output and wastage must fully account for the planned production quantity.', 'error');
+        return;
+      }
+
+      // 5. Check Wastage Reason when wastage > 0
+      if (wastage > 0 && !wastageSelect.value) {
+        wastageSelect.focus();
+        document.getElementById('wastage-reason-error').classList.remove('hidden');
+        showToast('Please select a valid wastage reason for the recorded loss.', 'error');
+        return;
+      } else {
+        const wastageErrEl = document.getElementById('wastage-reason-error');
+        if (wastageErrEl) wastageErrEl.classList.add('hidden');
+      }
+
+      // 6. Check Review Notes if Needs Review
+      if (currentQualityResult === 'Needs Review' && !reviewNotesInput.value.trim()) {
+        reviewNotesInput.focus();
+        document.getElementById('quality-review-error').classList.remove('hidden');
+        showToast('Please enter review notes when "Needs Review" is selected.', 'error');
+        return;
+      } else {
+        const qualityErrEl = document.getElementById('quality-review-error');
+        if (qualityErrEl) qualityErrEl.classList.add('hidden');
+      }
+
+      // Successful Local Validation!
+      isRecordValidatedLocally = true;
+
+      // Update button state (local/session-only)
+      const finalizeBtn = document.getElementById('finalize-production-btn');
+      const finalizeLabel = document.getElementById('finalize-btn-label');
+      finalizeBtn.className = 'inline-flex items-center gap-1.5 px-5 py-2 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-sm transition-all';
+      finalizeLabel.textContent = 'Validated';
+
+      // Exact prompt required toast:
+      showToast('Production record validated in this prototype. No inventory, POS, or wastage data was changed.', 'success');
+    }
+
+    // Unified Toast Notification Function
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = 'pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-lg shadow-lg border text-xs font-medium transition-all transform duration-300 translate-y-4 opacity-0 max-w-md';
+
+      if (type === 'success') {
+        toast.classList.add('bg-slate-900', 'text-white', 'border-slate-800');
+        toast.innerHTML = '<span class="material-symbols-outlined text-[18px] text-emerald-400">check_circle</span><span>' + message + '</span>';
+      } else if (type === 'error') {
+        toast.classList.add('bg-rose-900', 'text-white', 'border-rose-800');
+        toast.innerHTML = '<span class="material-symbols-outlined text-[18px] text-rose-300">error</span><span>' + message + '</span>';
+      } else {
+        toast.classList.add('bg-slate-900', 'text-white', 'border-slate-800');
+        toast.innerHTML = '<span class="material-symbols-outlined text-[18px] text-teal-400">info</span><span>' + message + '</span>';
+      }
+
+      container.appendChild(toast);
+
+      // Animate in
+      requestAnimationFrame(() => {
+        toast.classList.remove('translate-y-4', 'opacity-0');
+      });
+
+      // Auto dismiss after 4.2 seconds
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => {
+          if (toast.parentElement) toast.parentElement.removeChild(toast);
+        }, 300);
+      }, 4200);
+    }
+
+    // Initialize Page on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', () => {
+      // Optional session context read
+      try {
+        const storedBatchId = sessionStorage.getItem('selectedProductionBatch');
+        if (storedBatchId) {
+          recordProductionSetup.batch.id = storedBatchId;
+          const badgeEl = document.getElementById('summary-batch-id');
+          if (badgeEl) badgeEl.textContent = storedBatchId;
+        }
+      } catch (e) {
+        /* storage safeguard */
+      }
+
+      // Attach event listeners for dynamic recalculation
+      const actualInput = document.getElementById('actual-produced-input');
+      const wastageInput = document.getElementById('production-wastage-input');
+      const wastageSelect = document.getElementById('wastage-reason-select');
+      const reviewNotes = document.getElementById('quality-review-notes-input');
+
+      if (actualInput) actualInput.addEventListener('input', calculateProductionSummary);
+      if (wastageInput) wastageInput.addEventListener('input', calculateProductionSummary);
+      if (wastageSelect) wastageSelect.addEventListener('change', calculateProductionSummary);
+      if (reviewNotes) reviewNotes.addEventListener('input', calculateProductionSummary);
+
+      // Initial calculation with defaults
+      calculateProductionSummary();
+    });
+  </script>
+<script src="/integration-bridge.js"></script>
+</body></html>

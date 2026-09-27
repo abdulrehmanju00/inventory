@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;family=Hanken+Grotesk:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base { 
+      html, body { margin: 0; padding: 0; } 
+      body { overscroll-behavior: none; } 
+      main > :first-child { margin-top: 0 !important; } 
+      main > :last-child { margin-bottom: 0 !important; } 
+    } 
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-container-lowest": "#ffffff",
+            "background": "#faf8ff",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#586377",
+            "on-error": "#ffffff",
+            "tertiary-fixed-dim": "#7bd8b1",
+            "secondary-fixed-dim": "#bcc7de",
+            "on-tertiary": "#ffffff",
+            "primary-container": "#0f766e",
+            "primary-fixed": "#9cf2e8",
+            "tertiary": "#005d42",
+            "secondary-fixed": "#d8e3fb",
+            "on-error-container": "#93000a",
+            "tertiary-container": "#047857",
+            "secondary-container": "#d5e0f8",
+            "surface": "#faf8ff",
+            "surface-container": "#eaedff",
+            "surface-container-highest": "#dae2fd",
+            "on-surface-variant": "#3e4947",
+            "on-primary": "#ffffff",
+            "surface-tint": "#006a63",
+            "inverse-primary": "#80d5cb",
+            "surface-container-high": "#e2e7ff",
+            "primary": "#005c55",
+            "on-background": "#131b2e",
+            "on-primary-container": "#a3faef",
+            "inverse-surface": "#283044",
+            "secondary": "#545f73",
+            "primary-fixed-dim": "#80d5cb",
+            "outline-variant": "#bdc9c6",
+            "on-primary-fixed": "#00201d",
+            "surface-container-low": "#f2f3ff",
+            "error": "#ba1a1a",
+            "outline": "#6e7977",
+            "on-primary-fixed-variant": "#00504a",
+            "on-secondary-fixed": "#111c2d",
+            "surface-variant": "#dae2fd",
+            "on-tertiary-container": "#9ffdd3",
+            "on-tertiary-fixed": "#002115",
+            "tertiary-fixed": "#97f5cc",
+            "on-tertiary-fixed-variant": "#00513a",
+            "inverse-on-surface": "#eef0ff",
+            "on-secondary-fixed-variant": "#3c475a",
+            "surface-bright": "#faf8ff",
+            "surface-dim": "#d2d9f4",
+            "on-surface": "#131b2e",
+            "error-container": "#ffdad6"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-lg": "1.25rem",
+            "space-xs": "0.25rem",
+            "space-md": "0.75rem",
+            "margin-mobile": "1rem",
+            "space-sm": "0.5rem",
+            "gutter-lg": "1.5rem",
+            "margin-desktop": "2rem",
+            "gutter": "1rem",
+            "margin": "1.5rem",
+            "space-xl": "2rem"
+          },
+          "fontFamily": {
+            "numeric-table": ["Geist"],
+            "body-sm": ["Hanken Grotesk"],
+            "label-sm": ["Geist"],
+            "body-md": ["Hanken Grotesk"],
+            "body-lg": ["Hanken Grotesk"],
+            "label-md": ["Geist"],
+            "headline-md": ["Hanken Grotesk"],
+            "headline-xl": ["Hanken Grotesk"],
+            "headline-lg": ["Hanken Grotesk"],
+            "display-lg": ["Hanken Grotesk"],
+            "label-lg": ["Geist"],
+            "headline-lg-mobile": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "numeric-table": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased">
+<!-- Mobile Backdrop Overlay -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-xs z-40 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+<!-- PERSISTENT SIDEBAR -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant/40 z-50 flex flex-col justify-between select-none -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out" id="app-sidebar">
+<div class="flex flex-col min-h-0">
+<div class="h-16 px-space-md flex items-center justify-between border-b border-outline-variant/30">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold text-label-lg">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-[15px] font-semibold text-on-surface tracking-tight leading-tight">Inventory &amp; Operations</span>
+<span class="font-label-sm text-[11px] text-on-surface-variant font-normal">Restaurant Portal</span>
+</div>
+</div>
+<button class="lg:hidden p-1 rounded-md text-on-surface-variant hover:bg-surface-container-low" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<nav class="flex-1 overflow-y-auto px-space-sm py-space-sm space-y-0.5">
+<div class="px-space-md pt-2 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Operations</div>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="dashboard" href="#dashboard">
+<span class="material-symbols-outlined text-[18px]">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="inventory" href="#inventory">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+<span class="font-label-md text-label-md">Inventory</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="stock-counts" href="#stock-counts">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+<span class="font-label-md text-label-md">Stock Counts</span>
+</a>
+<a aria-current="page" class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-semibold transition-colors" data-path="wastage" href="#wastage">
+<span class="material-symbols-outlined text-[18px] text-on-primary">delete_sweep</span>
+<span class="font-label-md text-label-md">Wastage</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="transfers" href="#transfers">
+<span class="material-symbols-outlined text-[18px]">swap_horiz</span>
+<span class="font-label-md text-label-md">Transfers</span>
+</a>
+<div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Purchasing</div>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="purchasing" href="#purchases">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+<span class="font-label-md text-label-md">Purchases</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="suppliers" href="#suppliers">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span class="font-label-md text-label-md">Suppliers</span>
+</a>
+<div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Kitchen</div>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="recipes" href="#recipes">
+<span class="material-symbols-outlined text-[18px]">menu_book</span>
+<span class="font-label-md text-label-md">Recipes</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="production" href="#production">
+<span class="material-symbols-outlined text-[18px]">skillet</span>
+<span class="font-label-md text-label-md">Production</span>
+</a>
+<div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Management</div>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="reports" href="#reports">
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="staff" href="#staff">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span class="font-label-md text-label-md">Staff</span>
+</a>
+<div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">System</div>
+<a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="settings" href="#settings">
+<span class="material-symbols-outlined text-[18px]">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</div>
+<div class="border-t border-outline-variant/30 p-space-sm space-y-space-xs bg-surface-container-lowest">
+<div class="p-space-xs rounded-lg border border-outline-variant/30 bg-surface-container-low flex items-center justify-between cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-1.5 truncate">
+<span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span>
+<span class="font-label-sm text-label-sm text-on-surface truncate font-medium">Main Branch</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">unfold_more</span>
+</div>
+<div class="flex items-center justify-between p-space-xs rounded-lg hover:bg-surface-container-low cursor-pointer transition-colors">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface-variant font-label-md font-semibold">GM</div>
+<div class="flex flex-col text-left">
+<span class="font-label-md text-label-md text-on-surface font-medium">General Manager</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Operations Lead</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">more_vert</span>
+</div>
+</div>
+</aside>
+<!-- MAIN WRAPPER -->
+<div class="lg:pl-64 w-full">
+<!-- TOP HEADER -->
+<header class="fixed top-0 left-0 lg:left-64 right-0 h-16 bg-surface/95 backdrop-blur border-b border-outline-variant/40 z-30 px-4 lg:px-gutter-lg flex items-center justify-between">
+<div class="flex items-center gap-space-sm sm:gap-space-md">
+<button class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-[22px]">menu</span>
+</button>
+<div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg border border-outline-variant/40 bg-surface-container-lowest cursor-pointer hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[18px] text-primary">storefront</span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Main Branch</span>
+<span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span>
+</div>
+<div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Updated 2 min ago</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm sm:gap-space-md">
+<div class="relative hidden md:block w-64 lg:w-96">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span>
+<input class="w-full h-9 pl-9 pr-12 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/70 font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Search ingredients, purchases, suppliers (⌘K)" type="text"/>
+<div class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm pointer-events-none">⌘K</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">help</span>
+</button>
+</div>
+<div class="h-6 w-px bg-outline-variant/40 hidden sm:block"></div>
+<div class="flex items-center gap-space-xs cursor-pointer group">
+<div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface font-label-sm font-semibold">GM</div>
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-on-surface transition-colors hidden sm:inline">keyboard_arrow_down</span>
+</div>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="w-full pt-20 bg-surface min-h-screen px-4 lg:px-gutter-lg pb-space-xl"><div class="flex flex-col w-full">
+<!-- BREADCRUMB & METADATA -->
+<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-sm mb-space-md">
+<nav aria-label="Breadcrumb" class="flex items-center gap-space-xs font-label-md text-label-md text-secondary">
+<span class="hover:text-on-surface transition-colors cursor-pointer">Operations</span>
+<span class="material-symbols-outlined text-[14px] text-secondary">chevron_right</span>
+<span aria-current="page" class="text-on-surface font-semibold">Wastage</span>
+</nav>
+</div>
+<!-- PAGE HEADER -->
+<header class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-space-lg">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Wastage</h1>
+<p class="font-body-md text-body-md text-secondary mt-0.5">Track ingredient waste, spoilage and kitchen losses.</p>
+</div>
+<div class="flex items-center gap-space-sm">
+<button class="inline-flex items-center justify-center gap-1.5 h-9 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-surface-container-low shadow-sm transition-colors cursor-pointer" id="btn-export-csv" type="button">
+<span class="material-symbols-outlined text-[18px] text-secondary">file_download</span>
+<span>Export CSV</span>
+</button>
+<a class="inline-flex items-center justify-center gap-1.5 h-9 px-space-md rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors shadow-sm cursor-pointer" href="#new-wastage">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Record Wastage</span>
+</a>
+</div>
+</header>
+<!-- SUMMARY KPI METRICS -->
+<section aria-label="Wastage Metrics" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md mb-space-xl">
+<!-- Card 1: Today's Wastage -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Today's Wastage</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">today</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-xl text-headline-xl text-on-surface font-semibold" id="kpi-today-records">3 records</div>
+<p class="font-label-sm text-label-sm text-secondary mt-0.5">Recorded today</p>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary h-full w-[28%] rounded-full"></div>
+</div>
+</div>
+<!-- Card 2: This Month -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">This Month</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-xl text-headline-xl text-on-surface font-semibold" id="kpi-month-records">18 records</div>
+<p class="font-label-sm text-label-sm text-secondary mt-0.5">September 2026</p>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full mt-3 overflow-hidden">
+<div class="bg-secondary h-full w-[45%] rounded-full"></div>
+</div>
+</div>
+<!-- Card 3: Estimated Loss -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Estimated Loss</span>
+<div class="w-8 h-8 rounded-lg bg-error-container/40 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[18px]">trending_down</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-xl text-headline-xl text-error font-semibold font-numeric-table" id="kpi-estimated-loss">PKR 9,460</div>
+<p class="font-label-sm text-label-sm text-secondary mt-0.5">This month</p>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full mt-3 overflow-hidden">
+<div class="bg-error h-full w-[60%] rounded-full"></div>
+</div>
+</div>
+<!-- Card 4: Top Reason -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Top Reason</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">pie_chart</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-md text-headline-md text-on-surface font-semibold truncate" id="kpi-top-reason">Preparation Waste</div>
+<p class="font-label-sm text-label-sm text-secondary mt-0.5">Most frequent reason</p>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full mt-3 overflow-hidden">
+<div class="bg-primary-container h-full w-[55%] rounded-full"></div>
+</div>
+</div>
+</section>
+<!-- RECENT WASTAGE SECTION -->
+<section aria-label="Wastage Ledger Data Grid" class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- SECTION HEADER & FILTERS -->
+<div class="p-space-lg bg-surface-container-lowest">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-sm mb-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Recent Wastage</h2>
+<p class="font-body-sm text-body-sm text-secondary">Latest ingredient wastage recorded at Main Branch.</p>
+</div>
+<div class="flex items-center gap-space-sm self-start md:self-auto">
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container-low px-2.5 py-1 rounded-md" id="visible-count-indicator">Showing 8 records</span>
+</div>
+</div>
+<!-- FILTER BAR -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-space-sm items-center">
+<!-- Search Input -->
+<div class="lg:col-span-4 relative">
+<span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[18px] text-secondary">search</span>
+<input class="w-full h-9 pl-9 pr-3 rounded-lg bg-surface-container-low text-on-surface placeholder:text-secondary font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-colors" id="filter-search" placeholder="Search reference or ingredient" type="text"/>
+</div>
+<!-- Reason Filter Dropdown -->
+<div class="lg:col-span-3">
+<select class="w-full h-9 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-colors cursor-pointer" id="filter-reason">
+<option value="all">All Reasons</option>
+<option value="Preparation Waste">Preparation Waste</option>
+<option value="Spoilage">Spoilage</option>
+<option value="Expired">Expired</option>
+<option value="Dropped / Damaged">Dropped / Damaged</option>
+<option value="Overcooked / Burnt">Overcooked / Burnt</option>
+<option value="Other">Other</option>
+</select>
+</div>
+<!-- Location Filter Dropdown -->
+<div class="lg:col-span-3">
+<select class="w-full h-9 px-3 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-colors cursor-pointer" id="filter-location">
+<option value="all">All Locations</option>
+<option value="Main Store">Main Store</option>
+<option value="Walk-in Cooler">Walk-in Cooler</option>
+<option value="Dry Store">Dry Store</option>
+<option value="Kitchen Prep">Kitchen Prep</option>
+</select>
+</div>
+<!-- Reset Button -->
+<div class="lg:col-span-2 flex justify-end">
+<button class="w-full h-9 px-space-md inline-flex items-center justify-center gap-1.5 rounded-lg bg-surface-container-low text-secondary font-label-md text-label-md hover:bg-surface-container hover:text-on-surface transition-colors cursor-pointer" id="btn-reset-filters" type="button">
+<span class="material-symbols-outlined text-[16px]">restart_alt</span>
+<span>Reset Filters</span>
+</button>
+</div>
+</div>
+</div>
+<!-- TABLE WRAPPER -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse" id="wastage-table">
+<thead>
+<tr class="bg-surface-container-low text-secondary font-label-sm text-label-sm uppercase tracking-wider select-none">
+<th class="py-3 px-space-lg" scope="col">Reference</th>
+<th class="py-3 px-space-md" scope="col">Date &amp; Time</th>
+<th class="py-3 px-space-md" scope="col">Ingredient</th>
+<th class="py-3 px-space-md text-right" scope="col">Quantity</th>
+<th class="py-3 px-space-md" scope="col">Reason</th>
+<th class="py-3 px-space-md" scope="col">Location</th>
+<th class="py-3 px-space-md text-right" scope="col">Estimated Loss</th>
+<th class="py-3 px-space-md" scope="col">Recorded By</th>
+<th class="py-3 px-space-lg text-right" scope="col">Action</th>
+</tr>
+</thead>
+<tbody class="bg-surface-container-lowest divide-y-0" id="wastage-table-body">
+<!-- Rows dynamically rendered via JavaScript -->
+</tbody>
+</table>
+</div>
+<!-- EMPTY STATE -->
+<div class="hidden flex-col items-center justify-center text-center p-space-xl bg-surface-container-lowest" id="wastage-empty-state">
+<div class="w-14 h-14 rounded-2xl bg-surface-container-low flex items-center justify-center text-secondary mb-space-md">
+<span class="material-symbols-outlined text-[32px]">find_in_page</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface font-semibold">No wastage records found</h3>
+<p class="font-body-md text-body-md text-secondary mt-1 max-w-sm">Try changing your search or filters.</p>
+<a class="mt-space-md inline-flex items-center justify-center gap-1.5 h-9 px-space-md rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors shadow-sm cursor-pointer" href="#new-wastage">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>Record Wastage</span>
+</a>
+</div>
+</section>
+</div>
+<script>
+  const wastageOverview = {
+    summary: {
+      todayRecords: 3,
+      monthRecords: 18,
+      estimatedLoss: 9460,
+      topReason: "Preparation Waste"
+    },
+    records: [
+      { id: "WST-1048", dateTime: "23 Sep 2026, 4:10 PM", ingredient: "Chicken Breast", quantity: 0.8, unit: "kg", reason: "Preparation Waste", location: "Walk-in Cooler", estimatedLoss: 736, recordedBy: "General Manager" },
+      { id: "WST-1047", dateTime: "23 Sep 2026, 2:35 PM", ingredient: "Burger Buns", quantity: 6, unit: "pcs", reason: "Dropped / Damaged", location: "Kitchen Prep", estimatedLoss: 210, recordedBy: "Kitchen Lead" },
+      { id: "WST-1046", dateTime: "23 Sep 2026, 11:20 AM", ingredient: "Lettuce", quantity: 0.6, unit: "kg", reason: "Spoilage", location: "Walk-in Cooler", estimatedLoss: 108, recordedBy: "Kitchen Lead" },
+      { id: "WST-1045", dateTime: "22 Sep 2026, 6:15 PM", ingredient: "Mozzarella Cheese", quantity: 1.2, unit: "kg", reason: "Expired", location: "Walk-in Cooler", estimatedLoss: 1500, recordedBy: "General Manager" },
+      { id: "WST-1044", dateTime: "22 Sep 2026, 1:45 PM", ingredient: "Cooking Oil", quantity: 1, unit: "L", reason: "Preparation Waste", location: "Dry Store", estimatedLoss: 410, recordedBy: "Kitchen Lead" },
+      { id: "WST-1043", dateTime: "21 Sep 2026, 7:30 PM", ingredient: "Potatoes", quantity: 3, unit: "kg", reason: "Spoilage", location: "Kitchen Prep", estimatedLoss: 285, recordedBy: "Store Keeper" },
+      { id: "WST-1042", dateTime: "21 Sep 2026, 3:20 PM", ingredient: "Chicken Breast", quantity: 1, unit: "kg", reason: "Preparation Waste", location: "Walk-in Cooler", estimatedLoss: 920, recordedBy: "General Manager" },
+      { id: "WST-1041", dateTime: "20 Sep 2026, 8:40 PM", ingredient: "Tomatoes", quantity: 2, unit: "kg", reason: "Spoilage", location: "Kitchen Prep", estimatedLoss: 280, recordedBy: "Kitchen Lead" }
+    ]
+  };
+
+  function toggleSidebar() {
+    const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (!sidebar || !backdrop) return;
+    const isClosed = sidebar.classList.contains('-translate-x-full');
+    if (isClosed) {
+      sidebar.classList.remove('-translate-x-full');
+      backdrop.classList.remove('hidden');
+    } else {
+      sidebar.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
+    }
+  }
+
+  function getReasonBadgeHtml(reason) {
+    switch (reason) {
+      case "Preparation Waste":
+        return `
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-[11px] font-medium bg-surface-container text-tertiary">
+            <span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            ${reason}
+          </span>
+        `;
+      case "Spoilage":
+        return `
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-[11px] font-medium bg-amber-100 text-amber-800">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-600"></span>
+            ${reason}
+          </span>
+        `;
+      case "Expired":
+        return `
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-[11px] font-medium bg-error-container text-error">
+            <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+            ${reason}
+          </span>
+        `;
+      case "Dropped / Damaged":
+      case "Overcooked / Burnt":
+        return `
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-[11px] font-medium bg-amber-50 text-amber-700">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+            ${reason}
+          </span>
+        `;
+      default:
+        return `
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full font-label-sm text-[11px] font-medium bg-surface-container-low text-secondary">
+            <span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            ${reason}
+          </span>
+        `;
+    }
+  }
+
+  function formatPKR(val) {
+    return 'PKR ' + Number(val).toLocaleString('en-US');
+  }
+
+  function renderSummary() {
+    const todayEl = document.getElementById('kpi-today-records');
+    const monthEl = document.getElementById('kpi-month-records');
+    const lossEl = document.getElementById('kpi-estimated-loss');
+    const topReasonEl = document.getElementById('kpi-top-reason');
+
+    if (todayEl) todayEl.textContent = `${wastageOverview.summary.todayRecords} records`;
+    if (monthEl) monthEl.textContent = `${wastageOverview.summary.monthRecords} records`;
+    if (lossEl) lossEl.textContent = formatPKR(wastageOverview.summary.estimatedLoss);
+    if (topReasonEl) topReasonEl.textContent = wastageOverview.summary.topReason;
+  }
+
+  function filterRecords() {
+    const searchVal = (document.getElementById('filter-search')?.value || '').trim().toLowerCase();
+    const reasonVal = document.getElementById('filter-reason')?.value || 'all';
+    const locationVal = document.getElementById('filter-location')?.value || 'all';
+
+    return wastageOverview.records.filter(record => {
+      const matchesSearch = 
+        !searchVal || 
+        record.id.toLowerCase().includes(searchVal) || 
+        record.ingredient.toLowerCase().includes(searchVal);
+
+      const matchesReason = reasonVal === 'all' || record.reason === reasonVal;
+      const matchesLocation = locationVal === 'all' || record.location === locationVal;
+
+      return matchesSearch && matchesReason && matchesLocation;
+    });
+  }
+
+  function renderTable() {
+    const tbody = document.getElementById('wastage-table-body');
+    const emptyState = document.getElementById('wastage-empty-state');
+    const tableElement = document.getElementById('wastage-table');
+    const countIndicator = document.getElementById('visible-count-indicator');
+    if (!tbody || !emptyState || !tableElement) return;
+
+    const filtered = filterRecords();
+
+    if (countIndicator) {
+      countIndicator.textContent = `Showing ${filtered.length} record${filtered.length === 1 ? '' : 's'}`;
+    }
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = '';
+      tableElement.classList.add('hidden');
+      emptyState.classList.remove('hidden');
+      emptyState.classList.add('flex');
+      return;
+    }
+
+    tableElement.classList.remove('hidden');
+    emptyState.classList.remove('flex');
+    emptyState.classList.add('hidden');
+
+    let rowsHtml = '';
+    filtered.forEach(record => {
+      rowsHtml += `
+        <tr class="hover:bg-surface-container-low transition-colors">
+          <td class="py-3 px-space-lg font-numeric-table text-label-md text-on-surface font-semibold whitespace-nowrap">
+            ${record.id}
+          </td>
+          <td class="py-3 px-space-md font-numeric-table text-label-sm text-secondary whitespace-nowrap">
+            ${record.dateTime}
+          </td>
+          <td class="py-3 px-space-md font-body-md text-body-md text-on-surface font-medium whitespace-nowrap">
+            ${record.ingredient}
+          </td>
+          <td class="py-3 px-space-md text-right font-numeric-table text-numeric-table font-semibold text-on-surface whitespace-nowrap">
+            ${record.quantity} <span class="font-normal text-secondary text-[11px]">${record.unit}</span>
+          </td>
+          <td class="py-3 px-space-md whitespace-nowrap">
+            ${getReasonBadgeHtml(record.reason)}
+          </td>
+          <td class="py-3 px-space-md font-body-sm text-body-sm text-secondary whitespace-nowrap">
+            ${record.location}
+          </td>
+          <td class="py-3 px-space-md text-right font-numeric-table text-numeric-table font-semibold text-error whitespace-nowrap">
+            ${formatPKR(record.estimatedLoss)}
+          </td>
+          <td class="py-3 px-space-md font-body-sm text-body-sm text-secondary whitespace-nowrap">
+            ${record.recordedBy}
+          </td>
+          <td class="py-3 px-space-lg text-right whitespace-nowrap">
+            <a href="#wastage-detail" class="font-label-md text-label-md text-primary font-medium hover:underline inline-flex items-center gap-0.5">
+              <span>View</span>
+              <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+          </td>
+        </tr>
+      `;
+    });
+
+    tbody.innerHTML = rowsHtml;
+  }
+
+  function exportCsvData() {
+    const filtered = filterRecords();
+    const headers = ["Reference", "Date & Time", "Ingredient", "Quantity", "Unit", "Reason", "Location", "Estimated Loss (PKR)", "Recorded By"];
+    const csvRows = [headers.join(",")];
+
+    filtered.forEach(r => {
+      const row = [
+        r.id,
+        `"${r.dateTime}"`,
+        `"${r.ingredient}"`,
+        r.quantity,
+        r.unit,
+        `"${r.reason}"`,
+        `"${r.location}"`,
+        r.estimatedLoss,
+        `"${r.recordedBy}"`
+      ];
+      csvRows.push(row.join(","));
+    });
+
+    const csvContent = "data:text/csv;charset=utf-8," + csvRows.join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `wastage_records_main_branch_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderSummary();
+    renderTable();
+
+    const searchInput = document.getElementById('filter-search');
+    const reasonSelect = document.getElementById('filter-reason');
+    const locationSelect = document.getElementById('filter-location');
+    const resetBtn = document.getElementById('btn-reset-filters');
+    const exportBtn = document.getElementById('btn-export-csv');
+
+    if (searchInput) searchInput.addEventListener('input', renderTable);
+    if (reasonSelect) reasonSelect.addEventListener('change', renderTable);
+    if (locationSelect) locationSelect.addEventListener('change', renderTable);
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        if (reasonSelect) reasonSelect.value = 'all';
+        if (locationSelect) locationSelect.value = 'all';
+        renderTable();
+      });
+    }
+
+    if (exportBtn) {
+      exportBtn.addEventListener('click', exportCsvData);
+    }
+  });
+</script></main>
+</div>
+<script src="/integration-bridge.js"></script>
+</body></html>

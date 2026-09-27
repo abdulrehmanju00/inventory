@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,300..900;1,300..900&amp;family=Geist:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "on-tertiary-container": "#9ffdd3", "on-surface-variant": "#3e4947", "surface-container": "#eaedff", "on-primary-fixed": "#00201d", "surface-container-low": "#f2f3ff", "surface-variant": "#dae2fd", "inverse-surface": "#283044", "error": "#ba1a1a", "tertiary-fixed": "#97f5cc", "on-surface": "#131b2e", "secondary-fixed-dim": "#bcc7de", "on-secondary-fixed": "#111c2d", "primary": "#005c55", "inverse-primary": "#80d5cb", "on-tertiary": "#ffffff", "on-background": "#131b2e", "secondary": "#545f73", "on-primary-fixed-variant": "#00504a", "surface-tint": "#006a63", "on-error": "#ffffff", "on-tertiary-fixed": "#002115", "primary-container": "#0f766e", "tertiary": "#005d42", "on-primary-container": "#a3faef", "secondary-container": "#d5e0f8", "on-tertiary-fixed-variant": "#00513a", "surface": "#faf8ff", "surface-container-high": "#e2e7ff", "outline-variant": "#bdc9c6", "on-secondary-container": "#586377", "primary-fixed-dim": "#80d5cb", "outline": "#6e7977", "tertiary-fixed-dim": "#7bd8b1", "on-secondary": "#ffffff", "on-secondary-fixed-variant": "#3c475a", "secondary-fixed": "#d8e3fb", "surface-dim": "#d2d9f4", "surface-bright": "#faf8ff", "tertiary-container": "#047857", "error-container": "#ffdad6", "primary-fixed": "#9cf2e8", "surface-container-lowest": "#ffffff", "surface-container-highest": "#dae2fd", "background": "#faf8ff", "inverse-on-surface": "#eef0ff", "on-error-container": "#93000a" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-md": "0.75rem", "space-lg": "1.25rem", "gutter": "1rem", "space-xs": "0.25rem", "gutter-lg": "1.5rem", "margin-desktop": "2rem", "space-sm": "0.5rem", "margin": "1.5rem", "space-xl": "2rem", "margin-mobile": "1rem" }, "fontFamily": { "display-lg": [ "Hanken Grotesk" ], "label-md": [ "Geist" ], "label-sm": [ "Geist" ], "body-lg": [ "Hanken Grotesk" ], "body-sm": [ "Hanken Grotesk" ], "headline-lg-mobile": [ "Hanken Grotesk" ], "headline-md": [ "Hanken Grotesk" ], "body-md": [ "Hanken Grotesk" ], "label-lg": [ "Geist" ], "headline-xl": [ "Hanken Grotesk" ], "headline-lg": [ "Hanken Grotesk" ], "numeric-table": [ "Geist" ] }, "fontSize": { "display-lg": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" } ], "label-sm": [ "11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" } ], "body-lg": [ "16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" } ], "body-sm": [ "13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" } ], "headline-lg-mobile": [ "20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "headline-md": [ "18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" } ], "body-md": [ "14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" } ], "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" } ], "headline-xl": [ "28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-lg": [ "22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "numeric-table": [ "13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" } ] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><div class="fixed inset-0 bg-inverse-surface/35 backdrop-blur-[1.5px] z-40 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest z-50 flex flex-col shadow-[0_1px_8px_rgba(0,0,0,0.04)] -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out" id="app-sidebar"><div class="h-16 px-gutter flex items-center justify-between bg-surface-container-lowest"><div class="flex items-center gap-space-sm min-w-0"><img alt="Brand logo. - Primary color: #0f766e
+- Font: hankenGrotesk
+- Mode: light
+- Roundness: rounded-sm
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Vg87010HFxw5E8Qwwf9sOTeKOf9icLpvkaPzFImCLR_JGPAm1ZHLRjhmERfDiKANauRqnR7EBEXzmqNACk7NSYdiZ-rk4ilpZhbtJIvuyZJondyPhgUvV9ih9J-HBsAVj_vLtIpHGbao4gc7FFCBz31BlwGL_qsJjnbN9yByA1BOBi-zF29nLlPxBwwjBGqySbKJu7KWcUTSoRXy_EEqXumnJcqKvMeisGL0HcBwMt3KCn-CMOkTvLd5o"/><div class="flex flex-col min-w-0"><span class="font-headline-md text-headline-md tracking-tight text-on-surface truncate leading-tight">Inventory &amp; Operations</span><span class="font-label-sm text-label-sm text-secondary truncate uppercase tracking-wider">Restaurant Portal</span></div></div><button class="lg:hidden p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg" onclick="toggleSidebar()"><span class="material-symbols-outlined text-[20px]">close</span></button></div><div class="flex-1 overflow-y-auto px-space-md py-space-sm space-y-space-md"><nav class="space-y-space-md" data-active-classes="bg-primary text-on-primary font-semibold rounded-lg shadow-sm"><div class="space-y-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Operations</span><div class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="dashboard" href="#dashboard"><span class="material-symbols-outlined text-[18px]">dashboard</span><span class="">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="inventory" href="#inventory"><span class="material-symbols-outlined text-[18px]">inventory_2</span><span class="">Inventory</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="stock-counts" href="#stock-counts"><span class="material-symbols-outlined text-[18px]">checklist</span><span class="">Stock Counts</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="wastage" href="#wastage"><span class="material-symbols-outlined text-[18px]">delete_sweep</span><span class="">Wastage</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="transfers" href="#transfers"><span class="material-symbols-outlined text-[18px]">swap_horiz</span><span class="">Transfers</span></a></div></div><div class="space-y-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Purchasing</span><div class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="purchases" href="#purchases"><span class="material-symbols-outlined text-[18px]">shopping_cart</span><span class="">Purchases</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="suppliers" href="#suppliers"><span class="material-symbols-outlined text-[18px]">local_shipping</span><span class="">Suppliers</span></a></div></div><div class="space-y-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Kitchen</span><div class="space-y-0.5"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md bg-primary text-on-primary font-semibold shadow-sm" data-path="recipes" href="#recipes"><span class="material-symbols-outlined text-[18px]">restaurant_menu</span><span class="">Recipes</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="production" href="#production"><span class="material-symbols-outlined text-[18px]">skillet</span><span class="">Production</span></a></div></div><div class="space-y-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider block">Management</span><div class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="reports" href="#reports"><span class="material-symbols-outlined text-[18px]">bar_chart</span><span class="">Reports</span></a><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="staff" href="#staff"><span class="material-symbols-outlined text-[18px]">group</span><span class="">Staff</span></a></div></div><div class="space-y-space-xs"><span class="px-space-sm font-label-sm text-label-sm text-secondary uppercase tracking-wider block">System</span><div class="space-y-0.5"><a class="flex items-center gap-space-sm px-space-sm py-1.5 rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" data-path="settings" href="#settings"><span class="material-symbols-outlined text-[18px]">settings</span><span class="">Settings</span></a></div></div></nav></div><div class="p-space-md bg-surface-container-low flex flex-col gap-space-sm"><div class="flex items-center justify-between px-space-sm py-1.5 bg-surface-container-lowest rounded-lg shadow-[0_1px_2px_rgba(15,23,42,0.04)]"><div class="flex items-center gap-space-xs min-w-0"><span class="material-symbols-outlined text-primary text-[18px]">storefront</span><span class="font-label-md text-label-md text-on-surface font-semibold truncate">Main Branch</span></div><span class="material-symbols-outlined text-secondary text-[16px]">unfold_more</span></div><div class="flex items-center gap-space-sm p-space-xs rounded-lg hover:bg-surface-container transition-colors"><div class="relative flex-shrink-0"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1XI6DyIv1Y7c0GDRZNWFq8_28pHwt9n_DB41fCf6S6vtU6W6DjJ9AW6HZDINWBe7ZIgCWPBlxZ_uPl2eAupw0qwQmqVS65eTbu9qrnOnRwNzU9s_2rKihfbCgQ7PoBFc2J7NcSO08gDG5Ay6mSZbvI2Ys4EJyQVlLh3ItdwqIgVpT33DRDJTSOlQuG-4HFkpOJXxDcqRwkURZ__j67AmeUsYnMFEWJcAoIquZcrB64S4fDoKMQ8WIlOh6U"/><span class="absolute bottom-0 right-0 w-2 h-2 rounded-full bg-tertiary-container ring-1 ring-surface-container-lowest"></span></div><div class="flex flex-col min-w-0"><span class="font-label-md text-label-md text-on-surface font-semibold truncate leading-tight">Ahmed Raza</span><span class="font-label-sm text-label-sm text-secondary truncate leading-tight">Operations Lead</span></div></div></div></aside><div class="lg:pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-0 lg:left-64 right-0 h-16 bg-surface/85 backdrop-blur-xl z-30 shadow-[0_1px_8px_rgba(0,0,0,0.04)] flex items-center justify-between px-gutter lg:px-gutter-lg gap-space-md"><div class="flex items-center gap-space-md min-w-0 flex-1"><button aria-label="Toggle Navigation" class="lg:hidden p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg" onclick="toggleSidebar()"><span class="material-symbols-outlined text-[24px]">menu</span></button><div class="hidden sm:flex items-center gap-space-xs px-space-sm py-1 bg-surface-container rounded-lg"><span class="material-symbols-outlined text-primary text-[18px]">storefront</span><span class="font-label-md text-label-md text-on-surface font-semibold">Main Branch</span><span class="material-symbols-outlined text-secondary text-[16px]">arrow_drop_down</span></div><div class="hidden md:inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span><span class="">Updated 2 min ago</span></div><div class="relative flex-1 max-w-md hidden sm:block"><span class="material-symbols-outlined absolute left-space-sm top-1/2 -translate-y-1/2 text-secondary text-[18px]">search</span><input class="w-full h-9 pl-9 pr-space-md rounded-lg bg-surface-container-lowest font-body-sm text-body-sm text-on-surface placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-primary shadow-[0_1px_2px_rgba(15,23,42,0.04)]" placeholder="Search ingredients, purchases, recipes... ⌘K" type="text"/></div></div><div class="flex items-center gap-space-sm shrink-0"><button aria-label="Search" class="sm:hidden p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg"><span class="material-symbols-outlined text-[20px]">search</span></button><button aria-label="Notifications" class="relative p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span></button><button aria-label="Help &amp; Documentation" class="p-space-xs text-on-surface-variant hover:text-on-surface hover:bg-surface-container rounded-lg"><span class="material-symbols-outlined text-[20px]">help</span></button><div class="flex items-center gap-space-sm pl-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1XI6DyIv1Y7c0GDRZNWFq8_28pHwt9n_DB41fCf6S6vtU6W6DjJ9AW6HZDINWBe7ZIgCWPBlxZ_uPl2eAupw0qwQmqVS65eTbu9qrnOnRwNzU9s_2rKihfbCgQ7PoBFc2J7NcSO08gDG5Ay6mSZbvI2Ys4EJyQVlLh3ItdwqIgVpT33DRDJTSOlQuG-4HFkpOJXxDcqRwkURZ__j67AmeUsYnMFEWJcAoIquZcrB64S4fDoKMQ8WIlOh6U"/></div></div></header><main class="w-full pt-16 bg-surface min-h-[calc(100vh-4rem)] px-gutter lg:px-gutter-lg py-margin"><div class="flex flex-col w-full">
+<!-- Breadcrumbs & Quick Context Utility Bar -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-md">
+<nav aria-label="Breadcrumb" class="flex items-center gap-1.5 font-label-md text-label-md text-secondary">
+<span class="text-secondary">Kitchen</span>
+<span class="material-symbols-outlined text-[14px] text-outline-variant">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#recipes">Recipes</a>
+<span class="material-symbols-outlined text-[14px] text-outline-variant">chevron_right</span>
+<span class="text-on-surface font-semibold truncate max-w-[200px] sm:max-w-none">Chicken Zinger Burger</span>
+</nav>
+<div class="flex items-center gap-space-xs font-label-sm text-label-sm text-secondary bg-surface-container px-space-sm py-0.5 rounded-md">
+<span class="material-symbols-outlined text-[15px] text-primary">verified</span>
+<span class="">Spec Standard: <strong class="text-on-surface font-semibold">QSR-PAK-v1.4</strong></span>
+</div>
+</div>
+<!-- Header Section with Actions -->
+<div class="bg-surface-container-lowest rounded-xl p-gutter lg:p-gutter-lg shadow-sm mb-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="space-y-space-xs min-w-0">
+<div class="flex flex-wrap items-center gap-space-sm">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight font-semibold">
+            Chicken Zinger Burger
+          </h1>
+<span class="px-2.5 py-0.5 rounded font-numeric-table text-label-sm bg-surface-container text-on-surface font-semibold tracking-wide">
+            RCP-1026
+          </span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded font-label-sm text-label-sm bg-tertiary-fixed/30 text-tertiary font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+            Active
+          </span>
+<span class="text-secondary font-label-sm text-label-sm bg-surface-container-low px-2 py-0.5 rounded">
+            Portioned Item
+          </span>
+</div>
+<p class="font-body-md text-body-md text-secondary max-w-3xl">
+          Standardized finished-menu recipe specification with ingredient bill of materials, cost structure allocations, and standardized line kitchen assembly protocols.
+        </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-wrap items-center gap-space-xs sm:gap-space-sm shrink-0">
+<a class="inline-flex items-center gap-1 px-3 py-1.5 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md" href="#recipes">
+<span class="material-symbols-outlined text-[17px]">arrow_back</span>
+<span class="">Back to Recipes</span>
+</a>
+<button class="inline-flex items-center gap-1 px-3 py-1.5 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md" id="btn-duplicate-spec">
+<span class="material-symbols-outlined text-[17px]">content_copy</span>
+<span class="">Duplicate</span>
+</button>
+<button class="inline-flex items-center gap-1 px-3.5 py-1.5 rounded bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md shadow-sm" id="btn-edit-recipe-header">
+<span class="material-symbols-outlined text-[17px]">edit_note</span>
+<span class="">Edit Recipe</span>
+</button>
+<div class="relative inline-block" id="more-actions-container">
+<button class="p-1.5 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors" id="btn-more-actions">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+<div class="hidden absolute right-0 mt-1 w-48 bg-surface-container-lowest rounded-lg shadow-xl py-1 z-20" id="more-actions-dropdown">
+<button class="w-full text-left px-3 py-1.5 font-label-sm text-label-sm text-on-surface hover:bg-surface-container flex items-center gap-2" onclick="window.print()">
+<span class="material-symbols-outlined text-[16px] text-secondary">print</span> Print Spec Sheet
+            </button>
+<button class="w-full text-left px-3 py-1.5 font-label-sm text-label-sm text-on-surface hover:bg-surface-container flex items-center gap-2" onclick="window.recipeHandlers.exportJSON()">
+<span class="material-symbols-outlined text-[16px] text-secondary">file_download</span> Export Recipe (JSON)
+            </button>
+<button class="w-full text-left px-3 py-1.5 font-label-sm text-label-sm text-on-surface hover:bg-surface-container flex items-center gap-2" onclick="window.recipeHandlers?.showAuditModal()"><span class="material-symbols-outlined text-[16px] text-secondary">history_edu</span> Audit Timeline</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Top 4 Compact KPI Cards & Margin Summary -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-lg">
+<!-- Yield -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Standard Yield</span>
+<span class="material-symbols-outlined text-primary text-[20px]">inventory_2</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-1.5">
+<span class="font-headline-xl text-headline-xl font-numeric-table text-on-surface">10</span>
+<span class="font-body-md text-body-md text-secondary">Portions / batch</span>
+</div>
+<div class="mt-2 text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">tune</span>
+<span class="">Standardized unit size 240g</span>
+</div>
+</div>
+<!-- Batch Cost -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Total Batch Cost</span>
+<span class="material-symbols-outlined text-secondary text-[20px]">payments</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-1">
+<span class="font-label-md text-label-md text-secondary">Rs.</span>
+<span class="font-headline-xl text-headline-xl font-numeric-table text-on-surface">2,899.00</span>
+</div>
+<div class="mt-2 text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-secondary">layers</span>
+<span class="">Raw + Packaging + Prep</span>
+</div>
+</div>
+<!-- Cost per Portion -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Projected Cost / Portion</span>
+<span class="material-symbols-outlined text-primary text-[20px]">pie_chart</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-1">
+<span class="font-label-md text-label-md text-secondary">Rs.</span>
+<span class="font-headline-xl text-headline-xl font-numeric-table text-on-surface">289.90</span>
+</div>
+<div class="mt-2 text-label-sm font-label-sm text-secondary flex items-center gap-1">
+<span class="inline-block w-2 h-2 rounded-full bg-primary"></span>
+<span class="">Based on standard BOM</span>
+</div>
+</div>
+<!-- Target Selling Price & Projected Margin -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-secondary">Target Selling Price</span>
+<span class="material-symbols-outlined text-tertiary text-[20px]">sell</span>
+</div>
+<div class="mt-space-sm flex items-baseline gap-1">
+<span class="font-label-md text-label-md text-secondary">Rs.</span>
+<span class="font-headline-xl text-headline-xl font-numeric-table text-on-surface">550.00</span>
+</div>
+<div class="mt-2 flex items-center justify-between font-label-sm text-label-sm">
+<span class="text-secondary">Projected Margin:</span>
+<span class="font-numeric-table font-semibold text-tertiary">47.3% (Rs. 260.10)</span>
+</div>
+</div>
+</div>
+<!-- Projected Metric Ribbon Banner -->
+<div class="bg-surface-container rounded-lg px-space-md py-space-sm mb-space-lg flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex flex-wrap items-center gap-space-md text-body-sm font-body-sm">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-primary"></span>
+<span class="text-secondary">Projected Food Cost:</span>
+<span class="font-numeric-table font-semibold text-on-surface">52.7%</span>
+</div>
+<div class="hidden sm:block text-outline-variant">|</div>
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span class="text-secondary">Projected Gross Margin:</span>
+<span class="font-numeric-table font-semibold text-on-surface">47.3%</span>
+</div>
+<div class="hidden md:block text-outline-variant">|</div>
+<span class="text-label-sm font-label-sm text-secondary italic">Projected estimates based on recipe specification. No live inventory impacted.</span>
+</div>
+<div class="flex items-center gap-1 text-label-sm font-label-sm text-primary font-semibold"><span class="material-symbols-outlined text-[15px]">info</span><span class="">Read-only recipe specification</span></div>
+</div>
+<!-- TWO-COLUMN WORKFLOW GRID (Left: 7 cols, Right: 5 cols on desktop) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg mb-space-xl items-start">
+<!-- LEFT MAIN COLUMN (Col 1-7) -->
+<div class="lg:col-span-7 space-y-space-lg">
+<!-- 1. Recipe Information Card -->
+<section class="bg-surface-container-lowest rounded-xl p-gutter shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">menu_book</span>
+<h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface tracking-tight">Recipe Information</h2>
+</div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-secondary">Specification Metadata</span>
+</div>
+<!-- Spec Data Table Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-space-sm bg-surface-container-low p-space-md rounded-lg">
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Recipe Code</span>
+<span class="font-numeric-table text-body-md font-semibold text-on-surface">RCP-1026</span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Category</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Burgers</span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Recipe Type</span>
+<span class="font-body-md text-body-md text-on-surface font-medium">Finished Menu Item</span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Status</span>
+<span class="inline-flex items-center gap-1 font-label-md text-label-md text-tertiary font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span> Active
+            </span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Serving Size</span>
+<span class="font-body-md text-body-md text-on-surface">1 Burger (~240g)</span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Preparation Station</span>
+<span class="font-body-md text-body-md text-on-surface">Fryer Station</span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Preparation Time</span>
+<span class="font-body-md text-body-md text-on-surface">20 minutes</span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Cooking Time</span>
+<span class="font-body-md text-body-md text-on-surface">12 minutes</span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Total Batch Time</span>
+<span class="inline-flex items-center gap-1 font-numeric-table font-semibold text-primary">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+              32 minutes
+            </span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Storage Requirement</span>
+<span class="font-body-md text-body-md text-on-surface">Prepare &amp; Serve Immediately</span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Holding Shelf Life</span>
+<span class="font-body-md text-body-md text-on-surface">4 Hours (Max Holding)</span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Revision Author</span>
+<span class="font-body-md text-body-md text-on-surface">Ahmed Raza (Lead)</span>
+</div>
+</div>
+<!-- Description block -->
+<div class="bg-surface-container rounded-lg p-space-md">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider mb-1">Culinary Description</span>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+            Crispy chicken fillet burger with cheese, signature garlic mayo sauce and fresh artisan brioche bun. Spec requires crisp crumb coating, balanced core internal seasoning, and flash toasted inner crown/heel buns.
+          </p>
+</div>
+</section>
+<!-- 2. Recipe Ingredients (Bill of Materials) -->
+<section class="bg-surface-container-lowest rounded-xl p-gutter shadow-sm space-y-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs pb-space-xs">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">format_list_bulleted</span>
+<h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface tracking-tight">Recipe Ingredients (Bill of Materials)</h2>
+</div>
+<p class="font-body-sm text-body-sm text-secondary mt-0.5">Standard bill of materials for one recipe batch (10 standard burger portions).</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-surface-container rounded font-numeric-table text-label-sm text-secondary">4 Line Items</span>
+</div>
+</div>
+<!-- ERP Table -->
+<div class="overflow-x-auto rounded-lg shadow-sm">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-high text-secondary uppercase font-label-sm text-label-sm">
+<tr>
+<th class="py-2.5 px-3">Ingredient</th>
+<th class="py-2.5 px-3">SKU</th>
+<th class="py-2.5 px-3">Base Unit</th>
+<th class="py-2.5 px-3 text-right">Required Qty</th>
+<th class="py-2.5 px-3 text-right">Unit Cost</th>
+<th class="py-2.5 px-3 text-right">Projected Cost</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-medium text-on-surface">Chicken Breast</span>
+</div>
+</td>
+<td class="py-3 px-3 font-numeric-table text-secondary">SKU-9021</td>
+<td class="py-3 px-3">kg</td>
+<td class="py-3 px-3 text-right font-numeric-table font-medium text-on-surface">1.50</td>
+<td class="py-3 px-3 text-right font-numeric-table text-secondary">Rs. 920.00</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-on-surface">Rs. 1,380.00</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-medium text-on-surface">Brioche Burger Buns</span>
+</div>
+</td>
+<td class="py-3 px-3 font-numeric-table text-secondary">SKU-6102</td>
+<td class="py-3 px-3">pcs</td>
+<td class="py-3 px-3 text-right font-numeric-table font-medium text-on-surface">10</td>
+<td class="py-3 px-3 text-right font-numeric-table text-secondary">Rs. 35.00</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-on-surface">Rs. 350.00</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-medium text-on-surface">Mozzarella Cheese</span>
+</div>
+</td>
+<td class="py-3 px-3 font-numeric-table text-secondary">SKU-4012</td>
+<td class="py-3 px-3">kg</td>
+<td class="py-3 px-3 text-right font-numeric-table font-medium text-on-surface">0.50</td>
+<td class="py-3 px-3 text-right font-numeric-table text-secondary">Rs. 1,250.00</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-on-surface">Rs. 625.00</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="py-3 px-3">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+<span class="font-medium text-on-surface">Mayonnaise</span>
+</div>
+</td>
+<td class="py-3 px-3 font-numeric-table text-secondary">SKU-7201</td>
+<td class="py-3 px-3">L</td>
+<td class="py-3 px-3 text-right font-numeric-table font-medium text-on-surface">0.30</td>
+<td class="py-3 px-3 text-right font-numeric-table text-secondary">Rs. 480.00</td>
+<td class="py-3 px-3 text-right font-numeric-table font-semibold text-on-surface">Rs. 144.00</td>
+</tr>
+</tbody>
+<tfoot class="bg-surface-container font-semibold">
+<tr>
+<td class="py-3 px-3 text-right font-label-md text-label-md text-on-surface" colspan="5">
+                  Raw Ingredient Cost Subtotal:
+                </td>
+<td class="py-3 px-3 text-right font-numeric-table text-on-surface">
+                  Rs. 2,499.00
+                </td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div class="flex items-center gap-1.5 text-label-sm font-label-sm text-secondary bg-surface-container-low p-2 rounded">
+<span class="material-symbols-outlined text-[15px] text-primary">lock_clock</span>
+<span class="">BOM amounts denote strict kitchen recipe specifications. Inventory levels and stock reserve checks are intentionally omitted from recipe viewing.</span>
+</div>
+</section>
+<!-- 3. Preparation Method Card -->
+<section class="bg-surface-container-lowest rounded-xl p-gutter shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">skillet</span>
+<h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface tracking-tight">Preparation Method</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded">6 Standard Stages</span>
+</div>
+<ol class="space-y-space-sm list-none p-0 m-0">
+<li class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-on-primary font-numeric-table font-semibold text-label-sm flex items-center justify-center">1</span>
+<div class="text-body-md text-on-surface pt-0.5">
+              Marinate chicken breast fillets using approved seasoning blend for minimum 45 minutes below 4°C in designated cold storage prep tray.
+            </div>
+</li>
+<li class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-on-primary font-numeric-table font-semibold text-label-sm flex items-center justify-center">2</span>
+<div class="text-body-md text-on-surface pt-0.5">
+              Coat chicken fillets evenly in seasoned flour and dredge mixture, shaking off excess dust to ensure consistent crust formation.
+            </div>
+</li>
+<li class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-on-primary font-numeric-table font-semibold text-label-sm flex items-center justify-center">3</span>
+<div class="text-body-md text-on-surface pt-0.5">
+              Deep fry at 175°C for approximately 6–8 minutes until the required internal temperature of 74°C (165°F) is reached.
+            </div>
+</li>
+<li class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-on-primary font-numeric-table font-semibold text-label-sm flex items-center justify-center">4</span>
+<div class="text-body-md text-on-surface pt-0.5">
+              Toast brioche burger buns lightly on the flat griddle until golden brown with crisp ring edge.
+            </div>
+</li>
+<li class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-on-primary font-numeric-table font-semibold text-label-sm flex items-center justify-center">5</span>
+<div class="text-body-md text-on-surface pt-0.5">
+              Assemble bun heel, 15g garlic mayonnaise, crispy chicken fillet, melted mozzarella slice, and crown bun.
+            </div>
+</li>
+<li class="flex items-start gap-space-sm p-space-sm rounded-lg bg-surface-container-low hover:bg-surface-container transition-colors">
+<span class="flex-shrink-0 w-6 h-6 rounded-full bg-primary text-on-primary font-numeric-table font-semibold text-label-sm flex items-center justify-center">6</span>
+<div class="text-body-md text-on-surface pt-0.5">
+              Perform presentation quality check, inspect wrapper integrity, and transfer immediately to service pass.
+            </div>
+</li>
+</ol>
+</section>
+<!-- 4. Recipe Version History -->
+<section class="bg-surface-container-lowest rounded-xl p-gutter shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">history</span>
+<h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface tracking-tight">Recipe Version History</h2>
+</div>
+<span class="text-label-sm font-label-sm text-secondary">Display-only prototype records</span>
+</div>
+<div class="overflow-x-auto rounded-lg shadow-sm">
+<table class="w-full text-left font-body-sm text-body-sm">
+<thead class="bg-surface-container-high text-secondary uppercase font-label-sm text-label-sm">
+<tr>
+<th class="py-2 px-3">Version</th>
+<th class="py-2 px-3">State</th>
+<th class="py-2 px-3">Date</th>
+<th class="py-2 px-3">Summary of Changes</th>
+<th class="py-2 px-3">Modified By</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3 font-numeric-table font-semibold text-on-surface">v1.4</td>
+<td class="py-2.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-tertiary-fixed/30 text-tertiary font-semibold">Current</span>
+</td>
+<td class="py-2.5 px-3 font-numeric-table text-secondary">26 Sep 2026</td>
+<td class="py-2.5 px-3 text-on-surface">Updated portion costing and seasonal oil allocation</td>
+<td class="py-2.5 px-3 text-secondary">Operations Lead</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3 font-numeric-table font-semibold text-on-surface">v1.3</td>
+<td class="py-2.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-secondary">Previous</span>
+</td>
+<td class="py-2.5 px-3 font-numeric-table text-secondary">15 Aug 2026</td>
+<td class="py-2.5 px-3 text-on-surface">Updated mozzarella quantity standard specification (0.50kg)</td>
+<td class="py-2.5 px-3 text-secondary">Operations Lead</td>
+</tr>
+<tr class="bg-surface-container-lowest hover:bg-surface-container-low transition-colors">
+<td class="py-2.5 px-3 font-numeric-table font-semibold text-on-surface">v1.2</td>
+<td class="py-2.5 px-3">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-label-sm font-label-sm bg-surface-container text-secondary">Previous</span>
+</td>
+<td class="py-2.5 px-3 font-numeric-table text-secondary">02 Jul 2026</td>
+<td class="py-2.5 px-3 text-on-surface">Preparation method revision: extended core resting phase</td>
+<td class="py-2.5 px-3 text-secondary">Kitchen Manager</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- RIGHT SIDEBAR COLUMN (Col 8-12) -->
+<div class="lg:col-span-5 space-y-space-lg">
+<!-- 1. Recipe Cost Breakdown Card -->
+<section class="bg-surface-container-lowest rounded-xl p-gutter shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">account_balance_wallet</span>
+<h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface tracking-tight">Recipe Cost Breakdown</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary bg-surface-container px-2 py-0.5 rounded">Standard Spec</span>
+</div>
+<!-- Cost Visual Representation Donut & Breakdown -->
+<div class="p-space-md bg-surface-container-low rounded-xl space-y-space-md">
+<div class="flex items-center justify-between gap-space-md">
+<!-- Inline SVG Gauge for Food Cost % -->
+<div class="relative w-28 h-28 flex items-center justify-center shrink-0">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<!-- Background Circle -->
+<path class="text-surface-container-high" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="3.5"></path>
+<!-- Value Circle (52.7% of 100) -->
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="52.7, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-numeric-table font-semibold text-on-surface text-body-md">52.7%</span>
+<span class="font-label-sm text-[10px] text-secondary uppercase">Food Cost</span>
+</div>
+</div>
+<!-- Mini Summary Metrics -->
+<div class="flex-1 space-y-space-xs text-body-sm font-body-sm">
+<div class="flex justify-between items-center">
+<span class="text-secondary">Raw Cost Ratio</span>
+<span class="font-numeric-table font-semibold text-on-surface">86.2%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-secondary">Packaging &amp; Prep</span>
+<span class="font-numeric-table font-semibold text-on-surface">5.2%</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-secondary">Labour Allocation</span>
+<span class="font-numeric-table font-semibold text-on-surface">8.6%</span>
+</div>
+<div class="h-px bg-surface-container my-1"></div>
+<div class="flex justify-between items-center font-label-sm text-label-sm">
+<span class="text-secondary">Target Food Cost Band:</span>
+<span class="font-semibold text-tertiary">Balanced (QSR)</span>
+</div>
+</div>
+</div>
+<!-- Color Gauge Legend -->
+<div>
+<div class="w-full bg-surface-container rounded-full h-2 flex overflow-hidden">
+<div class="bg-tertiary w-[35%]" title="Ideal: &lt;35%"></div>
+<div class="bg-primary w-[15%]" title="Moderate: 35-50%"></div>
+<div class="bg-secondary w-[50%]" title="High: &gt;50%"></div>
+</div>
+<div class="flex justify-between text-[11px] font-label-sm text-secondary mt-1">
+<span class="">&lt;35% Ideal</span>
+<span class="">35-50% Moderate</span>
+<span class="font-semibold text-on-surface">&gt;50% Current (52.7%)</span>
+</div>
+</div>
+</div>
+<!-- Cost Line Item Table -->
+<div class="space-y-space-xs text-body-sm font-body-sm">
+<div class="flex justify-between items-center py-1.5 px-2 bg-surface-container-low rounded">
+<span class="text-secondary">Raw Ingredients Total</span>
+<span class="font-numeric-table font-medium text-on-surface">Rs. 2,499.00</span>
+</div>
+<div class="flex justify-between items-center py-1.5 px-2 bg-surface-container-low rounded">
+<span class="text-secondary">Packaging / Prep Overhead</span>
+<span class="font-numeric-table font-medium text-on-surface">Rs. 150.00</span>
+</div>
+<div class="flex justify-between items-center py-1.5 px-2 bg-surface-container-low rounded">
+<span class="text-secondary">Labour Allocation Overhead</span>
+<span class="font-numeric-table font-medium text-on-surface">Rs. 250.00</span>
+</div>
+<div class="flex justify-between items-center py-2 px-2 bg-surface-container rounded font-semibold text-on-surface mt-2">
+<span class="">Total Batch Cost</span>
+<span class="font-numeric-table text-body-lg">Rs. 2,899.00</span>
+</div>
+<div class="grid grid-cols-2 gap-space-xs pt-1">
+<div class="p-2 bg-surface-container-low rounded space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase">Projected Cost / Item</span>
+<span class="font-numeric-table font-semibold text-on-surface text-body-md">Rs. 289.90</span>
+</div>
+<div class="p-2 bg-surface-container-low rounded space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase">Target Selling Price</span>
+<span class="font-numeric-table font-semibold text-tertiary text-body-md">Rs. 550.00</span>
+</div>
+</div>
+<div class="p-2.5 bg-surface-container rounded space-y-1">
+<div class="flex justify-between text-body-sm font-body-sm">
+<span class="font-medium text-on-surface">Projected Gross Margin:</span>
+<span class="font-numeric-table font-semibold text-tertiary">47.3%</span>
+</div>
+<div class="flex justify-between text-label-sm font-label-sm text-secondary">
+<span class="">Net Gross Contribution:</span>
+<span class="font-numeric-table font-medium text-on-surface">Rs. 260.10 / portion</span>
+</div>
+</div>
+</div>
+<div class="p-space-xs bg-surface-container-low rounded text-label-sm font-label-sm text-secondary">
+<p class="leading-relaxed">
+<strong>Spec Note:</strong> Cost values are prototype estimates based on the recipe specification. No financial or inventory records are changed from this screen.
+          </p>
+</div>
+</section>
+<!-- 2. Allergens & Operating Notes Card -->
+<section class="bg-surface-container-lowest rounded-xl p-gutter shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">warning</span>
+<h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface tracking-tight">Allergens &amp; Operating Notes</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Safety Standard</span>
+</div>
+<!-- Allergen Badges -->
+<div class="space-y-space-xs">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Active Allergens (Contains)</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-error-container text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">egg</span>
+              Dairy
+            </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-error-container text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">grain</span>
+              Gluten
+            </span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-error-container text-error font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[15px]">breakfast_dining</span>
+              Eggs
+            </span>
+</div>
+</div>
+<div class="space-y-space-xs">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Verified Free From</span>
+<div class="flex flex-wrap gap-1.5">
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container text-secondary line-through font-label-sm text-label-sm">
+              Tree Nuts
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container text-secondary line-flex font-label-sm text-label-sm">
+              Soy
+            </span>
+<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-surface-container text-secondary line-through font-label-sm text-label-sm">
+              Crustaceans &amp; Seafood
+            </span>
+</div>
+</div>
+<!-- Chef Notes Callout -->
+<div class="bg-surface-container-low rounded-lg p-space-md space-y-1">
+<div class="flex items-center gap-1 text-primary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">restaurant</span>
+<span class="">Executive Chef Station Instructions</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-normal">
+            Ensure oil temperature does not fall below 170°C during peak batch cooking. Monitor bun browning carefully on the high-toast plate. Maintain continuous calibration of probe thermometers on fryer line #2.
+          </p>
+</div>
+</section>
+<!-- 3. Recipe Usage Card -->
+<section class="bg-surface-container-lowest rounded-xl p-gutter shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">analytics</span>
+<h2 class="font-headline-lg text-headline-lg font-semibold text-on-surface tracking-tight">Recipe Usage</h2>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Prototype reference</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm bg-surface-container-low p-space-md rounded-lg">
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Production Batches</span>
+<span class="font-numeric-table text-headline-md font-semibold text-on-surface">24</span>
+<span class="block text-label-sm font-label-sm text-secondary">Lifetime logged runs</span>
+</div>
+<div class="space-y-0.5">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Last Production</span>
+<span class="font-numeric-table text-body-md font-semibold text-on-surface">26 Sep 2026</span>
+<span class="block text-label-sm font-label-sm text-secondary">Main Branch kitchen</span>
+</div>
+<div class="space-y-0.5 pt-2">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Est. Portions Made</span>
+<span class="font-numeric-table text-headline-md font-semibold text-primary">2,340</span>
+<span class="block text-label-sm font-label-sm text-secondary">Total burgers sold</span>
+</div>
+<div class="space-y-0.5 pt-2">
+<span class="block font-label-sm text-label-sm text-secondary uppercase tracking-wider">Spec Revision</span>
+<span class="font-numeric-table text-body-md font-semibold text-on-surface">v1.4</span>
+<span class="block text-label-sm font-label-sm text-tertiary font-medium">Verified current</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- BOTTOM STICKY ACTIONS BAR -->
+<div class="sticky bottom-0 bg-surface-container-lowest/95 backdrop-blur-md rounded-xl p-space-md shadow-xl flex flex-wrap items-center justify-between gap-space-md mt-space-xl">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[20px]">assignment_turned_in</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">RCP-1026: Chicken Zinger Burger</span>
+<span class="font-label-sm text-label-sm text-secondary">Standard Recipe Specification • Read-Only Spec Mode</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs sm:gap-space-sm">
+<a class="px-4 py-2 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center gap-1.5" href="#recipes">
+<span class="material-symbols-outlined text-[17px]">arrow_back</span>
+<span class="">Back to Recipes</span>
+</a>
+<button class="px-4 py-2 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md flex items-center gap-1.5" id="btn-edit-recipe-footer">
+<span class="material-symbols-outlined text-[17px]">edit</span>
+<span class="">Edit Recipe</span>
+</button>
+<button class="px-5 py-2 rounded bg-primary text-on-primary hover:bg-primary-container transition-colors font-label-md text-label-md font-semibold shadow-md flex items-center gap-1.5" id="btn-start-production">
+<span class="material-symbols-outlined text-[18px]">skillet</span>
+<span class="">Start Production</span>
+</button>
+</div>
+</div>
+<!-- Lightweight Toast Container for Prototype Feedback -->
+<div class="fixed bottom-20 right-6 z-50 transform translate-y-8 opacity-0 pointer-events-none transition-all duration-200 bg-inverse-surface text-inverse-on-surface px-4 py-3 rounded-lg shadow-xl flex items-center gap-3 font-body-sm text-body-sm max-w-sm" id="prototype-toast">
+<span class="material-symbols-outlined text-tertiary-fixed text-[20px]" id="toast-icon">check_circle</span>
+<span class="" id="toast-msg">Action processed</span>
+</div>
+<!-- PURE PROTOTYPE JAVASCRIPT LOGIC (No backend / no stock mutation) -->
+<script>
+    (function initRecipeDetailPage() {
+      // Single Clean Root Object
+      const recipeDetailSetup = {
+        recipe: {
+          code: 'RCP-1026',
+          title: 'Chicken Zinger Burger',
+          status: 'Active',
+          category: 'Burgers',
+          type: 'Finished Menu Item',
+          yieldPortions: 10,
+          portionWeightGram: 240,
+          prepTimeMinutes: 20,
+          cookTimeMinutes: 12,
+          totalTimeMinutes: 32,
+          station: 'Fryer Station',
+          storage: 'Prepare & Serve Immediately',
+          shelfLifeHours: 4,
+          sellingPrice: 550.00,
+          rawCost: 2499.00,
+          packagingCost: 150.00,
+          labourCost: 250.00,
+          totalBatchCost: 2899.00,
+          costPerPortion: 289.90,
+          foodCostPercent: 52.7,
+          grossMarginPercent: 47.3
+        },
+        ingredients: [
+          { name: 'Chicken Breast', sku: 'SKU-9021', unit: 'kg', qty: 1.50, unitCost: 920.00, projectedCost: 1380.00 },
+          { name: 'Brioche Burger Buns', sku: 'SKU-6102', unit: 'pcs', qty: 10, unitCost: 35.00, projectedCost: 350.00 },
+          { name: 'Mozzarella Cheese', sku: 'SKU-4012', unit: 'kg', qty: 0.50, unitCost: 1250.00, projectedCost: 625.00 },
+          { name: 'Mayonnaise', sku: 'SKU-7201', unit: 'L', qty: 0.30, unitCost: 480.00, projectedCost: 144.00 }
+        ],
+        preparationSteps: [
+          'Marinate chicken breast fillets using approved seasoning blend for minimum 45 minutes below 4°C.',
+          'Coat chicken fillets evenly in seasoned flour and dredge mixture.',
+          'Deep fry at 175°C for approximately 6–8 minutes until the required internal temperature is reached.',
+          'Toast burger buns lightly until golden brown.',
+          'Assemble bun, garlic mayonnaise, chicken fillet, mozzarella and crown bun.',
+          'Perform presentation quality check and serve immediately.'
+        ],
+        versions: [
+          { version: 'v1.4', state: 'Current', date: '26 Sep 2026', note: 'Updated portion costing', author: 'Operations Lead' },
+          { version: 'v1.3', state: 'Previous', date: '15 Aug 2026', note: 'Updated mozzarella quantity', author: 'Operations Lead' },
+          { version: 'v1.2', state: 'Previous', date: '02 Jul 2026', note: 'Preparation method revision', author: 'Kitchen Manager' }
+        ],
+        usage: {
+          batches: 24,
+          lastDate: '26 Sep 2026',
+          portions: 2340,
+          currentVersion: 'v1.4'
+        }
+      };
+
+      // Toast feedback helper
+      function showToast(message, icon = 'info') {
+        const toast = document.getElementById('prototype-toast');
+        const msgEl = document.getElementById('toast-msg');
+        const iconEl = document.getElementById('toast-icon');
+        if (!toast) return;
+
+        msgEl.textContent = message;
+        iconEl.textContent = icon;
+        toast.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none');
+        toast.classList.add('opacity-100', 'translate-y-0');
+
+        setTimeout(() => {
+          toast.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none');
+          toast.classList.remove('opacity-100', 'translate-y-0');
+        }, 2800);
+      }
+
+      // Handlers
+      function navigateToEdit() {
+        try {
+          sessionStorage.setItem('selectedRecipe', 'RCP-1026');
+        } catch (e) {}
+        window.location.hash = 'add-recipe';
+      }
+
+      function handleStartProduction() {
+        try {
+          sessionStorage.setItem('selectedProductionRecipe', 'RCP-1026');
+        } catch (e) {}
+        showToast('Directing to Kitchen Production queue for RCP-1026...', 'skillet');
+        setTimeout(() => {
+          window.location.hash = 'production';
+        }, 600);
+      }
+
+      function handleDuplicate() {
+        showToast('Recipe cloned to prototype draft workspace.', 'content_copy');
+      }
+
+      // More actions menu toggle
+      const moreBtn = document.getElementById('btn-more-actions');
+      const dropdown = document.getElementById('more-actions-dropdown');
+
+      if (moreBtn && dropdown) {
+        moreBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          dropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', () => {
+          if (!dropdown.classList.contains('hidden')) {
+            dropdown.classList.add('hidden');
+          }
+        });
+      }
+
+      // Event bindings
+      const editHeaderBtn = document.getElementById('btn-edit-recipe-header');
+      const editFooterBtn = document.getElementById('btn-edit-recipe-footer');
+      const duplicateBtn = document.getElementById('btn-duplicate-spec');
+      const startProdBtn = document.getElementById('btn-start-production');
+
+      if (editHeaderBtn) editHeaderBtn.addEventListener('click', navigateToEdit);
+      if (editFooterBtn) editFooterBtn.addEventListener('click', navigateToEdit);
+      if (duplicateBtn) duplicateBtn.addEventListener('click', handleDuplicate);
+      if (startProdBtn) startProdBtn.addEventListener('click', handleStartProduction);
+
+      // Global reference for prototype export actions
+      window.recipeHandlers = {
+        exportJSON: function() {
+          const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(recipeDetailSetup, null, 2));
+          const dlAnchorElem = document.createElement('a');
+          dlAnchorElem.setAttribute("href", dataStr);
+          dlAnchorElem.setAttribute("download", "RCP-1026-spec.json");
+          dlAnchorElem.click();
+          showToast('Recipe spec JSON exported.', 'download');
+        },
+        showAuditModal: function() {
+          showToast('3 prototype version-history records available.', 'history');
+        }
+      };
+    })();
+  </script>
+</div></main></div><script>function toggleSidebar(){const sidebar=document.getElementById('app-sidebar');const backdrop=document.getElementById('sidebar-backdrop');const isClosed=sidebar.classList.contains('-translate-x-full');if(isClosed){sidebar.classList.remove('-translate-x-full');backdrop.classList.remove('hidden');}else{sidebar.classList.add('-translate-x-full');backdrop.classList.add('hidden');}}</script>
+<script src="/integration-bridge.js"></script>
+</body></html>

@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container":"#eaedff","primary-container":"#0f766e","primary-fixed-dim":"#80d5cb","on-secondary-container":"#586377","on-primary":"#ffffff","tertiary":"#005d42","inverse-on-surface":"#eef0ff","tertiary-container":"#047857","inverse-surface":"#283044","surface-container-high":"#e2e7ff","error-container":"#ffdad6","on-primary-container":"#a3faef","on-secondary":"#ffffff","on-secondary-fixed":"#111c2d","on-tertiary-fixed-variant":"#00513a","surface-variant":"#dae2fd","on-surface":"#131b2e","tertiary-fixed-dim":"#7bd8b1","surface-container-lowest":"#ffffff","on-error-container":"#93000a","background":"#faf8ff","primary-fixed":"#9cf2e8","surface-container-highest":"#dae2fd","on-tertiary-fixed":"#002115","on-tertiary-container":"#9ffdd3","on-primary-fixed-variant":"#00504a","surface-bright":"#faf8ff","error":"#ba1a1a","surface-dim":"#d2d9f4","surface":"#faf8ff","surface-container-low":"#f2f3ff","secondary":"#545f73","inverse-primary":"#80d5cb","secondary-fixed":"#d8e3fb","on-secondary-fixed-variant":"#3c475a","on-background":"#131b2e","on-error":"#ffffff","on-primary-fixed":"#00201d","outline-variant":"#bdc9c6","tertiary-fixed":"#97f5cc","on-tertiary":"#ffffff","surface-tint":"#006a63","primary":"#005c55","on-surface-variant":"#3e4947","outline":"#6e7977","secondary-container":"#d5e0f8","secondary-fixed-dim":"#bcc7de"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-lg":"1.25rem","margin-desktop":"2rem","space-xl":"2rem","space-xs":"0.25rem","space-sm":"0.5rem","gutter-lg":"1.5rem","margin-mobile":"1rem","margin":"1.5rem","gutter":"1rem","space-md":"0.75rem"},fontFamily:{"label-md":["Geist"],"body-lg":["Hanken Grotesk"],"headline-lg-mobile":["Hanken Grotesk"],"label-lg":["Geist"],"label-sm":["Geist"],"body-md":["Hanken Grotesk"],"headline-md":["Hanken Grotesk"],"body-sm":["Hanken Grotesk"],"headline-xl":["Hanken Grotesk"],"display-lg":["Hanken Grotesk"],"headline-lg":["Hanken Grotesk"],"numeric-table":["Geist"]},fontSize:{"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg-mobile":["20px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"500"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-xl":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"display-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"numeric-table":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"500"}]}}}};</script><style>
+  /* Subtle native scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(110, 121, 119, 0.25);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(110, 121, 119, 0.45);
+  }
+</style></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased">
+<!-- Mobile Backdrop Overlay -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-xs z-40 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+<!-- SIDEBAR -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant/40 z-50 flex flex-col justify-between select-none -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out" id="app-sidebar"><div class="flex flex-col min-h-0"><div class="h-16 px-space-md flex items-center justify-between border-b border-outline-variant/30"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold text-label-lg"><span class="material-symbols-outlined text-[18px]">inventory_2</span></div><div class="flex flex-col"><span class="font-headline-md text-[15px] font-semibold text-on-surface tracking-tight leading-tight">Inventory &amp; Operations</span><span class="font-label-sm text-[11px] text-on-surface-variant font-normal">Restaurant Portal</span></div></div><button class="lg:hidden p-1 rounded-md text-on-surface-variant hover:bg-surface-container-low" onclick="toggleSidebar()" type="button"><span class="material-symbols-outlined text-[20px]">close</span></button></div><nav class="flex-1 overflow-y-auto px-space-sm py-space-sm space-y-0.5"><div class="px-space-md pt-2 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Operations</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="dashboard" href="#dashboard"><span class="material-symbols-outlined text-[18px]">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-medium shadow-sm transition-colors" data-path="inventory" href="#inventory"><span class="material-symbols-outlined text-[18px]">inventory_2</span><span class="font-label-md text-label-md">Inventory</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="stock-counts" href="#stock-counts"><span class="material-symbols-outlined text-[18px]">fact_check</span><span class="font-label-md text-label-md">Stock Counts</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="wastage" href="#wastage"><span class="material-symbols-outlined text-[18px]">delete_sweep</span><span class="font-label-md text-label-md">Wastage</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="transfers" href="#transfers"><span class="material-symbols-outlined text-[18px]">swap_horiz</span><span class="font-label-md text-label-md">Transfers</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Purchasing</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="purchasing" href="#purchases"><span class="material-symbols-outlined text-[18px]">shopping_cart</span><span class="font-label-md text-label-md">Purchases</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="suppliers" href="#suppliers"><span class="material-symbols-outlined text-[18px]">local_shipping</span><span class="font-label-md text-label-md">Suppliers</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Kitchen</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="recipes" href="#recipes"><span class="material-symbols-outlined text-[18px]">menu_book</span><span class="font-label-md text-label-md">Recipes</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="production" href="#production"><span class="material-symbols-outlined text-[18px]">skillet</span><span class="font-label-md text-label-md">Production</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Management</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="reports" href="#reports"><span class="material-symbols-outlined text-[18px]">bar_chart</span><span class="font-label-md text-label-md">Reports</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="staff" href="#staff"><span class="material-symbols-outlined text-[18px]">badge</span><span class="font-label-md text-label-md">Staff</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">System</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="settings" href="#settings"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-label-md text-label-md">Settings</span></a></nav></div><div class="border-t border-outline-variant/30 p-space-sm space-y-space-xs bg-surface-container-lowest"><div class="p-space-xs rounded-lg border border-outline-variant/30 bg-surface-container-low flex items-center justify-between cursor-pointer hover:bg-surface-container transition-colors"><div class="flex items-center gap-1.5 truncate"><span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span><span class="font-label-sm text-label-sm text-on-surface truncate font-medium">Main Branch</span></div><span class="material-symbols-outlined text-[16px] text-on-surface-variant">unfold_more</span></div><div class="flex items-center justify-between p-space-xs rounded-lg hover:bg-surface-container-low cursor-pointer transition-colors"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface-variant font-label-md font-semibold">GM</div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-medium">General Manager</span><span class="font-label-sm text-label-sm text-on-surface-variant">Operations Lead</span></div></div><span class="material-symbols-outlined text-[18px] text-on-surface-variant">more_vert</span></div></div></aside>
+<!-- MAIN WRAPPER -->
+<div class="lg:pl-64 w-full">
+<header class="fixed top-0 left-0 lg:left-64 right-0 h-16 bg-surface/95 backdrop-blur border-b border-outline-variant/40 z-30 px-4 lg:px-gutter-lg flex items-center justify-between"><div class="flex items-center gap-space-sm sm:gap-space-md"><button class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" onclick="toggleSidebar()" type="button"><span class="material-symbols-outlined text-[22px]">menu</span></button><div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg border border-outline-variant/40 bg-surface-container-lowest cursor-pointer hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined text-[18px] text-primary">storefront</span><span class="font-label-md text-label-md text-on-surface font-medium">Main Branch</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></div><div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface-variant"><span class="font-label-sm text-label-sm">Updated 2 min ago</span></div></div><div class="flex items-center gap-space-sm sm:gap-space-md"><div class="relative hidden md:block w-64 lg:w-96"><span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span><input class="w-full h-9 pl-9 pr-12 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/70 font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Search ingredients, purchases, suppliers (⌘K)" type="text"/><div class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm pointer-events-none">⌘K</div></div><div class="flex items-center gap-space-xs"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">help</span></button></div><div class="h-6 w-px bg-outline-variant/40 hidden sm:block"></div><div class="flex items-center gap-space-xs cursor-pointer group"><div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface font-label-sm font-semibold">GM</div><span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-on-surface transition-colors hidden sm:inline">keyboard_arrow_down</span></div></div></header>
+<main class="w-full pt-20 bg-surface min-h-screen px-4 lg:px-gutter-lg pb-margin-desktop"><div class="flex flex-col w-full">
+<!-- Toast Container -->
+<div class="fixed top-20 right-6 z-50 transform translate-y-[-20px] opacity-0 pointer-events-none transition-all duration-300 ease-out flex items-center gap-space-sm px-space-md py-space-sm rounded-lg bg-tertiary-container text-on-tertiary shadow-xl" id="toast-success">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span class="font-label-md text-label-md font-medium">Ingredient created successfully</span>
+</div>
+<div class="max-w-4xl mx-auto w-full pb-16">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 mb-space-sm text-on-surface-variant font-label-md text-label-md">
+<span class="hover:text-on-surface cursor-pointer transition-colors">Operations</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-on-surface cursor-pointer transition-colors">Inventory</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-medium">Add Ingredient</span>
+</nav>
+<!-- Page Header -->
+<div class="mb-space-lg">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">Add Ingredient</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-0.5">Create an ingredient and configure how it is stocked, purchased, and used.</p>
+</div>
+<!-- Error Banner (Hidden by default) -->
+<div class="hidden mb-space-lg p-space-md rounded-lg bg-error-container/70 text-on-error-container flex items-start gap-space-sm" id="form-error-banner">
+<span class="material-symbols-outlined text-[20px] text-error flex-shrink-0 mt-0.5">error</span>
+<div class="flex-1">
+<p class="font-label-md text-label-md font-semibold text-error">Unable to create ingredient. Please review the highlighted fields below.</p>
+</div>
+<button class="text-on-error-container/70 hover:text-on-error-container" onclick="dismissErrorBanner()" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<form class="space-y-6" id="add-ingredient-form" novalidate="" onsubmit="handleFormSubmit(event)">
+<!-- SECTION 1: Basic Information -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-6 sm:p-7 space-y-6">
+<div class="border-b pb-4 border-outline-variant/30">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Basic Information</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Identify the ingredient in your inventory.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Ingredient Name -->
+<div class="space-y-1.5 md:col-span-1">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="ingredient-name">
+              Ingredient Name <span class="text-error">*</span>
+</label>
+<input class="w-full h-9 px-3 rounded-md bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/50 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all" id="ingredient-name" placeholder="e.g., Chicken Breast" type="text"/>
+<p class="hidden text-error font-label-sm text-label-sm mt-1" id="err-ingredient-name">Ingredient name is required.</p>
+</div>
+<!-- Category -->
+<div class="space-y-1.5 md:col-span-1">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="category">
+              Category <span class="text-error">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-9 px-3 pr-8 rounded-md bg-surface-container-lowest text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all cursor-pointer" id="category">
+<option disabled="" selected="" value="">Select Category</option>
+<option value="Proteins">Proteins</option>
+<option value="Dairy">Dairy</option>
+<option value="Dry Goods">Dry Goods</option>
+<option value="Produce">Produce</option>
+<option value="Beverages">Beverages</option>
+<option value="Packaging">Packaging</option>
+<option value="Sauces &amp; Condiments">Sauces &amp; Condiments</option>
+<option value="Spices &amp; Seasonings">Spices &amp; Seasonings</option>
+<option value="Other">Other</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+<p class="hidden text-error font-label-sm text-label-sm mt-1" id="err-category">Please select an inventory category.</p>
+</div>
+<!-- SKU / Item Code -->
+<div class="space-y-1.5 md:col-span-2">
+<div class="flex items-center justify-between">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="sku">
+                SKU / Item Code <span class="font-normal text-on-surface-variant text-label-sm">(Optional)</span>
+</label>
+<button class="font-label-sm text-label-sm text-primary hover:text-primary-container font-semibold transition-colors flex items-center gap-1" id="btn-generate-sku" onclick="generateSku()" type="button">
+<span class="material-symbols-outlined text-[14px]">autorenew</span> Generate automatically
+              </button>
+</div>
+<input class="w-full md:w-1/2 h-9 px-3 rounded-md bg-surface-container-lowest text-on-surface font-mono text-body-sm focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all" id="sku" placeholder="e.g., ING-0001" type="text"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Optional internal reference code for inventory counting and tagging.</p>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Units & Consumption -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-6 sm:p-7 space-y-6">
+<div class="border-b pb-4 border-outline-variant/30">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Units &amp; Consumption</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Define how this ingredient is measured in inventory and recipes.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Stock Unit -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="stock-unit">
+              Stock Unit <span class="text-error">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-9 px-3 pr-8 rounded-md bg-surface-container-lowest text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all cursor-pointer" id="stock-unit" onchange="handleStockUnitChange()">
+<option selected="" value="kg">kg (Kilograms)</option>
+<option value="g">g (Grams)</option>
+<option value="L">L (Liters)</option>
+<option value="ml">ml (Milliliters)</option>
+<option value="pcs">pcs (Pieces)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Main inventory measurement unit used in reports.</p>
+</div>
+<!-- Recipe / Usage Unit -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="recipe-unit">
+              Recipe / Usage Unit <span class="text-error">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-9 px-3 pr-8 rounded-md bg-surface-container-lowest text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all cursor-pointer" id="recipe-unit" onchange="updateConversionPreview()"><option value="g">g (Grams)</option><option value="kg">kg (Kilograms)</option></select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Unit selected by chefs when assembling recipe cards.</p>
+</div>
+<!-- Dynamic Conversion Banner -->
+<div class="md:col-span-2">
+<div class="p-3 rounded-lg bg-surface-container-low text-on-surface flex items-center gap-2.5 transition-all" id="unit-conversion-preview">
+<span class="material-symbols-outlined text-primary text-[20px]">sync_alt</span>
+<span class="font-label-md text-label-md" id="conversion-text">Conversion: 1 kg = 1,000 g (Standard recipe conversion applied automatically)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Stock Settings -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-6 sm:p-7 space-y-6">
+<div class="border-b pb-4 border-outline-variant/30">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Stock Settings</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Set opening stock and the level at which staff should be alerted.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+<!-- Opening Stock -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="opening-stock">
+              Opening Stock
+            </label>
+<div class="relative flex items-center">
+<input class="w-full h-9 pl-3 pr-14 rounded-md bg-surface-container-lowest text-on-surface font-numeric-table text-body-md focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all text-right" id="opening-stock" min="0" oninput="calculateTotalValue()" placeholder="0" step="any" type="number"/>
+<span class="absolute right-2 px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm pointer-events-none" id="opening-stock-unit">kg</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Optional. Begins at 0 if left empty.</p>
+<p class="hidden text-error font-label-sm text-label-sm mt-1" id="err-opening-stock">Stock cannot be negative.</p>
+</div>
+<!-- Minimum Stock Level -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="min-stock">
+              Minimum Stock Level <span class="text-error">*</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 pl-3 pr-14 rounded-md bg-surface-container-lowest text-on-surface font-numeric-table text-body-md focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all text-right" id="min-stock" min="0" placeholder="e.g., 10" step="any" type="number"/>
+<span class="absolute right-2 px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm pointer-events-none" id="min-stock-unit">kg</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Used to trigger low and critical stock alerts.</p>
+<p class="hidden text-error font-label-sm text-label-sm mt-1" id="err-min-stock">Enter a valid minimum stock level (≥ 0).</p>
+</div>
+<!-- Storage Location -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="storage-location">
+              Storage Location <span class="text-error">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-9 px-3 pr-8 rounded-md bg-surface-container-lowest text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all cursor-pointer" id="storage-location">
+<option disabled="" selected="" value="">Select Location</option>
+<option value="Main Store">Main Store</option>
+<option value="Walk-in Cooler">Walk-in Cooler</option>
+<option value="Dry Store">Dry Store</option>
+<option value="Kitchen Prep">Kitchen Prep</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Default storage location for this ingredient.</p>
+<p class="hidden text-error font-label-sm text-label-sm mt-1" id="err-storage-location">Please select a storage location.</p>
+</div>
+</div>
+</section>
+<!-- SECTION 4: Opening Cost -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-6 sm:p-7 space-y-6">
+<div class="border-b pb-4 border-outline-variant/30">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Opening Cost</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enter the current cost of this ingredient if opening stock is being added.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
+<!-- Unit Cost -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="unit-cost">
+              Unit Cost <span class="hidden text-error" id="unit-cost-required-indicator">*</span>
+</label>
+<div class="relative flex items-center">
+<span class="absolute left-3 font-label-md text-label-md text-on-surface-variant pointer-events-none">PKR</span>
+<input class="w-full h-9 pl-14 pr-16 rounded-md bg-surface-container-lowest text-on-surface font-numeric-table text-body-md focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all text-right" id="unit-cost" min="0" onblur="validateUnitCost();" oninput="calculateTotalValue(); validateUnitCost();" placeholder="0.00" step="any" type="number"/>
+<span class="absolute right-2 px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm pointer-events-none" id="unit-cost-suffix">/ kg</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Required if Opening Stock is greater than 0.</p>
+<p class="hidden text-error font-label-sm text-label-sm mt-1" id="err-unit-cost">Enter unit cost for the opening stock.</p>
+</div>
+<!-- Calculated Opening Inventory Value -->
+<div class="p-4 rounded-xl bg-surface-container-low/60 flex flex-col justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">OPENING INVENTORY VALUE</span>
+<div class="my-2">
+<div class="font-headline-xl text-headline-xl text-primary font-bold tracking-tight" id="opening-value-display">PKR 0</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Calculated: Opening Stock × Unit Cost</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: Purchasing -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-6 sm:p-7 space-y-6">
+<div class="border-b pb-4 border-outline-variant/30">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Purchasing</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Define how this ingredient is normally purchased from vendors.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Preferred Supplier -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="preferred-supplier">
+              Preferred Supplier <span class="font-normal text-on-surface-variant text-label-sm">(Optional)</span>
+</label>
+<div class="relative">
+<select class="w-full h-9 px-3 pr-8 rounded-md bg-surface-container-lowest text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all cursor-pointer" id="preferred-supplier">
+<option value="">No preferred supplier</option>
+<option value="Fresh Foods Supplier">Fresh Foods Supplier</option>
+<option value="Metro Wholesale">Metro Wholesale</option>
+<option value="Local Food Supplier">Local Food Supplier</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+</div>
+<!-- Supplier Item Code -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="supplier-code">
+              Supplier Item Code <span class="font-normal text-on-surface-variant text-label-sm">(Optional)</span>
+</label>
+<input class="w-full h-9 px-3 rounded-md bg-surface-container-lowest text-on-surface font-mono text-body-sm focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all" id="supplier-code" placeholder="e.g., FF-CHKN-25" type="text"/>
+</div>
+<!-- Purchase Unit -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="purchase-unit">
+              Purchase Unit <span class="font-normal text-on-surface-variant text-label-sm">(Optional packaging)</span>
+</label>
+<div class="relative">
+<select class="w-full h-9 px-3 pr-8 rounded-md bg-surface-container-lowest text-on-surface font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all cursor-pointer" id="purchase-unit" onchange="handlePurchaseUnitChange()">
+<option value="">Select Purchase Unit (optional)</option>
+<option value="Carton">Carton</option>
+<option value="Box">Box</option>
+<option value="Bag">Bag</option>
+<option value="Sack">Sack</option>
+<option value="Pack">Pack</option>
+<option value="Bottle">Bottle</option>
+<option value="Can">Can</option>
+<option value="Tray">Tray</option>
+<option value="kg">kg</option>
+<option value="L">L</option>
+<option value="pc">pc</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-[18px]">expand_more</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">e.g., received as Cartons from distributor.</p>
+</div>
+<!-- Quantity per Purchase Unit -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md font-medium text-on-surface" for="qty-per-purchase-unit">
+              Quantity per Purchase Unit <span class="hidden text-error" id="purchase-qty-required-indicator">*</span>
+</label>
+<div class="relative flex items-center">
+<input class="w-full h-9 pl-3 pr-14 rounded-md bg-surface-container-lowest text-on-surface font-numeric-table text-body-md focus:outline-none focus:ring-2 focus:ring-primary/40 bg-surface-container-low/30 transition-all text-right cursor-not-allowed" disabled="disabled" id="qty-per-purchase-unit" min="0" oninput="updatePurchaseConversionPreview()" placeholder="e.g., 50" step="any" type="number"/>
+<span class="absolute right-2 px-2 py-0.5 rounded bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm pointer-events-none" id="purchase-qty-stock-unit">kg</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Required if purchase unit is selected.</p>
+<p class="hidden text-error font-label-sm text-label-sm mt-1" id="err-qty-purchase">Enter the quantity contained in one purchase unit.</p>
+</div>
+<!-- Dynamic Purchase Relationship Note -->
+<div class="md:col-span-2">
+<div class="p-3 rounded-lg bg-surface-container-low text-on-surface flex items-center gap-2.5" id="purchase-conversion-preview">
+<span class="material-symbols-outlined text-secondary text-[20px]">local_shipping</span>
+<span class="font-label-md text-label-md" id="purchase-preview-text">Purchased directly in inventory stock units (1:1).</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: Tracking Options -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm p-6 sm:p-7 space-y-6">
+<div class="border-b pb-4 border-outline-variant/30">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface font-semibold">Tracking Options</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enable additional tracking only when required.</p>
+</div>
+</div>
+<div class="space-y-4">
+<!-- Expiry Tracking Switch -->
+<div class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low/40 hover:bg-surface-container-low/70 transition-colors">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary mt-0.5">
+<span class="material-symbols-outlined text-[20px]">event_available</span>
+</div>
+<div>
+<label class="font-label-md text-label-md font-semibold text-on-surface cursor-pointer" for="toggle-expiry">Expiry Tracking</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Prompt kitchen staff to record expiration dates during inventory check-in.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer select-none">
+<input class="sr-only peer" id="toggle-expiry" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<!-- Batch Tracking Switch -->
+<div class="flex items-center justify-between p-3.5 rounded-lg bg-surface-container-low/40 hover:bg-surface-container-low/70 transition-colors">
+<div class="flex items-start gap-3">
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary mt-0.5">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+<div>
+<label class="font-label-md text-label-md font-semibold text-on-surface cursor-pointer" for="toggle-batch">Batch Tracking</label>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Track supplier lot numbers or internal kitchen prep batch identifiers.</p>
+</div>
+</div>
+<label class="relative inline-flex items-center cursor-pointer select-none">
+<input class="sr-only peer" id="toggle-batch" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Form Actions (Sticky Bottom on mobile/desktop) -->
+<div class="pt-4 flex flex-col sm:flex-row items-center justify-end gap-3 border-t border-outline-variant/30">
+<a class="w-full sm:w-auto px-5 py-2 rounded-md border border-outline-variant/60 text-on-surface hover:bg-surface-container-low text-label-md font-label-md text-center transition-colors" href="#" onclick="handleCancel(event)">
+          Cancel
+        </a>
+<button class="w-full sm:w-auto px-6 py-2 rounded-md bg-primary text-on-primary hover:bg-primary-container text-label-md font-label-md font-medium shadow-sm transition-all flex items-center justify-center gap-2" id="btn-save" type="submit">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span class="">Save Ingredient</span>
+</button>
+</div>
+</form>
+</div>
+</div>
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (!sidebar || !backdrop) return;
+    const isClosed = sidebar.classList.contains('-translate-x-full');
+    if (isClosed) {
+      sidebar.classList.remove('-translate-x-full');
+      backdrop.classList.remove('hidden');
+    } else {
+      sidebar.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
+    }
+  }
+
+  // Mapping standard stock units to appropriate recipe units
+  const unitMappings = {
+    "kg": [
+      { value: "g", label: "g (Grams)" },
+      { value: "kg", label: "kg (Kilograms)" }
+    ],
+    "g": [
+      { value: "g", label: "g (Grams)" }
+    ],
+    "L": [
+      { value: "ml", label: "ml (Milliliters)" },
+      { value: "L", label: "L (Liters)" }
+    ],
+    "ml": [
+      { value: "ml", label: "ml (Milliliters)" }
+    ],
+    "pcs": [
+      { value: "pcs", label: "pcs (Pieces)" }
+    ]
+  };
+
+  function updateRecipeUnits() {
+    const stockUnit = document.getElementById("stock-unit").value;
+    const recipeSelect = document.getElementById("recipe-unit");
+    const allowed = unitMappings[stockUnit] || [{ value: stockUnit, label: stockUnit }];
+
+    recipeSelect.innerHTML = allowed.map(u => `<option value="${u.value}">${u.label}</option>`).join("");
+    updateConversionPreview();
+  }
+
+  function handleStockUnitChange() {
+    const stockUnit = document.getElementById("stock-unit").value;
+    
+    // Update all suffixes
+    const openingStockUnit = document.getElementById("opening-stock-unit");
+    if (openingStockUnit) openingStockUnit.textContent = stockUnit;
+
+    const minStockUnit = document.getElementById("min-stock-unit");
+    if (minStockUnit) minStockUnit.textContent = stockUnit;
+
+    const unitCostSuffix = document.getElementById("unit-cost-suffix");
+    if (unitCostSuffix) unitCostSuffix.textContent = "/ " + stockUnit;
+
+    const purchaseQtyStockUnit = document.getElementById("purchase-qty-stock-unit");
+    if (purchaseQtyStockUnit) purchaseQtyStockUnit.textContent = stockUnit;
+
+    updateRecipeUnits();
+    updatePurchaseConversionPreview();
+  }
+
+  function updateConversionPreview() {
+    const stockUnit = document.getElementById("stock-unit").value;
+    const recipeUnit = document.getElementById("recipe-unit").value;
+    const conversionText = document.getElementById("conversion-text");
+
+    let text = "";
+    if (stockUnit === "kg" && recipeUnit === "g") {
+      text = "Conversion: 1 kg = 1,000 g (Standard recipe conversion applied automatically)";
+    } else if (stockUnit === "L" && recipeUnit === "ml") {
+      text = "Conversion: 1 L = 1,000 ml (Standard recipe conversion applied automatically)";
+    } else if (stockUnit === recipeUnit) {
+      text = `Conversion: 1 ${stockUnit} = 1 ${stockUnit} (Direct 1:1 inventory ratio)`;
+    } else {
+      text = `Conversion: Base measurement uses 1 ${stockUnit}`;
+    }
+
+    if (conversionText) conversionText.textContent = text;
+  }
+
+  function validateUnitCost() {
+    const openingStockInput = document.getElementById("opening-stock");
+    const unitCostInput = document.getElementById("unit-cost");
+    const error = document.getElementById("err-unit-cost");
+
+    const openingStock = parseFloat(openingStockInput.value) || 0;
+    const rawCost = unitCostInput.value.trim();
+
+    if (rawCost === "") {
+      if (openingStock > 0) {
+        error.classList.remove("hidden");
+        return false;
+      }
+      error.classList.add("hidden");
+      return true;
+    }
+
+    const cost = parseFloat(rawCost);
+    if (isNaN(cost) || cost < 0) {
+      error.classList.remove("hidden");
+      return false;
+    }
+
+    if (openingStock > 0 && cost <= 0) {
+      error.classList.remove("hidden");
+      return false;
+    }
+
+    error.classList.add("hidden");
+    return true;
+  }
+
+  function handlePurchaseUnitChange() {
+    const purchaseUnit = document.getElementById("purchase-unit").value;
+    const purchaseQty = document.getElementById("qty-per-purchase-unit");
+    const reqIndicator = document.getElementById("purchase-qty-required-indicator");
+    const error = document.getElementById("err-qty-purchase");
+
+    if (purchaseUnit && purchaseUnit.trim() !== "") {
+      purchaseQty.disabled = false;
+      purchaseQty.classList.remove("cursor-not-allowed");
+      reqIndicator.classList.remove("hidden");
+    } else {
+      purchaseQty.value = "";
+      purchaseQty.disabled = true;
+      purchaseQty.classList.add("cursor-not-allowed");
+      reqIndicator.classList.add("hidden");
+      error.classList.add("hidden");
+    }
+
+    updatePurchaseConversionPreview();
+  }
+
+  function updatePurchaseConversionPreview() {
+    const purchaseUnit = document.getElementById("purchase-unit").value;
+    const qty = document.getElementById("qty-per-purchase-unit").value;
+    const stockUnit = document.getElementById("stock-unit").value;
+    const previewEl = document.getElementById("purchase-preview-text");
+
+    if (purchaseUnit && purchaseUnit.trim() !== "" && qty && Number(qty) > 0) {
+      previewEl.textContent = `Purchase Packaging: 1 ${purchaseUnit} = ${qty} ${stockUnit} received into stock`;
+    } else if (purchaseUnit && purchaseUnit.trim() !== "") {
+      previewEl.textContent = `Specify quantity of ${stockUnit} contained in 1 ${purchaseUnit}`;
+    } else {
+      previewEl.textContent = "Purchased directly in inventory stock units (1:1).";
+    }
+  }
+
+  function calculateTotalValue() {
+    const openingStockInput = document.getElementById("opening-stock");
+    const unitCostInput = document.getElementById("unit-cost");
+    const display = document.getElementById("opening-value-display");
+    const costReqIndicator = document.getElementById("unit-cost-required-indicator");
+
+    const rawStock = openingStockInput.value.trim();
+    const rawCost = unitCostInput.value.trim();
+
+    const stockVal = parseFloat(rawStock);
+    const costVal = parseFloat(rawCost);
+
+    // Keep indicator visible whenever Opening Stock > 0, and hidden when <= 0
+    if (!isNaN(stockVal) && stockVal > 0) {
+      costReqIndicator.classList.remove("hidden");
+    } else {
+      costReqIndicator.classList.add("hidden");
+    }
+
+    // Safety checks: never display negative value
+    // If opening stock < 0 OR unit cost < 0 OR either invalid (or rawCost entered and invalid/negative)
+    if (
+      (rawStock !== "" && (isNaN(stockVal) || stockVal < 0)) ||
+      (rawCost !== "" && (isNaN(costVal) || costVal < 0)) ||
+      isNaN(stockVal) ||
+      stockVal <= 0 ||
+      isNaN(costVal) ||
+      costVal <= 0
+    ) {
+      if (display) display.textContent = "PKR 0";
+      return;
+    }
+
+    const total = stockVal * costVal;
+    if (display) {
+      display.textContent = `PKR ${total.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 })}`;
+    }
+  }
+
+  function generateSku() {
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
+    const skuField = document.getElementById("sku");
+    if (skuField) {
+      skuField.value = `ING-${randomNum}`;
+      skuField.classList.add("bg-tertiary-container/10");
+      setTimeout(() => skuField.classList.remove("bg-tertiary-container/10"), 600);
+    }
+  }
+
+  function dismissErrorBanner() {
+    const banner = document.getElementById("form-error-banner");
+    if (banner) banner.classList.add("hidden");
+  }
+
+  function handleCancel(e) {
+    e.preventDefault();
+    if (confirm("Discard unsaved changes?")) {
+      window.location.hash = "#inventory";
+    }
+  }
+
+  function handleFormSubmit(event) {
+    event.preventDefault();
+    let isValid = true;
+
+    // Elements
+    const nameEl = document.getElementById("ingredient-name");
+    const catEl = document.getElementById("category");
+    const minStockEl = document.getElementById("min-stock");
+    const storageEl = document.getElementById("storage-location");
+    const openingStockEl = document.getElementById("opening-stock");
+    const purchaseUnitEl = document.getElementById("purchase-unit");
+    const purchaseQtyEl = document.getElementById("qty-per-purchase-unit");
+
+    // Error messages
+    const errName = document.getElementById("err-ingredient-name");
+    const errCat = document.getElementById("err-category");
+    const errMinStock = document.getElementById("err-min-stock");
+    const errStorage = document.getElementById("err-storage-location");
+    const errOpeningStock = document.getElementById("err-opening-stock");
+    const errPurchaseQty = document.getElementById("err-qty-purchase");
+    const errorBanner = document.getElementById("form-error-banner");
+
+    // Reset errors
+    [errName, errCat, errMinStock, errStorage, errOpeningStock, errPurchaseQty].forEach(el => el.classList.add("hidden"));
+    errorBanner.classList.add("hidden");
+
+    // 1. Name
+    if (!nameEl.value.trim()) {
+      errName.classList.remove("hidden");
+      isValid = false;
+    }
+
+    // 2. Category
+    if (!catEl.value) {
+      errCat.classList.remove("hidden");
+      isValid = false;
+    }
+
+    // 3. Opening stock (must be >= 0)
+    const rawOpeningStock = openingStockEl.value.trim();
+    if (rawOpeningStock !== "") {
+      const openingStockVal = parseFloat(rawOpeningStock);
+      if (isNaN(openingStockVal) || openingStockVal < 0) {
+        errOpeningStock.classList.remove("hidden");
+        isValid = false;
+      }
+    }
+
+    // 4. Min stock (must be >= 0)
+    const rawMinStock = minStockEl.value.trim();
+    if (rawMinStock === "") {
+      errMinStock.classList.remove("hidden");
+      isValid = false;
+    } else {
+      const minStockVal = parseFloat(rawMinStock);
+      if (isNaN(minStockVal) || minStockVal < 0) {
+        errMinStock.classList.remove("hidden");
+        isValid = false;
+      }
+    }
+
+    // 5. Storage Location
+    if (!storageEl.value) {
+      errStorage.classList.remove("hidden");
+      isValid = false;
+    }
+
+    // 6. Unit Cost (Validated via validateUnitCost())
+    if (!validateUnitCost()) {
+      isValid = false;
+    }
+
+    // 7. Purchase quantity validation
+    if (purchaseUnitEl.value && purchaseUnitEl.value.trim() !== "") {
+      const qtyVal = parseFloat(purchaseQtyEl.value.trim());
+      if (purchaseQtyEl.value.trim() === "" || isNaN(qtyVal) || qtyVal <= 0) {
+        errPurchaseQty.classList.remove("hidden");
+        isValid = false;
+      }
+    } else {
+      purchaseQtyEl.disabled = true;
+      errPurchaseQty.classList.add("hidden");
+    }
+
+    if (!isValid) {
+      errorBanner.classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    // Simulate saving and show toast
+    const saveBtn = document.getElementById("btn-save");
+    const originalText = saveBtn.innerHTML;
+    saveBtn.disabled = true;
+    saveBtn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Saving...`;
+
+    setTimeout(() => {
+      saveBtn.disabled = false;
+      saveBtn.innerHTML = originalText;
+
+      const toast = document.getElementById("toast-success");
+      toast.classList.remove("opacity-0", "translate-y-[-20px]", "pointer-events-none");
+      toast.classList.add("opacity-100", "translate-y-0");
+
+      setTimeout(() => {
+        toast.classList.remove("opacity-100", "translate-y-0");
+        toast.classList.add("opacity-0", "translate-y-[-20px]", "pointer-events-none");
+        window.location.hash = "#inventory";
+      }, 1200);
+    }, 600);
+  }
+
+  // Initialize defaults on load
+  document.addEventListener("DOMContentLoaded", () => {
+    handleStockUnitChange();
+    handlePurchaseUnitChange();
+  });
+</script></main>
+</div>
+<script src="/integration-bridge.js"></script>
+</body></html>

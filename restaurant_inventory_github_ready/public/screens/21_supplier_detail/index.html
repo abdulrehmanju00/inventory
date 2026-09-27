@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_dashboard" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary": "#005d42",
+            "secondary": "#545f73",
+            "surface-container-highest": "#dae2fd",
+            "inverse-primary": "#80d5cb",
+            "on-secondary": "#ffffff",
+            "on-error": "#ffffff",
+            "on-primary-fixed-variant": "#00504a",
+            "on-secondary-fixed-variant": "#3c475a",
+            "primary-fixed-dim": "#80d5cb",
+            "primary-fixed": "#9cf2e8",
+            "surface-container-low": "#f2f3ff",
+            "tertiary-fixed": "#97f5cc",
+            "outline-variant": "#bdc9c6",
+            "outline": "#6e7977",
+            "secondary-fixed": "#d8e3fb",
+            "secondary-container": "#d5e0f8",
+            "surface-container-high": "#e2e7ff",
+            "surface-container": "#eaedff",
+            "on-error-container": "#93000a",
+            "secondary-fixed-dim": "#bcc7de",
+            "on-primary-container": "#a3faef",
+            "tertiary-container": "#047857",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#7bd8b1",
+            "on-surface-variant": "#3e4947",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#9ffdd3",
+            "primary-container": "#0f766e",
+            "on-surface": "#131b2e",
+            "surface-tint": "#006a63",
+            "surface-dim": "#d2d9f4",
+            "surface-container-lowest": "#ffffff",
+            "inverse-on-surface": "#eef0ff",
+            "surface-variant": "#dae2fd",
+            "on-primary-fixed": "#00201d",
+            "background": "#faf8ff",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed": "#111c2d",
+            "on-secondary-container": "#586377",
+            "on-tertiary-fixed-variant": "#00513a",
+            "on-tertiary-fixed": "#002115",
+            "error": "#ba1a1a",
+            "inverse-surface": "#283044",
+            "on-background": "#131b2e",
+            "surface-bright": "#faf8ff",
+            "surface": "#faf8ff",
+            "primary": "#005c55"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-desktop": "2rem",
+            "margin-mobile": "1rem",
+            "space-lg": "1.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "0.75rem",
+            "gutter": "1rem",
+            "space-xs": "0.25rem",
+            "margin": "1.5rem",
+            "space-xl": "2rem",
+            "gutter-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "body-sm": ["Hanken Grotesk"],
+            "display-lg": ["Hanken Grotesk"],
+            "headline-lg": ["Hanken Grotesk"],
+            "headline-md": ["Hanken Grotesk"],
+            "label-md": ["Geist"],
+            "body-md": ["Hanken Grotesk"],
+            "headline-lg-mobile": ["Hanken Grotesk"],
+            "numeric-table": ["Geist"],
+            "label-sm": ["Geist"],
+            "label-lg": ["Geist"],
+            "headline-xl": ["Hanken Grotesk"],
+            "body-lg": ["Hanken Grotesk"]
+          },
+          "fontSize": {
+            "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "display-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-lg": ["22px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-md": ["18px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "body-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["20px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "numeric-table": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+            "headline-xl": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-surface font-body-md text-on-surface antialiased">
+<!-- Mobile Backdrop -->
+<div class="fixed inset-0 bg-slate-900/50 z-40 lg:hidden hidden" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+<!-- App Sidebar -->
+<aside class="fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 transform -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out flex flex-col" id="app-sidebar">
+<!-- Brand Header -->
+<div class="h-16 px-4 flex items-center justify-between border-b border-slate-200">
+<div class="flex items-center gap-3">
+<div class="w-9 h-9 rounded-md bg-teal-700 flex items-center justify-center text-white shadow-sm">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+<div class="flex flex-col">
+<span class="font-bold text-slate-900 text-sm leading-tight">Inventory &amp; Operations</span>
+<span class="text-xs text-slate-500">Restaurant Portal</span>
+</div>
+</div>
+<button class="lg:hidden p-1.5 text-slate-500 hover:text-slate-800 rounded-md" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Navigation Scroll Area -->
+<div class="flex-1 overflow-y-auto px-3 py-4 space-y-5">
+<!-- Operations -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Operations</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#dashboard">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#inventory">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#stock-counts">
+<span class="material-symbols-outlined text-[20px]">fact_check</span>
+<span>Stock Counts</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#wastage">
+<span class="material-symbols-outlined text-[20px]">delete_sweep</span>
+<span>Wastage</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#transfers">
+<span class="material-symbols-outlined text-[20px]">sync_alt</span>
+<span>Transfers</span>
+</a>
+</nav>
+</div>
+<!-- Purchasing -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Purchasing</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#purchases">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span>Purchases</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#suppliers">
+<span class="material-symbols-outlined text-[20px] text-white">local_shipping</span>
+<span>Suppliers</span>
+</a>
+</nav>
+</div>
+<!-- Kitchen -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Kitchen</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#recipes">
+<span class="material-symbols-outlined text-[20px]">menu_book</span>
+<span>Recipes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#production">
+<span class="material-symbols-outlined text-[20px]">skillet</span>
+<span>Production</span>
+</a>
+</nav>
+</div>
+<!-- Management -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">Management</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#reports">
+<span class="material-symbols-outlined text-[20px]">monitoring</span>
+<span>Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#staff">
+<span class="material-symbols-outlined text-[20px]">group</span>
+<span>Staff</span>
+</a>
+</nav>
+</div>
+<!-- System -->
+<div class="space-y-1">
+<p class="px-3 text-xs font-semibold uppercase tracking-wider text-slate-400">System</p>
+<nav class="space-y-0.5">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900 transition-colors" href="#settings">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</div>
+</div>
+<!-- Sidebar Footer -->
+<div class="p-3 border-t border-slate-200 bg-slate-50 space-y-2">
+<!-- Branch Switcher -->
+<div class="flex items-center justify-between px-2.5 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-medium text-slate-700">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-slate-500">storefront</span>
+<span>Main Branch</span>
+</div>
+<span class="material-symbols-outlined text-[16px] text-slate-400">unfold_more</span>
+</div>
+<!-- GM User Pill -->
+<div class="flex items-center justify-between p-1.5 rounded-lg hover:bg-white transition-colors cursor-pointer">
+<div class="flex items-center gap-2.5">
+<div class="w-8 h-8 rounded-full bg-teal-700 text-white font-bold text-xs flex items-center justify-center">
+            GM
+          </div>
+<div class="flex flex-col">
+<span class="text-xs font-semibold text-slate-900">General Manager</span>
+<span class="text-[11px] text-slate-500">Operations Lead</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-[18px] text-slate-400">more_vert</span>
+</div>
+</div>
+</aside>
+<!-- Main Wrapper -->
+<div class="lg:pl-64 flex flex-col min-h-screen">
+<!-- Top Header -->
+<header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-slate-200 px-4 sm:px-6 py-3 flex items-center justify-between">
+<!-- Top Header Left -->
+<div class="flex items-center gap-3 sm:gap-4">
+<button class="lg:hidden p-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100" onclick="toggleSidebar()" type="button">
+<span class="material-symbols-outlined text-[22px]">menu</span>
+</button>
+<button class="flex items-center gap-2 px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200/80 rounded-lg text-xs sm:text-sm font-medium text-slate-800 transition-colors" type="button">
+<span class="material-symbols-outlined text-slate-600 text-[18px]">storefront</span>
+<span>Main Branch</span>
+<span class="material-symbols-outlined text-slate-500 text-[16px]">expand_more</span>
+</button>
+<div class="hidden sm:flex items-center gap-1.5 text-xs text-slate-500">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+<span>Updated 2 min ago</span>
+</div>
+</div>
+<!-- Top Header Right -->
+<div class="flex items-center gap-3">
+<button class="relative hidden md:flex items-center gap-2 h-9 pl-3 pr-2 w-64 bg-slate-100 hover:bg-slate-200/70 rounded-lg text-xs text-slate-500 transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px] text-slate-400">search</span>
+<span class="truncate">Search ingredients, purchases, suppliers...</span>
+<kbd class="ml-auto px-1.5 py-0.5 rounded bg-white border border-slate-200 text-[10px] font-medium text-slate-500">⌘K</kbd>
+</button>
+<button class="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors relative" type="button">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-error"></span>
+</button>
+<button class="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors" type="button">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+</button>
+<!-- GM Avatar Pill -->
+<div class="flex items-center gap-2 pl-1 border-l border-slate-200">
+<div class="w-8 h-8 rounded-full bg-teal-700 text-white font-bold text-xs flex items-center justify-center">
+            GM
+          </div>
+<div class="hidden xl:flex flex-col text-left">
+<span class="text-xs font-semibold text-slate-900 leading-tight">General Manager</span>
+<span class="text-[11px] text-slate-500">Operations Lead</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="w-full flex-1 bg-surface"><div class="flex flex-col w-full">
+<!-- Interactive Toast Notification -->
+<div class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-inverse-surface text-inverse-on-surface shadow-xl text-sm font-label-md" id="copy-toast">
+<span class="material-symbols-outlined text-[18px] text-tertiary-fixed">check_circle</span>
+<span id="toast-message">Copied to clipboard</span>
+</div>
+<div class="p-margin-mobile sm:p-margin lg:p-margin-desktop space-y-6">
+<!-- Breadcrumb & Top Utilities Navigation -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+<nav aria-label="Breadcrumb" class="flex items-center gap-1.5 text-body-sm font-label-md text-on-surface-variant">
+<a class="hover:text-primary transition-colors" href="#purchases">Purchasing</a>
+<span class="material-symbols-outlined text-[14px] text-outline-variant">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#suppliers">Suppliers</a>
+<span class="material-symbols-outlined text-[14px] text-outline-variant">chevron_right</span>
+<span class="text-on-surface font-semibold truncate max-w-[220px]">Fresh Foods Supplier (SUP-1001)</span>
+</nav>
+<div class="flex items-center gap-2 self-start sm:self-auto">
+<a class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-body-sm font-label-md transition-colors shadow-sm" href="#suppliers">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span>Back to Suppliers</span>
+</a>
+</div>
+</div>
+<!-- Editorial Dossier Header -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-5 sm:p-6 lg:p-8 flex flex-col xl:flex-row xl:items-start justify-between gap-6">
+<div class="space-y-4 max-w-3xl">
+<div class="flex flex-wrap items-center gap-3">
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm uppercase tracking-wider bg-surface-container-high text-on-secondary-container font-mono">SUP-1001</span>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-emerald-50 text-emerald-800 ring-1 ring-emerald-600/20">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+            Active Primary Partner
+          </span>
+<span class="inline-flex items-center gap-1 text-label-sm font-label-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[15px]">event</span>
+<span>Partner since 12 Jan 2024</span>
+</span>
+</div>
+<div>
+<h1 class="text-display-lg font-display-lg text-on-surface tracking-tight">Fresh Foods Supplier</h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1.5 leading-relaxed">
+            Key supplier entity managing scheduled morning perishables, raw poultry cuts, and farm-direct garden goods with guaranteed cold-chain transit.
+          </p>
+</div>
+<!-- Supply Categories Tags -->
+<div class="flex flex-wrap items-center gap-2 pt-1">
+<span class="text-label-sm font-label-sm text-outline uppercase font-semibold">Categories:</span>
+<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface text-label-md font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-primary">set_meal</span>
+            Meat &amp; Poultry
+          </span>
+<span class="px-2.5 py-1 rounded-md bg-surface-container text-on-surface text-label-md font-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px] text-tertiary">eco</span>
+            Fresh Vegetables
+          </span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container-high text-on-secondary-container text-label-sm font-label-sm">
+            24h SLA
+          </span>
+</div>
+</div>
+<!-- Action Panel -->
+<div class="flex flex-wrap sm:flex-nowrap items-center gap-2.5 pt-2 xl:pt-0">
+<a class="inline-flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md shadow-sm transition-all" href="#edit-supplier">
+<span class="material-symbols-outlined text-[18px]">edit_note</span>
+<span>Edit Supplier</span>
+</a>
+<a class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md shadow-md transition-all" href="#new-purchase">
+<span class="material-symbols-outlined text-[18px]">add_shopping_cart</span>
+<span>New Purchase Order</span>
+</a>
+</div>
+</div>
+<!-- 4 Key Stat Bins -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-outline">Total Purchases</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">receipt_long</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="text-headline-xl font-headline-xl text-on-surface tracking-tight">18 Orders</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="text-tertiary-container font-semibold">100%</span>
+<span>fulfillment rate</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-surface-container">
+<div class="h-full bg-primary" style="width: 100%;"></div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-outline">Purchases This Month</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="text-headline-xl font-headline-xl text-on-surface tracking-tight">4 Orders</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="text-tertiary-container font-semibold">+1 order</span>
+<span>vs. August cycle</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-surface-container">
+<div class="h-full bg-tertiary-container" style="width: 80%;"></div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-outline">MTD Total Spend</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="text-headline-xl font-headline-xl text-on-surface tracking-tight font-numeric-table">PKR 78,450</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant flex items-center gap-1 mt-1">
+<span class="text-secondary font-medium">42.1% of food spend</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-surface-container">
+<div class="h-full bg-primary-container" style="width: 42%;"></div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm relative overflow-hidden flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant">
+<span class="text-label-sm font-label-sm uppercase tracking-wider text-outline">Last Order Delivered</span>
+<span class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</span>
+</div>
+<div class="mt-3">
+<div class="text-headline-md font-headline-md text-on-surface truncate">PUR-1086</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant flex items-center justify-between mt-1">
+<span>23 Sep 2026</span>
+<span class="font-numeric-table font-semibold text-on-surface">PKR 24,850</span>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 h-1 bg-surface-container">
+<div class="h-full bg-tertiary" style="width: 100%;"></div>
+</div>
+</div>
+</div>
+<!-- Main Content Dual-Column Split -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Left / Main Column (8 cols ~ 66%) -->
+<div class="lg:col-span-8 space-y-6">
+<!-- 1. Supplier Information & Contact Details Card -->
+<div class="bg-surface-container-lowest rounded-xl p-6 shadow-sm space-y-5">
+<div class="flex items-center justify-between pb-3 border-b border-surface-container">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-[22px]">contact_phone</span>
+<h2 class="text-headline-md font-headline-md text-on-surface">Supplier Profile &amp; Contact Architecture</h2>
+</div>
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Verified Profile</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-6">
+<!-- Contact Person -->
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider block">Key Account Executive</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">person</span>
+<span class="text-body-md font-body-md text-on-surface font-semibold">Ahmed Raza</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container text-on-surface-variant">Account Mgr</span>
+</div>
+</div>
+<!-- Lead Time & Window -->
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider block">Fulfillment Lead Time</span>
+<div class="flex items-center gap-2 text-body-md font-body-md text-on-surface">
+<span class="material-symbols-outlined text-outline text-[18px]">timelapse</span>
+<span class="font-medium">24 Hours (Next-day AM execution)</span>
+</div>
+</div>
+<!-- Direct Phone -->
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider block">Direct Phone</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">call</span>
+<a class="text-body-md font-body-md text-primary font-mono font-medium hover:underline" href="tel:+923005550101">+92 300 555 0101</a>
+<button class="p-1 rounded hover:bg-surface-container text-outline hover:text-on-surface transition-colors" onclick="copyToClipboard('+92 300 555 0101', 'Phone number copied')" title="Copy Phone" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Delivery Window -->
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider block">Mandatory Arrival Window</span>
+<div class="flex items-center gap-2 text-body-md font-body-md text-on-surface">
+<span class="material-symbols-outlined text-outline text-[18px]">schedule</span>
+<span class="font-medium">06:00 – 08:30 PKT (Before Prep)</span>
+</div>
+</div>
+<!-- Business Email -->
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider block">Dispatch Email</span>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-[18px]">mail</span>
+<a class="text-body-md font-body-md text-primary hover:underline" href="mailto:orders@freshfoods.example">orders@freshfoods.example</a>
+<button class="p-1 rounded hover:bg-surface-container text-outline hover:text-on-surface transition-colors" onclick="copyToClipboard('orders@freshfoods.example', 'Email copied')" title="Copy Email" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Active Categories -->
+<div class="space-y-1">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider block">Contracted Product Lines</span>
+<div class="flex items-center gap-1.5 pt-0.5">
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container font-medium text-on-surface">Poultry / Red Meat</span>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-surface-container font-medium text-on-surface">Roots &amp; Greens</span>
+</div>
+</div>
+<!-- Physical Delivery Address -->
+<div class="sm:col-span-2 space-y-1 pt-1">
+<span class="text-label-sm font-label-sm text-outline uppercase tracking-wider block">Distribution Hub &amp; Farm Market Base</span>
+<div class="flex items-start gap-2 text-body-md font-body-md text-on-surface">
+<span class="material-symbols-outlined text-outline text-[18px] mt-0.5">location_on</span>
+<span>Wholesale Fruit &amp; Vegetable Market, Kot Lakhpat, Lahore, Punjab, Pakistan</span>
+</div>
+</div>
+</div>
+</div>
+<!-- 2. Supplied Ingredients Catalog / Linked Items Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-5 sm:p-6 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-surface-container">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface">Contracted Ingredients Catalog</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Core restaurant ingredients systematically provisioned by this vendor.</p>
+</div>
+<div class="flex items-center gap-2 text-label-sm font-label-sm text-outline bg-surface-container px-3 py-1 rounded-full self-start sm:self-auto">
+<span>4 Linked Skus</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-label-sm font-label-sm text-outline uppercase tracking-wider">
+<th class="py-3 px-5">Ingredient SKU</th>
+<th class="py-3 px-4">Line Category</th>
+<th class="py-3 px-4">UOM</th>
+<th class="py-3 px-4 font-numeric-table">Contract Price</th>
+<th class="py-3 px-4">Current Stock</th>
+<th class="py-3 px-5 text-right">Quick Order</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-sm font-body-sm">
+<!-- Item 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-5">
+<div class="font-medium text-on-surface">Chicken Breast (Skinless Boneless)</div>
+<div class="text-label-sm text-on-surface-variant font-mono">ING-0012</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant">Meat &amp; Poultry</td>
+<td class="py-3.5 px-4 font-mono">kg</td>
+<td class="py-3.5 px-4 font-numeric-table font-semibold text-on-surface">PKR 620.00</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-emerald-50 text-emerald-700">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                      In Stock (42 kg)
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<button class="p-1 rounded text-primary hover:bg-surface-container transition-colors" onclick="copyToClipboard('ING-0012', 'SKU ING-0012 added to draft')" title="Include in PO" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+</button>
+</td>
+</tr>
+<!-- Item 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-5">
+<div class="font-medium text-on-surface">Fresh Tomatoes (A-Grade Roma)</div>
+<div class="text-label-sm text-on-surface-variant font-mono">ING-0028</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant">Vegetables</td>
+<td class="py-3.5 px-4 font-mono">kg</td>
+<td class="py-3.5 px-4 font-numeric-table font-semibold text-on-surface">PKR 140.00</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-emerald-50 text-emerald-700">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                      Normal (28 kg)
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<button class="p-1 rounded text-primary hover:bg-surface-container transition-colors" onclick="copyToClipboard('ING-0028', 'SKU ING-0028 added to draft')" title="Include in PO" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+</button>
+</td>
+</tr>
+<!-- Item 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-5">
+<div class="font-medium text-on-surface">Red Onions (Medium Bulb)</div>
+<div class="text-label-sm text-on-surface-variant font-mono">ING-0031</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant">Vegetables</td>
+<td class="py-3.5 px-4 font-mono">kg</td>
+<td class="py-3.5 px-4 font-numeric-table font-semibold text-on-surface">PKR 110.00</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-emerald-50 text-emerald-700">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+                      Normal (35 kg)
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<button class="p-1 rounded text-primary hover:bg-surface-container transition-colors" onclick="copyToClipboard('ING-0031', 'SKU ING-0031 added to draft')" title="Include in PO" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+</button>
+</td>
+</tr>
+<!-- Item 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-5">
+<div class="font-medium text-on-surface">Fresh Garlic (Peeled Cloves)</div>
+<div class="text-label-sm text-on-surface-variant font-mono">ING-0044</div>
+</td>
+<td class="py-3.5 px-4 text-on-surface-variant">Vegetables</td>
+<td class="py-3.5 px-4 font-mono">kg</td>
+<td class="py-3.5 px-4 font-numeric-table font-semibold text-on-surface">PKR 380.00</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-label-sm font-label-sm font-medium bg-amber-50 text-amber-800">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+                      Low Stock (4.5 kg)
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<button class="p-1 rounded text-primary hover:bg-surface-container transition-colors" onclick="copyToClipboard('ING-0044', 'SKU ING-0044 added to draft')" title="Include in PO" type="button">
+<span class="material-symbols-outlined text-[18px]">add_circle</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- 3. Recent Purchase Orders Ledger Table Card -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="p-5 sm:p-6 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-surface-container">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface">Recent Purchase Orders Ledger</h2>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Fulfillment tracking and invoice reconciliation history for Fresh Foods Supplier.</p>
+</div>
+<a class="inline-flex items-center gap-1 text-label-sm font-label-sm font-semibold text-primary hover:underline" href="#purchases">
+<span>View All in Purchases</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-label-sm font-label-sm text-outline uppercase tracking-wider">
+<th class="py-3 px-5">Purchase ID</th>
+<th class="py-3 px-4">Date Delivered</th>
+<th class="py-3 px-4">Items Summary</th>
+<th class="py-3 px-4 font-numeric-table">Order Total</th>
+<th class="py-3 px-4">Receiving Status</th>
+<th class="py-3 px-5 text-right">Detail</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-body-sm font-body-sm">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-5 font-mono font-medium text-primary">
+<a class="hover:underline" href="#purchase-detail">PUR-1086</a>
+</td>
+<td class="py-3.5 px-4 text-on-surface">23 Sep 2026</td>
+<td class="py-3.5 px-4 text-on-surface-variant">3 line items (Poultry, Veg)</td>
+<td class="py-3.5 px-4 font-numeric-table font-semibold text-on-surface">PKR 24,850</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-50 text-emerald-700 font-medium">
+<span class="material-symbols-outlined text-[14px]">check</span>
+                      Received / Completed
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center gap-1 text-primary hover:underline text-label-md font-label-md" href="#purchase-detail">
+<span>View</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-5 font-mono font-medium text-primary">
+<a class="hover:underline" href="#purchase-detail">PUR-1072</a>
+</td>
+<td class="py-3.5 px-4 text-on-surface">16 Sep 2026</td>
+<td class="py-3.5 px-4 text-on-surface-variant">2 line items (Poultry batch)</td>
+<td class="py-3.5 px-4 font-numeric-table font-semibold text-on-surface">PKR 19,200</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-50 text-emerald-700 font-medium">
+<span class="material-symbols-outlined text-[14px]">check</span>
+                      Received / Completed
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center gap-1 text-primary hover:underline text-label-md font-label-md" href="#purchase-detail">
+<span>View</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-5 font-mono font-medium text-primary">
+<a class="hover:underline" href="#purchase-detail">PUR-1055</a>
+</td>
+<td class="py-3.5 px-4 text-on-surface">09 Sep 2026</td>
+<td class="py-3.5 px-4 text-on-surface-variant">3 line items (Produce restocking)</td>
+<td class="py-3.5 px-4 font-numeric-table font-semibold text-on-surface">PKR 21,400</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-50 text-emerald-700 font-medium">
+<span class="material-symbols-outlined text-[14px]">check</span>
+                      Received / Completed
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center gap-1 text-primary hover:underline text-label-md font-label-md" href="#purchase-detail">
+<span>View</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-3.5 px-5 font-mono font-medium text-primary">
+<a class="hover:underline" href="#purchase-detail">PUR-1041</a>
+</td>
+<td class="py-3.5 px-4 text-on-surface">02 Sep 2026</td>
+<td class="py-3.5 px-4 text-on-surface-variant">2 line items (Pantry aromatics)</td>
+<td class="py-3.5 px-4 font-numeric-table font-semibold text-on-surface">PKR 13,000</td>
+<td class="py-3.5 px-4">
+<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-emerald-50 text-emerald-700 font-medium">
+<span class="material-symbols-outlined text-[14px]">check</span>
+                      Received / Completed
+                    </span>
+</td>
+<td class="py-3.5 px-5 text-right">
+<a class="inline-flex items-center gap-1 text-primary hover:underline text-label-md font-label-md" href="#purchase-detail">
+<span>View</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Right Column / Tactical Rail (4 cols ~ 33%) -->
+<div class="lg:col-span-4 space-y-6">
+<!-- 1. Direct Dispatch & Fast Contact Card -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm space-y-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">quick_reference_all</span>
+<h3 class="text-headline-md font-headline-md text-on-surface">Vendor Rapid Connect</h3>
+</div>
+<div class="p-3.5 rounded-lg bg-surface-container-low space-y-2">
+<div class="text-label-sm font-label-sm text-outline uppercase tracking-wider">Representative</div>
+<div class="text-body-md font-body-md font-semibold text-on-surface">Ahmed Raza</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">Mobile Key Representative available 05:30 - 18:00 PKT daily</div>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<a class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-body-sm font-label-md transition-colors shadow-sm" href="tel:+923005550101">
+<span class="material-symbols-outlined text-[18px] text-primary">call</span>
+<span>Call Phone</span>
+</a>
+<a class="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface text-body-sm font-label-md transition-colors shadow-sm" href="mailto:orders@freshfoods.example">
+<span class="material-symbols-outlined text-[18px] text-tertiary">mail</span>
+<span>Send Mail</span>
+</a>
+</div>
+</div>
+<!-- 2. Operations & Delivery Protocol Notes Card -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">assignment_turned_in</span>
+<h3 class="text-headline-md font-headline-md text-on-surface">Kitchen Intake Rules</h3>
+</div>
+<span class="text-label-sm font-label-sm px-2 py-0.5 rounded bg-primary-fixed text-on-primary-fixed font-mono">SOP-04</span>
+</div>
+<div class="space-y-3.5 text-body-sm font-body-sm">
+<div class="p-3 rounded-lg bg-surface-container-low space-y-1">
+<div class="flex items-center gap-1.5 text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[16px] text-error">thermostat</span>
+<span>Poultry Cold-Chain Protocol</span>
+</div>
+<p class="text-on-surface-variant text-body-sm leading-relaxed">
+                Mandatory probe test immediately upon arrival. Core temp must read ≤ 4.0°C. Reject batch if probe exceeds threshold or vehicle chiller logs show breaks.
+              </p>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low space-y-1">
+<div class="flex items-center gap-1.5 text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[16px] text-primary">warehouse</span>
+<span>Unloading Location</span>
+</div>
+<p class="text-on-surface-variant text-body-sm leading-relaxed">
+                Preferred Receiving Bay: <strong>Loading Bay B</strong> (Kitchen Rear Service Entrance). Security guard logs weigh-in scale slips.
+              </p>
+</div>
+<div class="p-3 rounded-lg bg-surface-container-low space-y-1">
+<div class="flex items-center gap-1.5 text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[16px] text-secondary">feed</span>
+<span>Contract &amp; Commercial Terms</span>
+</div>
+<p class="text-on-surface-variant text-body-sm leading-relaxed">
+                Primary partner agreement renewed <strong>Jan 2026</strong>. Weekly consolidated billing cycle delivered every Monday morning.
+              </p>
+</div>
+</div>
+</div>
+<!-- 3. Record Audit Metadata Card -->
+<div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm space-y-3">
+<div class="flex items-center gap-2 text-on-surface">
+<span class="material-symbols-outlined text-outline text-[18px]">history</span>
+<h3 class="text-headline-md font-headline-md">Audit Trail</h3>
+</div>
+<dl class="space-y-2 text-body-sm font-body-sm divide-y divide-surface-container">
+<div class="flex justify-between py-1.5 text-on-surface-variant">
+<span>Account Creator</span>
+<span class="font-medium text-on-surface">Operations Lead (GM)</span>
+</div>
+<div class="flex justify-between py-1.5 text-on-surface-variant">
+<span>Creation Date</span>
+<span class="font-mono text-on-surface">12 Jan 2024</span>
+</div>
+<div class="flex justify-between py-1.5 text-on-surface-variant">
+<span>Last Order Received</span>
+<span class="font-mono text-on-surface">23 Sep 2026 (PUR-1086)</span>
+</div>
+<div class="flex justify-between py-1.5 text-on-surface-variant">
+<span>Branch Scope</span>
+<span class="font-medium text-on-surface">Main Branch (Kot Lakhpat)</span>
+</div>
+</dl>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function copyToClipboard(text, successMsg) {
+    if (navigator && navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMsg || 'Copied to clipboard');
+      }).catch(() => {
+        fallbackCopy(text, successMsg);
+      });
+    } else {
+      fallbackCopy(text, successMsg);
+    }
+  }
+
+  function fallbackCopy(text, successMsg) {
+    const input = document.createElement('input');
+    input.setAttribute('value', text);
+    document.body.appendChild(input);
+    input.select();
+    try {
+      document.execCommand('copy');
+      showToast(successMsg || 'Copied to clipboard');
+    } catch (err) {
+      showToast('Selection ready');
+    }
+    document.body.removeChild(input);
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('copy-toast');
+    const toastMsg = document.getElementById('toast-message');
+    if (!toast || !toastMsg) return;
+
+    toastMsg.textContent = msg;
+    toast.classList.remove('translate-y-20', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    setTimeout(() => {
+      toast.classList.remove('translate-y-0', 'opacity-100');
+      toast.classList.add('translate-y-20', 'opacity-0');
+    }, 2400);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Ensure active state on the suppliers sidebar nav link
+    const supplierLinks = document.querySelectorAll('aside nav a[href="#suppliers"]');
+    supplierLinks.forEach(link => {
+      link.setAttribute('aria-current', 'page');
+      link.classList.remove('text-slate-600', 'hover:bg-slate-100');
+      link.classList.add('bg-teal-700', 'text-white', 'font-semibold');
+      const icon = link.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.classList.remove('text-slate-600');
+        icon.classList.add('text-white');
+      }
+    });
+  });
+</script></main>
+</div>
+<script>
+    const suppliersOverview = {
+      summary: {
+        totalSuppliers: 5,
+        activeSuppliers: 5,
+        purchasesThisMonth: 14,
+        monthSpend: 186450
+      },
+      records: [
+        {
+          id: "SUP-1001",
+          name: "Fresh Foods Supplier",
+          contactPerson: "Ahmed Raza",
+          phone: "+92 300 555 0101",
+          email: "orders@freshfoods.example",
+          categories: ["Meat", "Vegetables"],
+          purchasesThisMonth: 4,
+          lastPurchase: "23 Sep 2026",
+          status: "Active"
+        },
+        {
+          id: "SUP-1002",
+          name: "Dairy House",
+          contactPerson: "Usman Khalid",
+          phone: "+92 300 555 0102",
+          email: "sales@dairyhouse.example",
+          categories: ["Dairy"],
+          purchasesThisMonth: 3,
+          lastPurchase: "23 Sep 2026",
+          status: "Active"
+        },
+        {
+          id: "SUP-1003",
+          name: "City Grocery Wholesale",
+          contactPerson: "Bilal Ahmed",
+          phone: "+92 300 555 0103",
+          email: "orders@citygrocery.example",
+          categories: ["Vegetables", "Pantry"],
+          purchasesThisMonth: 3,
+          lastPurchase: "22 Sep 2026",
+          status: "Active"
+        },
+        {
+          id: "SUP-1004",
+          name: "Bakers Supply Co.",
+          contactPerson: "Hassan Ali",
+          phone: "+92 300 555 0104",
+          email: "orders@bakerssupply.example",
+          categories: ["Bakery"],
+          purchasesThisMonth: 2,
+          lastPurchase: "20 Sep 2026",
+          status: "Active"
+        },
+        {
+          id: "SUP-1005",
+          name: "Oil & Pantry Traders",
+          contactPerson: "Saad Khan",
+          phone: "+92 300 555 0105",
+          email: "sales@oilpantry.example",
+          categories: ["Oil", "Pantry"],
+          purchasesThisMonth: 2,
+          lastPurchase: "18 Sep 2026",
+          status: "Active"
+        }
+      ]
+    };
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('app-sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      if (sidebar && backdrop) {
+        sidebar.classList.toggle('-translate-x-full');
+        backdrop.classList.toggle('hidden');
+      }
+    }
+
+    function formatPKR(val) {
+      return "PKR " + Number(val).toLocaleString("en-US");
+    }
+
+    function renderSuppliers(list) {
+      const tbody = document.getElementById("suppliers-table-body");
+      const emptyState = document.getElementById("empty-state");
+      const countLabel = document.getElementById("filtered-count-label");
+
+      if (!tbody || !emptyState) return;
+
+      if (list.length === 0) {
+        tbody.innerHTML = "";
+        emptyState.classList.remove("hidden");
+        emptyState.classList.add("flex");
+        if (countLabel) countLabel.textContent = `Showing 0 of ${suppliersOverview.records.length} supplier records`;
+        return;
+      }
+
+      emptyState.classList.add("hidden");
+      emptyState.classList.remove("flex");
+
+      if (countLabel) {
+        countLabel.textContent = `Showing ${list.length} of ${suppliersOverview.records.length} supplier records`;
+      }
+
+      tbody.innerHTML = list.map((supplier, index) => {
+        const isEven = index % 2 === 0;
+        const rowBg = isEven ? "bg-surface-container-lowest" : "bg-surface/50";
+        const statusMarkup = supplier.status === "Active"
+          ? `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs bg-teal-100 text-teal-800 font-semibold"><span class="w-1.5 h-1.5 rounded-full bg-teal-600"></span>Active</span>`
+          : `<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-600 font-medium"><span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>Inactive</span>`;
+
+        const categoryPills = supplier.categories
+          .map(cat => `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs bg-slate-100 text-slate-700 font-medium">${cat}</span>`)
+          .join(" ");
+
+        return `
+          <tr class="${rowBg} hover:bg-slate-50 transition-colors duration-150">
+            <!-- Supplier -->
+            <td class="py-3 px-space-md lg:px-space-lg align-top">
+              <div class="flex flex-col">
+                <span class="font-medium text-slate-900">${supplier.name}</span>
+                <span class="text-xs text-slate-500 font-mono">${supplier.id}</span>
+              </div>
+            </td>
+
+            <!-- Contact -->
+            <td class="py-3 px-space-md align-top">
+              <div class="flex flex-col space-y-0.5">
+                <span class="text-slate-900 font-medium text-sm">${supplier.contactPerson}</span>
+                <span class="text-xs text-slate-500">${supplier.phone}</span>
+                <span class="text-xs text-slate-500">${supplier.email}</span>
+              </div>
+            </td>
+
+            <!-- Categories -->
+            <td class="py-3 px-space-md align-top">
+              <div class="flex flex-wrap gap-1 max-w-[200px]">
+                ${categoryPills}
+              </div>
+            </td>
+
+            <!-- Purchases This Month -->
+            <td class="py-3 px-space-md align-top text-center">
+              <span class="inline-block px-2.5 py-0.5 rounded bg-slate-100 font-mono text-sm font-semibold text-slate-800">
+                ${supplier.purchasesThisMonth}
+              </span>
+            </td>
+
+            <!-- Last Purchase -->
+            <td class="py-3 px-space-md align-top whitespace-nowrap text-sm text-slate-700">
+              ${supplier.lastPurchase}
+            </td>
+
+            <!-- Status -->
+            <td class="py-3 px-space-md align-top whitespace-nowrap">
+              ${statusMarkup}
+            </td>
+
+            <!-- Action -->
+            <td class="py-3 px-space-md lg:pr-space-lg align-top text-right whitespace-nowrap">
+              <a href="#supplier-detail" class="inline-flex items-center gap-1 text-sm font-medium text-teal-700 hover:text-teal-900 hover:underline transition-colors">
+                <span>View</span>
+                <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </a>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    function filterSuppliers() {
+      const query = (document.getElementById("supplier-search")?.value || "").trim().toLowerCase();
+      const categoryFilter = document.getElementById("category-filter")?.value || "All Categories";
+      const statusFilter = document.getElementById("status-filter")?.value || "All Statuses";
+
+      const filtered = suppliersOverview.records.filter(item => {
+        const matchesSearch = !query || (
+          item.id.toLowerCase().includes(query) ||
+          item.name.toLowerCase().includes(query) ||
+          item.contactPerson.toLowerCase().includes(query) ||
+          item.phone.toLowerCase().includes(query) ||
+          item.email.toLowerCase().includes(query)
+        );
+
+        const matchesCategory = (categoryFilter === "All Categories") || item.categories.includes(categoryFilter);
+        const matchesStatus = (statusFilter === "All Statuses") || (item.status === statusFilter);
+
+        return matchesSearch && matchesCategory && matchesStatus;
+      });
+
+      renderSuppliers(filtered);
+    }
+
+    function resetFilters() {
+      const searchInput = document.getElementById("supplier-search");
+      const categorySelect = document.getElementById("category-filter");
+      const statusSelect = document.getElementById("status-filter");
+
+      if (searchInput) searchInput.value = "";
+      if (categorySelect) categorySelect.value = "All Categories";
+      if (statusSelect) statusSelect.value = "All Statuses";
+
+      renderSuppliers(suppliersOverview.records);
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const statTotal = document.getElementById("stat-total-suppliers");
+      const statActive = document.getElementById("stat-active-suppliers");
+      const statPurchases = document.getElementById("stat-purchases-month");
+      const statSpend = document.getElementById("stat-month-spend");
+
+      if (statTotal) statTotal.textContent = suppliersOverview.summary.totalSuppliers;
+      if (statActive) statActive.textContent = suppliersOverview.summary.activeSuppliers;
+      if (statPurchases) statPurchases.textContent = suppliersOverview.summary.purchasesThisMonth;
+      if (statSpend) statSpend.textContent = formatPKR(suppliersOverview.summary.monthSpend);
+
+      renderSuppliers(suppliersOverview.records);
+
+      const searchInput = document.getElementById("supplier-search");
+      const categorySelect = document.getElementById("category-filter");
+      const statusSelect = document.getElementById("status-filter");
+      const resetBtn = document.getElementById("reset-filters-btn");
+
+      if (searchInput) searchInput.addEventListener("input", filterSuppliers);
+      if (categorySelect) categorySelect.addEventListener("change", filterSuppliers);
+      if (statusSelect) statusSelect.addEventListener("change", filterSuppliers);
+      if (resetBtn) resetBtn.addEventListener("click", resetFilters);
+    });
+  </script>
+<script src="/integration-bridge.js"></script>
+</body></html>

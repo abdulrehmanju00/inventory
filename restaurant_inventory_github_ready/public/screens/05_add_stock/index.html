@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-container":"#eaedff","primary-container":"#0f766e","primary-fixed-dim":"#80d5cb","on-secondary-container":"#586377","on-primary":"#ffffff","tertiary":"#005d42","inverse-on-surface":"#eef0ff","tertiary-container":"#047857","inverse-surface":"#283044","surface-container-high":"#e2e7ff","error-container":"#ffdad6","on-primary-container":"#a3faef","on-secondary":"#ffffff","on-secondary-fixed":"#111c2d","on-tertiary-fixed-variant":"#00513a","surface-variant":"#dae2fd","on-surface":"#131b2e","tertiary-fixed-dim":"#7bd8b1","surface-container-lowest":"#ffffff","on-error-container":"#93000a","background":"#faf8ff","primary-fixed":"#9cf2e8","surface-container-highest":"#dae2fd","on-tertiary-fixed":"#002115","on-tertiary-container":"#9ffdd3","on-primary-fixed-variant":"#00504a","surface-bright":"#faf8ff","error":"#ba1a1a","surface-dim":"#d2d9f4","surface":"#faf8ff","surface-container-low":"#f2f3ff","secondary":"#545f73","inverse-primary":"#80d5cb","secondary-fixed":"#d8e3fb","on-secondary-fixed-variant":"#3c475a","on-background":"#131b2e","on-error":"#ffffff","on-primary-fixed":"#00201d","outline-variant":"#bdc9c6","tertiary-fixed":"#97f5cc","on-tertiary":"#ffffff","surface-tint":"#006a63","primary":"#005c55","on-surface-variant":"#3e4947","outline":"#6e7977","secondary-container":"#d5e0f8","secondary-fixed-dim":"#bcc7de"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-lg":"1.25rem","margin-desktop":"2rem","space-xl":"2rem","space-xs":"0.25rem","space-sm":"0.5rem","gutter-lg":"1.5rem","margin-mobile":"1rem","margin":"1.5rem","gutter":"1rem","space-md":"0.75rem"},fontFamily:{"label-md":["Geist"],"body-lg":["Hanken Grotesk"],"headline-lg-mobile":["Hanken Grotesk"],"label-lg":["Geist"],"label-sm":["Geist"],"body-md":["Hanken Grotesk"],"headline-md":["Hanken Grotesk"],"body-sm":["Hanken Grotesk"],"headline-xl":["Hanken Grotesk"],"display-lg":["Hanken Grotesk"],"headline-lg":["Hanken Grotesk"],"numeric-table":["Geist"]},fontSize:{"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],"body-lg":["16px",{"lineHeight":"24px","letterSpacing":"0em","fontWeight":"400"}],"headline-lg-mobile":["20px",{"lineHeight":"26px","letterSpacing":"-0.01em","fontWeight":"600"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.01em","fontWeight":"500"}],"label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.04em","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"20px","letterSpacing":"0em","fontWeight":"400"}],"headline-md":["18px",{"lineHeight":"24px","letterSpacing":"-0.005em","fontWeight":"600"}],"body-sm":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"400"}],"headline-xl":["28px",{"lineHeight":"36px","letterSpacing":"-0.015em","fontWeight":"600"}],"display-lg":["36px",{"lineHeight":"44px","letterSpacing":"-0.02em","fontWeight":"600"}],"headline-lg":["22px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"600"}],"numeric-table":["13px",{"lineHeight":"18px","letterSpacing":"0em","fontWeight":"500"}]}}}};</script><style>
+  /* Subtle native scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(110, 121, 119, 0.25);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(110, 121, 119, 0.45);
+  }
+</style></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased">
+<!-- Mobile Backdrop Overlay -->
+<div class="fixed inset-0 bg-inverse-surface/40 backdrop-blur-xs z-40 hidden lg:hidden transition-opacity" id="sidebar-backdrop" onclick="toggleSidebar()"></div>
+<!-- SIDEBAR -->
+<aside class="fixed left-0 top-0 h-screen w-64 bg-surface-container-lowest border-r border-outline-variant/40 z-50 flex flex-col justify-between select-none -translate-x-full lg:translate-x-0 transition-transform duration-200 ease-in-out" id="app-sidebar"><div class="flex flex-col min-h-0"><div class="h-16 px-space-md flex items-center justify-between border-b border-outline-variant/30"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold text-label-lg"><span class="material-symbols-outlined text-[18px]">inventory_2</span></div><div class="flex flex-col"><span class="font-headline-md text-[15px] font-semibold text-on-surface tracking-tight leading-tight">Inventory &amp; Operations</span><span class="font-label-sm text-[11px] text-on-surface-variant font-normal">Restaurant Portal</span></div></div><button class="lg:hidden p-1 rounded-md text-on-surface-variant hover:bg-surface-container-low" onclick="toggleSidebar()" type="button"><span class="material-symbols-outlined text-[20px]">close</span></button></div><nav class="flex-1 overflow-y-auto px-space-sm py-space-sm space-y-0.5"><div class="px-space-md pt-2 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Operations</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="dashboard" href="#dashboard"><span class="material-symbols-outlined text-[18px]">dashboard</span><span class="font-label-md text-label-md">Dashboard</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg bg-primary text-on-primary font-semibold transition-colors" data-path="inventory" href="#inventory"><span class="material-symbols-outlined text-[18px] text-on-primary">inventory_2</span><span class="font-label-md text-label-md">Inventory</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="stock-counts" href="#stock-counts"><span class="material-symbols-outlined text-[18px]">fact_check</span><span class="font-label-md text-label-md">Stock Counts</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="wastage" href="#wastage"><span class="material-symbols-outlined text-[18px]">delete_sweep</span><span class="font-label-md text-label-md">Wastage</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="transfers" href="#transfers"><span class="material-symbols-outlined text-[18px]">swap_horiz</span><span class="font-label-md text-label-md">Transfers</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Purchasing</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="purchasing" href="#purchases"><span class="material-symbols-outlined text-[18px]">shopping_cart</span><span class="font-label-md text-label-md">Purchases</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="suppliers" href="#suppliers"><span class="material-symbols-outlined text-[18px]">local_shipping</span><span class="font-label-md text-label-md">Suppliers</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Kitchen</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="recipes" href="#recipes"><span class="material-symbols-outlined text-[18px]">menu_book</span><span class="font-label-md text-label-md">Recipes</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="production" href="#production"><span class="material-symbols-outlined text-[18px]">skillet</span><span class="font-label-md text-label-md">Production</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">Management</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="reports" href="#reports"><span class="material-symbols-outlined text-[18px]">bar_chart</span><span class="font-label-md text-label-md">Reports</span></a><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="staff" href="#staff"><span class="material-symbols-outlined text-[18px]">badge</span><span class="font-label-md text-label-md">Staff</span></a><div class="px-space-md pt-3 pb-1 font-label-sm text-[10px] uppercase tracking-wider text-on-surface-variant font-semibold">System</div><a class="flex items-center gap-space-sm px-space-md py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" data-path="settings" href="#settings"><span class="material-symbols-outlined text-[18px]">settings</span><span class="font-label-md text-label-md">Settings</span></a></nav></div><div class="border-t border-outline-variant/30 p-space-sm space-y-space-xs bg-surface-container-lowest"><div class="p-space-xs rounded-lg border border-outline-variant/30 bg-surface-container-low flex items-center justify-between cursor-pointer hover:bg-surface-container transition-colors"><div class="flex items-center gap-1.5 truncate"><span class="w-2 h-2 rounded-full bg-primary flex-shrink-0"></span><span class="font-label-sm text-label-sm text-on-surface truncate font-medium">Main Branch</span></div><span class="material-symbols-outlined text-[16px] text-on-surface-variant">unfold_more</span></div><div class="flex items-center justify-between p-space-xs rounded-lg hover:bg-surface-container-low cursor-pointer transition-colors"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface-variant font-label-md font-semibold">GM</div><div class="flex flex-col text-left"><span class="font-label-md text-label-md text-on-surface font-medium">General Manager</span><span class="font-label-sm text-label-sm text-on-surface-variant">Operations Lead</span></div></div><span class="material-symbols-outlined text-[18px] text-on-surface-variant">more_vert</span></div></div></aside>
+<!-- MAIN WRAPPER -->
+<div class="lg:pl-64 w-full">
+<header class="fixed top-0 left-0 lg:left-64 right-0 h-16 bg-surface/95 backdrop-blur border-b border-outline-variant/40 z-30 px-4 lg:px-gutter-lg flex items-center justify-between"><div class="flex items-center gap-space-sm sm:gap-space-md"><button class="lg:hidden p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" onclick="toggleSidebar()" type="button"><span class="material-symbols-outlined text-[22px]">menu</span></button><div class="flex items-center gap-space-xs px-space-sm py-1.5 rounded-lg border border-outline-variant/40 bg-surface-container-lowest cursor-pointer hover:bg-surface-container-low transition-colors"><span class="material-symbols-outlined text-[18px] text-primary">storefront</span><span class="font-label-md text-label-md text-on-surface font-medium">Main Branch</span><span class="material-symbols-outlined text-[16px] text-on-surface-variant">expand_more</span></div><div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-low border border-outline-variant/30 text-on-surface-variant"><span class="font-label-sm text-label-sm">Updated 2 min ago</span></div></div><div class="flex items-center gap-space-sm sm:gap-space-md"><div class="relative hidden md:block w-64 lg:w-96"><span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span><input class="w-full h-9 pl-9 pr-12 rounded-lg border border-outline-variant/50 bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/70 font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary" placeholder="Search ingredients, purchases, suppliers (⌘K)" type="text"/><div class="absolute right-2.5 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded bg-surface-container-low border border-outline-variant/30 text-on-surface-variant font-label-sm text-label-sm pointer-events-none">⌘K</div></div><div class="flex items-center gap-space-xs"><button class="relative p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-error ring-2 ring-surface-container-lowest"></span></button><button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">help</span></button></div><div class="h-6 w-px bg-outline-variant/40 hidden sm:block"></div><div class="flex items-center gap-space-xs cursor-pointer group"><div class="w-8 h-8 rounded-full bg-surface-container-high border border-outline-variant/40 flex items-center justify-center text-on-surface font-label-sm font-semibold">GM</div><span class="material-symbols-outlined text-[18px] text-on-surface-variant group-hover:text-on-surface transition-colors hidden sm:inline">keyboard_arrow_down</span></div></div></header>
+<main class="w-full pt-20 bg-surface min-h-screen px-4 lg:px-gutter-lg pb-margin-desktop"><div class="flex flex-col w-full">
+<!-- Toast Notification Element (Hidden by default) -->
+<div class="fixed top-20 right-6 z-50 transform translate-x-full transition-transform duration-300 ease-out flex items-center gap-space-sm bg-inverse-surface text-inverse-on-surface px-space-md py-space-sm rounded-xl shadow-xl max-w-md pointer-events-auto" id="toast-notification">
+<span class="material-symbols-outlined text-primary-fixed text-[20px]">check_circle</span>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md font-semibold text-inverse-on-surface" id="toast-title">Stock added successfully</span>
+<span class="font-body-sm text-body-sm text-surface-container-high truncate" id="toast-message">20 kg Chicken Breast received into Walk-in Cooler.</span>
+</div>
+<button class="p-1 text-surface-variant hover:text-inverse-on-surface ml-auto" onclick="dismissToast()" type="button">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<div class="w-full max-w-[920px] mx-auto flex flex-col space-y-space-lg">
+<!-- BREADCRUMBS -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<nav class="flex items-center gap-1.5 font-label-md text-label-md text-on-surface-variant">
+<span class="hover:text-on-surface transition-colors cursor-pointer">Operations</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="hover:text-on-surface transition-colors cursor-pointer">Inventory</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-medium" id="breadcrumb-ingredient">Chicken Breast</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Add Stock</span>
+</nav>
+</div>
+<!-- PAGE HERO HEADER -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-space-md">
+<div class="space-y-1">
+<div class="flex items-center gap-space-sm flex-wrap">
+<h1 class="font-headline-xl text-headline-xl text-on-surface font-semibold tracking-tight">Add Stock</h1>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[14px] text-primary">restaurant</span>
+<span class="" id="header-context-pill">Chicken Breast • SKU-9021 • Walk-in Cooler</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Record incoming stock for an existing ingredient.</p>
+</div>
+<!-- Right-side stock state bin -->
+<div class="flex items-center gap-space-md p-space-sm bg-surface-container-low rounded-xl min-w-[210px] justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Current Stock</span>
+<span class="font-headline-lg text-headline-lg font-bold text-on-surface tabular-nums" id="widget-current-stock">8 kg</span>
+</div>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-label-sm font-label-sm font-semibold bg-error-container/60 text-error" id="widget-status-badge">
+<span class="w-1.5 h-1.5 rounded-full bg-error" id="widget-status-dot"></span>
+<span class="" id="widget-status-text">Critical</span>
+</div>
+</div>
+</div>
+<!-- MAIN FORM BODY -->
+<form class="space-y-space-lg" id="stock-receipt-form" novalidate="" onsubmit="handleFormSubmit(event)">
+<!-- SECTION 1: STOCK DESTINATION -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-sm pb-space-sm border-b border-surface-container">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary font-semibold text-label-md">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface">1. Stock Destination</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Choose the ingredient and destination storage location.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Ingredient Select -->
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="ingredient-select">Ingredient <span class="text-error">*</span></label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm cursor-pointer appearance-none transition-colors" id="ingredient-select" onchange="onIngredientChange(this.value)">
+<option selected="" value="chicken-breast">Chicken Breast (SKU-9021)</option>
+<option value="mozzarella-cheese">Mozzarella Cheese (SKU-4012)</option>
+<option value="cooking-oil">Cooking Oil (SKU-1084)</option>
+<option value="potatoes">Potatoes (SKU-3320)</option>
+<option value="tomatoes">Tomatoes (SKU-5501)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[20px]">arrow_drop_down</span>
+</div>
+<p class="font-body-sm text-body-sm text-error hidden" id="error-ingredient-select"></p>
+</div>
+<!-- Storage Location Select -->
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="storage-location">Destination Storage Location <span class="text-error">*</span></label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm cursor-pointer appearance-none transition-colors" id="storage-location" onchange="clearError('storage-location')">
+<option selected="" value="Walk-in Cooler">Walk-in Cooler</option>
+<option value="Main Store">Main Store</option>
+<option value="Dry Store">Dry Store</option>
+<option value="Kitchen Prep">Kitchen Prep</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[20px]">storefront</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Default configured storage area. Destination can be updated if intake is stored elsewhere.</p>
+<p class="font-body-sm text-body-sm text-error hidden" id="error-storage-location"></p>
+</div>
+</div>
+<!-- Compact Ingredient Metadata Bar Underneath -->
+<div class="bg-surface-container-low p-space-sm rounded-lg flex flex-wrap items-center justify-between gap-2 font-label-sm text-label-sm text-on-surface">
+<div class="flex items-center gap-1.5">
+<span class="text-on-surface-variant">Current Stock:</span>
+<span class="font-semibold text-on-surface" id="dest-current-stock">8 kg</span>
+</div>
+<span class="text-outline-variant/60">|</span>
+<div class="flex items-center gap-1.5">
+<span class="text-on-surface-variant">Minimum Stock:</span>
+<span class="font-semibold text-on-surface" id="dest-min-stock">20 kg</span>
+</div>
+<span class="text-outline-variant/60">|</span>
+<div class="flex items-center gap-1.5">
+<span class="text-on-surface-variant">Stock Unit:</span>
+<span class="font-semibold text-on-surface uppercase" id="dest-stock-unit">kg</span>
+</div>
+<span class="text-outline-variant/60">|</span>
+<div class="flex items-center gap-1.5">
+<span class="text-on-surface-variant">Current Cost:</span>
+<span class="font-semibold text-primary" id="dest-current-cost">PKR 920 / kg</span>
+</div>
+</div>
+</div>
+<!-- SECTION 2: QUANTITY RECEIVED -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-sm pb-space-sm border-b border-surface-container">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary font-semibold text-label-md">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface">2. Quantity Received</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enter how much stock was received.</p>
+</div>
+</div>
+<div class="space-y-space-md">
+<!-- Receipt Source selection -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-on-surface font-medium">Receipt Source <span class="text-error">*</span></label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<label class="flex items-start gap-space-sm p-space-sm bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container border border-transparent transition-colors has-[:checked]:border-primary/40 has-[:checked]:bg-surface-container">
+<input checked="" class="mt-0.5 text-primary focus:ring-0" name="receipt-source" onchange="onSourceChange(this.value)" type="radio" value="Supplier Purchase"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Supplier Purchase</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Stock received from a supplier.</span>
+</div>
+</label>
+<label class="flex items-start gap-space-sm p-space-sm bg-surface-container-low rounded-lg cursor-pointer hover:bg-surface-container border border-transparent transition-colors has-[:checked]:border-primary/40 has-[:checked]:bg-surface-container">
+<input class="mt-0.5 text-primary focus:ring-0" name="receipt-source" onchange="onSourceChange(this.value)" type="radio" value="Other Stock Receipt"/>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-semibold text-on-surface">Other Stock Receipt</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Stock received outside the normal supplier purchase process.</span>
+</div>
+</label>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Note: Use <span class="font-semibold text-on-surface">Stock Counts</span> for quantity corrections and <span class="font-semibold text-on-surface">Transfers</span> for stock moved between locations.</p>
+<p class="font-body-sm text-body-sm text-error hidden" id="error-receipt-source"></p>
+</div>
+<!-- Quantity Units & Dynamic Calculation Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md pt-space-xs">
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="receive-as">Receive As <span class="text-error">*</span></label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm cursor-pointer appearance-none transition-colors" id="receive-as" onchange="onReceiveUnitChange(this.value)">
+<option id="opt-package" selected="" value="package">Bag (10 kg)</option>
+<option id="opt-base" value="base">kg (Stock Unit)</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[20px]">scale</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant" id="purchase-unit-context">1 Bag = 10 kg</p>
+<p class="font-body-sm text-body-sm text-error hidden" id="error-receive-as"></p>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="received-quantity">Quantity <span class="text-error">*</span></label>
+<div class="relative">
+<input class="w-full h-10 px-3 font-numeric-table text-numeric-table rounded-lg bg-surface-container-lowest text-on-surface focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm" id="received-quantity" min="0.01" oninput="calculateRealtimeValues(); clearError('received-quantity');" step="any" type="number" value="2"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 font-label-sm text-label-sm text-on-surface-variant" id="input-quantity-suffix">Bags</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enter verified count unloaded.</p>
+<p class="font-body-sm text-body-sm text-error hidden" id="error-received-quantity"></p>
+</div>
+<!-- Calculated Stock Quantity Added indicator -->
+<div class="space-y-1 flex flex-col justify-end">
+<div class="p-space-sm bg-teal-50 border border-teal-200/70 rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-teal-800 uppercase font-bold tracking-wider">Calculated Stock Added</span>
+<span class="font-headline-md text-headline-md font-bold text-teal-800 tabular-nums" id="calculated-stock-added">20 kg</span>
+</div>
+<span class="material-symbols-outlined text-teal-700 text-[28px]">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3: RECEIPT COST -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-sm pb-space-sm border-b border-surface-container">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary font-semibold text-label-md">
+<span class="material-symbols-outlined text-[18px]">payments</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface">3. Receipt Cost</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Enter supplier and cost information for this receipt.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Supplier Select -->
+<div class="space-y-1" id="supplier-field-container">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="supplier-select">
+Supplier <span class="text-error" id="supplier-required-indicator">*</span>
+</label>
+<div class="relative">
+<select class="w-full h-10 px-3 pr-8 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm cursor-pointer appearance-none transition-colors" id="supplier-select" onchange="clearError('supplier-select')"><option value="">No supplier</option>
+<option selected="" value="Fresh Foods Supplier">Fresh Foods Supplier</option>
+<option value="Metro Wholesale">Metro Wholesale</option>
+<option value="Local Food Supplier">Local Food Supplier</option>
+</select>
+<span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none text-[20px]">local_shipping</span>
+</div>
+<p class="font-body-sm text-body-sm text-error hidden" id="error-supplier-select"></p>
+</div>
+<!-- Unit Cost Field -->
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="unit-cost">Unit Cost <span class="text-error">*</span></label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 font-label-sm text-label-sm text-on-surface-variant">PKR</span>
+<input class="w-full h-10 pl-11 pr-14 font-numeric-table text-numeric-table rounded-lg bg-surface-container-lowest text-on-surface focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm" id="unit-cost" min="0" oninput="calculateRealtimeValues(); clearError('unit-cost');" step="any" type="number" value="950"/>
+<span class="absolute right-3 top-1/2 -translate-y-1/2 font-label-sm text-label-sm text-on-surface-variant" id="unit-cost-unit-label">/ kg</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cost per inventory stock unit.</p>
+<p class="font-body-sm text-body-sm text-error hidden" id="error-unit-cost"></p>
+</div>
+<!-- Read-only Received Value -->
+<div class="space-y-1 flex flex-col justify-end">
+<div class="p-space-sm bg-surface-container-low rounded-lg flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Received Value</span>
+<span class="font-headline-md text-headline-md font-bold text-on-surface tabular-nums" id="received-value">PKR 19,000.00</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[24px]">receipt_long</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm pt-space-xs">
+<span class="material-symbols-outlined text-[16px] text-primary">info</span>
+<span class="">New average cost is calculated automatically.</span>
+</div>
+</div>
+<!-- SECTION 4: RECEIPT DETAILS & TRACKING -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center gap-space-sm pb-space-sm border-b border-surface-container">
+<div class="w-7 h-7 rounded-lg bg-surface-container flex items-center justify-center text-primary font-semibold text-label-md">
+<span class="material-symbols-outlined text-[18px]">event_note</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface">4. Receipt Details</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Record receipt date, reference, and tracking details when required.</p>
+</div>
+</div>
+<!-- 2 Column Standard Fields -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="received-date">Received Date &amp; Time <span class="text-error">*</span></label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm" id="received-date" onchange="clearError('received-date')" type="datetime-local"/>
+<p class="font-body-sm text-body-sm text-error hidden" id="error-received-date"></p>
+</div>
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="reference-number">Reference / Invoice Number</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm" id="reference-number" placeholder="e.g. INV-48392" type="text" value="INV-48392"/>
+</div>
+</div>
+<!-- Sub-section wrapper: Tracking Details -->
+<div class="bg-surface-container-low p-space-md rounded-xl space-y-space-sm" id="tracking-section-container">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified_user</span>
+<span class="font-label-md text-label-md font-semibold text-on-surface">Tracking Details</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md pt-1">
+<!-- Expiry Date Container -->
+<div class="space-y-1" id="expiry-field-container">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="expiry-date">
+Expiry Date <span class="text-error" id="expiry-required-indicator">*</span>
+</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm" id="expiry-date" onchange="clearError('expiry-date')" type="date" value="2026-10-05"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Required for ingredients with expiry tracking enabled.</p>
+<p class="font-body-sm text-body-sm text-error hidden" id="error-expiry-date"></p>
+</div>
+<!-- Batch Container -->
+<div class="space-y-1" id="batch-field-container">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="batch-number">
+Supplier Batch / Lot Number <span class="text-error" id="batch-required-indicator">*</span>
+</label>
+<input class="w-full h-10 px-3 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm" id="batch-number" oninput="clearError('batch-number')" placeholder="e.g. LOT-CH-230926" type="text" value="LOT-CH-230926"/>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Required for ingredients with batch tracking enabled.</p>
+<p class="font-body-sm text-body-sm text-error hidden" id="error-batch-number"></p>
+</div>
+</div>
+</div>
+<!-- Notes -->
+<div class="space-y-1">
+<label class="block font-label-md text-label-md text-on-surface font-medium" for="receiving-notes">Receiving Notes (Optional)</label>
+<textarea class="w-full p-3 rounded-lg bg-surface-container-lowest text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-low border border-outline-variant/40 shadow-sm" id="receiving-notes" placeholder="e.g. Morning delivery verified by Kitchen Lead" rows="2">Morning supplier delivery inspected and temperature checked at 2.4°C.</textarea>
+</div>
+</div>
+<!-- SECTION 5: RECEIPT SUMMARY -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm space-y-space-md">
+<div class="flex items-center justify-between pb-space-sm border-b border-surface-container">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center text-primary font-semibold text-label-md">
+<span class="material-symbols-outlined text-[18px]">fact_check</span>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md font-semibold text-on-surface">5. Receipt Summary</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Review how this receipt will affect inventory before saving.</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface font-semibold">Live Preview</span>
+</div>
+<!-- 2 Column Metric Matrix -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-lg">
+<!-- Col A: Stock Physical Balance -->
+<div class="space-y-space-sm bg-surface-container-low p-space-md rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Stock Impact</span>
+<div class="space-y-2 text-label-md">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-body-sm">Current Stock</span>
+<span class="font-numeric-table text-on-surface font-medium" id="summary-curr-stock">8 kg</span>
+</div>
+<div class="flex justify-between items-center text-primary font-medium">
+<span class="font-body-sm">Stock Being Added</span>
+<span class="font-numeric-table" id="summary-add-stock">+20 kg</span>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-surface-container font-semibold">
+<span class="font-body-sm text-on-surface">New Stock</span>
+<span class="font-numeric-table text-headline-md text-on-surface" id="summary-new-stock">28 kg</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant pt-1">
+<span class="font-body-sm">Minimum Stock</span>
+<span class="font-numeric-table" id="summary-min-thresh">20 kg</span>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="font-body-sm text-on-surface-variant">New Status</span>
+<div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-tertiary-container/15 text-tertiary-container" id="summary-status-pill">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-container" id="summary-status-dot"></span>
+<span class="" id="summary-status-text">Healthy</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Col B: Valuation Impact -->
+<div class="space-y-space-sm bg-surface-container-low p-space-md rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Cost Impact</span>
+<div class="space-y-2 text-label-md">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-body-sm">Current Unit Cost</span>
+<span class="font-numeric-table text-on-surface font-medium" id="summary-curr-cost">PKR 920.00 / kg</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-body-sm">Received Unit Cost</span>
+<span class="font-numeric-table text-on-surface font-medium" id="summary-recv-cost">PKR 950.00 / kg</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-body-sm">Received Value</span>
+<span class="font-numeric-table font-semibold text-on-surface" id="summary-recv-val">PKR 19,000.00</span>
+</div>
+<div class="flex justify-between items-center pt-2 border-t border-surface-container font-semibold">
+<span class="font-body-sm text-on-surface">New Average Unit Cost</span>
+<span class="font-numeric-table text-primary font-bold" id="summary-new-wac">PKR 941.43 / kg</span>
+</div>
+<div class="flex justify-between items-center pt-1 font-semibold">
+<span class="font-body-sm text-on-surface">New Inventory Value</span>
+<span class="font-numeric-table text-headline-md text-on-surface" id="summary-new-asset-val">PKR 26,360.00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- STICKY ACTION FOOTER BAR -->
+<div class="sticky bottom-4 z-20 bg-surface-container-lowest/90 backdrop-blur-md p-space-md rounded-xl shadow-lg flex items-center justify-between gap-space-md">
+<a class="px-space-md py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md transition-colors flex items-center gap-1.5" href="#ingredient-detail">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+<span class="">Cancel</span>
+</a>
+<div class="flex items-center gap-space-sm ml-auto">
+<button class="px-space-lg py-2.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md font-semibold transition-all flex items-center gap-space-xs shadow-sm cursor-pointer" id="save-btn" type="submit">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span class="">Save Stock Receipt</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+</main>
+</div>
+<!-- SINGLE UNIFIED JAVASCRIPT BLOCK -->
+<script>
+  function toggleSidebar() {
+    const sidebar = document.getElementById('app-sidebar');
+    const backdrop = document.getElementById('sidebar-backdrop');
+    if (!sidebar || !backdrop) return;
+    const isClosed = sidebar.classList.contains('-translate-x-full');
+    if (isClosed) {
+      sidebar.classList.remove('-translate-x-full');
+      backdrop.classList.remove('hidden');
+    } else {
+      sidebar.classList.add('-translate-x-full');
+      backdrop.classList.add('hidden');
+    }
+  }
+
+  const inventoryCatalog = {
+    'chicken-breast': {
+      name: "Chicken Breast",
+      sku: "SKU-9021",
+      currentStock: 8,
+      minimumStock: 20,
+      stockUnit: "kg",
+      unitCost: 920,
+      location: "Walk-in Cooler",
+      supplier: "Fresh Foods Supplier",
+      purchaseUnit: "Bag",
+      quantityPerPurchaseUnit: 10,
+      expiryTracking: true,
+      batchTracking: true
+    },
+    'mozzarella-cheese': {
+      name: "Mozzarella Cheese",
+      sku: "SKU-4012",
+      currentStock: 18,
+      minimumStock: 15,
+      stockUnit: "kg",
+      unitCost: 1250,
+      location: "Walk-in Cooler",
+      supplier: "Fresh Foods Supplier",
+      purchaseUnit: null,
+      quantityPerPurchaseUnit: null,
+      expiryTracking: true,
+      batchTracking: true
+    },
+    'cooking-oil': {
+      name: "Cooking Oil",
+      sku: "SKU-1084",
+      currentStock: 10,
+      minimumStock: 15,
+      stockUnit: "L",
+      unitCost: 410,
+      location: "Dry Store",
+      supplier: "Metro Wholesale",
+      purchaseUnit: "Can",
+      quantityPerPurchaseUnit: 15,
+      expiryTracking: false,
+      batchTracking: false
+    },
+    'potatoes': {
+      name: "Potatoes",
+      sku: "SKU-3320",
+      currentStock: 0,
+      minimumStock: 25,
+      stockUnit: "kg",
+      unitCost: 95,
+      location: "Kitchen Prep",
+      supplier: "Local Food Supplier",
+      purchaseUnit: "Sack",
+      quantityPerPurchaseUnit: 25,
+      expiryTracking: false,
+      batchTracking: true
+    },
+    'tomatoes': {
+      name: "Tomatoes",
+      sku: "SKU-5501",
+      currentStock: 12,
+      minimumStock: 15,
+      stockUnit: "kg",
+      unitCost: 140,
+      location: "Kitchen Prep",
+      supplier: "Local Food Supplier",
+      purchaseUnit: "Crate",
+      quantityPerPurchaseUnit: 10,
+      expiryTracking: true,
+      batchTracking: false
+    }
+  };
+
+  let selectedIngredientKey = 'chicken-breast';
+  let selectedIngredient = { ...inventoryCatalog[selectedIngredientKey] };
+
+  function formatCurrency(val) {
+    return 'PKR ' + Number(val).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  function formatNum(val) {
+    return Number(val).toLocaleString('en-US', { maximumFractionDigits: 2 });
+  }
+
+  function populateDateTimeNow() {
+    const dtInput = document.getElementById('received-date');
+    if (!dtInput) return;
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    dtInput.value = now.toISOString().slice(0, 16);
+  }
+
+  function clearError(fieldId) {
+    const errEl = document.getElementById('error-' + fieldId);
+    if (errEl) {
+      errEl.textContent = '';
+      errEl.classList.add('hidden');
+    }
+    const inputEl = document.getElementById(fieldId);
+    if (inputEl) {
+      inputEl.classList.remove('border-error');
+    }
+  }
+
+  function setError(fieldId, message) {
+    const errEl = document.getElementById('error-' + fieldId);
+    if (errEl) {
+      errEl.textContent = message;
+      errEl.classList.remove('hidden');
+    }
+    const inputEl = document.getElementById(fieldId);
+    if (inputEl) {
+      inputEl.classList.add('border-error');
+    }
+  }
+
+  function updateIngredientUI() {
+    // Header & breadcrumbs
+    const contextPill = document.getElementById('header-context-pill');
+    if (contextPill) {
+      contextPill.textContent = `${selectedIngredient.name} • ${selectedIngredient.sku} • ${selectedIngredient.location}`;
+    }
+    const bName = document.getElementById('breadcrumb-ingredient');
+    if (bName) bName.textContent = selectedIngredient.name;
+
+    // Header Widget Current Stock
+    const currentStockEl = document.getElementById('widget-current-stock');
+    if (currentStockEl) {
+      currentStockEl.textContent = `${formatNum(selectedIngredient.currentStock)} ${selectedIngredient.stockUnit}`;
+    }
+
+    // Header Widget Status Pill
+    const badge = document.getElementById('widget-status-badge');
+    const badgeText = document.getElementById('widget-status-text');
+    const badgeDot = document.getElementById('widget-status-dot');
+    if (badge && badgeText) {
+      const min = selectedIngredient.minimumStock;
+      const cur = selectedIngredient.currentStock;
+      if (cur === 0) {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-label-sm font-label-sm font-semibold bg-error-container/60 text-error';
+        if (badgeDot) badgeDot.className = 'w-1.5 h-1.5 rounded-full bg-error';
+        badgeText.textContent = 'Out of Stock';
+      } else if (min > 0 && cur <= min * 0.5) {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-label-sm font-label-sm font-semibold bg-error-container/60 text-error';
+        if (badgeDot) badgeDot.className = 'w-1.5 h-1.5 rounded-full bg-error';
+        badgeText.textContent = 'Critical';
+      } else if (min > 0 && cur <= min) {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-label-sm font-label-sm font-semibold bg-secondary-container text-on-secondary-container';
+        if (badgeDot) badgeDot.className = 'w-1.5 h-1.5 rounded-full bg-secondary';
+        badgeText.textContent = 'Low Stock';
+      } else {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-label-sm font-label-sm font-semibold bg-tertiary-container/15 text-tertiary-container';
+        if (badgeDot) badgeDot.className = 'w-1.5 h-1.5 rounded-full bg-tertiary-container';
+        badgeText.textContent = 'Healthy';
+      }
+    }
+
+    // Section 1 Metadata Strip
+    const destCur = document.getElementById('dest-current-stock');
+    if (destCur) destCur.textContent = `${formatNum(selectedIngredient.currentStock)} ${selectedIngredient.stockUnit}`;
+
+    const destMin = document.getElementById('dest-min-stock');
+    if (destMin) destMin.textContent = selectedIngredient.minimumStock > 0 ? `${formatNum(selectedIngredient.minimumStock)} ${selectedIngredient.stockUnit}` : "No minimum level set";
+
+    const destUnit = document.getElementById('dest-stock-unit');
+    if (destUnit) destUnit.textContent = selectedIngredient.stockUnit;
+
+    const destCost = document.getElementById('dest-current-cost');
+    if (destCost) destCost.textContent = `PKR ${selectedIngredient.unitCost} / ${selectedIngredient.stockUnit}`;
+
+    // Section 1 destination storage location
+    const locSelect = document.getElementById('storage-location');
+    if (locSelect) locSelect.value = selectedIngredient.location;
+
+    // Suffixes and Unit Cost label
+    const unitCostLabel = document.getElementById('unit-cost-unit-label');
+    if (unitCostLabel) unitCostLabel.textContent = `/ ${selectedIngredient.stockUnit}`;
+
+    // Supplier Select Sync
+    const supSelect = document.getElementById('supplier-select');
+    if (supSelect) supSelect.value = selectedIngredient.supplier;
+
+    // Receive As dropdown logic & packaging helper
+    const receiveAsSelect = document.getElementById('receive-as');
+    const optPkg = document.getElementById('opt-package');
+    const optBase = document.getElementById('opt-base');
+    const purchHelper = document.getElementById('purchase-unit-context');
+
+    const hasValidPackage = selectedIngredient.purchaseUnit && selectedIngredient.quantityPerPurchaseUnit && Number(selectedIngredient.quantityPerPurchaseUnit) > 0;
+
+    if (receiveAsSelect && optPkg && optBase && purchHelper) {
+      if (hasValidPackage) {
+        optPkg.style.display = '';
+        optPkg.value = 'package';
+        optPkg.textContent = `${selectedIngredient.purchaseUnit} (${selectedIngredient.quantityPerPurchaseUnit} ${selectedIngredient.stockUnit})`;
+        optBase.textContent = `${selectedIngredient.stockUnit} (Stock Unit)`;
+        optBase.value = 'base';
+        receiveAsSelect.value = 'package';
+        purchHelper.textContent = `1 ${selectedIngredient.purchaseUnit} = ${selectedIngredient.quantityPerPurchaseUnit} ${selectedIngredient.stockUnit}`;
+      } else {
+        optPkg.style.display = 'none';
+        optBase.textContent = `${selectedIngredient.stockUnit} (Stock Unit)`;
+        optBase.value = 'base';
+        receiveAsSelect.value = 'base';
+        purchHelper.textContent = 'Direct stock unit entry';
+      }
+    }
+
+    updateQuantitySuffix();
+
+    // Section 4 Tracking Containers Visibility & Requirement
+    const trackingContainer = document.getElementById('tracking-section-container');
+    const expiryContainer = document.getElementById('expiry-field-container');
+    const batchContainer = document.getElementById('batch-field-container');
+    const expiryInput = document.getElementById('expiry-date');
+    const batchInput = document.getElementById('batch-number');
+
+    const expTrack = !!selectedIngredient.expiryTracking;
+    const batchTrack = !!selectedIngredient.batchTracking;
+
+    if (trackingContainer) {
+      if (!expTrack && !batchTrack) {
+        trackingContainer.classList.add('hidden');
+      } else {
+        trackingContainer.classList.remove('hidden');
+      }
+    }
+
+    if (expiryContainer) {
+      if (expTrack) {
+        expiryContainer.classList.remove('hidden');
+      } else {
+        expiryContainer.classList.add('hidden');
+        if (expiryInput) expiryInput.value = '';
+        clearError('expiry-date');
+      }
+    }
+
+    if (batchContainer) {
+      if (batchTrack) {
+        batchContainer.classList.remove('hidden');
+      } else {
+        batchContainer.classList.add('hidden');
+        if (batchInput) batchInput.value = '';
+        clearError('batch-number');
+      }
+    }
+  }
+
+  function updateQuantitySuffix() {
+    const receiveAs = document.getElementById('receive-as')?.value;
+    const suffix = document.getElementById('input-quantity-suffix');
+    if (!suffix) return;
+    if (receiveAs === 'package' && selectedIngredient.purchaseUnit) {
+      suffix.textContent = `${selectedIngredient.purchaseUnit}s`;
+    } else {
+      suffix.textContent = selectedIngredient.stockUnit;
+    }
+  }
+
+  function onIngredientChange(key) {
+    if (inventoryCatalog[key]) {
+      selectedIngredientKey = key;
+      selectedIngredient = { ...inventoryCatalog[key] };
+      const costInput = document.getElementById('unit-cost');
+      if (costInput) {
+        costInput.value = key === 'chicken-breast' ? 950 : selectedIngredient.unitCost;
+      }
+      clearError('ingredient-select');
+      updateIngredientUI();
+      calculateRealtimeValues();
+    }
+  }
+
+  function onReceiveUnitChange(val) {
+    const purchHelper = document.getElementById('purchase-unit-context');
+    if (purchHelper) {
+      if (val === 'package' && selectedIngredient.purchaseUnit) {
+        purchHelper.textContent = `1 ${selectedIngredient.purchaseUnit} = ${selectedIngredient.quantityPerPurchaseUnit} ${selectedIngredient.stockUnit}`;
+      } else {
+        purchHelper.textContent = 'Direct stock unit entry';
+      }
+    }
+    updateQuantitySuffix();
+    clearError('receive-as');
+    calculateRealtimeValues();
+  }
+
+  function onSourceChange(source) {
+    const reqInd = document.getElementById('supplier-required-indicator');
+    if (source === 'Supplier Purchase') {
+      if (reqInd) reqInd.classList.remove('hidden');
+    } else {
+      if (reqInd) reqInd.classList.add('hidden');
+      clearError('supplier-select');
+    }
+    clearError('receipt-source');
+  }
+
+  function calculateRealtimeValues() {
+    const receiveAs = document.getElementById('receive-as')?.value || 'base';
+    const qty = parseFloat(document.getElementById('received-quantity')?.value) || 0;
+    const unitCost = parseFloat(document.getElementById('unit-cost')?.value) || 0;
+
+    // Calculation formulas per spec
+    const hasValidPackage = selectedIngredient.purchaseUnit && selectedIngredient.quantityPerPurchaseUnit && Number(selectedIngredient.quantityPerPurchaseUnit) > 0;
+    const stockQuantityAdded = (receiveAs === 'package' && hasValidPackage)
+      ? (qty * selectedIngredient.quantityPerPurchaseUnit)
+      : qty;
+
+    const existingValue = selectedIngredient.currentStock * selectedIngredient.unitCost;
+    const receivedValue = stockQuantityAdded * unitCost;
+    const newStock = selectedIngredient.currentStock + stockQuantityAdded;
+    const newInventoryValue = existingValue + receivedValue;
+    const newAverageUnitCost = newStock > 0 ? (newInventoryValue / newStock) : 0;
+
+    // Section 2 Added output
+    const calcStockAdded = document.getElementById('calculated-stock-added');
+    if (calcStockAdded) {
+      calcStockAdded.textContent = `${formatNum(stockQuantityAdded)} ${selectedIngredient.stockUnit}`;
+    }
+
+    // Section 3 Received Value
+    const recvValEl = document.getElementById('received-value');
+    if (recvValEl) {
+      recvValEl.textContent = formatCurrency(receivedValue);
+    }
+
+    // Section 5 Summary - Left Column
+    const sumCurrStock = document.getElementById('summary-curr-stock');
+    if (sumCurrStock) sumCurrStock.textContent = `${formatNum(selectedIngredient.currentStock)} ${selectedIngredient.stockUnit}`;
+
+    const sumAddStock = document.getElementById('summary-add-stock');
+    if (sumAddStock) sumAddStock.textContent = `+${formatNum(stockQuantityAdded)} ${selectedIngredient.stockUnit}`;
+
+    const sumNewStock = document.getElementById('summary-new-stock');
+    if (sumNewStock) sumNewStock.textContent = `${formatNum(newStock)} ${selectedIngredient.stockUnit}`;
+
+    const sumMinStock = document.getElementById('summary-min-thresh');
+    if (sumMinStock) {
+      sumMinStock.textContent = selectedIngredient.minimumStock > 0
+        ? `${formatNum(selectedIngredient.minimumStock)} ${selectedIngredient.stockUnit}`
+        : "No minimum level set";
+    }
+
+    // Status evaluation
+    const statusPill = document.getElementById('summary-status-pill');
+    const statusText = document.getElementById('summary-status-text');
+    const statusDot = document.getElementById('summary-status-dot');
+
+    let status = 'Healthy';
+    const min = selectedIngredient.minimumStock;
+    if (newStock === 0) {
+      status = 'Out of Stock';
+    } else if (min > 0 && newStock <= min * 0.5) {
+      status = 'Critical';
+    } else if (min > 0 && newStock <= min) {
+      status = 'Low Stock';
+    } else {
+      status = 'Healthy';
+    }
+
+    if (statusPill && statusText) {
+      statusText.textContent = status;
+      if (status === 'Critical' || status === 'Out of Stock') {
+        statusPill.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-error-container/60 text-error';
+        if (statusDot) statusDot.className = 'w-1.5 h-1.5 rounded-full bg-error';
+      } else if (status === 'Low Stock') {
+        statusPill.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-secondary-container text-on-secondary-container';
+        if (statusDot) statusDot.className = 'w-1.5 h-1.5 rounded-full bg-secondary';
+      } else {
+        statusPill.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-label-sm font-label-sm font-semibold bg-tertiary-container/15 text-tertiary-container';
+        if (statusDot) statusDot.className = 'w-1.5 h-1.5 rounded-full bg-tertiary-container';
+      }
+    }
+
+    // Section 5 Summary - Right Column
+    const sumCurrCost = document.getElementById('summary-curr-cost');
+    if (sumCurrCost) sumCurrCost.textContent = `${formatCurrency(selectedIngredient.unitCost)} / ${selectedIngredient.stockUnit}`;
+
+    const sumRecvCost = document.getElementById('summary-recv-cost');
+    if (sumRecvCost) sumRecvCost.textContent = `${formatCurrency(unitCost)} / ${selectedIngredient.stockUnit}`;
+
+    const sumRecvVal = document.getElementById('summary-recv-val');
+    if (sumRecvVal) sumRecvVal.textContent = formatCurrency(receivedValue);
+
+    const sumNewWac = document.getElementById('summary-new-wac');
+    if (sumNewWac) sumNewWac.textContent = `${formatCurrency(newAverageUnitCost)} / ${selectedIngredient.stockUnit}`;
+
+    const sumNewAsset = document.getElementById('summary-new-asset-val');
+    if (sumNewAsset) sumNewAsset.textContent = formatCurrency(newInventoryValue);
+  }
+
+  function showToast(title, message) {
+    const toast = document.getElementById('toast-notification');
+    const tTitle = document.getElementById('toast-title');
+    const tMsg = document.getElementById('toast-message');
+    if (!toast) return;
+
+    if (tTitle) tTitle.textContent = title;
+    if (tMsg) tMsg.textContent = message;
+
+    toast.classList.remove('translate-x-full');
+    setTimeout(() => {
+      dismissToast();
+    }, 4500);
+  }
+
+  function dismissToast() {
+    const toast = document.getElementById('toast-notification');
+    if (toast) toast.classList.add('translate-x-full');
+  }
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+
+    let isValid = true;
+
+    // Validate Ingredient
+    const ingSelect = document.getElementById('ingredient-select');
+    if (!ingSelect || !ingSelect.value) {
+      setError('ingredient-select', 'Please select an ingredient.');
+      isValid = false;
+    } else {
+      clearError('ingredient-select');
+    }
+
+    // Validate Storage Location
+    const storageLocation = document.getElementById('storage-location')?.value || '';
+    if (!storageLocation) {
+      setError('storage-location', 'Destination storage location is required.');
+      isValid = false;
+    } else {
+      clearError('storage-location');
+    }
+
+    // Validate Receipt Source
+    const sourceRadio = document.querySelector('input[name="receipt-source"]:checked');
+    const receiptSource = sourceRadio ? sourceRadio.value : '';
+    if (!receiptSource) {
+      setError('receipt-source', 'Please select a receipt source.');
+      isValid = false;
+    } else {
+      clearError('receipt-source');
+    }
+
+    // Validate Receive As
+    const receiveAs = document.getElementById('receive-as')?.value;
+    if (!receiveAs) {
+      setError('receive-as', 'Please select a receiving unit.');
+      isValid = false;
+    } else {
+      clearError('receive-as');
+    }
+
+    // Validate Quantity
+    const qtyInput = document.getElementById('received-quantity');
+    const qty = parseFloat(qtyInput?.value);
+    if (isNaN(qty) || qty <= 0) {
+      setError('received-quantity', 'Quantity must be greater than 0.');
+      isValid = false;
+    } else {
+      clearError('received-quantity');
+    }
+
+    // Validate Unit Cost
+    const unitCostInput = document.getElementById('unit-cost');
+    const unitCostStr = unitCostInput ? unitCostInput.value : '';
+    const unitCost = parseFloat(unitCostStr);
+    if (unitCostStr.trim() === '' || isNaN(unitCost) || unitCost < 0) {
+      setError('unit-cost', 'Enter a valid unit cost (zero or positive).');
+      isValid = false;
+    } else {
+      clearError('unit-cost');
+    }
+
+    // Validate Received Date
+    const receivedDate = document.getElementById('received-date')?.value;
+    if (!receivedDate) {
+      setError('received-date', 'Receipt date and time is required.');
+      isValid = false;
+    } else {
+      clearError('received-date');
+    }
+
+    // Validate Supplier only if Receipt Source === "Supplier Purchase"
+    const supplier = document.getElementById('supplier-select')?.value || '';
+    if (receiptSource === 'Supplier Purchase') {
+      if (!supplier.trim()) {
+        setError('supplier-select', 'Supplier is required for supplier purchases.');
+        isValid = false;
+      } else {
+        clearError('supplier-select');
+      }
+    } else {
+      clearError('supplier-select');
+    }
+
+    // Validate Expiry Date if expiry tracking is enabled
+    if (selectedIngredient.expiryTracking) {
+      const expDate = document.getElementById('expiry-date')?.value;
+      if (!expDate) {
+        setError('expiry-date', 'Expiry date is required for this ingredient.');
+        isValid = false;
+      } else {
+        clearError('expiry-date');
+      }
+    } else {
+      clearError('expiry-date');
+    }
+
+    // Validate Batch Number if batch tracking is enabled
+    if (selectedIngredient.batchTracking) {
+      const batchNum = document.getElementById('batch-number')?.value;
+      if (!batchNum || !batchNum.trim()) {
+        setError('batch-number', 'Batch / Lot Number is required for this ingredient.');
+        isValid = false;
+      } else {
+        clearError('batch-number');
+      }
+    } else {
+      clearError('batch-number');
+    }
+
+    if (!isValid) {
+      return;
+    }
+
+    // Success: Calculate stock added based on verified quantity and package logic
+    const hasValidPackage = selectedIngredient.purchaseUnit && selectedIngredient.quantityPerPurchaseUnit && Number(selectedIngredient.quantityPerPurchaseUnit) > 0;
+    const stockQuantityAdded = (receiveAs === 'package' && hasValidPackage)
+      ? (qty * selectedIngredient.quantityPerPurchaseUnit)
+      : qty;
+
+    const saveBtn = document.getElementById('save-btn');
+    if (saveBtn) {
+      saveBtn.disabled = true;
+      saveBtn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span><span>Processing Receipt...</span>`;
+    }
+
+    setTimeout(() => {
+      showToast(
+        "Stock added successfully",
+        `${formatNum(stockQuantityAdded)} ${selectedIngredient.stockUnit} ${selectedIngredient.name} received into ${storageLocation}.`
+      );
+
+      if (saveBtn) {
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = `<span class="material-symbols-outlined text-[18px]">check</span><span>Save Stock Receipt</span>`;
+      }
+
+      // Navigate after toast confirmation
+      setTimeout(() => {
+        window.location.hash = "ingredient-detail";
+      }, 1600);
+    }, 400);
+  }
+
+  // Initial boot
+  document.addEventListener('DOMContentLoaded', () => {
+    populateDateTimeNow();
+    updateIngredientUI();
+    calculateRealtimeValues();
+  });
+</script>
+<script src="/integration-bridge.js"></script>
+</body></html>
